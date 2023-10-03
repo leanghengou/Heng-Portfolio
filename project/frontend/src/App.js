@@ -1,7 +1,7 @@
-
-
 import './site-main.css'
-import Navigation from "./actions/components/navigation"
+import Navigation from "./actions/components/navigation/navigation"
+import IntroSection from './actions/components/introduction-section/intro-section';
+
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
       <div className='site-width-container'>
 
 
+    <IntroSection/>
       </div>
     </div>
   );

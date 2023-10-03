@@ -1,0 +1,35 @@
+.heng-img-custom{
+    width: 650px;;
+}
+
+
+
+.intro-section-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin: 70px 0;
+}
+.intro-section-container-text-cotnainer{
+    width: 35%;
+    font-size: 18px;;
+}
+
+.intro-section-container-social-media-icons{
+    display: flex;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin-top: 40px;
+    margin-left: 0px;
+    padding: 0px;
+
+}
+
+.intro-section-container-social-media-icons > li{
+   margin-right: 20px;
+}
+
+.intro-section-container-social-media-icons > li > a >img{
+cursor: pointer;
+ }
