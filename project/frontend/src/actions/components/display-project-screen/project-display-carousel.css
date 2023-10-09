@@ -1,5 +1,6 @@
 .focus-screen-container{
-    margin: 70px 0;
+    margin-top: 70px;
+    margin-bottom: 30px;
     padding: 50px;
     display: flex;
     align-items: center;
@@ -52,23 +53,35 @@
 }
 .carousel-slide-container > div > div {
     width:100%;
-    height: auto;
+    height: 150px;
 }
 
-.carousel-slide-container > div >div> img {
+/* .carousel-slide-container > div >div> img {
     width: 100%;
     border-radius: 3px;
     opacity: 0.2;
-}
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+} */
+
+/* .carousel-slide-container > div >div> img:hover {
+    opacity: 1;
+} */
+
 
 .selected-slide{
-    width:22% !important;
+    /* width:20% !important; */
+    transition: all 400ms ease-in-out;
 }
 
 
-.selected-slide >div> img{
-    border: 1px solid white;
+.selected-slide >div{
+    outline: 2px solid white;
     opacity: 1 !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    transition: all 400ms ease-in-out;
+
+  
 }
 
 .prev-slide, .next-slide{

@@ -1,46 +1,91 @@
 import React from "react";
 import { useState } from "react";
 import "./project-display-carousel.css"
+import styled from "styled-components"
+
+
+const totalSlides = [
+    {           tag:"Challange",
+                img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696873825/Heng%20Website/wo4usyxue9wlzcwo13bg.jpg",
+                title:"30 Days of Daily Posters",
+                date:"September 28th 2020",
+                realating:["Illustration", "Poster Design"],
+                subTitle:"30 Days of Daily Posters was my personal project that I challenged myself to make one poster everyday.",
+                colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #234be8,#ff950c00);"
+    },
+    {
+        tag:"Workout App",
+        img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696873824/Heng%20Website/ucghcebtxltl9o8xnqqz.jpg",
+        title:"StartNow",
+        date:"January 27th 2022",
+        realating:["UI/UX", "Mobile App", "Case Study"],
+        subTitle:"StartNow is my first UX case study project that I did in order to learn about UX process, and strategy. I also designed visual for the project to make it both UI and UX project.",
+        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #2ce214,#ff950c00);"
+    },
+    {   
+        tag:"Magazine",
+        img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696818138/Heng%20Website/er477gjcjkps7djel9rw.png",
+        title:"Perspective 101 Vol.1",
+        date:"February 1st 2022",
+        realating:["Illustration", "Layout Design", "Graphic Design"],
+        subTitle:"Perspective 101 is the collection of theses. It was to share their personal stories and thoughts on certain topic to the readers.",
+        colorVibe:"linear-gradient(to top, #040300a3, #000000f7), radial-gradient(circle at top, #e6b700,#ff950c00);"
+    },
+    {   
+        tag:"Branding",
+        img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696873824/Heng%20Website/czmc1vs8r9u7zv7pnuov.jpg",
+        title:"Everybody Fitness",
+        date:"August 29th 2020",
+        realating:["Bradning Indentity", "Logo"],
+        subTitle:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #01a99c,#ff950c00);"
+    },
+    {   
+        tag:"Branding",
+        img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696873824/Heng%20Website/l1qsuahthxvbhulyzbym.jpg",
+        title:"Fight Hunger",
+        date:"September 6th 2020",
+        realating:["Bradning Indentity", "Logo"],
+        subTitle:"Fight Hunger, the international campaign which established to war against the world starvation.",
+        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #ac261b,#ff950c00);"
+    }
+    ]
 
 const DisplayScreen = ()=>{
+    const [slideNum, setSlideNum] = useState(0);
     return(
         <div>
-       <FocusScreen/>
-       <CarouselSlides/>
+       <FocusScreen slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
+       <CarouselSlides slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
        </div>
     )
 }
 
-const FocusScreen = ()=>{
+const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
+    let currentProject = totalSlides[slideNum]
+    console.log("HEYYYY",currentProject.colorVibe)
     return(
-        <div className="focus-screen-container">
+        <FocusScreenContainer className="animate__animated animate__fadeInUp animate__delay-1s" colorVibe={currentProject.colorVibe}>
             <div className="focus-screen-image-box">
-            <a><img src="https://i.postimg.cc/L8RZT2Hz/Mask-group.png"/></a>
+            <FearturedImageSlide bgImg = {currentProject.img}/>
             </div>
             <div className="focus-screen-text-box">
-                <p><span>Inspirational</span></p>
-                <h3>Perspective 101</h3>
-                <p>We strive to provide the highest quality clothing at the best prices, so you can look your best without breaking the bank.</p>
+                <p><span>{currentProject.tag}</span></p>
+                <h3>{currentProject.title}</h3>
+                <p>{currentProject.subTitle}</p>
             </div>
-        </div>
+        </FocusScreenContainer>
     )
 }
 
 
 
-const CarouselSlides = ()=>{
-    const totalSlides = [
-{img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696817382/Heng%20Website/d14racjcrcor4loua4vd.png"},
-{img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696817382/Heng%20Website/y42wnqqee8ess1bzkncz.png"},
-{img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696818138/Heng%20Website/er477gjcjkps7djel9rw.png"},
-{img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696817382/Heng%20Website/tjwpf603trm56psatrdw.png"},
-{img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696817382/Heng%20Website/jtkkfkpj3auulumdeuau.png"},
-    ]
-    const [slideNum, setSlideNum] = useState(3);
-    console.log("slideNum -----", slideNum)
+const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
+ 
+
     const slideNext = ()=>{
       
-        if(slideNum >= 5){
+        if(slideNum >= 4){
             setSlideNum(slideNum-4)
         }else{
             setSlideNum(slideNum+1)
@@ -50,7 +95,7 @@ const CarouselSlides = ()=>{
     const slidePrev = ()=>{
         
        
-        if(slideNum <= 1){
+        if(slideNum <= 0){
             setSlideNum(slideNum+4)
         }else{
             setSlideNum(slideNum-1)
@@ -60,24 +105,27 @@ const CarouselSlides = ()=>{
         <div className="carousel-slide-container">
       
            {totalSlides.map((value,index)=>{
-            console.log(index)
+      
 
-            if( index===2){
+            if( index===slideNum){
 
-                console.log("This is index 3", index)
+             
                 return(
-                    <div className="selected-slide" key={index}>
-                        <div>
-                        <img  src={`${value.img}`}/>
+                    <div onClick={()=>{
+                        setSlideNum(index)
+                    }} className="selected-slide" key={index}>
+                        <ImageSlide image={value.img}/>
                         </div>
-                        </div>
+                        
                 )
                }else{
                 return(
-                    <div key={index}>
-                        <div>
-                        <img src={`${value.img}`}/>
-                        </div>
+                    <div onClick={()=>{
+                        setSlideNum(index)
+                    }} key={index}>
+                     
+                        <ImageSlide image={value.img}/>
+                    
                         </div>
                 )
                }
@@ -85,13 +133,62 @@ const CarouselSlides = ()=>{
 
            )}
 
-
-            <div onClick={slidePrev} id="prevSlide" className="prev-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/wadpbfsxxjdutkyl59je.svg"/></div>
-            <div onClick={slideNext} id="nextSlide" className="next-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/cgsx5cmhgx5toxkswgvr.svg"/></div>
+{/* ----------------------------------Carousel buttons -------------------------- */}
+    {/* <div onClick={slidePrev} id="prevSlide" className="prev-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/wadpbfsxxjdutkyl59je.svg"/></div>
+            <div onClick={slideNext} id="nextSlide" className="next-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/cgsx5cmhgx5toxkswgvr.svg"/></div> */}
         </div>
     )
 }
 
+
+const FocusScreenContainer= styled.div`
+margin-top: 70px;
+margin-bottom: 30px;
+padding: 50px;
+display: flex;
+align-items: center;
+gap: 50px;
+background-color: #04060C;
+border-radius: 10px;
+border: double 1px transparent;
+border-radius: 5px;
+background-image: ${props=>props.colorVibe};
+background-origin: border-box;
+background-clip: padding-box, border-box;
+transition: all 20s ease-in-out;
+`
+
+const FearturedImageSlide= styled.div`
+width:500px;
+height:350px;
+background-position:center;
+background-image: url(${(props)=>props.bgImg});
+background-size:cover;
+border-radius:3px;
+cursor:pointer;
+
+transition: all 300ms ease-in-out;
+
+&:hover{
+    opacity:0.8
+}
+`
+const ImageSlide= styled.div`
+width:100%;
+height:180px;
+background-position:center;
+background-image: url(${(props)=>props.image});
+background-size:cover;
+opacity:0.2;
+border-radius:3px;
+cursor:pointer;
+
+transition: all 300ms ease-in-out;
+
+&:hover{
+    opacity:0.8
+}
+`
 
 
 export default DisplayScreen;
