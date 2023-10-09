@@ -1,0 +1,90 @@
+.focus-screen-container{
+    margin: 70px 0;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: #04060C;
+    border-radius: 10px;
+    border: double 1px transparent;
+    border-radius: 5px;
+    background-image: linear-gradient(to top, #040300a3, #000000f7), radial-gradient(circle at top, #e6b700,#ff950c00);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+.focus-screen-image-box > a >img{
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.focus-screen-text-box{
+    width: 45%;
+}
+
+.focus-screen-text-box > p >span {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 14px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color:rgba(255, 255, 255, 0.5) ;
+    border-radius: 3px;;
+}
+
+
+.focus-screen-text-box > h3  {
+   margin-top: 20px;
+}
+
+.carousel-slide-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2%;
+    margin-bottom: 70px;
+    position: relative;
+
+}
+.carousel-slide-container > div  {
+    width:18%;
+
+   
+}
+.carousel-slide-container > div > div {
+    width:100%;
+    height: auto;
+}
+
+.carousel-slide-container > div >div> img {
+    width: 100%;
+    border-radius: 3px;
+    opacity: 0.2;
+}
+
+.selected-slide{
+    width:22% !important;
+}
+
+
+.selected-slide >div> img{
+    border: 1px solid white;
+    opacity: 1 !important;
+}
+
+.prev-slide, .next-slide{
+    position: absolute;
+}
+
+.prev-slide img, .next-slide img{
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+
+.prev-slide{
+    left: -30px;
+}
+.next-slide{
+    right: -185px;
+}
+

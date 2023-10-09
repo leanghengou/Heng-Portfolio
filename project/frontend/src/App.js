@@ -1,6 +1,7 @@
 import './site-main.css'
 import Navigation from "./actions/components/navigation/navigation"
-import IntroSection from './actions/components/introduction-section/intro-section';
+import Homepage from './pages/homepage';
+
 
 
 function App() {
@@ -12,8 +13,7 @@ function App() {
 
       <div className='site-width-container'>
 
-
-    <IntroSection/>
+   <Homepage/>
       </div>
     </div>
   );
