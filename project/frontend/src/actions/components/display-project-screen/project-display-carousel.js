@@ -4,6 +4,27 @@ import "./project-display-carousel.css"
 import styled from "styled-components"
 
 
+
+function reveal() {
+    let reveals = document.querySelectorAll(".revealAnimation");
+    for (let i = 0; i < reveals.length; i++) {
+      let windowHeight = window.innerHeight;
+      let elementTop = reveals[i].getBoundingClientRect().top;
+      let elementVisible = 150;
+        console.log("ElementTop:", elementTop,"Element Visible:",elementVisible, "Window Height:", windowHeight, elementTop < windowHeight - elementVisible
+        
+        )
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } 
+    }
+  }
+
+  window.addEventListener("scroll", reveal);
+
+  reveal();
+ 
 const totalSlides = [
     {           tag:"Challange",
                 img:"https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696873825/Heng%20Website/wo4usyxue9wlzcwo13bg.jpg",
@@ -54,10 +75,11 @@ const totalSlides = [
 const DisplayScreen = ()=>{
     const [slideNum, setSlideNum] = useState(0);
     return(
-        <div>
+        <div className="revealAnimation">
        <FocusScreen slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
-       <CarouselSlides slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
+       <CarouselSlides  slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
        </div>
+       
     )
 }
 
@@ -65,7 +87,7 @@ const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
     let currentProject = totalSlides[slideNum]
     console.log("HEYYYY",currentProject.colorVibe)
     return(
-        <FocusScreenContainer className="animate__animated animate__fadeInUp animate__delay-1s" colorVibe={currentProject.colorVibe}>
+        <FocusScreenContainer colorVibe={currentProject.colorVibe}>
             <div className="focus-screen-image-box">
             <FearturedImageSlide bgImg = {currentProject.img}/>
             </div>
@@ -111,7 +133,13 @@ const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
 
              
                 return(
-                    <div onClick={()=>{
+                    <div  onClick={()=>{
+                        let reveals2 = document.querySelectorAll(".reveal");
+                        for (let i = 0; i < reveals2.length; i++) {                
+                              return reveals2[i].classList.add("active");
+                          }
+                        
+                        
                         setSlideNum(index)
                     }} className="selected-slide" key={index}>
                         <ImageSlide image={value.img}/>
@@ -120,8 +148,10 @@ const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
                 )
                }else{
                 return(
-                    <div onClick={()=>{
+                    <div onClick={ ()=>{
+                        reveal()
                         setSlideNum(index)
+                    
                     }} key={index}>
                      
                         <ImageSlide image={value.img}/>
@@ -155,7 +185,7 @@ border-radius: 5px;
 background-image: ${props=>props.colorVibe};
 background-origin: border-box;
 background-clip: padding-box, border-box;
-transition: all 20s ease-in-out;
+transition: all 1s ease-in-out;
 `
 
 const FearturedImageSlide= styled.div`
