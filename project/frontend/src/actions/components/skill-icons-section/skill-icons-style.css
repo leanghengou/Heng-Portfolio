@@ -4,7 +4,7 @@
     margin: auto;
 }
 
-.skill-icons-title > p >span{
+/* .skill-icons-title > p >span{
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.1em;
@@ -12,7 +12,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+} */
 .skill-icons-box-fc{
     display: flex;
     justify-content: space-between;

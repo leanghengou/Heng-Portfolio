@@ -13,7 +13,7 @@ const SkillIcons=()=>{
 const SkillTitleSection = ()=>{
     return(
         <div className="skill-icons-title">
-            <p><span>without breaking</span></p>
+            <p><span className="highlight-tag-box-style">without breaking</span></p>
             <h3>My passion and focus is learning.</h3>
             <p>We strive to provide the highest quality clothing at the best prices, so you can look your best without breaking the bank.</p>
         </div>
