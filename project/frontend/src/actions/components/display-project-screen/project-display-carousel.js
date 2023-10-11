@@ -95,7 +95,6 @@ const DisplayScreen = ()=>{
 
 const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
     let currentProject = totalSlides[slideNum]
-    console.log("HEYYYY",currentProject.colorVibe)
     return(
         <FocusScreenContainer colorVibe={currentProject.colorVibe}>
             <div className="focus-screen-image-box">
@@ -109,7 +108,7 @@ const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
                 <ul>
                     {
                         currentProject.relating.map((value,index)=>{
-                            console.log(value[1])
+                    
                             return(
                                 <li>{value}</li>
                             )

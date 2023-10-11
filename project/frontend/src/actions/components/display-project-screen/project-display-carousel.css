@@ -22,24 +22,6 @@
     width: 45%;
 }
 
-/* .focus-screen-text-box > p >span {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    border: 0.2px solid #09060600;
-  background: #281948;
-    background-image: none;
-    background-origin: padding-box;
-    background-clip: border-box;
-    background-image: linear-gradient(to top, #7445bba3, #14044ff7), radial-gradient(circle at top, #ab94ff,#e2ddf40d);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-} */
-
-
 .focus-screen-text-box > h3  {
    margin-top: 20px;
 }
