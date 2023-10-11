@@ -18,7 +18,7 @@ const IntroSection = ()=>{
            
             </div>
             <div>
-                <img className="heng-img-custom" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696300354/heng-img_akiidw.png"/>
+                <img className="heng-img-custom" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696956810/Heng%20Website/d29me4zfgfe0ucouhudv.png"/>
             </div>
         </div>
     )

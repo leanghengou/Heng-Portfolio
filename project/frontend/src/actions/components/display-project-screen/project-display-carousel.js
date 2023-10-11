@@ -239,7 +239,7 @@ background-image: url(${(props)=>props.bgImg});
 background-size:cover;
 border-radius:3px;
 cursor:pointer;
-
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 transition: all 300ms ease-in-out;
 
 &:hover{
