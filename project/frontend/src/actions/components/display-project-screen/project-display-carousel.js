@@ -4,22 +4,21 @@ import "./project-display-carousel.css"
 import styled from "styled-components"
 
 
-
 function reveal() {
     let reveals = document.querySelectorAll(".revealAnimation");
     for (let i = 0; i < reveals.length; i++) {
       let windowHeight = window.innerHeight;
       let elementTop = reveals[i].getBoundingClientRect().top;
       let elementVisible = 150;
-        console.log("ElementTop:", elementTop,"Element Visible:",elementVisible, "Window Height:", windowHeight, elementTop < windowHeight - elementVisible
-        
-        )
 
       if (elementTop < windowHeight - elementVisible) {
         reveals[i].classList.add("active");
       } 
     }
   }
+
+
+
 
   window.addEventListener("scroll", reveal);
 
@@ -84,19 +83,22 @@ const totalSlides = [
 
 const DisplayScreen = ()=>{
     const [slideNum, setSlideNum] = useState(0);
+    const [animationClass, setAnimationClass]= useState("")
+    
     return(
         <div className="revealAnimation">
-       <FocusScreen slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
-       <CarouselSlides  slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
+       <FocusScreen  animationClass={animationClass} setAnimationClass={setAnimationClass} slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
+       <CarouselSlides animationClass={animationClass} setAnimationClass={setAnimationClass}  slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
        </div>
        
     )
 }
 
-const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
+const FocusScreen = ({totalSlides, slideNum,setSlideNum,setAnimationClass,animationClass})=>{
+
     let currentProject = totalSlides[slideNum]
     return(
-        <FocusScreenContainer colorVibe={currentProject.colorVibe}>
+        <FocusScreenContainer className={animationClass} id="focusScreenId" colorVibe={currentProject.colorVibe}>
             <div className="focus-screen-image-box">
             <FearturedImageSlide bgImg = {currentProject.img}/>
             </div>
@@ -127,27 +129,16 @@ const FocusScreen = ({totalSlides, slideNum,setSlideNum})=>{
 
 
 
-const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
- 
-
-    const slideNext = ()=>{
+const CarouselSlides = ({totalSlides, slideNum,setSlideNum,setAnimationClass})=>{
+    const startAnimation = ()=>{
+        setAnimationClass("animation-start")
+        setTimeout(()=>{
+            setAnimationClass("")
+        },500)
+      }
+     
       
-        if(slideNum >= 4){
-            setSlideNum(slideNum-4)
-        }else{
-            setSlideNum(slideNum+1)
-        }
-    }
 
-    const slidePrev = ()=>{
-        
-       
-        if(slideNum <= 0){
-            setSlideNum(slideNum+4)
-        }else{
-            setSlideNum(slideNum-1)
-        }
-    }
     return(
         <div className="carousel-slide-container">
       
@@ -163,9 +154,11 @@ const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
                         for (let i = 0; i < reveals2.length; i++) {                
                               return reveals2[i].classList.add("active");
                           }
-                        
-                        
+                          startAnimation()
+                          setTimeout(()=>{
                         setSlideNum(index)
+                     
+                    },500)
                     }} className="selected-slide" key={index}>
                         <ImageSlide image={value.img}/>
                         </div>
@@ -174,8 +167,12 @@ const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
                }else{
                 return(
                     <div onClick={ ()=>{
-                        reveal()
+                   
+                        startAnimation()
+                        setTimeout(()=>{
                         setSlideNum(index)
+                        },500)
+                    
                     
                     }} key={index}>
                      
@@ -188,9 +185,6 @@ const CarouselSlides = ({totalSlides, slideNum,setSlideNum})=>{
 
            )}
 
-{/* ----------------------------------Carousel buttons -------------------------- */}
-    {/* <div onClick={slidePrev} id="prevSlide" className="prev-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/wadpbfsxxjdutkyl59je.svg"/></div>
-            <div onClick={slideNext} id="nextSlide" className="next-slide"><img src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696813958/Heng%20Website/cgsx5cmhgx5toxkswgvr.svg"/></div> */}
         </div>
     )
 }

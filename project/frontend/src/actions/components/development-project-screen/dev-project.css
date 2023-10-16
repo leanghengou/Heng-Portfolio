@@ -110,7 +110,7 @@ position: relative;
     -webkit-transform : rotate(8deg) scale(0.95); /* Chrome, Opera 15+, Safari 3.1+ */
     -ms-transform     : rotate(8deg) scale(0.95); /* IE 9 */
     transform         : rotate(8deg) scale(0.95); /* Firefox 16+, IE 10+, Opera */
-    transition: 0.5s ease-in;
+    transition: 0.3s ease-in;
 }
 
 .position-sdp-2{

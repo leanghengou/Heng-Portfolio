@@ -4,6 +4,14 @@ import "./dev-project.css"
 import styled from "styled-components"
 
 
+const stickers = document.querySelectorAll(".sticker-dev-project");
+
+console.log(stickers, "Stickers")
+
+const clickStick= (e)=>{
+    console.log(e, "Stickers") 
+}
+
 const DevProjectScreen = ()=>{
     return(
         <div className="dev-project-screen-full-container">
@@ -17,21 +25,21 @@ const DevProjectScreen = ()=>{
             </div>
 
             <div className="dev-project-screen-stickers-container">
-                <div className="sticker-dev-project position-sdp-1">
-                    <h4>Escape the Warzone</h4>
-                    <p>We strive to provide the highest quality clothing at the best prices.</p>
+                <div onClick={clickStick} className="sticker-dev-project position-sdp-1">
+                <h4>Escape the Warzone</h4>
+                <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
                 <div className="sticker-dev-project position-sdp-2">
                 <h4>Escape the Warzone</h4>
-                    <p>We strive to provide the highest quality clothing at the best prices.</p>
+                <p>We strive to provide the highest quality  clothing at the best prices.</p>
                 </div>
                 <div className="sticker-dev-project position-sdp-3">
                 <h4>Escape the Warzone</h4>
-                    <p>We strive to provide the highest quality clothing at the best prices.</p>
+                <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
                 <div className="sticker-dev-project position-sdp-4">
                 <h4>Escape the Warzone</h4>
-                    <p>We strive to provide the highest quality clothing at the best prices.</p>
+                <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
             </div>
         </div>
