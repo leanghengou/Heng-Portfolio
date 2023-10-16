@@ -31,9 +31,9 @@ const totalSlides = [
                 date:"September 28th 2020",
                 relating:["Illustration", "Poster Design"],
                 subTitle:"30 Days of Daily Posters was my personal project that I challenged myself to make one poster everyday.",
-                colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #234be8,#ff950c00);",
-                tagColorVibe:"linear-gradient(to top, #454cbba3, #0a044ff7), radial-gradient(circle at top, #8361f9,#dde1f40d);",
-                tagBg:"#180f84"
+                colorvibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #234be8,#ff950c00);",
+                tagcolorvibe:"linear-gradient(to top, #454cbba3, #0a044ff7), radial-gradient(circle at top, #8361f9,#dde1f40d);",
+                tagbg:"#180f84"
     },
     {
         tag:"Workout App",
@@ -42,9 +42,9 @@ const totalSlides = [
         date:"January 27th 2022",
         relating:["UI/UX", "Mobile App", "Case Study"],
         subTitle:"StartNow is my first UX case study project that I did in order to learn about UX process, and strategy. I also designed visual for the project to make it both UI and UX project.",
-        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #2ce214,#ff950c00);",
-        tagColorVibe:"linear-gradient(to top, #108c00, #104f08), radial-gradient(circle at top, #2de315,#083b01);",
-        tagBg:"#2de853"
+        colorvibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #2ce214,#ff950c00);",
+        tagcolorvibe:"linear-gradient(to top, #108c00, #104f08), radial-gradient(circle at top, #2de315,#083b01);",
+        tagbg:"#2de853"
     },
     {   
         tag:"Magazine",
@@ -53,9 +53,9 @@ const totalSlides = [
         date:"February 1st 2022",
         relating:["Illustration", "Layout Design", "Graphic Design"],
         subTitle:"Perspective 101 is the collection of theses. It was to share their personal stories and thoughts on certain topic to the readers.",
-        colorVibe:"linear-gradient(to top, #040300a3, #000000f7), radial-gradient(circle at top, #e6b700,#ff950c00);",
-        tagColorVibe:"linear-gradient(to top, #ffa217, #c66e00),radial-gradient(circle at top, #fb5,#f6fb6100);",
-        tagBg:"#ffa217"
+        colorvibe:"linear-gradient(to top, #040300a3, #000000f7), radial-gradient(circle at top, #e6b700,#ff950c00);",
+        tagcolorvibe:"linear-gradient(to top, #ffa217, #c66e00),radial-gradient(circle at top, #fb5,#f6fb6100);",
+        tagbg:"#ffa217"
     },
     {   
         tag:"Branding",
@@ -64,9 +64,9 @@ const totalSlides = [
         date:"August 29th 2020",
         relating:["Bradning Indentity", "Logo"],
         subTitle:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #01a99c,#ff950c00);",
-        tagColorVibe:"linear-gradient(to top, #01a99c, #004f57), radial-gradient(circle at top, #b3edff,#e2ddf43b);",
-        tagBg:"#0a371e"
+        colorvibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #01a99c,#ff950c00);",
+        tagcolorvibe:"linear-gradient(to top, #01a99c, #004f57), radial-gradient(circle at top, #b3edff,#e2ddf43b);",
+        tagbg:"#0a371e"
     },
     {   
         tag:"Branding",
@@ -75,9 +75,9 @@ const totalSlides = [
         date:"September 6th 2020",
         relating:["Bradning Indentity", "Logo"],
         subTitle:"Fight Hunger, the international campaign which established to war against the world starvation.",
-        colorVibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #ac261b,#ff950c00);",
-        tagColorVibe:"linear-gradient(to top, #c81d10, #500), radial-gradient(circle at top, #d51506e8,#fff0);",
-        tagBg:"#680700"
+        colorvibe:"linear-gradient(to top, #040300a3, #000000f7),radial-gradient(circle at top, #ac261b,#ff950c00);",
+        tagcolorvibe:"linear-gradient(to top, #c81d10, #500), radial-gradient(circle at top, #d51506e8,#fff0);",
+        tagbg:"#680700"
     }
     ]
 
@@ -94,16 +94,16 @@ const DisplayScreen = ()=>{
     )
 }
 
-const FocusScreen = ({totalSlides, slideNum,setSlideNum,setAnimationClass,animationClass})=>{
+const FocusScreen = ({totalSlides, slideNum,animationClass})=>{
 
     let currentProject = totalSlides[slideNum]
     return(
-        <FocusScreenContainer className={animationClass} id="focusScreenId" colorVibe={currentProject.colorVibe}>
+        <FocusScreenContainer className={animationClass} id="focusScreenId" colorvibe={currentProject.colorvibe}>
             <div className="focus-screen-image-box">
-            <FearturedImageSlide bgImg = {currentProject.img}/>
+            <FearturedImageSlide bgimg = {currentProject.img}/>
             </div>
             <div className="focus-screen-text-box">
-                <p><TagTitleBox tagColorVibe={currentProject.tagColorVibe} tagBg={currentProject.tagBg} >{currentProject.tag}</TagTitleBox></p>
+                <p><TagTitleBox tagcolorvibe={currentProject.tagcolorvibe} tagbg={currentProject.tagbg} >{currentProject.tag}</TagTitleBox></p>
                 <h3>{currentProject.title}</h3>
                 <p>{currentProject.subTitle}</p>
                 <div className="focus-screen-relating-box">
@@ -112,7 +112,7 @@ const FocusScreen = ({totalSlides, slideNum,setSlideNum,setAnimationClass,animat
                         currentProject.relating.map((value,index)=>{
                     
                             return(
-                                <li>{value}</li>
+                                <li key={index}>{value}</li>
                             )
                         }
                            
@@ -201,7 +201,7 @@ background-color: #04060C;
 border-radius: 10px;
 border: double 1px transparent;
 border-radius: 5px;
-background-image: ${props=>props.colorVibe};
+background-image: ${props=>props.colorvibe};
 background-origin: border-box;
 background-clip: padding-box, border-box;
 transition: all 1s ease-in-out;
@@ -214,11 +214,11 @@ font-size: 12px;
 padding: 4px 10px;
 border-radius: 3px;
 border: 0.2px solid #09060600;
-background: ${props=>props.tagBg};
+background: ${props=>props.tagbg};
 background-image: none;
 background-origin: padding-box;
 background-clip: border-box;
-background-image: ${props=>props.tagColorVibe};
+background-image: ${props=>props.tagcolorvibe};
 background-origin: border-box;
 background-clip: padding-box, border-box;
 box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -228,7 +228,7 @@ const FearturedImageSlide= styled.div`
 width:500px;
 height:350px;
 background-position:center;
-background-image: url(${(props)=>props.bgImg});
+background-image: url(${(props)=>props.bgimg});
 background-size:cover;
 border-radius:3px;
 cursor:pointer;
