@@ -121,6 +121,7 @@ position: relative;
     -webkit-transform : rotate(-13deg) scale(1); /* Chrome, Opera 15+, Safari 3.1+ */
     -ms-transform     : rotate(-13deg) scale(1); /* IE 9 */
     transform         : rotate(-13deg) scale(1); /* Firefox 16+, IE 10+, Opera */
+    transition: 0.3s ease-in;
 }
 .position-sdp-3{
     background-color: #FD723B;
@@ -130,7 +131,7 @@ position: relative;
   -webkit-transform : rotate(17deg) scale(0.9); /* Chrome, Opera 15+, Safari 3.1+ */
   -ms-transform     : rotate(17deg) scale(0.9); /* IE 9 */
   transform         : rotate(17deg) scale(0.9); /* Firefox 16+, IE 10+, Opera */
-  /* filter: blur(2px); */
+  transition: 0.3s ease-in;
 }
 .position-sdp-4{
     background-color: #86D2D2;
@@ -140,6 +141,7 @@ position: relative;
   -webkit-transform : rotate(-2deg) scale(1); /* Chrome, Opera 15+, Safari 3.1+ */
   -ms-transform     : rotate(-2deg) scale(1); /* IE 9 */
   transform         : rotate(-2deg) scale(1); /* Firefox 16+, IE 10+, Opera */
+  transition: 0.3s ease-in;
 }
 
 .position-sdp-1:hover{
@@ -147,4 +149,31 @@ position: relative;
     -ms-transform     : rotate(-3deg) scale(1.2); /* IE 9 */
     transform         : rotate(-3deg) scale(1.2); /* Firefox 16+, IE 10+, Opera */
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.position-sdp-2:hover{
+  -webkit-transform : rotate(-3deg) scale(1.2); /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform     : rotate(-3deg) scale(1.2); /* IE 9 */
+  transform         : rotate(-3deg) scale(1.2); /* Firefox 16+, IE 10+, Opera */
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.position-sdp-3:hover{
+  -webkit-transform : rotate(-3deg) scale(1.2); /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform     : rotate(-3deg) scale(1.2); /* IE 9 */
+  transform         : rotate(-3deg) scale(1.2); /* Firefox 16+, IE 10+, Opera */
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.position-sdp-4:hover{
+  -webkit-transform : rotate(3deg) scale(1.2); /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform     : rotate(3deg) scale(1.2); /* IE 9 */
+  transform         : rotate(3deg) scale(1.2); /* Firefox 16+, IE 10+, Opera */
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+#blurEffect{
+    filter: blur(3px);
+}
+
+.unBlurEffect{
+  
+  filter: blur(0px) !important;
 }

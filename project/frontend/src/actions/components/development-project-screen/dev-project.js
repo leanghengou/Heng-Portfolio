@@ -1,21 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import "./dev-project.css"
-import styled from "styled-components"
 
 
-const stickers = document.querySelectorAll(".sticker-dev-project");
 
-console.log(stickers, "Stickers")
-
-const clickStick= (e)=>{
-    console.log(e, "Stickers") 
-}
 
 const DevProjectScreen = ()=>{
+    const [blurEffect, setBlurEffect]=useState("")
+    const clickStick= (e)=>{
+             setBlurEffect("blurEffect")
+        const currentTagTarget= e.currentTarget
+        currentTagTarget.classList.add(`unBlurEffect`);
+    }
+
+    const clickStick2= (e)=>{
+        const currentTagTarget= e.currentTarget
+        setBlurEffect("")
+   currentTagTarget.classList.remove(`unBlurEffect`);
+}
     return(
         <div className="dev-project-screen-full-container">
-            <div className="dev-project-screen-text-container">
+        <div className="dev-project-screen-text-container">
           <h5><span>Development projects</span></h5>
                 <h3>Recent Git projects</h3>
                 <p>We strive to provide the highest quality clothing at the best prices, so you can look your best without breaking the bank.</p>
@@ -25,19 +30,19 @@ const DevProjectScreen = ()=>{
             </div>
 
             <div className="dev-project-screen-stickers-container">
-                <div onClick={clickStick} className="sticker-dev-project position-sdp-1">
+                <div onMouseOver={clickStick} onMouseOut={clickStick2} id={blurEffect} className="sticker-dev-project position-sdp-1">
                 <h4>Escape the Warzone</h4>
                 <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
-                <div className="sticker-dev-project position-sdp-2">
+                <div  onMouseOver={clickStick} onMouseOut={clickStick2}  id={blurEffect} className="sticker-dev-project position-sdp-2">
                 <h4>Escape the Warzone</h4>
                 <p>We strive to provide the highest quality  clothing at the best prices.</p>
                 </div>
-                <div className="sticker-dev-project position-sdp-3">
+                <div  onMouseOver={clickStick} onMouseOut={clickStick2} id={blurEffect} className="sticker-dev-project position-sdp-3">
                 <h4>Escape the Warzone</h4>
                 <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
-                <div className="sticker-dev-project position-sdp-4">
+                <div  onMouseOver={clickStick} onMouseOut={clickStick2} id={blurEffect} className="sticker-dev-project position-sdp-4">
                 <h4>Escape the Warzone</h4>
                 <p>We strive to provide the highest quality clothing at the best prices.</p>
                 </div>
