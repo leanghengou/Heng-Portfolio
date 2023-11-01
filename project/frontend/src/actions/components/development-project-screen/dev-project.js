@@ -12,11 +12,10 @@ const DevProjectScreen = ()=>{
         const currentTagTarget= e.currentTarget
         currentTagTarget.classList.add(`unBlurEffect`);
     }
-
     const clickStick2= (e)=>{
-        const currentTagTarget= e.currentTarget
-        setBlurEffect("")
-   currentTagTarget.classList.remove(`unBlurEffect`);
+    const currentTagTarget= e.currentTarget
+    setBlurEffect("")
+    currentTagTarget.classList.remove(`unBlurEffect`);
 }
     return(
         <div className="dev-project-screen-full-container">

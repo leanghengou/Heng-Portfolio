@@ -1,0 +1,68 @@
+.skillsshowcase-text-content{
+    width: 35%;
+    margin-bottom: 50px;
+}
+.about-div-section{
+    margin: 70px 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid transparent; 
+    border-image: linear-gradient(to right, #373737, #0d0d0d);
+  border-image-slice: 1; 
+}
+.about-div-edu-section{
+    margin: 70px 0;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent; 
+    border-image: linear-gradient(to right, #373737, #0d0d0d);
+  border-image-slice: 1; 
+}
+.skillsshowcase-skill-points {
+   display: flex;
+   justify-content: space-between;
+   padding-left: 0px;
+}
+.skillsshowcase-skill-points li {
+    list-style: none;
+    font-size: 25px;
+    font-weight: 400;
+    background: -webkit-linear-gradient(#C9AFFF, #5319CE);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+ 
+}
+
+.education-board{
+    border-radius: 10px;
+    border: 0.2px solid #FFFFFF3D;
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.20) -101.33%, rgba(255, 255, 255, 0.00) 100%);
+box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.34);
+width: 65%;
+margin-left: 100px;
+padding: 40px 50px;
+}
+.education-board-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   padding-bottom: 20px;
+   margin-bottom: 30px;
+    border-bottom: 1px solid transparent; 
+    border-image: linear-gradient(to right, #6f6f6f, #2f2f2f);
+  border-image-slice: 1; 
+}
+.education-board-detail:last-child {
+     border: none;
+     padding-bottom: 0px;
+     margin-bottom: 0px;
+ }
+.education-board-detail > div > h4 {
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+.education-board-school-subject p {
+    color: rgba(255, 255, 255, 0.5);
+}
