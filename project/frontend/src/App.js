@@ -14,7 +14,7 @@ function App() {
        <Navigation/>
       </header>
 
-      <div className='site-width-container'>
+      <div>
       <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/about" element={<About />} />

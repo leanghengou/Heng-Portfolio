@@ -4,6 +4,7 @@ import SkillIcons from "../actions/components/skill-icons-section/skill-icons-se
 import DisplayScreen from "../actions/components/display-project-screen/project-display-carousel";
 import DevProjectScreen from "../actions/components/development-project-screen/dev-project";
 import ContactHomepage from "../actions/components/contact-section/contact-homepage";
+import Footer from "../actions/components/footer-components/footer";
 const Homepage = ()=>{
     return(
         <div>
@@ -12,6 +13,7 @@ const Homepage = ()=>{
         <DisplayScreen/>
         <DevProjectScreen/>
         <ContactHomepage/>
+        {/* <Footer/> */}
         </div>
        
     )

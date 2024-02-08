@@ -18,7 +18,7 @@ const DevProjectScreen = ()=>{
     currentTagTarget.classList.remove(`unBlurEffect`);
 }
     return(
-        <div className="dev-project-screen-full-container">
+        <div className="site-width-container dev-project-screen-full-container">
         <div className="dev-project-screen-text-container">
           <h5><span>Development projects</span></h5>
                 <h3>Recent Git projects</h3>

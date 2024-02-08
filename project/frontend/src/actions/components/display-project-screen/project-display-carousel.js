@@ -86,7 +86,7 @@ const DisplayScreen = ()=>{
     const [animationClass, setAnimationClass]= useState("")
     
     return(
-        <div className="revealAnimation">
+        <div className="site-width-container revealAnimation">
        <FocusScreen  animationClass={animationClass} setAnimationClass={setAnimationClass} slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
        <CarouselSlides animationClass={animationClass} setAnimationClass={setAnimationClass}  slideNum={slideNum} setSlideNum={setSlideNum} totalSlides={totalSlides}/>
        </div>

@@ -3,7 +3,7 @@ import "./skill-icons-style.css"
 
 const SkillIcons=()=>{
     return(
-        <div>
+        <div className="site-width-container">
             <SkillTitleSection/>
             <Icons/>
         </div>
