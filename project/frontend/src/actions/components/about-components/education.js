@@ -6,7 +6,7 @@ import "./about-style.css"
 
 const EducationSection = ()=>{
     return(
-        <div className="about-div-edu-section">
+        <div className="header-width-container about-div-edu-section">
         <div className="skillsshowcase-text-content">
             <h3>Education</h3>
             <p>We strive to provide the highest quality clothing at the best prices, so you can look your best without breaking the bank.</p>

@@ -3,9 +3,11 @@ import "./skill-icons-style.css"
 
 const SkillIcons=()=>{
     return(
+        <div className="skill-icon-section-fw-bg">
         <div className="site-width-container">
             <SkillTitleSection/>
             <Icons/>
+        </div>
         </div>
     )
 }
@@ -23,21 +25,21 @@ const SkillTitleSection = ()=>{
 const Icons = ()=>{
     return(
         <div className="fade-in-top  skill-icons-box-fc">
-           <div className="skill-icons-box">
+           <div className="skill-icons-box s1">
            <div className="skill-icons-w-fc">
             <img width="85px" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696560138/Heng%20Website/Group_8704_l9lnqw.svg"/>
             </div>
             <h5>Visual design</h5>
            <p>We strive to provide the highest quality clothing at the best prices.</p>
            </div>
-           <div className="skill-icons-box">
+           <div className="skill-icons-box s2">
            <div className="skill-icons-w-fc">
            <img width="80px" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696556617/Heng%20Website/Group_8681_r0oqbr.png"/>
            </div>
             <h5>Web development</h5>
            <p>We strive to provide the highest quality clothing at the best prices.</p>
            </div>
-           <div className="skill-icons-box">
+           <div className="skill-icons-box s3">
            <div className="skill-icons-w-fc">
            <img width="80px" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1696557260/Heng%20Website/Group_8703_wmgn3x.svg"/>
            </div>

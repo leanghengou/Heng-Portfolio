@@ -13,19 +13,44 @@
   justify-content: space-between;
   align-items: center;
   color: white;
-  height: 500px;
-  padding-bottom: 250px;
-  background: rgb(83,25,206);
-  background: linear-gradient(180deg, rgba(83,25,206,0.27913172104779416) 0%, rgba(2,0,36,0) 82%); 
-}
+  padding-top: 100px;
+  height:550px;
+  gap: 5%;
+  background-image: linear-gradient(rgba(83, 25, 206, 0.2), rgba(83, 25, 206, 0.0)), url('https://res.cloudinary.com/dgqfcwu7y/image/upload/v1711934492/Heng%20Website/k2kuf6wnxz9uahlybgfq.png');
+  background-size: cover;
+  background-position: center;
 
+
+}
+.intro-section-container-flex
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.212);
+  padding: 70px 0;
+
+  gap: 5%;
+  
+}
 .intro-section-container h1{
-    font-size: 100px;
-    margin-bottom: 30px;
+    font-size: 90px;
+
+    text-align: left;
+    margin: 10px 0;
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 .intro-section-container-text-cotnainer{
-    width: 35%;
+    /* width: 35%; */
     font-size: 18px;;
+    text-align: left;
+}
+
+.heng-illustration{
+  width: 390px;
 }
 
 .intro-section-container-social-media-icons{
@@ -44,3 +69,47 @@
 .intro-section-container-social-media-icons > li > a >img{
 cursor: pointer;
  }
+
+
+ 
+/* @keyframes skillLogoSlide {
+  from{
+    transform: translateX(465px);
+  }
+  to{
+    transform: translateX(-466px);
+  }
+} */
+
+@keyframes skillLogoSlide {
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+.skill-slides{
+  display: inline-block;
+
+  animation: 7s skillLogoSlide infinite linear; 
+}
+ .skill-logos-slides {
+  padding: 50px 0;
+  overflow: hidden;
+  width:399px;
+  white-space: nowrap;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg,rgba(7,7,9,0),#070709 15.77%,#070709 86.73%,rgba(7,7,9,0));
+  mask-image: linear-gradient(90deg,rgba(7,7,9,0),#070709 15.77%,#070709 86.73%,rgba(7,7,9,0)); 
+  overflow-x: hidden;
+}
+
+
+
+
+.skill-logos-slides > div > img {
+  width: 70px;
+margin: 0 10px;
+}

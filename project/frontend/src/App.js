@@ -6,12 +6,13 @@ import About from './pages/about';
 
 
 
+
 function App() {
   return (
     <Router>
     <div>
       <header className="App-header">
-       <Navigation/>
+       <Navigation />
       </header>
 
       <div>
@@ -24,5 +25,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

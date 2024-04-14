@@ -1,0 +1,78 @@
+
+
+
+
+.design-project-slides-final-container{
+  display: flex;
+  padding: 50px 0;
+  transform: rotate(-2deg);
+  -webkit-mask-image: linear-gradient(90deg,rgba(7,7,9,0),#070709 15.77%,#070709 86.73%,rgba(7,7,9,0));
+  mask-image: linear-gradient(90deg,rgba(7,7,9,0),#070709 15.77%,#070709 86.73%,rgba(7,7,9,0)); 
+}
+.design-project-slides-container{
+  display: flex;
+  align-items: center;
+  gap: 30px ;
+  padding: 12px 0;
+  animation: 70s skillLogoSlide infinite linear; 
+  padding-right: 30px;
+  
+}
+
+.design-project-slides-container-two{
+  display: flex;
+  align-items: center;
+  gap: 30px ;
+  padding: 12px 0;
+  animation: 70s projects-sliders-two infinite linear; 
+  padding-right: 30px;
+  
+}
+
+.design-project-slides-container img{
+  width: 500px;
+
+}
+
+
+
+.design-project-slides-container div{
+  width: 500px;
+  height:300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
+
+}
+.design-project-slides-container-two div{
+  width: 500px;
+  height:300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
+
+}
+
+
+@keyframes projects-sliders {
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+
+@keyframes projects-sliders-two {
+  from{
+    transform: translateX(-100%);
+  }
+  to{
+    transform: translateX(0%);
+  }
+}

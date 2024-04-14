@@ -1,0 +1,37 @@
+.ConnectionTextContainer h3{
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.3em;
+}
+.ConnectionTextBoxes{
+    margin-top: 35px;
+    font-size: 14px;
+    
+}
+
+.ConnectionTextBoxesAuthor{
+    margin-bottom: 0px;
+    margin-top: 15px;
+}
+.ConnectionTextBoxesTitle{
+    margin: 0px;
+    font-size: 14px;
+    opacity: 0.5;
+}
+.focused-review {
+    display: flex;
+    align-items: center;
+    gap: 33px;
+    margin-top: 30px;
+}
+.focused-review img{
+    width: 80px;
+}
+.focused-review  h5{
+    font-size: 18px;
+    margin: 0px;
+}
+.focused-review p{
+    opacity: 0.5;
+}

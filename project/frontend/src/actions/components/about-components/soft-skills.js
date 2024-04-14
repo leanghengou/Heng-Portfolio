@@ -6,7 +6,7 @@ import "./about-style.css"
 
 const SoftSkills = ()=>{
     return(
-        <div>
+        <div className="header-width-container">
         <div className="about-div-section">
         <div className="skillsshowcase-text-content">
             <h3>Soft</h3>
