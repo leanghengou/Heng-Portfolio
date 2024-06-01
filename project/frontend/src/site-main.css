@@ -34,7 +34,7 @@ p{
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.377);
 }
 
-.highlight-tag-box-style{
+/* .highlight-tag-box-style{
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-size: 12px;
@@ -49,7 +49,23 @@ p{
     background-origin: border-box;
     background-clip: padding-box, border-box;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
+} */
+
+
+.highlight-tag-box-style {
+    text-transform: uppercase;
+    letter-spacing: 0.27em;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 0.2px solid #09060600;
+    background: #281948;
+    background-image: linear-gradient(to top, #360088a3, #000000f7), radial-gradient(circle at top, #d4c9ff,#e2ddf400);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    font-weight: 400;
+  }
 
 .highlight-subtle-tag-box-style{
     text-transform: uppercase;

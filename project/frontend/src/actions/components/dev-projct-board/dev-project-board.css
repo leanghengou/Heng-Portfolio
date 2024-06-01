@@ -9,8 +9,8 @@
 }
 .dev-project-board{
     border: 0.2px solid #FFFFFF3D;
-    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.20) -101.33%, rgba(255, 255, 255, 0.00) 100%); */
-    background: linear-gradient(-50deg,rgba(35, 35, 35, 0) 0,rgba(117, 117, 117, 0.11) 100%);
+    /* background: linear-gradient(-50deg,rgba(35, 35, 35, 0) 0,rgba(117, 117, 117, 0.11) 100%); */
+    background: linear-gradient(-50deg,rgba(35, 35, 35, 0) 0,rgba(244, 243, 255, 0.22) 100%);
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.34);
   height: 500px;
   width: 900px;
@@ -26,7 +26,7 @@
     height:195px;
     position: absolute;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    border-radius: 2px;
+    border-radius: 2px; 
     padding: 15px;
 }
 

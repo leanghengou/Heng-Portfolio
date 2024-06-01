@@ -1,0 +1,96 @@
+
+
+
+
+
+
+.skill-ball-section-bg{
+    background: url("https://res.cloudinary.com/dgqfcwu7y/image/upload/v1713061145/Mask_group_pc8nrm.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 100px 0;
+    height: 1000px;
+    margin-top: 350px;
+    position: relative;
+
+
+}
+
+
+.purple-light{
+    /* width:700px;
+    height: 700px; */
+    /* background: radial-gradient(circle, rgba(83,25,206,0.2) 0%, rgba(2,0,36,0) 52%); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+
+.js-ball{
+    position: absolute;
+    top: 50%;
+    left: 32%;
+    transform: rotate(20deg);
+} 
+
+.react-ball{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: rotate(50deg);
+}
+
+
+.duda-ball{
+    position: absolute;
+    top: 58%;
+    left: 68%;
+}
+
+
+.shopify-ball {
+    position: absolute;
+    top: 43%;
+    left: 62%;
+    transform: rotate(30deg);
+  }
+
+  .figma-ball {
+    position: absolute;
+    top: 37%;
+    left: 27%;
+    transform: rotate(-25deg);
+  }
+
+    
+  .wordpress-ball {
+    position: absolute;
+    top: 60%;
+    left: 21%;
+    transform: rotate(-15deg);
+  }
+
+  .lightspeed-ball {
+    position: absolute;
+    top: 45%;
+    left: 75%;
+    transform: rotate(17deg);
+  }
+
+  .adobe-ball {
+    position: absolute;
+    top: 47%;
+    left: 17%;
+    transform: rotate(-3deg);
+  }
+
+  .elementor-ball {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    transform: rotate(7deg);
+  }
