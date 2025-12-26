@@ -1,86 +1,46 @@
-.heng-img-custom{
-    width: 650px;;
-}
-
-.intro-section-container-text-cotnainer
-{
+.intro-section-container {
+  width: 32%;
   text-align: center;
   margin: auto;
+  height: 75vh;
+  align-content: center;
 }
-.intro-section-container
-{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  padding-top: 100px;
-  height:550px;
-  gap: 5%;
-  background-image: linear-gradient(rgba(83, 25, 206, 0.2), rgba(83, 25, 206, 0.0)), url('https://res.cloudinary.com/dgqfcwu7y/image/upload/v1711934492/Heng%20Website/k2kuf6wnxz9uahlybgfq.png');
-  background-size: cover;
-  background-position: center;
-
-
+.intro-section-container h2 {
+  font-weight: 300;
+  font-size: 32px;
 }
-.intro-section-container-flex
-{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.212);
-  padding: 70px 0;
-
-  gap: 5%;
+.intro-section-container p {
+  line-height: 32px;
+}
+.intro-card{
+  background-color: red;
   
 }
-.intro-section-container h1{
-    font-size: 90px;
-
-    text-align: left;
-    margin: 10px 0;
-    font-family: "Anton", sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-}
-.intro-section-container-text-cotnainer{
-    /* width: 35%; */
-    font-size: 18px;;
-    text-align: left;
+.intro-section .swiper{
+  padding: 35px 5%;
 }
 
-.heng-illustration{
-  width: 390px;
+.swiper-wrapper .intro-card img {
+  width: 100%;
+  margin-top: 25px;
+  display: block;
 }
-
-.intro-section-container-social-media-icons{
-    display: flex;
-    justify-content: flex-start;
-    list-style-type: none;
-    margin-top: 40px;
-    margin-left: 0px;
-    padding: 0px;
+.swiper-wrapper .intro-card {
+  border: 1px solid #ffffff2e;
+  background-color: transparent;
+  border-radius: 17px;
+  overflow: hidden;
+  /* max-height: 480px; */
 }
-
-.intro-section-container-social-media-icons > li{
-   margin-right: 20px;
+.card-project-container {
+  padding: 10px 20px;
+  height: 180px;
 }
-
-.intro-section-container-social-media-icons > li > a >img{
-cursor: pointer;
- }
-
-
- 
-/* @keyframes skillLogoSlide {
-  from{
-    transform: translateX(465px);
-  }
-  to{
-    transform: translateX(-466px);
-  }
-} */
-
+.swiper .intro-card h3 {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
 @keyframes skillLogoSlide {
   from{
     transform: translateX(0);
@@ -112,4 +72,75 @@ cursor: pointer;
 .skill-logos-slides > div > img {
   width: 70px;
 margin: 0 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.btn {
+--primary-color: #e8e8e8;
+  --secondary-color: black;
+  --hover-color: white;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+padding: 15px 25px;
+  background: var(--primary-color);
+  display: inline-flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  margin-top:15px;
+  cursor: pointer;
+}
+
+.btn .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.btn .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.btn:hover {
+  background-color: var(--hover-color);
+}
+
+.btn:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.btn:hover .arrow:before {
+  right: 0;
 }

@@ -1,31 +1,79 @@
 import React from "react";
 import "./intro-section-style.css"
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import saintEmberImg from "../../../resources/Mask-group-8.webp";
+import startnowimg from "../../../resources/startnow-intro-img.png";
+import tDaysChallange from "../../../resources/30days-challange-img.webp";
+
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 
 const IntroSection = ()=>{
     return(
+        <section  className="intro-section">
         <div className="intro-section-container section-box">
 
+        <h2>Call me Heng.</h2>
+        <p>I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in user interfaces and product design. I can help you build innovative digital products from UX research to UI design and prototyping. </p>
 
+         <a className="btn">View project <div class="arrow-wrapper">
+        <div class="arrow"></div>
 
-<div className="site-width-container intro-section-container-flex">
-
-    <HengIllustration>
-    <img className="heng-illustration" src="https://res.cloudinary.com/dgqfcwu7y/image/upload/v1711932752/Heng%20Website/rjirobo2ysfokivso73z.svg"/>
-        </HengIllustration>
-
-
-            <div className="intro-section-container-text-cotnainer">
-              <p><span className="highlight-tag-box-style">Web Design & Front-end Developer</span></p>
-<h1>Call me <span style={{color: '#5319CE'}}>Heng.</span></h1>
-<p>Through a combination of creativity, collaboration, and continuous learning, I aim to push the boundaries of design and technology to deliver impactful solutions that leave a lasting impression.</p>
-   
-   <InfiniteSkillLogos/>
-            </div>
+    </div></a>
         </div>
 
-        </div>
 
+
+
+
+
+ <Swiper
+  modules={[Pagination]}
+  spaceBetween={16}
+  slidesPerView={3}
+  centeredSlides={false}
+//   pagination={{ clickable: true }}
+  className="intro-carousel"
+  breakpoints={{
+    640: { slidesPerView: 1.3, spaceBetween: 18 },
+    768: { slidesPerView: 2, spaceBetween: 20 },
+    1024: { slidesPerView: 3, spaceBetween: 24 },
+  }}
+>
+  {[
+    { title: "30 days challenges", desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",img:tDaysChallange },
+    { title: "Start Now Fitness App", desc: "React builds with responsive, pixel-tight execution.", img:startnowimg },
+    { title: "Saint Embers", desc: "Reusable components, consistent spacing, scalable styles.", img:saintEmberImg },
+    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg },
+  ].map((item) => (
+    <SwiperSlide key={item.title}>
+      <article className="intro-card">
+    <div className="card-project-container">
+        <p>{ item.goat }</p>
+        <h3>{item.title}</h3>
+        <p>{item.desc}</p>
+        <a className="btn">View project <div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div></a>
+        </div>
+        <img src={item.img} />
+    
+     
+      </article>
+    </SwiperSlide>
+  ))}
+</Swiper>
+     
+
+
+     
+</section>
     )
 }
 
