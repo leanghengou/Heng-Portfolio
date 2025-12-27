@@ -52,7 +52,7 @@ const IntroSection = ()=>{
     { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg },
   ].map((item) => (
     <SwiperSlide key={item.title}>
-      <article className="intro-card">
+      <article className="intro-card work">
     <div className="card-project-container">
         <p>{ item.goat }</p>
         <h3>{item.title}</h3>

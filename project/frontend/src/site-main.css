@@ -25,6 +25,13 @@ p{
     max-width:1280px ;
 }
 
+.site-width-container-large{
+    margin: 0 auto;
+    min-width: 90%;
+    max-width:90%;
+}
+
+
 .header-width-container{
     margin: 0 auto;
     min-width: 90%;

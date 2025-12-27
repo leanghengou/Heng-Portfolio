@@ -25,17 +25,14 @@
   margin-top: 25px;
   display: block;
 }
-.swiper-wrapper .intro-card {
+.swiper-wrapper .intro-card.work {
   border: 1px solid #ffffff2e;
   background-color: transparent;
   border-radius: 17px;
   overflow: hidden;
   /* max-height: 480px; */
 }
-.card-project-container {
-  padding: 10px 20px;
-  height: 180px;
-}
+
 .swiper .intro-card h3 {
   font-size: 22px;
   font-weight: 300;
