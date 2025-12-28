@@ -2,10 +2,16 @@
     width: 30%;
 }
 
+.dev-project-board-text-container h3{
+ font-size: 25px;
+ font-weight: 300;
+}
+
 .dev-project-board-container{
     display: flex;
     gap:50px;
     justify-content: space-between;
+    margin: 32vh auto;
 }
 .dev-project-board{
     border: 0.2px solid #FFFFFF3D;
@@ -64,4 +70,19 @@
 
 .project-board{
     position: relative;
+}
+
+.project-board div p {
+  color: #000000a1;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 10px;
+}
+
+.project-dev-card-one h5 {
+  font-size: 16px;
+  text-transform: initial;
+  letter-spacing: 0px;
+  font-weight: 600;
 }

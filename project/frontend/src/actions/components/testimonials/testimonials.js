@@ -78,7 +78,7 @@ const TestimonialCard = styled.div`
 
 display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 50px;
   border-radius: 12px;
   background-color: #fbfbfb12;
     opacity:0.5;
@@ -96,7 +96,7 @@ display: flex;
     inset 0 0 0 1px rgba(255, 255, 255, 0.08),
     inset 0 1px 1px rgba(255, 255, 255, 0.05),
     0 12px 30px rgba(0, 0, 0, 0.55);
-    justify-content: space-between;
+    justify-content: center;
 `
 
 const TestimonialImg = styled.img`

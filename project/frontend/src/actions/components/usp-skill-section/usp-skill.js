@@ -97,8 +97,9 @@ display: flex;
   width: 27%;
   padding: 30px;
   border-radius: 12px;
-  background-color: #ffffff17;
-  background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(46,48,56,.4) 0,transparent 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgba(120, 117, 133, 0.3) 0,transparent 100%);
+  outline: 1px solid #ffffff17
+  // background-color: #ffffff17;
+  // background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(46,48,56,.4) 0,transparent 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgba(120, 117, 133, 0.3) 0,transparent 100%);
 `;
 
 

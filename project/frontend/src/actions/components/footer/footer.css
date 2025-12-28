@@ -1,5 +1,26 @@
+.footer-social-media-icon-container {
+  display: flex;
+  gap: 20px;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+}
 
+.footer-social-media-icon-container li {
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
 
-.footer-section{
-    border-top: 1px solid #333333;
+.footer-social-media-icon-container li a{
+ cursor: pointer;
+}
+
+.footer-content-icon-container p {
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 30px;;
 }

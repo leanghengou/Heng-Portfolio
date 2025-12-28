@@ -17,8 +17,10 @@ const DevProjectBoard = ()=>{
                 <h3>Recent Git projects</h3>
                 <p>We strive to provide the highest quality clothing at the best prices, so you can look your best without breaking the bank.</p>
                 <div class="button-container-dev-project">
-                    <button class="button-dev-project-one">View all</button> 
-                    <button class="button-dev-project-two">Visit my Github</button>
+                       <a   style={{ maxWidth: "170px" }} className="btn">View project <div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div></a>
                     </div>
             </div>
             <div class="project-board">
