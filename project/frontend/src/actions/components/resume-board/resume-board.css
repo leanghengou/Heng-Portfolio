@@ -1,0 +1,57 @@
+.resumeBoard-container {
+  display: flex;
+  border: 1px solid #262626;
+  margin: 8vh auto;
+}
+
+.resumeBoard-box-1 {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+    padding: 100px;
+      border-right: 1px solid #262626;
+}
+
+.resumeBoard-box-2 {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  padding: 100px;
+}
+.experience h3 {
+  font-size: 18px;
+  font-weight: 300;
+  padding-top: 25px;
+ border-top: 1px solid #ffffff1f;
+  margin-top: 25px;
+}
+.experience h3:first-child {
+ border-top: 0px solid #ffffff1f;
+  padding-top: 0px;
+}
+.profile h2 {
+  font-size: 27px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.experience-team span {
+  font-size: 14px;
+  opacity: 0.5;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.education h3 {
+  font-size: 18px;
+  font-weight: 300;
+  margin-top: 25px;
+}
+
+.technical-skill h3{
+    font-size: 18px;
+  font-weight: 300;
+  margin-top: 25px;
+}

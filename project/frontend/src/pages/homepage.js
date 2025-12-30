@@ -9,7 +9,7 @@ const Homepage = ()=>{
         <div>
         <IntroSection/>
        <UpsSkill/>
-       <DevProjectBoard/>
+       {/* <DevProjectBoard/> */}
        <Testimonials/>
         </div>
        
