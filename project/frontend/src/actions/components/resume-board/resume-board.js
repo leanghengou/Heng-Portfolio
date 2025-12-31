@@ -1,6 +1,18 @@
 import React from "react";
 import "./resume-board.css"
 import styled from "styled-components";
+import adobe from "../../../resources/skill-icon/adobe.png";
+import figma from "../../../resources/skill-icon/figma.png";
+import javascript from "../../../resources/skill-icon/javascript.png";
+import lightspeed from "../../../resources/skill-icon/lightspeed.png";
+import nextjs from "../../../resources/skill-icon/nextjs.png";
+import react from "../../../resources/skill-icon/react.png";
+import typescript from "../../../resources/skill-icon/typescript.png";
+import webflow from "../../../resources/skill-icon/webflow.png";
+import shopify from "../../../resources/skill-icon/shopify.png";
+import github from "../../../resources/skill-icon/github.png";
+
+const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
 
 
 const ResumeBoard = ()=>{
@@ -54,8 +66,28 @@ const ResumeBoard = ()=>{
           <div className="technical-skill">
             <h3>Technical Skill</h3>
             <p>Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.</p>
+
+          <div className="skill-ball">
+<TechSkillBox/>
+
+          </div>
            
         </div>
+
+
+   <div className="stay-connect">
+            <h3>View my projects</h3>
+            <p>Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.</p>
+ <a className="btn">View project <div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div></a>
+
+         
+           
+        </div>
+
+
 
 
         </div>
@@ -70,6 +102,21 @@ const ResumeBoard = ()=>{
 
 
 
+
+
+
+
+const TechSkillBox = ()=>{
+ return(
+  <>
+    {techSkill.map((icon,index)=>{
+      return <img key={index} src={icon} />
+    })}
+    </>
+ )
+  
+  
+}
 
 
 export default ResumeBoard;
