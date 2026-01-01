@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import saintEmberImg from "../../../resources/Mask-group-8.webp";
 import startnowimg from "../../../resources/startnow-intro-img.png";
 import tDaysChallange from "../../../resources/30days-challange-img.webp";
+import hengImg from "../../../resources/heng-hero-banner.png"
 
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
@@ -16,15 +17,18 @@ import gsap from "gsap";
 const IntroSection = ()=>{
     return(
         <section  className="intro-section">
+
+      <img className="heng-img-hero-hp" src={hengImg}/>
+        
         <div className="intro-section-container section-box">
 
         <h2>Call me Heng.</h2>
         <p>I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in user interfaces and product design. I can help you build innovative digital products from UX research to UI design and prototyping. </p>
 
          <a className="btn">View project <div class="arrow-wrapper">
-        <div class="arrow"></div>
+        <div class="arrow"></div></div></a>
 
-    </div></a>
+
         </div>
 
 
