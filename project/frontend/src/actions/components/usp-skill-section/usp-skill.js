@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import iconUspOne from "../../../resources/icon-usp.png"
+import iconOne from "../../../resources/icon-1.png"
+import iconTwo from "../../../resources/icon-2.png"
+import iconThree from "../../../resources/icon-3.png"
+import iconFour from "../../../resources/icon-4.png"
+import iconFive from "../../../resources/icon-5.png"
 
 const UpsSkill = () => {
   return (
@@ -8,17 +13,16 @@ const UpsSkill = () => {
     <UspAllContainer  className="site-width-container">
 
      <HeaderContainer> 
-      <SectionHeader>30 days challenges</SectionHeader>
-    <p>Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.</p>
+      <SectionHeader>Web Designer & Frontend Developer</SectionHeader>
+    <p>I design and build modern, responsive websites from clean UI and UX thinking to solid frontend code. I focus on clarity, performance, and real-world usability.</p>
 </HeaderContainer>  
     <UspContainer className="site-width-container">
       <UspItemBox>
            <div className="usp-box">
-        <IconBox src={iconUspOne} />
-                <Header>30 days challenges</Header>
+        <IconBox src={iconOne} />
+                <Header>Design → Code Workflow</Header>
         <p>
-          Find out about my works: read through my case studies, have a look at
-          final designs and try out prototypes I’ve built.
+      Translating Figma designs into real products—accurate spacing, typography, components, and interactions.
         </p>
         </div>
       </UspItemBox>
@@ -28,11 +32,10 @@ const UpsSkill = () => {
         
        
          <div className="usp-box">
-            <IconBox src={iconUspOne} />
-                <Header>30 days challenges</Header>
+            <IconBox src={iconTwo} />
+                <Header>Frontend Development</Header>
         <p>
-          Find out about my works: read through my case studies, have a look at
-          final designs and try out prototypes I’ve built.
+         Building responsive interfaces with HTML, CSS, JavaScript, and React, turning designs into clean, maintainable code.
         </p>
         </div>
       </UspItemBox>
@@ -41,22 +44,20 @@ const UpsSkill = () => {
       <UspItemBox>
 
           <div className="usp-box">
-            <IconBox src={iconUspOne} />
-                 <Header>30 days challenges</Header>
+            <IconBox src={iconThree} />
+                 <Header>Responsive & Mobile-First</Header>
         <p>
-          Find out about my works: read through my case studies, have a look at
-          final designs and try out prototypes I’ve built.
+          Layouts that adapt smoothly to all screen sizes, with mobile-first thinking and attention to touch interactions.
         </p></div>
       </UspItemBox>
 
 
       <UspItemBox>
         <div className="usp-box">
-            <IconBox src={iconUspOne} />
-         <Header>30 days challenges</Header>
+            <IconBox src={iconFour} />
+         <Header>Performance & Clean UI</Header>
         <p>
-          Find out about my works: read through my case studies, have a look at
-          final designs and try out prototypes I’ve built.
+          Optimizing UI for speed, readability, and smooth interactions while keeping the interface minimal and modern.
         </p>
         </div>
       </UspItemBox>
@@ -64,11 +65,10 @@ const UpsSkill = () => {
 
       <UspItemBox>  <div className="usp-box">
    
-            <IconBox src={iconUspOne} />
-         <Header>30 days challenges</Header>
+            <IconBox src={iconFive} />
+         <Header>CRO (Conversion Rate Optimization)</Header>
         <p>
-          Find out about my works: read through my case studies, have a look at
-          final designs and try out prototypes I’ve built.
+         Designing pages with clear CTAs, logical user flow, and reduced friction to improve engagement and conversions.
         </p>
         </div>
       </UspItemBox>
@@ -138,7 +138,7 @@ font-size: 18px;
 
 
 const IconBox = styled.img`
-width: 38px;
+width: 47px;
   border-radius: 10px;
   margin-bottom:10px;
 box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
