@@ -5,11 +5,35 @@ import Homepage from './pages/homepage';
 import About from './pages/about';
 import Footer from "./actions/components/footer/footer"
 import Resume from './pages/resume';
-
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 
 
 
 function App() {
+
+ useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1,
+      smoothWheel: true,
+      smoothTouch: false,
+      wheelMultiplier: 1.0,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    });
+
+    let rafId;
+    const raf = (time) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <Router>
     <div>
