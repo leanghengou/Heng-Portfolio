@@ -11,13 +11,29 @@ import startnowimg from "../../../resources/startnow-intro-img.png";
 import tDaysChallange from "../../../resources/30days-challange-img.webp";
 import hengImg from "../../../resources/heng-hero-banner.png"
 
+import adobe from "../../../resources/skill-icon/adobe.png";
+import figma from "../../../resources/skill-icon/figma.png";
+import javascript from "../../../resources/skill-icon/javascript.png";
+import lightspeed from "../../../resources/skill-icon/lightspeed.png";
+import nextjs from "../../../resources/skill-icon/nextjs.png";
+import react from "../../../resources/skill-icon/react.png";
+import typescript from "../../../resources/skill-icon/typescript.png";
+import webflow from "../../../resources/skill-icon/webflow.png";
+import shopify from "../../../resources/skill-icon/shopify.png";
+import github from "../../../resources/skill-icon/github.png";
+
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
 const IntroSection = ()=>{
-    return(
-        <section  className="intro-section">
 
+
+  const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
+    return(
+        <section  className="homepage intro-section">
+
+<div className="hero-bg-hp"></div>
+<div className="hero-section site-width-container">
       <img className="heng-img-hero-hp" src={hengImg}/>
         
         <div className="intro-section-container section-box">
@@ -25,6 +41,30 @@ const IntroSection = ()=>{
         <h2>Call me Heng.</h2>
         <p>I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in user interfaces and product design. I can help you build innovative digital products from UX research to UI design and prototyping. </p>
 
+
+
+<div class="skill-marquee">
+  <div class="skill-track">
+
+
+<div className="skill-ball-hp contain">
+
+   {techSkill.map((icon,index)=>{
+      return <img key={index} src={icon} />
+    })}
+</div>
+
+
+{/* ---------------loop--------------------- */}
+
+<div className="skill-ball-hp contain">
+
+   {techSkill.map((icon,index)=>{
+      return <img key={index} src={icon} />
+    })}
+</div>
+</div>
+</div>
          <a className="btn">View project <div class="arrow-wrapper">
         <div class="arrow"></div></div></a>
 
@@ -33,6 +73,7 @@ const IntroSection = ()=>{
 
 
 
+</div>
 
 
 

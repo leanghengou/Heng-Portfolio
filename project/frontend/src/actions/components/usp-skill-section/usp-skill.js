@@ -13,55 +13,68 @@ const UpsSkill = () => {
 </HeaderContainer>  
     <UspContainer className="site-width-container">
       <UspItemBox>
+           <div className="usp-box">
         <IconBox src={iconUspOne} />
                 <Header>30 days challenges</Header>
         <p>
           Find out about my works: read through my case studies, have a look at
           final designs and try out prototypes I’ve built.
         </p>
+        </div>
       </UspItemBox>
 
 
       <UspItemBox>
+        
+       
+         <div className="usp-box">
             <IconBox src={iconUspOne} />
                 <Header>30 days challenges</Header>
         <p>
           Find out about my works: read through my case studies, have a look at
           final designs and try out prototypes I’ve built.
         </p>
+        </div>
       </UspItemBox>
 
 
       <UspItemBox>
+
+          <div className="usp-box">
             <IconBox src={iconUspOne} />
                  <Header>30 days challenges</Header>
         <p>
           Find out about my works: read through my case studies, have a look at
           final designs and try out prototypes I’ve built.
-        </p>
+        </p></div>
       </UspItemBox>
 
 
       <UspItemBox>
+        <div className="usp-box">
             <IconBox src={iconUspOne} />
          <Header>30 days challenges</Header>
         <p>
           Find out about my works: read through my case studies, have a look at
           final designs and try out prototypes I’ve built.
         </p>
+        </div>
       </UspItemBox>
 
 
-      <UspItemBox>
+      <UspItemBox>  <div className="usp-box">
+   
             <IconBox src={iconUspOne} />
          <Header>30 days challenges</Header>
         <p>
           Find out about my works: read through my case studies, have a look at
           final designs and try out prototypes I’ve built.
         </p>
+        </div>
       </UspItemBox>
 
-      <UspItemBox className="usp-card-special">
+      <UspItemBoxSpecial>
+          <div className="usp-box special">
 
                <Header>View my resume</Header>
         <p>
@@ -72,8 +85,8 @@ const UpsSkill = () => {
           <a   style={{ maxWidth: "170px" }} className="btn">View project <div class="arrow-wrapper">
         <div class="arrow"></div>
 
-    </div></a>
-      </UspItemBox>
+    </div></a></div>
+      </UspItemBoxSpecial>
     </UspContainer>
     </UspAllContainer>
   );
@@ -94,15 +107,28 @@ const UspContainer = styled.div`
 const UspItemBox = styled.div`
 display: flex;
   flex-direction: column;
-  width: 27%;
-  padding: 30px;
+  width: 31%;
+  padding: 1px;
   border-radius: 12px;
-  outline: 1px solid #ffffff17
+
+
+background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(183, 193, 234, 0.4) 0,#02020400 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgba(67, 59, 115, 0) 0,#18132b7a 100%);
+  // outline: 1px solid #ffffff17
   // background-color: #ffffff17;
   // background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(46,48,56,.4) 0,transparent 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgba(120, 117, 133, 0.3) 0,transparent 100%);
 `;
 
+const UspItemBoxSpecial = styled.div`
+display: flex;
+  flex-direction: column;
+  width: 31%;
+  padding: 1px;
+  border-radius: 12px;
 
+
+background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(242, 155, 155, 0.4) 0,#1b181c70 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgb(46, 31, 106) 0,#060112 100%);
+ 
+`;
 const Header = styled.h5`
 font-size: 18px;
   margin: 15px 0;
