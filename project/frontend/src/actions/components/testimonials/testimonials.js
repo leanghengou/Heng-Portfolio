@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
@@ -7,11 +7,32 @@ import alexisImg from "../../../resources/alexis.png"
 import theirryImg from "../../../resources/theirry.png"
 import mervImg from "../../../resources/merv.png"
 import charlesImg from "../../../resources/iagree-ai.png"
-
+import {gsap, Power3} from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger) 
 const Testimonials = () => {
+
+useEffect(() => {
+  gsap.fromTo(
+    ".swiper-testimonial-container",
+    { opacity: 0 },
+    {
+      opacity: 1,
+      duration: 1,
+      y: -29,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".swiper-testimonial-container",
+        
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+}, []);
+
   return (
 
-    <div className="margin-top-bottom-space-70 site-width-container-large">
+    <div className="testimonial-container margin-top-bottom-space-70 site-width-container-large">
     <div className="collarboration-section">
 
         <h5>Interested in collaboration?</h5>
@@ -25,7 +46,7 @@ const Testimonials = () => {
         </div>
 
 
-        
+        <div className="swiper-testimonial-container">
      <Swiper
   modules={[Pagination]}
   spaceBetween={35}
@@ -34,11 +55,8 @@ const Testimonials = () => {
   initialSlide={1}
     watchSlidesProgress
   className="intro-carousel testimonial-section-container margin-top-bottom-space-70"
-  // breakpoints={{
-  //   640: { slidesPerView: 1.3, spaceBetween: 18 },
-  //   768: { slidesPerView: 2, spaceBetween: 20 },
-  //   1024: { slidesPerView: 2.5, spaceBetween: 24 },
-  // }}
+
+
 >
   {[
     { author: "Alexis Dumas", desc: "I'm thrilled to recommend Heng for his exceptional UX/UI design skills. Having worked closely with him, I can attest to his ability to create visually stunning and user-centric designs. Hengster's attention to detail, collaborative mindset, and up-to-date knowledge of design trends make him a standout designer. He consistently delivers top-notch work on time, and his designs truly enhance user experiences. Without a doubt, Heng would be a valuable addition to any design team.", img:alexisImg, title:"Sales Director at Ezshop"},
@@ -70,6 +88,7 @@ const Testimonials = () => {
     </SwiperSlide>
   ))}
 </Swiper>
+</div>
     </div>
   );
 };

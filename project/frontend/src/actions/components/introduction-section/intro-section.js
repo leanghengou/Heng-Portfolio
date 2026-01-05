@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect, useLayoutEffect} from "react";
 import "./intro-section-style.css"
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -23,6 +23,17 @@ import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 
 
+import {gsap, Power3} from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger) 
+
+
+
+
+
+
+
+
 
 const IntroSection = ()=>{
 
@@ -32,22 +43,85 @@ const IntroSection = ()=>{
 
 
 
+
+
+
+
+
+  const projectRef = useRef(null);
+
+
+
+
+useEffect(() => {
+
+   
+gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top', y:-32, duration: 0.7, delay:0.5, opacity:1, ease:Power3.easeOut, });
+
+
+     
+    
+
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+  let introRef = useRef(null)
+  let skillBallRef = useRef(null)
+
+  useEffect(()=>{
+     gsap.to(
+      introRef,
+      0.8,
+      {
+        opacity:1,
+      ease: Power3.easeIn
+      }
+     )
+
+     gsap.to(
+      skillBallRef,
+      0.35,
+      {
+        opacity:1,
+      ease: Power3.easeOut,
+      delay:0.2,
+      y:-20,
+      }
+     )
+
+
+
+  },[])
+
   const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
     return(
         <section  className="homepage intro-section">
 
 <div className="hero-bg-hp"></div>
-<div className="hero-section site-width-container">
+<div  ref={el=>{
+  introRef = el
+}} className="hero-section site-width-container" style={{opacity:0}}>
       <img className="heng-img-hero-hp" src={hengImg}/>
         
-        <div className="intro-section-container section-box">
+        <div  className="intro-section-container section-box">
 
-        <h2>Call me Heng.</h2>
+        <h2 >Call me Heng.</h2>
         <p>I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in user interfaces and product design. I can help you build innovative digital products from UX research to UI design and prototyping. </p>
+      
 
 
 
-<div class="skill-marquee">
+
+<div ref={el=>{skillBallRef = el}}  class="skill-marquee" style={{opacity:0}}>
   <div class="skill-track">
 
 
@@ -61,7 +135,7 @@ const IntroSection = ()=>{
 
 {/* ---------------loop--------------------- */}
 
-<div className="skill-ball-hp contain">
+<div className="skill-ball-hp contain" >
 
    {techSkill.map((icon,index)=>{
       return <img key={index} src={icon} />
@@ -93,6 +167,9 @@ const IntroSection = ()=>{
     768: { slidesPerView: 2, spaceBetween: 20 },
     1024: { slidesPerView: 3, spaceBetween: 24 },
   }}
+
+  style={{opacity:0}}
+
 >
   {[
     { title: "30 days challenges", desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",img:tDaysChallange },
@@ -101,7 +178,7 @@ const IntroSection = ()=>{
     { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg },
   ].map((item) => (
     <SwiperSlide key={item.title}>
-      <article className="intro-card work">
+      <article  className="intro-card work">
     <div className="card-project-container">
         <p>{ item.goat }</p>
         <h3>{item.title}</h3>
