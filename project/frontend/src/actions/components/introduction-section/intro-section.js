@@ -22,10 +22,14 @@ import webflow from "../../../resources/skill-icon/webflow.png";
 import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
+
 
 const IntroSection = ()=>{
+
+
+
+
+
 
 
   const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]

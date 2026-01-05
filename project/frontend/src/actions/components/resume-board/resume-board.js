@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import "./resume-board.css"
 import styled from "styled-components";
 import adobe from "../../../resources/skill-icon/adobe.png";
@@ -12,14 +12,49 @@ import webflow from "../../../resources/skill-icon/webflow.png";
 import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 
+import {gsap, Power3} from 'gsap'
+
 const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
 
 
 const ResumeBoard = ()=>{
+
+let logoItem = useRef(null)
+let skillProfile = useRef(null)
+
+
+useEffect(()=>{
+  console.log(logoItem)
+  gsap.to(
+  logoItem,
+  0.7,
+  {
+    opacity:1,
+    y:-29,
+    ease: Power3.easeOut
+  },
+
+
+
+  gsap.to(
+    skillProfile,
+    0.5,{
+      opacity:1,
+      delay: 0.2,
+      ease:Power3.easeIn
+    }
+  )
+)
+  
+},[])
+
+
     return(
         <div className="site-width-container">
          
-        <div className="resumeBoard-container">
+        <div ref={el =>{
+          logoItem = el
+        }} className="resumeBoard-container">
 
         <div className="resumeBoard-box-1">
 
@@ -50,7 +85,9 @@ const ResumeBoard = ()=>{
 
 
         </div>
-        <div className="resumeBoard-box-2">
+        <div ref={el=>{
+          skillProfile = el
+        }} className="resumeBoard-box-2">
 
 
          <div className="education">

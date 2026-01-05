@@ -11,7 +11,9 @@ import Lenis from "@studio-freight/lenis";
 
 
 function App() {
-
+useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
  useEffect(() => {
     const lenis = new Lenis({
       duration: 1,

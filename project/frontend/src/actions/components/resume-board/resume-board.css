@@ -2,6 +2,7 @@
   display: flex;
   background-color: #131313;
   margin: 8vh auto;
+  opacity: 0;
 }
 
 .resumeBoard-box-1 {
@@ -19,6 +20,7 @@
   flex-flow: column;
   gap: 20px;
   padding: 50px;
+  opacity: 0;
   background-image: radial-gradient(46.99% 43.05% at 2.58% 100%,rgba(81, 81, 81, 0.4) 0,#0000005e 100%),radial-gradient(55.18% 55.16% at 12.42% -3.42%,rgba(60, 60, 60, 0.44) 0,#2700ca0d 100%);
 }
 .experience h3 {
