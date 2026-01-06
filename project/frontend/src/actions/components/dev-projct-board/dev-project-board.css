@@ -28,8 +28,8 @@
 }
 
 .project-dev-card-one,.project-dev-card-two,.project-dev-card-three,.project-dev-card-four,.project-dev-card-five {
-    width: 180px;
-    height:195px;
+   width: 163px;
+  height: 168px;
     position: absolute;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     border-radius: 2px; 
@@ -85,4 +85,9 @@
   text-transform: initial;
   letter-spacing: 0px;
   font-weight: 600;
+}
+
+
+.drag-card:hover{
+box-shadow: rgba(50, 50, 93, 0) 0px 50px 100px -20px, rgb(0, 0, 0) 0px 30px 60px -30px;
 }

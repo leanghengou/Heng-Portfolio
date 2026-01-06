@@ -21,6 +21,7 @@ import typescript from "../../../resources/skill-icon/typescript.png";
 import webflow from "../../../resources/skill-icon/webflow.png";
 import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
+import gridImg from "../../../resources/grid-bg.png";
 
 
 import {gsap, Power3} from "gsap"
@@ -77,6 +78,7 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
   let introRef = useRef(null)
   let skillBallRef = useRef(null)
 
+
   useEffect(()=>{
      gsap.to(
       introRef,
@@ -100,17 +102,20 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
 
 
 
+
+
   },[])
 
   const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
     return(
         <section  className="homepage intro-section">
 
+<img  className="grid-bg-hero" src={gridImg}/>
 <div className="hero-bg-hp"></div>
 <div  ref={el=>{
   introRef = el
 }} className="hero-section site-width-container" style={{opacity:0}}>
-      <img className="heng-img-hero-hp" src={hengImg}/>
+      <img  className="heng-img-hero-hp" src={hengImg}/>
         
         <div  className="intro-section-container section-box">
 
@@ -172,10 +177,11 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
 
 >
   {[
-    { title: "30 days challenges", desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",img:tDaysChallange },
-    { title: "Start Now Fitness App", desc: "React builds with responsive, pixel-tight execution.", img:startnowimg },
-    { title: "Saint Embers", desc: "Reusable components, consistent spacing, scalable styles.", img:saintEmberImg },
-    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg },
+    { title: "30 days challenges", desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",img:tDaysChallange , tags: ["Design", "Creative"]},
+    { title: "Start Now Fitness App", desc: "React builds with responsive, pixel-tight execution.", img:startnowimg , tags: ["Design", "UI/UX"]},
+    { title: "Saint Embers", desc: "Reusable components, consistent spacing, scalable styles.", img:saintEmberImg , tags: [ "eCommerce", "Web Development", "Design",,"Shopify"]},
+    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"],
+ },
   ].map((item) => (
     <SwiperSlide key={item.title}>
       <article  className="intro-card work">
@@ -183,6 +189,31 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
         <p>{ item.goat }</p>
         <h3>{item.title}</h3>
         <p>{item.desc}</p>
+
+<div class="bubble-tag-all-container">
+
+
+
+
+<div className="bubble-tag-all-container">
+ {item.tags.map((tag, index) => (
+<div class={`bubble-tag-container ${tag.replace(/[\/\s]+/g, '-').toLowerCase()}`}>
+  <div class={`bubble-tag-item ${tag.replace(/[\/\s]+/g, '-').toLowerCase()}`}>
+    <p>{tag}</p>
+</div>
+</div>
+
+      ))
+ 
+  }
+</div>
+
+
+
+
+
+</div>
+
         <a className="btn">View project <div class="arrow-wrapper">
         <div class="arrow"></div>
 
