@@ -1,0 +1,87 @@
+.web-dev-section-flex {
+  display: flex;
+  gap: 25px;
+  margin-top: 120px;;
+}
+
+
+.web-dev-item {
+  width: 48%;
+  padding-right:50px;
+}
+
+.web-dev-item-content h3 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.web-dev-item-content h3 span {
+  font-size: 14px;
+  opacity: 0.5;
+  letter-spacing: 0.5px;
+}
+
+.web-dev-item-content {
+padding: 35px;
+  padding-right: 20%;
+}
+.web-dev-item-content.active {
+  background-color: #1E1A29;
+  border-radius: 15px;
+}
+.web-dev-item-banner {
+  width: 50%;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+}
+
+.web-dev-item-content.active h3 {
+  color: #BEA8EB;
+}
+
+.web-dev-item-content.active h3 span {
+    opacity: 1;
+    color: white;
+}
+
+.web-dev-item-content .btn {
+  display: none;
+}
+
+.web-dev-item-content.active .btn {
+display: inline-flex;
+}
+
+.web-dev-item-content {
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.web-dev-item-content:hover {
+  background-color: #1e1a29;
+  border-radius: 15px;
+}
+
+.web-dev-item-banner img {
+  opacity: 0;
+  animation: fadeIn 0.4s forwards;
+  width: 100%;
+  object-fit: cover;
+  height: 635px;
+}
+.web-dev-item-banner {
+  width: 50%;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 635px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
