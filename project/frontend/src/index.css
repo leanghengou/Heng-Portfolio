@@ -94,10 +94,29 @@ text-align: center;
 body {
   cursor: url("./resources/default-cursor.png") 10 10, auto;
    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+
   
 }
 
+.full-width-container{
+  overflow: hidden;
+  height: 100%;
+-webkit-mask-image: linear-gradient(
+  90deg,
+  rgba(7,7,9,0) 0%,
+  rgba(7,7,9,1) 8%,
+  rgba(7,7,9,1) 92%,
+  rgba(7,7,9,0) 100%
+);
 
+mask-image: linear-gradient(
+  90deg,
+  rgba(7,7,9,0) 0%,
+  rgba(7,7,9,1) 8%,
+  rgba(7,7,9,1) 92%,
+  rgba(7,7,9,0) 100%
+);
+}
 
 .btn {
 --primary-color: #e8e8e8;
@@ -184,6 +203,11 @@ background-color: #060112;
   background-color:#00000011;
   
 }
-
+.collarboration-section h2 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #BEA8EB;
+  margin-bottom: 10px;
+}
 
 

@@ -1,84 +1,103 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./web-dev-section-hp.css";
+import gsap from "gsap";
 
+import insperImg from "../../../resources/insper-u.png";
+import moonImg from "../../../resources/moon-example.png";
+import topicBgInsper from "../../../resources/inper-u-topic-bg.png";
 
-const WebDevSection = ()=>{
-     const [activeIndex, setActiveIndex] = useState(1)
+const WebDevSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const imgRef = useRef(null);
 
-
-
-const projects = [
+  const projects = [
     {
-        title :"Insper U",
-        role : "Developer",
-        date: "March, 11, 2026",
-        desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",
-        image: "https://picsum.photos/600/800?1",
-        codingLanguage: ["React.js", "Javascript", "Node.js"],
+      title: "Insper U",
+      role: "Frontend Developer",
+      date: "March 11, 2026",
+      desc: "A platform where university students share essays and perspectives from their academic projects.",
+      image: insperImg,
+      bgImg: topicBgInsper,
+      codingLanguage: ["React.js", "JavaScript", "CSS", "Node.js"],
     },
-       
     {
-        title :"Project 1",
-        role : "Developer",
-        date: "March, 11, 2026",
-        desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",
-        image: "https://picsum.photos/600/800?1",
-        codingLanguage: ["React.js", "Javascript", "Node.js"],
+      title: "Moon Whisper",
+      role: "Frontend Developer",
+      date: "April 2026",
+      desc: "A minimal sleep-focused app that delivers calming, low-stimulation content to help users unwind at night.",
+      image: moonImg,
+      bgImg: topicBgInsper,
+      codingLanguage: ["TypeScript", "React.js", "CSS"],
     },
-       {
-        title :"Project 1",
-        role : "Developer",
-        date: "March, 11, 2026",
-        desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",
-        image: "https://picsum.photos/600/800?1",
-        codingLanguage: ["React.js", "Javascript", "Node.js"],
-    }
-]
+  ];
 
+  // Animate image when activeIndex changes
+  useEffect(() => {
+    if (!imgRef.current) return;
 
-return(
+    gsap.fromTo(
+      imgRef.current,
+      { opacity: 0, y: "120%", scale: 1.27 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.5,
+        ease: "power3.out",
+      }
+    );
+  }, [activeIndex]);
+
+  return (
+    <div className="full-width-container">
     <div className="site-width-container">
+      <div className="web-dev-section-flex">
 
-        <div className="web-dev-section-flex">
+        {/* LEFT SIDE */}
+        <div className="web-dev-item">
+          {projects.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={`web-dev-item-content ${
+                  activeIndex === index ? "active" : ""
+                }`}
+                onMouseEnter={() => setActiveIndex(index)}
+              >
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <ul className="stack-app-web-dev-section">
+                {item.codingLanguage.map((stack)=>{
+                    return(
+                        <li>{stack}</li>
+                    )
+                })}
 
-
-{/* Left side  */}
-
-<div className="web-dev-item">
-    {
-        projects.map((item, index)=>{
-
-            return(
-            <div key={index} className={`web-dev-item-content ${
-                activeIndex === index ? "active" : ""}`}
-                onMouseEnter={()=>{ setActiveIndex(index) }}>
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                    <a className="btn">
-                View project
-                <div className="arrow-wrapper">
-                  <div className="arrow"></div>
-                </div>
-              </a>
-               
-            </div>
-            )
-            
-        })
-    }
-
-
-</div>
-
-
-<div className="web-dev-item-banner">
-    <img key={activeIndex}
-            src={projects[activeIndex].image}
-            alt={`${projects[activeIndex].title}`}/>
-</div>
-
+                </ul>
+                <a className="btn">
+                  View project
+                  <div className="arrow-wrapper">
+                    <div className="arrow"></div>
+                  </div>
+                </a>
+              </div>
+            );
+          })}
         </div>
+
+        {/* RIGHT SIDE (IMAGE) */}
+        <div className="web-dev-item-banner">
+          <img
+            ref={imgRef}
+            src={projects[activeIndex].image}
+            alt={projects[activeIndex].title}
+          />
+        </div>
+
+      </div>
     </div>
-)
-}
+    </div>
+  );
+};
+
 export default WebDevSection;

@@ -35,7 +35,7 @@ useEffect(() => {
     <div className="testimonial-container margin-top-bottom-space-70 site-width-container-large">
     <div className="collarboration-section">
 
-        <h5>Interested in collaboration?</h5>
+        <h2>Interested in collaboration?</h2>
 <h5>Let's discuss what we can create together.</h5>
        
 
