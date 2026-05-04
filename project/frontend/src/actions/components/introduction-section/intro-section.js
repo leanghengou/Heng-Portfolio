@@ -170,7 +170,7 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
   breakpoints={{
     640: { slidesPerView: 1.3, spaceBetween: 18 },
     768: { slidesPerView: 2, spaceBetween: 20 },
-    1024: { slidesPerView: 3, spaceBetween: 24 },
+    1024: { slidesPerView: 4, spaceBetween: 24 },
   }}
 
   style={{opacity:0}}
@@ -180,8 +180,8 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
     { title: "30 days challenges", desc: "Find out about my works: read through my case studies, have a look at final designs and try out prototypes I’ve built.",img:tDaysChallange , tags: ["Design", "Creative"]},
     { title: "Start Now Fitness App", desc: "React builds with responsive, pixel-tight execution.", img:startnowimg , tags: ["Design", "UI/UX"]},
     { title: "Saint Embers", desc: "Reusable components, consistent spacing, scalable styles.", img:saintEmberImg , tags: [ "eCommerce", "Web Development", "Design",,"Shopify"]},
-    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"],
- },
+    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"],},
+    { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img:saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"],}
   ].map((item) => (
     <SwiperSlide key={item.title}>
       <article  className="intro-card work">
