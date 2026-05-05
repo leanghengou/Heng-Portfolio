@@ -1,0 +1,59 @@
+.project-component-container img {
+  width: 35%;
+  border-radius: 15px;
+object-fit: cover;
+}
+.project-header {
+  width: 50%;
+}
+
+.project-component-container {
+  display: flex;
+  gap: 5%;
+  margin-bottom: 50px;
+  background: radial-gradient( ellipse at top, #5B508A8A 0%, #2ca0bd00 35%, #0000 100% );
+  padding: 100px 0;
+}
+
+.project-header h1 {
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+.ptp-project-info-card h4 {
+  margin: 0px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.ptp-project-info-card p {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.ptp-project-info-card {
+  width: 35%;
+  border-left: 1px solid #ffffff1a;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  height: 80px;
+}
+.ptp-project-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10%;
+  margin-top: 32px;
+}
+.ptp-project-info-card div {
+  display: flex;
+gap: 10px;
+  flex-wrap: wrap;
+  row-gap: 0px;
+}
+
+.ptp-project-info-card div p{
+  margin: 2px 0;
+}

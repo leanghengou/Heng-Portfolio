@@ -14,27 +14,27 @@
 .current-selected-item a{
    opacity:1 !important;
 }
-.App-header{
-
+.App-header {
   width: 100%;
-  height: 100px;
-  position: fixed;
+  height: 0;
+  position: sticky;
   z-index: 100;
+  top: 0;
 }
 
 .menu-link-container > li > a {
   color: white;
   text-decoration: none;
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
   letter-spacing: 0.15em;
   text-transform:uppercase;
-  opacity:0.5;
+  opacity:0.67;
   cursor:pointer;
 }
 
 .navbar-fixed {
-    position: fixed;
+    
     top: 0;
     width: 100%;
     background-color: #ffffff; /* Change background color on scroll */

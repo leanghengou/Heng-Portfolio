@@ -7,6 +7,7 @@ import Footer from "./actions/components/footer/footer"
 import Resume from './pages/resume';
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import ProjectPage from './pages/projectPageTemplate';
 
 
 
@@ -39,15 +40,16 @@ useEffect(() => {
   return (
     <Router>
     <div>
-      <header className="App-header">
+      {/* <header className="App-header">
        <Navigation />
-      </header>
+      </header> */}
 
       <div>
       <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/about" element={<About />} />
-        <Route path="/resume" element={<Resume />} />
+      <Route path="/resume" element={<Resume />} />
+       <Route path="/project/:slug" element={<ProjectPage />} />
       </Routes>
       </div>
 

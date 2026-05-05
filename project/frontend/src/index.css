@@ -17,7 +17,7 @@ code {
 p{
 color: #ffffffb2;
 font-size: 15px;
-line-height: 27px;
+line-height: 22px;
 }
 
 .margin-top-bottom-space-70{
@@ -90,13 +90,13 @@ text-align: center;
 .card-testimonial-author p {
   margin: 5px 0;
 }
-
+/* 
 body {
   cursor: url("./resources/default-cursor.png") 10 10, auto;
    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
 
   
-}
+} */
 
 .full-width-container{
   overflow: hidden;
@@ -135,8 +135,8 @@ padding: 15px 25px;
   align-items: center;
   gap: 0.6em;
   margin-top:15px;
-  cursor: url("./resources/pointer-cursor.png") 10 10, pointer;
-   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+  /* cursor: url("./resources/pointer-cursor.png") 10 10, pointer;
+   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)); */
 }
 
 .btn .arrow-wrapper {
