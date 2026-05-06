@@ -22,6 +22,7 @@ import webflow from "../../../resources/skill-icon/webflow.png";
 import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 import gridImg from "../../../resources/grid-bg.png";
+import tailwind from "../../../resources/skill-icon/Tailwind_CSS_Logo.png";
 
 
 import {gsap, Power3} from "gsap"
@@ -106,7 +107,7 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
 
   },[])
 
-  const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma]
+  const techSkill = [nextjs,react, typescript,javascript, github, shopify ,  lightspeed,  webflow,adobe, figma, tailwind]
     return(
         <section  className="homepage intro-section">
 
