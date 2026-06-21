@@ -54,6 +54,10 @@ useEffect(() => {
   centeredSlides={true}
   initialSlide={1}
     watchSlidesProgress
+  breakpoints={{
+    0: { slidesPerView: 1.1, spaceBetween: 16 },
+    768: { slidesPerView: 2, spaceBetween: 35 },
+  }}
   className="intro-carousel testimonial-section-container margin-top-bottom-space-70"
 
 

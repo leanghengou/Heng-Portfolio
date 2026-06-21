@@ -114,8 +114,31 @@ display: inline-flex;
 
 .stack-app-web-dev-section li {
   list-style: none;
-  border: 1px solid #ffffff2e;  
+  border: 1px solid #ffffff2e;
   color: white;
   padding: 5px 10px;
   border-radius: 8px;
+}
+
+
+/* ---------- Mobile / tablet ---------- */
+@media (max-width: 768px) {
+  .web-dev-section-flex {
+    flex-direction: column;
+    margin: 60px 0;
+  }
+
+  .web-dev-item,
+  .web-dev-item-banner {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .web-dev-item-content {
+    padding-right: 20px;
+  }
+
+  .stack-app-web-dev-section {
+    flex-wrap: wrap;
+  }
 }

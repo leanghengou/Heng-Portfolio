@@ -2,6 +2,7 @@ body{
     background-color: #060112;
     font-family: "Onest", sans-serif;
     color: white;
+    overflow-x: hidden;
 }
 
 h1,h2,h3,h4{
@@ -21,8 +22,8 @@ p{
 
 .site-width-container{
     margin: 0 auto;
-    min-width: 1280px;
-    max-width:1280px ;
+    width: 1280px;
+    max-width: 90%;
 }
 
 .site-width-container-large{
@@ -37,12 +38,6 @@ p{
     min-width: 90%;
     max-width:90% ;
 }
-.navigation-container{
-    padding: 20px;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.377);
-}
-
-
 
 
 .highlight-tag-box-style {
@@ -60,9 +55,68 @@ p{
     font-weight: 500;
   }
 
-.highlight-subtle-tag-box-style{
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 12px;
-    padding: 4px 10px;
+
+/* ---------- Mobile / tablet ---------- */
+@media (max-width: 768px) {
+    h3 {
+        font-size: 26px;
+    }
+
+    .site-width-container,
+    .site-width-container-large,
+    .header-width-container {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+    }
+
+    /* USP cards: three-per-row -> one-per-row */
+    .usp-box-parent {
+        width: 100% !important;
+    }
+
+    /* ---- Homepage: hero ---- */
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skill-ball-hp img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ---- Homepage: intro project cards (swiper) ---- */
+    .card-project-container {
+        height: auto;
+        padding: 15px 20px;
+    }
+
+    /* ---- Homepage: collaboration block ---- */
+    .collarboration-section {
+        width: 90%;
+        margin: 80px auto;
+    }
+
+    .collarboration-section h2 {
+        font-size: 24px;
+    }
+
+    .collarboration-section h5 {
+        font-size: 16px;
+    }
+
+    /* ---- Homepage: testimonial cards (swiper) ---- */
+    .intro-card.testimonial {
+        height: auto;
+        padding: 30px;
+    }
+
+    .card-testimonial-container p {
+        font-size: 14px;
+        line-height: 24px;
+    }
 }

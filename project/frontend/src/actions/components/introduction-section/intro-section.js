@@ -169,6 +169,7 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
 //   pagination={{ clickable: true }}
   className="intro-carousel"
   breakpoints={{
+    0: { slidesPerView: 1.2, spaceBetween: 14 },
     640: { slidesPerView: 1.3, spaceBetween: 18 },
     768: { slidesPerView: 2, spaceBetween: 20 },
     1024: { slidesPerView: 4, spaceBetween: 24 },

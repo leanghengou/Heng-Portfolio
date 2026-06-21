@@ -14,13 +14,6 @@
 .current-selected-item a{
    opacity:1 !important;
 }
-.App-header {
-  width: 100%;
-  height: 0;
-  position: sticky;
-  z-index: 100;
-  top: 0;
-}
 
 .menu-link-container > li > a {
   color: white;
@@ -32,12 +25,3 @@
   opacity:0.67;
   cursor:pointer;
 }
-
-.navbar-fixed {
-    
-    top: 0;
-    width: 100%;
-    background-color: #ffffff; /* Change background color on scroll */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow on scroll */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-  }

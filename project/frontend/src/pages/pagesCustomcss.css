@@ -57,3 +57,68 @@ gap: 10px;
 .ptp-project-info-card div p{
   margin: 2px 0;
 }
+
+
+/* =========================================================
+   Mobile / tablet styles for /project/:slug pages
+   (all project-page mobile CSS lives here per request)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* ---- Header section ---- */
+  .project-page .project-component-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 0;
+  }
+
+  .project-page .project-component-container img {
+    width: 100%;
+  }
+
+  .project-page .project-header {
+    width: 100%;
+  }
+
+  .project-page .project-header h1 {
+    font-size: 30px;
+  }
+
+  /* Role / Duration / Tools / Date — two per row, auto height */
+  .project-page .ptp-project-info {
+    gap: 20px 6%;
+    margin-top: 24px;
+  }
+
+  .project-page .ptp-project-info-card {
+    width: 47%;
+    height: auto;
+    min-height: 80px;
+  }
+
+  /* ---- Generic section spacing ---- */
+  .project-page .project-section-margin {
+    margin: 56px 0;
+  }
+
+  /* ---- Design Process (circular badges) ---- */
+  .project-page .startnow-multi-buble-text > div {
+    gap: 14px;
+    justify-content: center;
+  }
+
+  /* ---- Project Assessment (content + image grid) ---- */
+  .project-page .startnow-gallery-multi-container {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .project-page .startnow-gallery-multi-content {
+    width: 100%;
+  }
+
+  .project-page .startnow-gallery-multi-img {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
