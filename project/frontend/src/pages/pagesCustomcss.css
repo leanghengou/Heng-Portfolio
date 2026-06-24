@@ -3,9 +3,14 @@
   border-radius: 15px;
 object-fit: cover;
 }
+
+
 .project-header {
   width: 50%;
 }
+
+
+
 
 .project-component-container {
   display: flex;
@@ -49,7 +54,7 @@ object-fit: cover;
 }
 .ptp-project-info-card div {
   display: flex;
-gap: 10px;
+  gap: 10px;
   flex-wrap: wrap;
   row-gap: 0px;
 }
@@ -57,6 +62,22 @@ gap: 10px;
 .ptp-project-info-card div p{
   margin: 2px 0;
 }
+
+
+
+.ball-item-style{
+  width: 7%;
+  height: 2rem;
+  border: 1px solid #79797938;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5%;
+}
+
 
 
 /* =========================================================
@@ -91,11 +112,10 @@ gap: 10px;
   }
 
   .project-page .ptp-project-info-card {
-    width: 47%;
+    width: 40%;
     height: auto;
     min-height: 80px;
   }
-
   /* ---- Generic section spacing ---- */
   .project-page .project-section-margin {
     margin: 56px 0;
@@ -103,7 +123,7 @@ gap: 10px;
 
   /* ---- Design Process (circular badges) ---- */
   .project-page .startnow-multi-buble-text > div {
-    gap: 14px;
+    gap: 10px;
     justify-content: center;
   }
 
@@ -121,4 +141,10 @@ gap: 10px;
     width: 100%;
     grid-template-columns: repeat(2, 1fr);
   }
+.ball-item-style {
+  width: 20%;
+  padding: 5%;
+  height: 5rem;
+}
+  
 }
