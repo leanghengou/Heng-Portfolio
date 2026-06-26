@@ -6,7 +6,9 @@ export default function RichtextSection({ title, images, subtitle, description }
 
         <div className="rich-text-project">
         <h2 className="">{title}</h2>
-        <h3>{subtitle}</h3>
+        
+        {subtitle ? <h3>{subtitle}</h3> : null}
+        
         <p>{description}</p>
         </div>
    

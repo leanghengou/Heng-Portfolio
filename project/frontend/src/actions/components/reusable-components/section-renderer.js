@@ -5,6 +5,9 @@ import MultiGalleryBlocks from "./multi-gallery-block";
 import RichTextSection from "./rich-text-section";
 import CircleImageCards from "./circle-image-cards";
 import BorderedTextCards from "./bordered-text-cards";
+import ResearchStatsSection from "./research-stats-section";
+import SurveyResultsSection from "./survey-results-section";
+import SurveyCardsCarousel from "./survey-cards-carousel";
 
 
 export default function SectionRenderer({ section }) {
@@ -23,6 +26,12 @@ export default function SectionRenderer({ section }) {
       return <CircleImageCards {...section} />
     case "bordered-text-cards":
       return <BorderedTextCards {...section} />
+    case "research-stats-section":
+      return <ResearchStatsSection {...section} />
+    case "survey-results-section":
+      return <SurveyResultsSection {...section} />
+    case "survey-cards-carousel":
+      return <SurveyCardsCarousel {...section} />
     default:
       return null;
   }

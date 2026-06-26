@@ -8,6 +8,8 @@ import startnowmultiimg6 from "../resources/start-now-imgs/startnow-multi-img-6.
 import personOne from "../resources/person-one.png"
 import personTwo from "../resources/person-two.png"
 import personThree from "../resources/person-three.png"
+import searchIconOne from "../resources/search-icon-1.png"
+import searchIconTwo from "../resources/search-icon-2.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -172,7 +174,73 @@ export const projects = [
       },
 
 
-     
+
+
+      {
+        type: "rich-text-section",
+        title: "Interviews",
+        subtitle:"",
+        description:"I have interviewed more than 20 people on video call and phone, those people are the specific group that StartNow is targeting, they are between 17 to 25 years old. Among the 20 people, 6 of them are people who on their workout routine and self-transformation period. I asked dozen of important questions to know more about their journey, motivation, goal, difficulty, and their views on fitness app in general. Just to get an idea and build empathy for the potential users in order to understand on can StartNow solve their product and help smoothing the way for users to reach their desire destination.",
+      },
+
+
+     {
+  type: "research-stats-section",
+  stats: [
+    { icon: searchIconOne, value: "22", label: "Interviews" },
+    { icon: searchIconTwo, value: "17 - 26", label: "Years old" },
+  ],
+},
+
+{
+        type: "rich-text-section",
+        title: "Insight",
+        description:"Through the interview process, I found some interesting insights about the potential users. I would like to bring up 3 interesting questions that I asked and the responses.",
+      },
+
+
+{
+  type: "survey-cards-carousel",
+  cards: [
+    {
+      question: '"What are things that force you to not working out or distracting you?"',
+      results: [
+        { percent: "43%", text: "Not motivated, don't feel any push." },
+        { percent: "37%", text: "Busy schedule, due to work and school." },
+        { percent: "20%", text: "Other reasons" },
+      ],
+    },
+    {
+      question: '"What are the features you are looking for in fitness app?"',
+      results: [
+        { percent: "53%", text: "Routine setup, or schedule" },
+        { percent: "19%", text: "Nutrition plan" },
+        { percent: "17%", text: "Record System" },
+        { percent: "11%", text: "Others" },
+      ],
+    },
+    {
+      question: '"What are your expectations from fitness app?"',
+      results: [
+        { percent: "46%", text: "Provide guideline how to workout in the right way" },
+        { percent: "27%", text: "Affordable" },
+        { percent: "27%", text: "Others" },
+      ],
+    },
+  ],
+},
+
+
+      {
+        type: "rich-text-section",
+        title: "Affirnity Diagram",
+        description:"Through the interview process, I found some interesting insights about the potential users. I would like to bring up 3 interesting questions that I asked and the responses.",
+      },
+
+
+
+
+
     ],
 
   
