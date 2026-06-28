@@ -8,6 +8,8 @@ import BorderedTextCards from "./bordered-text-cards";
 import ResearchStatsSection from "./research-stats-section";
 import SurveyResultsSection from "./survey-results-section";
 import SurveyCardsCarousel from "./survey-cards-carousel";
+import StartNowAffinityDiagram from "./start-now-affinity-diagram";
+import PersonaCardsSection from "./persona-cards-section";
 
 
 export default function SectionRenderer({ section }) {
@@ -32,6 +34,10 @@ export default function SectionRenderer({ section }) {
       return <SurveyResultsSection {...section} />
     case "survey-cards-carousel":
       return <SurveyCardsCarousel {...section} />
+    case "start-now-affinity-diagram":
+      return <StartNowAffinityDiagram />
+    case "persona-cards-section":
+      return <PersonaCardsSection {...section} />
     default:
       return null;
   }

@@ -10,6 +10,7 @@ import personTwo from "../resources/person-two.png"
 import personThree from "../resources/person-three.png"
 import searchIconOne from "../resources/search-icon-1.png"
 import searchIconTwo from "../resources/search-icon-2.png"
+import theirry from "../resources/theirry.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -237,8 +238,79 @@ export const projects = [
         description:"Through the interview process, I found some interesting insights about the potential users. I would like to bring up 3 interesting questions that I asked and the responses.",
       },
 
+      {
+        type: "start-now-affinity-diagram",
+      },
+      {
+        type: "rich-text-section",
+        title: "Persona",
+        description:"After gathering informations from interview and carefully analysis the informations, I combine all of it into 2 different personality or person.",
+      },
 
 
+      {
+        type: "persona-cards-section",
+        personas: [
+          {
+            image: theirry,
+            name: "Jett Barclay",
+            age: "22 years old",
+            role: "Marketing Strategist",
+            gender: "Male",
+            quote:
+              '"I really want to get better shape but these days I am so busy at work. But I do workout sometimes"',
+            goals: [
+              "Stay healthy",
+              "Get better body",
+              "Prefer fitness that affordable",
+            ],
+            personality: ["Busy", "Introvert", "Thoughtful", "Sociable"],
+            motivations: [
+              "Holiday",
+              "Free time",
+              "Feeling inspired from social media",
+            ],
+            painPoints: [
+              "Undisciplined",
+              "Feeling tired after work",
+              "Work schedule during the day",
+            ],
+          },
+          {
+            image: personTwo,
+            name: "Ashley Natalie",
+            age: "20 years old",
+            role: "University Student",
+            gender: "Female",
+            quote:
+              '"I think workout is a great way to stay health and taking care of our mental health."',
+            goals: [
+              "Stay in shape",
+              "Good mental health",
+              "Prefer fitness app that can sheedule and record system",
+            ],
+            personality: ["Sociable", "Busy", "Honest", "Cooperative"],
+            motivations: [
+              "Inspired from social media",
+              "No assigment and free at home",
+              "Holiday",
+            ],
+            painPoints: [
+              "Hanging out too often",
+              "No workout equipment",
+              "Busy with assigments",
+            ],
+          },
+        ],
+
+      },
+
+
+      {
+        type: "rich-text-section",
+        title: "Senario of new users",
+        description:"This is the senario of new users when they start using StartNow. They will be introduced to free classes workout by professional as they have expected from the fitness app.",
+      },
 
 
     ],
