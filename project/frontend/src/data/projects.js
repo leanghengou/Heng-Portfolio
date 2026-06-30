@@ -308,9 +308,96 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        title: "Proposition Value Canvas",
+        description:"When it comes time to really understand our potential users, and when we try to solve their problems, the Value Proposition Canvas is one of the best tool to strategies as well as help guiding us to solve customers problem. The Value Proposition Canvas was developed by Alex Osterwalder.",
+      },
+
+      {
+  type: "badge-block-grid",
+  blocks: [
+    {
+      title: "Gain",
+      color: "#3aa14a",
+      items: ["Feel better about themselves", "Get better body and feel confident"],
+    },
+    {
+      title: "Pain",
+      color: "#c0392b",
+      items: ["Can't workout due to busy schedule", "Not motivated", "Not in the mood"],
+    },
+    {
+      title: "Jobs to be done",
+      color: "#e08a1e",
+      full: true,
+      items: ["Can't workout due to busy schedule", "Not motivated", "Not in the mood"],
+    },
+  ],
+},
+
+      {
+  type: "badge-block-grid",
+  blocks: [
+    {
+      title: "Gain creators",
+      color: "#3aa14a",
+      items: ["As the users have tool to set up flexible routine they could workout regulary.", "As the community and lives features could motivate and inspire users to keep the routine consistent, the users will start to feel better about their bodies and see the result."],
+    },
+    {
+      title: "Pain relievers",
+      color: "#c0392b",
+      items: ["Routine set up could help the users create routine or schedule and add any type of workout any time they want.", "Community will inspire users to feel motivated as users share their achievment or stories", "Lives can create bond between users and push them to workout like the hosts even if they are not in the mood."],
+    },
+    {
+      title: "Products and services",
+      color: "#e08a1e",
+      full: true,
+      items: ["Add rontine set up system that the users could customize their workout routines as they want", "Create community that people can share stories and inspire others", "Add lives feature so the users can connect with other users or coaches or workout together remotely"],
+    },
+  ],
+},
+
+
+
+ {
+        type: "rich-text-section",
         title: "Senario of new users",
         description:"This is the senario of new users when they start using StartNow. They will be introduced to free classes workout by professional as they have expected from the fitness app.",
       },
+
+{
+  type: "journey-map",
+  rows: [
+    {
+      label: "User",
+      head: true,
+      cells: [
+        "Login Page",
+        "Sign up and Set Profile",
+        "Choosing workout classes",
+        "Doing Exercise",
+        "Reward Screen",
+      ],
+    },
+    {
+      label: "Emotion",
+      tall: true,
+      merged:true,
+      cells: "",
+    },
+    {
+      label: "Speech",
+      italic: true,
+      cells: [
+        '"Alright, let\'s try this one."',
+        '"…"',
+        '"Woah, many classes, I want to try this one."',
+        '"Okay, okay, one, two, three, …"',
+        '"Yes, I did it!"',
+      ],
+    },
+  ],
+},
+
 
 
     ],

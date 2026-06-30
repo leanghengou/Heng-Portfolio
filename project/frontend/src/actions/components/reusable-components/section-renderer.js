@@ -10,6 +10,8 @@ import SurveyResultsSection from "./survey-results-section";
 import SurveyCardsCarousel from "./survey-cards-carousel";
 import StartNowAffinityDiagram from "./start-now-affinity-diagram";
 import PersonaCardsSection from "./persona-cards-section";
+import BadgeBlockGrid from "./badge-block-grid";
+import JourneyMap from "./journey-map";
 
 
 export default function SectionRenderer({ section }) {
@@ -38,6 +40,10 @@ export default function SectionRenderer({ section }) {
       return <StartNowAffinityDiagram />
     case "persona-cards-section":
       return <PersonaCardsSection {...section} />
+    case "badge-block-grid":
+      return <BadgeBlockGrid {...section} />
+    case "journey-map":
+      return <JourneyMap {...section} />
     default:
       return null;
   }
