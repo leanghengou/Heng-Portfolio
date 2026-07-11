@@ -36,9 +36,12 @@
 .intro-section .swiper{
   padding: 35px 5%;
 }
+.intro-section .swiper-slide {
+  height: auto;
+}
 .card-project-container {
 padding: 15px 30px;
-  height: 220px;
+  flex: 1 0 auto;
 }
 .swiper-wrapper .intro-card img {
   width: 100%;
@@ -50,6 +53,9 @@ padding: 15px 30px;
   background-color: transparent;
   border-radius: 17px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   /* max-height: 480px; */
 }
 
@@ -116,8 +122,13 @@ padding: 15px 30px;
 
 .bubble-tag-all-container {
   display: flex;
-  gap: 10px;
+  gap: 7px;
   flex-wrap: wrap;
+  margin: 0px;
+}
+
+.card-project-container .btn {
+  margin-top: 1.5rem;
 }
 
 
@@ -130,7 +141,7 @@ padding: 15px 30px;
   align-content: center;
 
   width: fit-content;
-    margin: 15px 0 !important;
+  margin: 0 !important;
 }
 
 

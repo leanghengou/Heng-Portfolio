@@ -13,6 +13,9 @@ import searchIconTwo from "../resources/search-icon-2.png"
 import theirry from "../resources/theirry.png"
 import wireframesImg from "../resources/wireframes.png"
 import wireframesImg2 from "../resources/wireframes-2.png"
+import architictureImg1 from "../resources/architicture-1.png"
+import architictureImg2 from "../resources/architicture-2.png"
+import architictureImg3 from "../resources/architicture-3.png"
 import wireframesImg3 from "../resources/wireframe-illustration.png"
 import brandIcons from "../resources/start-now-icon-04.png"
 import wireframeScreenshot from "../resources/wireframe-screenshot.png"
@@ -44,8 +47,8 @@ export const projects = [
     sections: [
       {
         type: "bubble-text-badge",
-        title: "Design Process",
-        content:["Project Assessment","Competitive Analysis", "User Research","Ideate", "Information Architecture", "Wireframes", "UI choice", "Test", "Final Product" ]
+        title: "",
+        content:["Project Assessment","Competitive Analysis", "User Research","Ideate", "Wireframes", "UI choice", "Test", "Final Product", "Information Architecture" ]
       },
 
        {
@@ -622,7 +625,17 @@ export const projects = [
   title: "“My Routine” part needs to show progress",
   text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
   image: beforeAfterimgEleven,
-  textPosition: "left",   
+  textPosition: "left",
+},
+
+
+
+{
+  type: "architecture-map",
+  title: "Information Architecture",
+  description:
+    "Based on the solutions and features identified for the app, I built the sitemap to map out how every screen and flow connects across StartNow.",
+  images: [architictureImg1, architictureImg2, architictureImg3],
 },
 
 

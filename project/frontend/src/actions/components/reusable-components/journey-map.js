@@ -10,7 +10,7 @@ export default function JourneyMap({ rows = [] }) {
       <div className="journey-map-scroll">
         <div
           className="journey-map-table"
-          style={{ gridTemplateColumns: `60px repeat(${colCount}, minmax(150px, 1fr))` }}
+          style={{ gridTemplateColumns: `clamp(36px, 8%, 60px) repeat(${colCount}, minmax(0, 1fr))` }}
         >
           {rows.map((row, ri) => (
             <Fragment key={ri}>

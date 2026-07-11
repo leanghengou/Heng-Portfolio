@@ -15,6 +15,7 @@ import JourneyMap from "./journey-map";
 import TextImageSplit from "./text-image-split";
 import RichTextImages from "./rich-text-images";
 import StyleGuide from "./style-guide";
+import ArchitectureMap from "./architecture-map";
 
 
 export default function SectionRenderer({ section }) {
@@ -53,6 +54,8 @@ export default function SectionRenderer({ section }) {
       return <RichTextImages {...section} />
     case "style-guide":
       return <StyleGuide />
+    case "architecture-map":
+      return <ArchitectureMap {...section} />
     default:
       return null;
   }
