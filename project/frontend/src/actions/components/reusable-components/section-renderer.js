@@ -12,6 +12,9 @@ import StartNowAffinityDiagram from "./start-now-affinity-diagram";
 import PersonaCardsSection from "./persona-cards-section";
 import BadgeBlockGrid from "./badge-block-grid";
 import JourneyMap from "./journey-map";
+import TextImageSplit from "./text-image-split";
+import RichTextImages from "./rich-text-images";
+import StyleGuide from "./style-guide";
 
 
 export default function SectionRenderer({ section }) {
@@ -44,6 +47,12 @@ export default function SectionRenderer({ section }) {
       return <BadgeBlockGrid {...section} />
     case "journey-map":
       return <JourneyMap {...section} />
+    case "text-image-split":
+      return <TextImageSplit {...section} />
+    case "rich-text-images":
+      return <RichTextImages {...section} />
+    case "style-guide":
+      return <StyleGuide />
     default:
       return null;
   }

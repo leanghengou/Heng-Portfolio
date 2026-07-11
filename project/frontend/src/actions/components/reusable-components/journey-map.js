@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import graphIcon from "../../../resources/graph-icon.png";
 import "./reusable-components.css";
 
 export default function JourneyMap({ rows = [] }) {
@@ -20,6 +21,7 @@ export default function JourneyMap({ rows = [] }) {
                 <div
                   className={[
                     "journey-map-cell",
+                    "journey-map-merged",
                     row.tall ? "journey-map-tall" : "",
                   ]
                     .filter(Boolean)
@@ -27,6 +29,8 @@ export default function JourneyMap({ rows = [] }) {
                   style={{ gridColumn: `span ${colCount}` }}
                 >
                   {row.cells[0] || ""}
+
+                  <img src={graphIcon} alt="journey-graph" className="journey-map-graph-img" />
                 </div>
               ) : (
                 Array.from({ length: colCount }).map((_, ci) => (

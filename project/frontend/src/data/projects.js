@@ -11,6 +11,22 @@ import personThree from "../resources/person-three.png"
 import searchIconOne from "../resources/search-icon-1.png"
 import searchIconTwo from "../resources/search-icon-2.png"
 import theirry from "../resources/theirry.png"
+import wireframesImg from "../resources/wireframes.png"
+import wireframesImg2 from "../resources/wireframes-2.png"
+import wireframesImg3 from "../resources/wireframe-illustration.png"
+import brandIcons from "../resources/start-now-icon-04.png"
+import wireframeScreenshot from "../resources/wireframe-screenshot.png"
+import beforeAfterimgOne from "../resources/before-after-img-1.png"
+import beforeAfterimgTwo from "../resources/before-after-img-2.png"
+import beforeAfterimgThree from "../resources/before-after-img-3.png"
+import beforeAfterimgFour from "../resources/before-after-img-4.png"
+import beforeAfterimgFive from "../resources/before-after-img-5.png"
+import beforeAfterimgSix from "../resources/before-after-img-6.png"
+import beforeAfterimgSeven from "../resources/before-after-img-7.png"
+import beforeAfterimgEight from "../resources/before-after-img-8.png"
+import beforeAfterimgNine from "../resources/before-after-img-9.png"
+import beforeAfterimgTen from "../resources/before-after-img-10.png"
+import beforeAfterimgEleven from "../resources/before-after-img-11.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -396,6 +412,217 @@ export const projects = [
       ],
     },
   ],
+},
+
+
+
+
+
+{
+        type: "rich-text-section",
+        title: "Senario of old users",
+        description:"After users use the application for more than a week and start their routine set up. They will encounter low willpower moment after they get tired from work, school or other activities. If they click on the notification or alarm from StartNow that loading on their mobile, at this point, community posts and streaming features will come into play. Clicking on one of it will inspire them to follow up with others who share inspiring stories, streaming workout activity, and sharing tranformation result. These factors create movitation for many to keep going even if they don’t like to.",
+      },
+
+
+
+
+{
+  type: "journey-map",
+  rows: [
+    {
+      label: "User",
+      head: true,
+      cells: [
+        "Login Page",
+        "Sign up and Set Profile",
+        "Choosing workout classes",
+        "Doing Exercise",
+        "Reward Screen",
+      ],
+    },
+    {
+      label: "Emotion",
+      tall: true,
+      merged:true,
+      cells: "",
+    },
+    {
+      label: "Speech",
+      italic: true,
+      cells: [
+        '"Alright, let\'s try this one."',
+        '"…"',
+        '"Woah, many classes, I want to try this one."',
+        '"Okay, okay, one, two, three, …"',
+        '"Yes, I did it!"',
+      ],
+    },
+  ],
+},
+
+
+
+
+
+
+{
+  type: "rich-text-images",
+  title: "Paper wireframes",
+  description:
+    "I planned how these contents would look like in the actual app by sketching the wireframe on my personal Ipad.",
+  images: [wireframesImg, wireframesImg2],
+},
+
+
+
+
+
+{
+  type: "text-image-split",
+  title: "",
+  text: "Wireframes for exercising classes and challanges.",
+  image: wireframesImg,
+  textPosition: "left",   // "left" = text on left (as in your mockup), "right" = text on right
+},
+
+
+
+{
+  type: "text-image-split",
+  title: "",
+  text: "Wireframes for routine setting and lives feature.",
+  image: wireframesImg2,
+  textPosition: "left",   // "left" = text on left (as in your mockup), "right" = text on right
+},
+
+
+
+
+
+{
+  type: "rich-text-images",
+  title: "Digital Wireframes",
+  description:
+    "As the plan is finished, I built and corrected some points. And, see what it might look like.",
+  images: wireframesImg3,
+},
+
+
+
+      
+{ type: "style-guide" },
+
+
+
+
+
+{
+  type: "text-image-split",
+  title: "Users agree that the color on Statisic looks too hard",
+  text: "Users thinks the green color on the dashboard is too hard. I decide to transform the original color to green gradient in order to improve overall visual look while maintaining the brand color.",
+  image: beforeAfterimgOne,
+  textPosition: "right",   // "left" = text on left (as in your mockup), "right" = text on right
+},
+
+
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgTwo,
+  textPosition: "left",   // "left" = text on left (as in your mockup), "right" = text on right
+},
+
+
+
+
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgThree,
+  textPosition: "right",   
+},
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgFour,
+  textPosition: "left",   
+},
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgFive,
+  textPosition: "right",   
+},
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgSix,
+  textPosition: "left",   
+},
+
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgSeven,
+  textPosition: "right",   
+},
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgEight,
+  textPosition: "left",   
+},
+
+
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgNine,
+  textPosition: "right",   
+},
+
+
+
+
+{
+  type: "rich-text-images",
+  title: "Digital Wireframes",
+  description:
+    "As the plan is finished, I built and corrected some points. And, see what it might look like.",
+   images: beforeAfterimgTen,
+},
+
+
+{
+  type: "text-image-split",
+  title: "“My Routine” part needs to show progress",
+  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  image: beforeAfterimgEleven,
+  textPosition: "left",   
 },
 
 
