@@ -1,4 +1,4 @@
-import startNowFeaturedImg from "../resources/start-now-featured-img.webp"
+import startNowFeaturedImg from "../resources/start-now-featured-img.png"
 import startnowmultiimg1 from "../resources/start-now-imgs/startnow-multi-img-1.png"
 import startnowmultiimg2 from "../resources/start-now-imgs/startnow-multi-img-2.png"
 import startnowmultiimg3 from "../resources/start-now-imgs/startnow-multi-img-3.png"
@@ -30,6 +30,11 @@ import beforeAfterimgEight from "../resources/before-after-img-8.png"
 import beforeAfterimgNine from "../resources/before-after-img-9.png"
 import beforeAfterimgTen from "../resources/before-after-img-10.png"
 import beforeAfterimgEleven from "../resources/before-after-img-11.png"
+import beforeAfterimgTwelve from "../resources/before-after-img-12.png"
+import startNowMobileGroupOne from "../resources/start-now-mobile-img-group-1.png"
+import startNowMobileGroupTwo from "../resources/start-now-mobile-img-group-2.png"
+import startNowMobileGroupThree from "../resources/start-now-mobile-img-group-3.png"
+import startNowMobileGroupFour from "../resources/start-now-mobile-img-group-4.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -48,13 +53,50 @@ export const projects = [
       {
         type: "bubble-text-badge",
         title: "",
-        content:["Project Assessment","Competitive Analysis", "User Research","Ideate", "Wireframes", "UI choice", "Test", "Final Product", "Information Architecture" ]
+        content:[
+          {
+            title: "Project Assessment",
+            description: "Define the problem, the goal, and what success looks like.",
+          },
+          {
+            title: "Competitive Analysis",
+            description: "Study competitors to find what works and where the gaps are.",
+          },
+          {
+            title: "User Research",
+            description: "Talk to real users to learn their goals and pain points.",
+          },
+          {
+            title: "Ideate",
+            description: "Turn research insights into ideas worth building.",
+          },
+          {
+            title: "Information Architecture",
+            description: "Map every screen into a sitemap so the app connects.",
+          },
+          {
+            title: "Wireframes",
+            description: "Sketch the structure of each screen before the visuals.",
+          },
+          {
+            title: "UI choice",
+            description: "Set the colors, type, and visual language of the brand.",
+          },
+          {
+            title: "Test",
+            description: "Put it in front of users and fix what slows them down.",
+          },
+          {
+            title: "Final Product",
+            description: "Polish the flows and hand off a build-ready design.",
+          },
+        ]
       },
 
        {
         type: "multi-gallery-blocks",
-        title: "Project Assesment",
-        subtitle:"About",
+        title: "",
+        subtitle:"Project Assessment",
         description:"StartNow is the fitness application that helps to provide a comfortable fitness tool to help people reach their goal and guide them effective ways on how to do exercise.",
         images:[startnowmultiimg1, startnowmultiimg2,startnowmultiimg3,startnowmultiimg4,startnowmultiimg5,startnowmultiimg6]
       },
@@ -470,6 +512,16 @@ export const projects = [
 
 
 {
+  type: "architecture-map",
+  title: "Information architicture",
+  description:
+    "After identifying the solutions and features that need to be added, it's time to build the sitemap based on the plan.",
+  images: [architictureImg1, architictureImg2, architictureImg3],
+},
+
+
+
+{
   type: "rich-text-images",
   title: "Paper wireframes",
   description:
@@ -514,6 +566,16 @@ export const projects = [
 
 
       
+{
+  type: "text-image-split",
+  title: "Visual design",
+  text: "Black is being put as the background color. The white and green texts are presented on a dark background to create color combinations. And with a soft green gradient, it makes the app look unique in its own way.",
+  image: beforeAfterimgTwelve,
+  textPosition: "left",
+},
+
+
+
 { type: "style-guide" },
 
 
@@ -522,8 +584,8 @@ export const projects = [
 
 {
   type: "text-image-split",
-  title: "Users agree that the color on Statisic looks too hard",
-  text: "Users thinks the green color on the dashboard is too hard. I decide to transform the original color to green gradient in order to improve overall visual look while maintaining the brand color.",
+  title: "Users think that the color on Statistics looks too hard.",
+  text: "They feel that the green color on the dashboard is too hard. I decided to transform the original color to the green gradient to improve the overall visual look while maintaining the brand color.",
   image: beforeAfterimgOne,
   textPosition: "right",   // "left" = text on left (as in your mockup), "right" = text on right
 },
@@ -533,10 +595,10 @@ export const projects = [
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "“My Routine” part needs to show progress.",
+  text: "Users want to know their progress while they are on their routine. When will the routine end? How far have we reached?",
   image: beforeAfterimgTwo,
-  textPosition: "left",   // "left" = text on left (as in your mockup), "right" = text on right
+  textPosition: "left",
 },
 
 
@@ -546,55 +608,55 @@ export const projects = [
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Home page",
+  text: "Users can see their schedule, routine progress, and inspirational articles from influencers.",
   image: beforeAfterimgThree,
-  textPosition: "right",   
+  textPosition: "right",
 },
 
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Live and grind like professionals",
+  text: "You can add professional routines to your routine.",
   image: beforeAfterimgFour,
-  textPosition: "left",   
+  textPosition: "left",
 },
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Customize your routine and live with the habits you want to live.",
+  text: "You can create routines and customize them. Add classes, set time, how long the routine will end, and put description.",
   image: beforeAfterimgFive,
-  textPosition: "right",   
+  textPosition: "right",
 },
 
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Choose the type of workout you are interested in.",
+  text: "There are many workout categories that you can explore.",
   image: beforeAfterimgSix,
-  textPosition: "left",   
+  textPosition: "left",
 },
 
 
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Workout system",
+  text: "Learn to work out by following recorded videos from professionals.",
   image: beforeAfterimgSeven,
-  textPosition: "right",   
+  textPosition: "right",
 },
 
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Statistics",
+  text: "Check out how your workout journal is going.",
   image: beforeAfterimgEight,
-  textPosition: "left",   
+  textPosition: "left",
 },
 
 
@@ -602,10 +664,10 @@ export const projects = [
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "You will never get lost.",
+  text: "Track your distance, duration, calories burned, and weather.",
   image: beforeAfterimgNine,
-  textPosition: "right",   
+  textPosition: "right",
 },
 
 
@@ -613,30 +675,45 @@ export const projects = [
 
 {
   type: "rich-text-images",
-  title: "Digital Wireframes",
+  title: "Join lives and push each other to keep going",
   description:
-    "As the plan is finished, I built and corrected some points. And, see what it might look like.",
+    "You can join and watch other users that are streaming and grinding.",
    images: beforeAfterimgTen,
+   align: "center",
 },
 
 
 {
   type: "text-image-split",
-  title: "“My Routine” part needs to show progress",
-  text: "Users want to know their progress during they are on their routine. When will the routine end? How far have we reached?",
+  title: "Breaking the challenges",
+  text: "There are challenges to be completed for those who love the hard way.",
   image: beforeAfterimgEleven,
-  textPosition: "left",
+  textPosition: "right",
 },
 
 
 
 {
-  type: "architecture-map",
-  title: "Information Architecture",
-  description:
-    "Based on the solutions and features identified for the app, I built the sitemap to map out how every screen and flow connects across StartNow.",
-  images: [architictureImg1, architictureImg2, architictureImg3],
+  type: "rich-text-images",
+  images: [
+    startNowMobileGroupOne,
+    startNowMobileGroupTwo,
+    startNowMobileGroupThree,
+    startNowMobileGroupFour,
+  ],
 },
+
+
+
+{
+  type: "prototype-embed",
+  title: "Prototype",
+  description: "Try out the interactive prototype of StartNow.",
+  src: "https://embed.figma.com/proto/iaVsKCqcdEk23fzDUcvbIj/Start-Now-Prototypes?node-id=2-6057&p=f&viewport=-125%2C523%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2%3A6057&show-proto-sidebar=1&page-id=2%3A5413&embed-host=share",
+},
+
+
+
 
 
 

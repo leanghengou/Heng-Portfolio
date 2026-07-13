@@ -16,6 +16,7 @@ import TextImageSplit from "./text-image-split";
 import RichTextImages from "./rich-text-images";
 import StyleGuide from "./style-guide";
 import ArchitectureMap from "./architecture-map";
+import PrototypeEmbed from "./prototype-embed";
 
 
 export default function SectionRenderer({ section }) {
@@ -56,6 +57,8 @@ export default function SectionRenderer({ section }) {
       return <StyleGuide />
     case "architecture-map":
       return <ArchitectureMap {...section} />
+    case "prototype-embed":
+      return <PrototypeEmbed {...section} />
     default:
       return null;
   }
