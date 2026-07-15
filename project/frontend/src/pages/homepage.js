@@ -1,4 +1,5 @@
 import React from "react";
+import LandingHero from "../actions/components/landing-hero/landing-hero";
 import IntroSection from '../actions/components/introduction-section/intro-section';
 import UpsSkill from "../actions/components/usp-skill-section/usp-skill";
 import Testimonials from "../actions/components/testimonials/testimonials"
@@ -8,6 +9,7 @@ import WebDevSection from "../actions/components/web-dev-section-hp/web-dev-sect
 const Homepage = ()=>{
     return(
         <div>
+        <LandingHero/>
         <IntroSection/>
        <UpsSkill/>
        <WebDevSection/>
