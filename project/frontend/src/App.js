@@ -40,9 +40,7 @@ useEffect(() => {
   return (
     <Router>
     <div>
-      {/* <header className="App-header">
-       <Navigation />
-      </header> */}
+      <Navigation />
 
       <div>
       <Routes>

@@ -1,4 +1,5 @@
 import React from "react";
+import KineticGrid from "../actions/components/kinetic-grid/kinetic-grid";
 import LandingHero from "../actions/components/landing-hero/landing-hero";
 import IntroSection from '../actions/components/introduction-section/intro-section';
 import UpsSkill from "../actions/components/usp-skill-section/usp-skill";
@@ -9,7 +10,7 @@ import WebDevSection from "../actions/components/web-dev-section-hp/web-dev-sect
 const Homepage = ()=>{
     return(
         <div>
-        <LandingHero/>
+        {/* <LandingHero/> */}
         <IntroSection/>
        <UpsSkill/>
        <WebDevSection/>

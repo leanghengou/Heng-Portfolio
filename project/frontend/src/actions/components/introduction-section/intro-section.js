@@ -23,6 +23,7 @@ import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 import gridImg from "../../../resources/grid-bg.png";
 import tailwind from "../../../resources/skill-icon/Tailwind_CSS_Logo.png";
+import ParticleSphere from "../particle-sphere/particle-sphere";
 
 
 import {gsap, Power3} from "gsap"
@@ -116,7 +117,17 @@ gsap.to('.intro-carousel', { scrollTrigger: '.intro-carousel', start: 'top top',
 <div  ref={el=>{
   introRef = el
 }} className="hero-section site-width-container" style={{opacity:0}}>
-      <img  className="heng-img-hero-hp" src={hengImg}/>
+      <div className="hero-kinetic-bg">
+        <ParticleSphere
+          sphereColor="#5B508A"
+          particlesCount={9000}
+          particleScale={3}
+          speed={20}
+          scale={8.4}
+          cursorOn={true}
+        />
+      </div>
+      {/* <img  className="heng-img-hero-hp" src={hengImg}/> */}
         
         <div  className="intro-section-container section-box">
 
