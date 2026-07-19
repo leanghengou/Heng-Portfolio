@@ -1,56 +1,89 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./navigation-style.css";
+
+const Chevron = () => (
+  <svg
+    className="nav-chevron"
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M6 9l6 6 6-6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const Logo = () => (
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor" />
+    <path
+      d="M2 12l10 5 10-5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M2 17l10 5 10-5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const PROJECTS = [{ label: "Start Now", to: "/project/start-now-app" }];
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
-
-  const closeMenu = () => setOpen(false);
+  const close = () => setOpen(false);
 
   return (
     <header className="site-nav">
-      <nav className={`nav-pill ${open ? "is-open" : ""}`}>
-        <div className="nav-bar">
-          <a className="nav-logo" href="/" aria-label="Home">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor" />
-              <path
-                d="M2 12l10 5 10-5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
-              <path
-                d="M2 17l10 5 10-5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
-            </svg>
-          </a>
+      <div className="nav-inner">
+        <div className="nav-left">
+          <Link className="nav-brand" to="/">
+            <Logo />
+            <span>Heng</span>
+          </Link>
 
           <ul className="nav-links">
-            <li><a href="/">Pricing</a></li>
-            <li><a href="/">Blog</a></li>
-            <li><a href="/">Careers</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/resume">Resume</Link></li>
+            <li className="nav-dropdown">
+              <button className="nav-dropdown-toggle" type="button">
+                Projects <Chevron />
+              </button>
+              <ul className="nav-dropdown-menu">
+                {PROJECTS.map((p) => (
+                  <li key={p.to}>
+                    <Link to={p.to}>{p.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
           </ul>
+        </div>
 
-          <span className="nav-divider" />
-
-          <a className="nav-login" href="/">Login</a>
-
-          <a className="nav-cta" href="/">
-            Get Started <span className="nav-cta-arrow">&rarr;</span>
-          </a>
+        <div className="nav-right">
+          <a className="nav-contact" href="#contact">Get in touch</a>
 
           <button
             className={`nav-burger ${open ? "is-open" : ""}`}
@@ -63,19 +96,25 @@ const Navigation = () => {
             <span />
           </button>
         </div>
+      </div>
 
-        <div className="nav-mobile-menu">
-          <ul>
-            <li><a href="/" onClick={closeMenu}>Pricing</a></li>
-            <li><a href="/" onClick={closeMenu}>Blog</a></li>
-            <li><a href="/" onClick={closeMenu}>Careers</a></li>
-            <li><a href="/" onClick={closeMenu}>Login</a></li>
-          </ul>
-          <a className="nav-cta nav-cta-mobile" href="/" onClick={closeMenu}>
-            Get Started <span className="nav-cta-arrow">&rarr;</span>
-          </a>
-        </div>
-      </nav>
+      <div className={`nav-mobile-menu ${open ? "is-open" : ""}`}>
+        <ul>
+          <li><Link to="/" onClick={close}>Home</Link></li>
+          <li><Link to="/resume" onClick={close}>Resume</Link></li>
+          <li className="nav-mobile-group">Projects</li>
+          {PROJECTS.map((p) => (
+            <li key={p.to}>
+              <Link className="nav-mobile-sub" to={p.to} onClick={close}>
+                {p.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <a className="nav-contact nav-contact-mobile" href="#contact" onClick={close}>
+          Get in touch
+        </a>
+      </div>
     </header>
   );
 };
