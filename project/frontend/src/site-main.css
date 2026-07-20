@@ -1,12 +1,16 @@
 body{
     background-color: #060112;
-    font-family: "Onest", sans-serif;
+    font-family: "Geist", sans-serif;
     color: white;
     overflow-x: hidden;
 }
 
-h1,h2,h3,h4{
-    font-family:"Onest", sans-serif;  
+h1,h2,h3{
+    font-family:"Geist Mono", monospace;
+}
+
+h4,h5,h6{
+    font-family:"Geist", sans-serif;
 }
 
 h3{
@@ -115,4 +119,24 @@ h3{
         font-size: 14px;
         line-height: 24px;
     }
+}
+
+
+/* ============================================================
+   Flat / square design system
+   All boxes, banners, cards, CTAs have square corners.
+   Genuinely circular elements (avatars, blobs) stay round.
+   ============================================================ */
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+.landing-blob,
+.process-body::before,
+.circle-card-img,
+.circle-card-img img,
+.persona-card-avatar {
+    border-radius: 50% !important;
 }

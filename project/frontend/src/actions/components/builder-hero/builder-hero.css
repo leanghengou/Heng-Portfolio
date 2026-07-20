@@ -1,0 +1,209 @@
+.builder-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Purple glow art sits behind everything as background */
+.builder-hero-bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 55%;
+  max-width: 720px;
+  height: auto;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.builder-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12vh 0;
+}
+
+/* ---------- Left: copy ---------- */
+.builder-hero-copy {
+  flex: 1 1 55%;
+  max-width: 620px;
+}
+
+.builder-hero-title {
+  font-family: "Geist", sans-serif;
+  font-weight: 500;
+  font-size: 92px;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.builder-hero-line {
+  display: block;
+  /* small pad so the slide-up reveal never clips glyph tops/bottoms */
+  padding: 0.04em 0;
+
+  /* each line paints its own fill so it can blur/animate independently */
+  background: linear-gradient(100deg, #ffffff 0%, #ffffff 100%);
+  background-size: 220% 100%;
+  background-position: 120% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.builder-hero-title .accent {
+  /* soft lavender word, catching the same sharp white glare */
+  background: linear-gradient(
+    100deg,
+    #a894e8 0%,
+    #b6a5ec 45%,
+    #d9ccff 48%,
+    #ffffff 50%,
+    #d9ccff 52%,
+    #b6a5ec 55%,
+    #a894e8 100%
+  );
+  background-size: 220% 100%;
+  background-position: 120% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  animation: builder-hero-shine 4.5s ease-in-out infinite;
+}
+
+@keyframes builder-hero-shine {
+  0% {
+    background-position: 120% 0;
+  }
+  60%,
+  100% {
+    background-position: -20% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .builder-hero-line,
+  .builder-hero-title .accent {
+    animation: none;
+    background-position: 50% 0;
+  }
+}
+
+.builder-hero-sub {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: #b9b9c4;
+}
+
+.builder-hero-cta {
+  padding: 16px 34px;
+  border-radius: 0;
+}
+
+/* ---------- Stats row (under portrait) ---------- */
+.builder-hero-stats {
+  display: flex;
+  gap: 56px;
+  margin-top: 28px;
+  width: 100%;
+  justify-content: center;
+}
+
+.builder-hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.builder-hero-stat-value {
+  font-size: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.builder-hero-stat-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+/* ---------- Right: portrait ---------- */
+.builder-hero-portrait {
+  flex: 0 0 auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.builder-hero-portrait img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .builder-hero-title {
+    font-size: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .builder-hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 8vh 0;
+  }
+
+  .builder-hero-copy,
+  .builder-hero-portrait {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .builder-hero-portrait {
+    justify-content: center;
+  }
+
+  .builder-hero-portrait img {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .builder-hero-title {
+    font-size: 52px;
+  }
+
+  .builder-hero-bg {
+    left: 17%;
+    bottom: 59%;
+    width: 125%;
+    max-width: 732px;
+    transform: rotate(90deg) scaleY(-1);
+  }
+
+  .builder-hero-stats {
+    gap: 32px;
+    margin-top: 40px;
+    justify-content: center;
+  }
+}

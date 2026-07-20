@@ -1,14 +1,34 @@
 body {
   margin: 0;
-  font-family: "Onest", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Primary / display headings */
+h1, h2, h3 {
+  font-family: "Geist Mono", monospace;
+}
+
+/* Small / secondary headings */
+h4, h5, h6 {
+  font-family: "Geist", sans-serif;
+}
+
+/* All CTAs: mono + uppercase, 14px, semibold, consistent tracking */
+.btn,
+.nav-contact {
+  font-family: "Geist Mono", monospace;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: "Geist Mono", source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 

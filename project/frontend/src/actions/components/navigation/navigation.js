@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navigation-style.css";
+import logo from "../../../resources/navi-logo.png";
 
-const Chevron = () => (
+const ArrowRight = () => (
   <svg
-    className="nav-chevron"
-    width="12"
-    height="12"
+    className="nav-arrow"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
   >
     <path
-      d="M6 9l6 6 6-6"
+      d="M5 12h14M13 6l6 6-6 6"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
@@ -22,34 +23,12 @@ const Chevron = () => (
   </svg>
 );
 
-const Logo = () => (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor" />
-    <path
-      d="M2 12l10 5 10-5"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M2 17l10 5 10-5"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const PROJECTS = [{ label: "Start Now", to: "/project/start-now-app" }];
+const NAV_LINKS = [
+  { label: "Home", to: "/" },
+  { label: "Projects", to: "/project/start-now-app" },
+  { label: "About", to: "/about" },
+  { label: "Resume", to: "/resume" },
+];
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
@@ -59,31 +38,24 @@ const Navigation = () => {
     <header className="site-nav">
       <div className="nav-inner">
         <div className="nav-left">
-          <Link className="nav-brand" to="/">
-            <Logo />
-            <span>Heng</span>
+          <Link className="nav-brand" to="/" onClick={close}>
+            <img src={logo} alt="Heng" />
           </Link>
 
-          <ul className="nav-links">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/resume">Resume</Link></li>
-            <li className="nav-dropdown">
-              <button className="nav-dropdown-toggle" type="button">
-                Projects <Chevron />
-              </button>
-              <ul className="nav-dropdown-menu">
-                {PROJECTS.map((p) => (
-                  <li key={p.to}>
-                    <Link to={p.to}>{p.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          </ul>
+          <nav className="nav-links">
+            {NAV_LINKS.map((item, i) => (
+              <React.Fragment key={item.to}>
+                {i > 0 && <span className="nav-sep" aria-hidden="true">/</span>}
+                <Link to={item.to}>{item.label}</Link>
+              </React.Fragment>
+            ))}
+          </nav>
         </div>
 
         <div className="nav-right">
-          <a className="nav-contact" href="#contact">Get in touch</a>
+          <a className="nav-contact" href="#contact">
+            Get in touch <ArrowRight />
+          </a>
 
           <button
             className={`nav-burger ${open ? "is-open" : ""}`}
@@ -100,19 +72,16 @@ const Navigation = () => {
 
       <div className={`nav-mobile-menu ${open ? "is-open" : ""}`}>
         <ul>
-          <li><Link to="/" onClick={close}>Home</Link></li>
-          <li><Link to="/resume" onClick={close}>Resume</Link></li>
-          <li className="nav-mobile-group">Projects</li>
-          {PROJECTS.map((p) => (
-            <li key={p.to}>
-              <Link className="nav-mobile-sub" to={p.to} onClick={close}>
-                {p.label}
+          {NAV_LINKS.map((item) => (
+            <li key={item.to}>
+              <Link to={item.to} onClick={close}>
+                {item.label}
               </Link>
             </li>
           ))}
         </ul>
         <a className="nav-contact nav-contact-mobile" href="#contact" onClick={close}>
-          Get in touch
+          Get in touch <ArrowRight />
         </a>
       </div>
     </header>
