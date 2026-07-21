@@ -2,6 +2,8 @@
   position: relative;
   overflow: hidden;
   padding: 20px;
+  height: 100vh;
+  display: flex;
 }
 
 /* Purple glow art sits behind everything as background */
@@ -167,11 +169,16 @@
 }
 
 @media (max-width: 768px) {
+  .builder-hero {
+    height: auto;
+  }
+
   .builder-hero-inner {
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
     padding: 8vh 0;
+    width: 100%;
   }
 
   .builder-hero-copy,

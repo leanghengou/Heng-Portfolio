@@ -1,0 +1,218 @@
+.skill-services {
+padding: 10rem 0;
+  overflow-x: hidden;
+}
+
+/* Two columns: left content aligned to site width, right media bleeds to edge */
+.skill-services-inner {
+  display: flex;
+  align-items: stretch;
+  gap: 48px;
+  margin: 0 auto;
+}
+
+.skill-services-left {
+  width: 70%;
+  padding: 12px 0;
+}
+
+/* ---------- Header ---------- */
+.skill-services-eyebrow {
+  margin: 0 0 20px;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+.skill-services-title {
+  margin: 0 0 40px;
+  max-width: 460px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ---------- Skill marquee ---------- */
+.skill-marquee {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, rgba(7, 7, 9, 0), #070709 15.77%, #070709 86.73%, rgba(7, 7, 9, 0));
+}
+
+.skill-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-right 25s linear infinite;
+}
+
+.skill-ball-hp {
+  display: flex;
+  gap: 15px;
+  padding-right: 15px;
+  margin: 0 0 32px;
+}
+
+.skill-ball-hp img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Skill list ---------- */
+.skill-item {
+  display: flex;
+  gap: 22px;
+  padding: 15px 0;
+  border-top: 1px solid #ffffff1f;
+}
+.skill-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.skill-item-icon {
+  flex: 0 0 auto;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff80;
+}
+.skill-item-icon img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.skill-item-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.skill-item-body h3 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.skill-item-body p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #b9b9c4;
+}
+
+/* ---------- Tags ---------- */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  background: #ffffff;
+  color: #0d0d12;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------- Right media (placeholder) ---------- */
+.skill-services-media {
+  position: relative;
+  flex: 1;
+  min-height: 560px;
+}
+
+/* Fixed-size box → stable render resolution (stays sharp). Anchored to the
+   media column's right edge, then shifted right so it bleeds off the viewport
+   (clipped by .skill-services overflow-x: hidden) and clears the text. */
+.skill-services-sphere {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(60%, -50%);
+  width: 850px;
+  height: 850px;
+}
+
+/* Spinning fan that follows the pointer while hovering the particle object. */
+.fan-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px; /* center the image on the pointer */
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  transition: opacity 0.35s ease;
+}
+.fan-cursor.is-visible {
+  opacity: 1;
+}
+.fan-cursor img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: fan-cursor-spin 0.4s linear infinite;
+}
+@keyframes fan-cursor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .skill-services {
+    padding: 0;
+    overflow-x: initial;
+  }
+  .skill-services-inner {
+    flex-direction: column-reverse;
+    gap: 32px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+  .skill-services-left {
+    width: 100%;
+    padding: 12px 0;
+  }
+  .skill-services-media {
+    min-height: 0;
+  }
+  .skill-services-sphere {
+    right: 50%;
+    transform: translate(88%, -13%);
+    width: 384px;
+    height: 384px;
+    z-index: -12;
+    opacity: 0.75;
+    -webkit-mask-image: linear-gradient(90deg, rgba(7, 7, 9, 0), #070709 15.77%, #070709 86.73%, rgba(7, 7, 9, 0));
+    mask-image: linear-gradient(45deg, rgba(7, 7, 9, 0), #07070900 45%, #070709 95%, rgb(7, 7, 9));
+  }
+}

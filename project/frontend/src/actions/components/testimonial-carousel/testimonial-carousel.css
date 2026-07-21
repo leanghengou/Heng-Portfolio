@@ -1,0 +1,116 @@
+.testimonial-carousel {
+  overflow-x: hidden;
+  
+}
+
+/* ---------- Section header (matches project-carousel conventions) ---------- */
+.testimonial-carousel-header {
+
+}
+.testimonial-carousel-eyebrow {
+  margin: 5px 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  font-weight: 600;
+}
+.testimonial-carousel-title {
+  max-width: 40%;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+.testimonial-carousel-sub {
+  max-width: 440px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b9b9c4;
+}
+
+.testimonial-carousel .swiper {
+  padding: 35px 0;
+  overflow: visible;
+}
+.testimonial-carousel .swiper-slide {
+  height: auto;
+}
+
+/* ---------- Testimonial card ---------- */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 22px;
+  background: #ffffff17;
+}
+.testimonial-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.testimonial-card-avatar {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border: 1px solid #ffffffab;
+}
+.testimonial-card-meta {
+  min-width: 0;
+}
+.testimonial-card-author {
+  margin: 0 0 4px;
+  font-family: "Geist", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.testimonial-card-role {
+  margin: 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  line-height: 1.5;
+}
+.testimonial-card-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 22px 0;
+  background: #ffffff1f;
+}
+.testimonial-card-quote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #b9b9c4;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .testimonial-carousel {
+    margin-top: 50px;
+  }
+  .testimonial-carousel-title {
+    font-size: 22px;
+    max-width: 100%;
+  }
+  .testimonial-carousel-sub {
+    max-width: 100%;
+  }
+  .testimonial-card {
+    padding: 28px 24px;
+  }
+}

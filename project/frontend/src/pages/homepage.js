@@ -8,6 +8,8 @@ import DevProjectBoard from "../actions/components/dev-projct-board/dev-project-
 import WebDevSection from "../actions/components/web-dev-section-hp/web-dev-section-hp"
 import BuilderHero from "../actions/components/builder-hero/builder-hero"
 import ProjectCarousel from "../actions/components/project-carousel/project-carousel"
+import SkillServices from "../actions/components/skill-services/skill-services"
+import TestimonialCarousel from "../actions/components/testimonial-carousel/testimonial-carousel"
 
 const Homepage = ()=>{
     return(
@@ -15,10 +17,13 @@ const Homepage = ()=>{
      <BuilderHero/>
         {/* <IntroSection/> */}
        <ProjectCarousel/>
-       <UpsSkill/>
+       <SkillServices/>
+        <TestimonialCarousel/>
+       {/* <UpsSkill/> */}
        <WebDevSection/>
        {/* <DevProjectBoard/> */}
-       <Testimonials/>
+{/*     
+       <Testimonials/> */}
         </div>
        
     )
