@@ -134,6 +134,13 @@ mask-image: linear-gradient(
 );
 }
 
+@media (max-width: 768px) {
+  .full-width-container {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
 .btn {
 --primary-color: #e8e8e8;
   --secondary-color: black;

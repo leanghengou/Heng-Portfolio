@@ -1,7 +1,31 @@
+/* ---------- Section header (matches project-carousel conventions) ---------- */
+.web-dev-header {
+  margin-bottom: 2rem;
+}
+.web-dev-eyebrow {
+  margin: 5px 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  font-weight: 600;
+}
+.web-dev-title {
+  max-width: 100%;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
 .web-dev-section-flex {
   display: flex;
   gap: 25px;
-  margin: 120px 0;
+  margin: 35px 0 120px;
 }
 
 
@@ -11,9 +35,11 @@
 }
 
 .web-dev-item-content h3 {
-  margin-top: 0px;
+  margin: 0 0 12px;
+  font-family: "Geist", sans-serif;
   font-size: 22px;
   font-weight: 400;
+  color: #ffffff;
 }
 
 .web-dev-item-content h3 span {
@@ -24,14 +50,13 @@
 
 .web-dev-item-content {
   padding: 20px;
-  padding-right: 20%;
-  
+  padding-right: 20px;
+
   max-height: 400px; /* collapsed state */
   border-radius: 15px;
-  transition: 
+  transition:
     background-color 0.4s ease,
     border-radius 0.4s ease,
-    /* max-height 0.75s ease, */
     background-image 0.75s ease;
     overflow: hidden ;
 }
@@ -45,11 +70,11 @@
 }
 .web-dev-item-banner {
   width: 50%;
-
+  margin: 20px 0;
 }
 
 .web-dev-item-content.active h3 {
-  color: #BEA8EB;
+  color: #ffffff;
 }
 
 .web-dev-item-content.active h3 span {
@@ -79,7 +104,9 @@ display: inline-flex;
   opacity: 0;
   animation: fadeIn 0.75s forwards;
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 15px;
 
 }
@@ -99,38 +126,99 @@ display: inline-flex;
 
 .stack-app-web-dev-section {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   padding: 0;
-}
-
-.active .stack-app-web-dev-section li {
-  list-style: none;
-  background-color: #ffffff2e;
- border: 1px solid #fff0;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
+  margin: 18px 0 22px;
 }
 
 .stack-app-web-dev-section li {
   list-style: none;
   border: 1px solid #ffffff2e;
-  color: white;
-  padding: 5px 10px;
+  color: #d7d3df;
+  padding: 6px 10px;
   border-radius: 8px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background-color 0.1s ease, border-color 0.1s ease,
+    color 0.1s ease;
+}
+
+.active .stack-app-web-dev-section li {
+  background-color: #ffffff2e;
+  border: 1px solid #fff0;
+  color: #ffffff;
+}
+
+.stack-app-web-dev-section li:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: black;
+  cursor: pointer;
+}
+
+/* Autoplay progress bar — hidden by default, shown on the active card */
+.card-progress {
+  display: none;
+}
+
+@keyframes cardProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Desktop: progress bar on the active card (auto-advances every 7s) */
+@media (min-width: 769px) {
+  .web-dev-item-content.active .card-progress {
+    display: block;
+    margin-top: 18px;
+    height: 4px;
+    border-radius: 999px;
+    background: #ffffff26;
+    overflow: hidden;
+  }
+
+  .web-dev-item-content.active .card-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: #ffffff;
+    animation: cardProgress 7s linear forwards;
+  }
 }
 
 
 /* ---------- Mobile / tablet ---------- */
 @media (max-width: 768px) {
+  .web-dev-header {
+    padding-top: 0px;
+      margin-bottom: 0;
+  }
+
+  .web-dev-title {
+    max-width: 100%;
+    font-size: 22px;
+  }
+
   .web-dev-section-flex {
-    flex-direction: column;
-    margin: 60px 0;
+    flex-direction: column-reverse;
+    margin: 0px;
+    gap: 0px;
   }
 
   .web-dev-item,
   .web-dev-item-banner {
     width: 100%;
+    min-width: 0; /* prevent flex child from overflowing the viewport */
+    max-width: 100%;
     padding-right: 0;
   }
 
@@ -138,7 +226,68 @@ display: inline-flex;
     padding-right: 20px;
   }
 
+  /* Let cards grow to their content — no clipping on mobile */
+  .web-dev-item-content,
+  .web-dev-item-content.active {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* No hover on touch — always show the CTA */
+  .web-dev-item-content .btn {
+    display: inline-flex;
+  }
+
   .stack-app-web-dev-section {
     flex-wrap: wrap;
+  }
+
+  /* ---------- Mobile carousel ---------- */
+  .web-dev-mobile-swiper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; /* clip slides so the page doesn't overflow horizontally */
+    touch-action: pan-y;
+    overscroll-behavior-x: contain;
+  }
+
+  .web-dev-mobile-swiper .swiper-wrapper {
+    box-sizing: border-box;
+  }
+
+  .web-dev-mobile-swiper .swiper-slide {
+    height: auto;
+  }
+
+  .web-dev-mobile-swiper .swiper-slide .web-dev-item-content {
+    height: 100%;
+  }
+
+  /* Kill the global active-slide gradient on the card */
+  .web-dev-mobile-swiper .swiper-slide-active > div {
+    background-image: none;
+  }
+
+  /* Autoplay progress bar */
+  .web-dev-mobile-swiper .card-progress {
+    display: block;
+    margin-top: 18px;
+    height: 4px;
+    border-radius: 999px;
+    background: #ffffff26;
+    overflow: hidden;
+  }
+
+  .web-dev-mobile-swiper .card-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: #ffffff;
+  }
+
+  /* Fill over 5s on the active slide (in sync with autoplay delay) */
+  .web-dev-mobile-swiper .swiper-slide-active .card-progress-bar {
+    animation: cardProgress 7s linear forwards;
   }
 }

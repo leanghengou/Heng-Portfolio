@@ -32,6 +32,11 @@
 }
 
 @media (max-width: 640px) {
+  .project-carousel .swiper {
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
   .project-carousel-title {
     font-size: 22px;
     max-width: 100%;

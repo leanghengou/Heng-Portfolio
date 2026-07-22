@@ -1,0 +1,141 @@
+.collaboration-cta {
+  position: relative;
+  margin-top: 120px;
+  padding-bottom: 70px;
+  overflow-x: clip;
+}
+
+/* Full-width floor the character stands on */
+.collaboration-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px;
+  z-index: 0;
+  background: radial-gradient( 120% 130% at 50% 0%, rgba(120, 117, 133, 0) 0%, rgba(120, 117, 133, 0) 60% ), linear-gradient(180deg, #ffffff0d 0%, #100c1b 55%, #fff0 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #ffffff21;
+}
+
+.collaboration-cta__inner {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1fr);
+  align-items: center;
+  gap: clamp(36px, 9vw, 150px);
+  padding: 38px 0 34px;
+}
+
+.collaboration-cta__media {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 358px;
+}
+
+.collaboration-cta__media img {
+  position: relative;
+  z-index: 1;
+width: min(100%, 395px);
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: pixelated;
+}
+
+.collaboration-cta__content {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 2rem;
+  background-color: #111;
+  border: 1px solid #ffffff21;
+  background-image: url("../../../resources/project-card-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.collaboration-cta__belle {
+  position: absolute;
+  left: -14px;
+  bottom: 97%;
+  width: 210px;
+  height: auto;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+.collaboration-cta__eyebrow {
+  margin: 5px 0;
+  color: #8a8a99;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.collaboration-cta__content h2 {
+  margin: 10px 0;
+  color: #ffffff;
+  font-family: "Geist Mono", monospace;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.collaboration-cta__copy {
+  margin: 0;
+  color: #b9b9c4;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.collaboration-cta__content .btn {
+  text-decoration: none;
+  margin-top: 26px;
+}
+
+@media (max-width: 900px) {
+  .collaboration-cta {
+    margin-top: 80px;
+  }
+
+  .collaboration-cta__inner {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 42px;
+    padding-bottom: 56px;
+  }
+
+  .collaboration-cta__media {
+    min-height: 0;
+    order:2;
+  }
+
+   .collaboration-cta__media img {
+    width: min(100%, 335px);
+    max-height: none;
+  }
+
+  .collaboration-cta__content {
+    order: 1;
+    width: 75%;
+    margin: auto;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .collaboration-cta__inner {
+    padding-top: 32px;
+    padding-bottom: 42px;
+  }
+
+  .collaboration-cta__content h2 {
+    font-size: 22px;
+  }
+}

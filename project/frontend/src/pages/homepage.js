@@ -10,6 +10,7 @@ import BuilderHero from "../actions/components/builder-hero/builder-hero"
 import ProjectCarousel from "../actions/components/project-carousel/project-carousel"
 import SkillServices from "../actions/components/skill-services/skill-services"
 import TestimonialCarousel from "../actions/components/testimonial-carousel/testimonial-carousel"
+import CollaborationCta from "../actions/components/collaboration-cta/collaboration-cta"
 
 const Homepage = ()=>{
     return(
@@ -20,6 +21,7 @@ const Homepage = ()=>{
        <SkillServices/>
         <TestimonialCarousel/>
        {/* <UpsSkill/> */}
+    <CollaborationCta/>
        <WebDevSection/>
        {/* <DevProjectBoard/> */}
 {/*     

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navigation-style.css";
 import logo from "../../../resources/navi-logo.png";
+import AboutSlidePanel from "../about-slide-panel/about-slide-panel";
 
 const ArrowRight = () => (
   <svg
@@ -32,7 +33,16 @@ const NAV_LINKS = [
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const close = () => setOpen(false);
+
+  // On desktop, the "About" link opens the slide-in panel instead of navigating.
+  const handleNavClick = (item) => (e) => {
+    if (item.label === "About" && window.matchMedia("(min-width: 901px)").matches) {
+      e.preventDefault();
+      setAboutOpen(true);
+    }
+  };
 
   return (
     <header className="site-nav">
@@ -46,7 +56,9 @@ const Navigation = () => {
             {NAV_LINKS.map((item, i) => (
               <React.Fragment key={item.to}>
                 {i > 0 && <span className="nav-sep" aria-hidden="true">/</span>}
-                <Link to={item.to}>{item.label}</Link>
+                <Link to={item.to} onClick={handleNavClick(item)}>
+                  {item.label}
+                </Link>
               </React.Fragment>
             ))}
           </nav>
@@ -84,6 +96,8 @@ const Navigation = () => {
           Get in touch <ArrowRight />
         </a>
       </div>
+
+      <AboutSlidePanel open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </header>
   );
 };

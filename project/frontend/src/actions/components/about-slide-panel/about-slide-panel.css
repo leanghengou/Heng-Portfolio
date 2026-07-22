@@ -1,0 +1,130 @@
+/* ---------- Slide-in About panel (desktop) ---------- */
+.about-panel-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1100; /* above the nav (1000) */
+  visibility: hidden;
+  pointer-events: none;
+  /* Keep it visible through the slide-out, then hide */
+  transition: visibility 0s linear 0.4s;
+}
+.about-panel-root.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.about-panel-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 1, 10, 0.6);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.about-panel-root.is-open .about-panel-backdrop {
+  opacity: 1;
+}
+
+.about-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(540px, 92vw);
+  display: flex;
+  flex-direction: column;
+  background: #0b0713;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.about-panel-root.is-open .about-panel {
+  transform: translateX(0);
+}
+
+.about-panel-close {
+  align-self: flex-end;
+  margin: 18px 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.about-panel-close:hover {
+  background: #ffffff;
+  color: #0d0d12;
+  border-color: #ffffff;
+}
+
+.about-panel-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 34px 60px;
+}
+
+.about-panel-portrait {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.about-panel-section {
+  padding: 26px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.about-panel-section:first-of-type {
+  border-top: none;
+  padding-top: 8px;
+}
+.about-panel-section h3 {
+  margin: 0 0 14px;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.about-panel-section p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+
+.about-panel-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+.about-panel-icons img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.about-panel-desk {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 24px auto 0;
+  image-rendering: pixelated;
+}

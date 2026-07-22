@@ -24,6 +24,9 @@ useEffect(() => {
       easing: (t) => 1 - Math.pow(1 - t, 3),
     });
 
+    // Expose so modals/overlays can lock scrolling while open
+    window.__lenis = lenis;
+
     let rafId;
     const raf = (time) => {
       lenis.raf(time);
@@ -34,6 +37,7 @@ useEffect(() => {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      if (window.__lenis === lenis) window.__lenis = null;
     };
   }, []);
 

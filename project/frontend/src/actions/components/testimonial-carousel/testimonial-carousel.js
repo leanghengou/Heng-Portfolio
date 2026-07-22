@@ -39,6 +39,14 @@ const TESTIMONIALS = [
     quote:
       "I had the pleasure of working with Heng and experienced firsthand his dedication to his craft and strong work ethic. His attention to detail is second to none and he was a great asset to our team.",
   },
+
+    {
+    author: "Andrian Savaldore",
+    role: "Founder of iAgree.ai",
+    img: charlesImg,
+    quote:
+      "Heng brings a contagious enthusiasm, eagerness to learn, and perfectionism that more than compensate for his relatively junior status. He was able to quickly understand our processes and bring value to our product almost immediately.",
+  },
 ];
 
 const TestimonialCarousel = () => {
