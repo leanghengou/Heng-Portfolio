@@ -26,7 +26,7 @@ const ArrowRight = () => (
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
-  { label: "Projects", to: "/project/start-now-app" },
+  { label: "Projects", to: "/projects" },
   { label: "About", to: "/about" },
   { label: "Resume", to: "/resume" },
 ];

@@ -1,0 +1,239 @@
+.projects-page {
+  padding: 140px 0 120px;
+}
+
+/* ---------- Page header ---------- */
+.projects-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #ffffff1a;
+}
+
+.projects-page-eyebrow {
+  margin: 5px 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  font-weight: 600;
+}
+
+.projects-page-title {
+  max-width: 720px;
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+
+.projects-page-intro {
+  max-width: 560px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.projects-page-count {
+  flex: 0 0 auto;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  white-space: nowrap;
+  padding-bottom: 4px;
+}
+
+/* ---------- Filters ---------- */
+.projects-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 30px 0 45px;
+}
+
+.projects-filter {
+  font-family: "Geist Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffffb2;
+  background: transparent;
+  border: 1px solid #ffffff21;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.projects-filter:hover {
+  color: #ffffff;
+  border-color: #ffffff4d;
+}
+
+.projects-filter.is-active {
+  color: #060112;
+  background: #e8e8e8;
+  border-color: #e8e8e8;
+}
+
+/* ---------- Grid ---------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.projects-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 22px;
+  border: 1px solid #ffffff21;
+  overflow: hidden;
+  background-image: url("../resources/project-card-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #0b0713;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.projects-card:hover {
+  border-color: #ffffff54;
+  transform: translateY(-4px);
+}
+
+.projects-card.is-locked {
+  cursor: default;
+}
+
+.projects-card.is-locked:hover {
+  transform: none;
+}
+
+.projects-card-media {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.projects-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.projects-card:hover .projects-card-media img {
+  transform: scale(1.04);
+}
+
+.projects-card-year {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 12px;
+  background: #060112d9;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #ffffffb2;
+}
+
+.projects-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.projects-card-body h3 {
+  font-family: "Geist", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 10px;
+}
+
+.projects-card-body p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.projects-card-body .bubble-tag-all-container {
+  margin-bottom: 22px;
+}
+
+.projects-card-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.projects-card.is-locked .projects-card-cta {
+  color: #8a8a99;
+}
+
+.projects-card-cta svg {
+  transition: transform 0.2s ease;
+}
+
+.projects-card:hover .projects-card-cta svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Empty state ---------- */
+.projects-empty {
+  grid-column: 1 / -1;
+  padding: 60px 0;
+  text-align: center;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 110px 0 80px;
+  }
+
+  .projects-page-title {
+    font-size: 26px;
+  }
+
+  .projects-card-media {
+    height: 200px;
+  }
+}

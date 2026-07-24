@@ -8,6 +8,7 @@ import Resume from './pages/resume';
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import ProjectPage from './pages/projectPageTemplate';
+import Projects from './pages/projects';
 
 
 
@@ -49,6 +50,7 @@ useEffect(() => {
       <div>
       <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path="/projects" element={<Projects />} />
       <Route path="/about" element={<About />} />
       <Route path="/resume" element={<Resume />} />
        <Route path="/project/:slug" element={<ProjectPage />} />
