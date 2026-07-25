@@ -1,239 +1,267 @@
 .projects-page {
-  padding: 140px 0 120px;
+  padding: 120px 0 0;
 }
 
-/* ---------- Page header ---------- */
-.projects-page-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
-  padding-bottom: 35px;
-  border-bottom: 1px solid #ffffff1a;
+/* ---------- Two-column shell ----------
+   Sidebar is padded in from the viewport edge; the row list runs
+   flush to the right edge so the dividers read as full-bleed rules. */
+.projects-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 24%) minmax(0, 1fr);
+  align-items: start;
 }
 
-.projects-page-eyebrow {
-  margin: 5px 0;
+/* ---------- Sidebar ---------- */
+.projects-sidebar {
+  position: sticky;
+  top: 40px;
+  align-self: start;
+  padding: 0 40px 60px 5vw;
+  box-sizing: border-box;
+}
+
+.projects-eyebrow {
+  margin: 0 0 10px;
   font-family: "Geist Mono", monospace;
-  font-size: 14px;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #8a8a99;
-  font-weight: 600;
 }
 
-.projects-page-title {
-  max-width: 720px;
-  font-size: 35px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
+.projects-heading {
+  margin: 0 0 18px;
+  font-family: "Geist Mono", monospace;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
-  margin: 0 0 14px;
 }
 
-.projects-page-intro {
-  max-width: 560px;
-  margin: 0;
-  font-size: 15px;
+.projects-sidebar-desc {
+  margin: 0 0 26px;
+  font-size: 14px;
   line-height: 1.7;
-}
-
-.projects-page-count {
-  flex: 0 0 auto;
-  font-family: "Geist Mono", monospace;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #8a8a99;
-  white-space: nowrap;
-  padding-bottom: 4px;
 }
 
 /* ---------- Filters ---------- */
 .projects-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 30px 0 45px;
+  gap: 6px;
 }
 
 .projects-filter {
   font-family: "Geist Mono", monospace;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffffb2;
   background: transparent;
-  border: 1px solid #ffffff21;
-  padding: 9px 16px;
+  border: 1px solid #ffffff2e;
+  padding: 7px 11px;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
 .projects-filter:hover {
   color: #ffffff;
-  border-color: #ffffff4d;
+  border-color: #ffffff66;
 }
 
 .projects-filter.is-active {
   color: #060112;
-  background: #e8e8e8;
-  border-color: #e8e8e8;
+  background: #ffffff;
+  border-color: #ffffff;
 }
 
-/* ---------- Grid ---------- */
-.projects-grid {
+/* ---------- Row list ---------- */
+.projects-list {
+  border-left: 1px solid #ffffff21;
+}
+
+.projects-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: 260px minmax(0, 1fr);
+  align-items: stretch;
+  border-bottom: 1px solid #ffffff21;
 }
 
-.projects-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 22px;
-  border: 1px solid #ffffff21;
+.projects-row:first-child {
+  border-top: 1px solid #ffffff21;
+}
+
+.projects-row-media {
   overflow: hidden;
-  background-image: url("../resources/project-card-bg.png");
-  background-size: cover;
-  background-position: center;
   background-color: #0b0713;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
-.projects-card:hover {
-  border-color: #ffffff54;
-  transform: translateY(-4px);
-}
-
-.projects-card.is-locked {
-  cursor: default;
-}
-
-.projects-card.is-locked:hover {
-  transform: none;
-}
-
-.projects-card-media {
-  position: relative;
-  height: 260px;
-  overflow: hidden;
-  margin-bottom: 22px;
-}
-
-.projects-card-media img {
+.projects-row-media img {
   width: 100%;
   height: 100%;
+  min-height: 270px;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
-.projects-card:hover .projects-card-media img {
+.projects-row:hover .projects-row-media img {
   transform: scale(1.04);
 }
 
-.projects-card-year {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 6px 12px;
-  background: #060112d9;
-  font-family: "Geist Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: #ffffffb2;
-}
-
-.projects-card-body {
+.projects-row-body {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  justify-content: center;
+  padding: 40px 40px 40px 48px;
+  max-width: 620px;
 }
 
-.projects-card-body h3 {
-  font-family: "Geist", sans-serif;
-  font-size: 22px;
-  font-weight: 400;
-  margin: 0 0 10px;
-}
-
-.projects-card-body p {
-  margin: 0 0 20px;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-.projects-card-body .bubble-tag-all-container {
-  margin-bottom: 22px;
-}
-
-.projects-card-cta {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6em;
+.projects-row-meta {
+  margin: 0 0 14px;
   font-family: "Geist Mono", monospace;
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+.projects-row-meta-sep {
+  padding: 0 4px;
+  color: #ffffff40;
+}
+
+.projects-row-title {
+  margin: 0 0 14px;
+  font-family: "Geist Mono", monospace;
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
-.projects-card.is-locked .projects-card-cta {
-  color: #8a8a99;
+.projects-row-desc {
+  margin: 0 0 26px;
+  font-size: 15px;
+  line-height: 1.7;
 }
 
-.projects-card-cta svg {
+.projects-row-cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.7em;
+  padding: 13px 22px;
+  border: 1px solid #ffffff;
+  font-family: "Geist Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.projects-row-cta svg {
   transition: transform 0.2s ease;
 }
 
-.projects-card:hover .projects-card-cta svg {
+.projects-row-cta:hover {
+  background: #ffffff;
+  color: #060112;
+}
+
+.projects-row-cta:hover svg {
   transform: translateX(4px);
+}
+
+.projects-row-cta.is-disabled {
+  border-color: #ffffff2e;
+  color: #8a8a99;
+  cursor: default;
+}
+
+.projects-row-cta.is-disabled:hover {
+  background: transparent;
+  color: #8a8a99;
 }
 
 /* ---------- Empty state ---------- */
 .projects-empty {
-  grid-column: 1 / -1;
-  padding: 60px 0;
-  text-align: center;
+  padding: 80px 48px;
   font-family: "Geist Mono", monospace;
-  font-size: 14px;
-  letter-spacing: 0.06em;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8a99;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: minmax(0, 1fr);
+/* ---------- Narrower desktop ---------- */
+@media (max-width: 1200px) {
+  .projects-row {
+    grid-template-columns: 210px minmax(0, 1fr);
   }
 
-  .projects-page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+  .projects-row-body {
+    padding: 32px 32px 32px 36px;
+  }
+
+  .projects-row-media img {
+    min-height: 230px;
   }
 }
 
-@media (max-width: 768px) {
+/* ---------- Tablet / mobile: stack ---------- */
+@media (max-width: 900px) {
   .projects-page {
-    padding: 110px 0 80px;
+    padding: 100px 0 60px;
   }
 
-  .projects-page-title {
-    font-size: 26px;
+  .projects-layout {
+    display: block;
   }
 
-  .projects-card-media {
-    height: 200px;
+  .projects-sidebar {
+    position: static;
+    padding: 0 16px 40px;
+  }
+
+  .projects-list {
+    border-left: 0;
+  }
+
+  .projects-row {
+    grid-template-columns: minmax(0, 1fr);
+    border-bottom: 0;
+    margin: 0 16px 20px;
+    border: 1px solid #ffffff21;
+  }
+
+  .projects-row:first-child {
+    border-top: 1px solid #ffffff21;
+  }
+
+  .projects-row-media img {
+    min-height: 0;
+    height: 220px;
+  }
+
+  .projects-row-body {
+    padding: 26px 22px 30px;
+    max-width: none;
+  }
+
+  .projects-row-title {
+    font-size: 19px;
+  }
+
+  .projects-empty {
+    padding: 60px 16px;
   }
 }

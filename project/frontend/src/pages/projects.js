@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./projects.css";
-// Bubble-tag styles live with the homepage carousel; reuse them here.
-import "../actions/components/project-carousel/project-carousel.css";
 
 import startNowImg from "../resources/startnow-intro-img.png";
 import saintEmberImg from "../resources/Mask-group-8.webp";
@@ -24,97 +22,92 @@ const ArrowRight = () => (
 );
 
 // Static for now — `slug` points at an existing /project/:slug case study,
-// leave it out and the card renders as "In progress".
+// leave it out and the row renders without a link.
 const PROJECTS = [
   {
     slug: "start-now-app",
     title: "Start Now Fitness App",
-    desc: "A full UX case study — research, personas, information architecture and a build-ready UI for a habit-driven fitness app.",
+    desc: "StartNow is my first UX case study project that I did in order to learn about UX process, and strategy.",
     img: startNowImg,
-    year: "2024",
-    tags: ["Design", "UI/UX"],
+    date: "2024",
+    duration: "8 weeks",
+    platform: "Figma",
+    tags: ["Design"],
   },
   {
     title: "Saint Embers",
     desc: "Shopify storefront built from scratch: custom sections, reusable components and a checkout flow tuned for conversion.",
     img: saintEmberImg,
-    year: "2024",
-    tags: ["eCommerce", "Shopify", "Web Development"],
+    date: "2024",
+    duration: "6 weeks",
+    platform: "Shopify",
+    tags: ["Shopify Ecom", "Development", "Web Performance"],
   },
   {
     title: "30 Days Challenges",
     desc: "A self-set daily design sprint — thirty interfaces in thirty days to sharpen visual instinct and speed.",
     img: daysChallengeImg,
-    year: "2023",
-    tags: ["Design", "Creative"],
+    date: "2023",
+    duration: "30 days",
+    platform: "Figma",
+    tags: ["Design"],
   },
   {
     title: "Insper U",
     desc: "Learning platform concept focused on course discovery and keeping students on track through their programme.",
     img: insperUImg,
-    year: "2023",
-    tags: ["Design", "UI/UX"],
+    date: "2023",
+    duration: "5 weeks",
+    platform: "Figma",
+    tags: ["Design"],
   },
   {
     title: "iAgree AI",
     desc: "AI product interface that turns dense legal agreements into plain-language summaries people actually read.",
     img: iagreeAiImg,
-    year: "2025",
-    tags: ["Design", "Web Development"],
+    date: "2025",
+    duration: "10 weeks",
+    platform: "React",
+    tags: ["Design", "Development"],
   },
-  {
-    title: "Merv",
-    desc: "Brand and product identity work — visual language, type system and marketing site direction.",
-    img: mervImg,
-    year: "2025",
-    tags: ["Creative", "Design"],
-  },
+
 ];
 
-const FILTERS = ["All", "Design", "UI/UX", "Web Development", "Shopify", "eCommerce", "Creative"];
+const FILTERS = [
+  "All",
+  "Design",
+  "Development",
+  "Shopify Ecom",
+  "Web Performance",
+  "Search Engine Optimization",
+];
 
-const slugifyTag = (tag) => tag.replace(/[/\s]+/g, "-").toLowerCase();
+const ProjectRow = ({ project }) => (
+  <article className="projects-row">
+    <div className="projects-row-media">
+      <img src={project.img} alt={project.title} />
+    </div>
 
-const ProjectCard = ({ project }) => {
-  const inner = (
-    <>
-      <div className="projects-card-media">
-        <img src={project.img} alt={project.title} />
-        {project.year && <span className="projects-card-year">{project.year}</span>}
-      </div>
+    <div className="projects-row-body">
+      <p className="projects-row-meta">
+        {project.date} <span className="projects-row-meta-sep">/</span> {project.duration}{" "}
+        <span className="projects-row-meta-sep">/</span> {project.platform}
+      </p>
 
-      <div className="projects-card-body">
-        <h3>{project.title}</h3>
-        <p>{project.desc}</p>
+      <h2 className="projects-row-title">{project.title}</h2>
 
-        <div className="bubble-tag-all-container">
-          {project.tags.map((tag) => (
-            <div key={tag} className={`bubble-tag-container ${slugifyTag(tag)}`}>
-              <div className={`bubble-tag-item ${slugifyTag(tag)}`}>
-                <p>{tag}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <p className="projects-row-desc">{project.desc}</p>
 
-        <span className="projects-card-cta">
-          {project.slug ? "View case study" : "In progress"}
-          {project.slug && <ArrowRight />}
-        </span>
-      </div>
-    </>
-  );
-
-  if (!project.slug) {
-    return <article className="projects-card is-locked">{inner}</article>;
-  }
-
-  return (
-    <Link className="projects-card" to={`/project/${project.slug}`}>
-      {inner}
-    </Link>
-  );
-};
+      {project.slug ? (
+        <Link className="projects-row-cta" to={`/project/${project.slug}`}>
+          View project <ArrowRight />
+        </Link>
+      ) : (
+        <span className="projects-row-cta is-disabled">In progress</span>
+      )}
+    </div>
+  </article>
+);
 
 const Projects = () => {
   const [filter, setFilter] = useState("All");
@@ -124,42 +117,38 @@ const Projects = () => {
 
   return (
     <section className="projects-page">
-      <div className="site-width-container">
-        <div className="projects-page-header">
-          <div>
-            <p className="projects-page-eyebrow">Projects</p>
-            <h1 className="projects-page-title">
-              Case studies, storefronts and things I built to find out if they'd work.
-            </h1>
-            <p className="projects-page-intro">
+      <div className="projects-layout">
+        {/* Left: sticky intro + filters */}
+        <aside className="projects-sidebar">
+          <div className="projects-sidebar-inner">
+            <p className="projects-eyebrow">Project</p>
+            <h1 className="projects-heading">Projects</h1>
+            <p className="projects-sidebar-desc">
               A mix of UX research, interface design and front-end builds. Some are finished
               case studies, some are still moving.
             </p>
+
+            <div className="projects-filters">
+              {FILTERS.map((item) => (
+                <button
+                  key={item}
+                  className={`projects-filter ${filter === item ? "is-active" : ""}`}
+                  onClick={() => setFilter(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </div>
+        </aside>
 
-          <span className="projects-page-count">
-            {String(visible.length).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}
-          </span>
-        </div>
-
-        <div className="projects-filters">
-          {FILTERS.map((item) => (
-            <button
-              key={item}
-              className={`projects-filter ${filter === item ? "is-active" : ""}`}
-              onClick={() => setFilter(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-
-        <div className="projects-grid">
+        {/* Right: project rows */}
+        <div className="projects-list">
           {visible.length === 0 ? (
             <p className="projects-empty">Nothing here yet.</p>
           ) : (
             visible.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+              <ProjectRow key={project.title} project={project} />
             ))
           )}
         </div>
