@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./projects.css";
 
 import startNowImg from "../resources/startnow-intro-img.png";
+import startNowBg from "../resources/start-now-bg.webp";
+import snThumb1 from "../resources/sn-thumbmail-1.png";
+import snThumb2 from "../resources/sn-thumbmail-2.png";
+import snThumb3 from "../resources/sn-thumbmail-3.png";
 import saintEmberImg from "../resources/Mask-group-8.webp";
 import daysChallengeImg from "../resources/30days-challange-img.webp";
 import insperUImg from "../resources/insper-u.png";
@@ -21,6 +25,18 @@ const ArrowRight = () => (
   </svg>
 );
 
+const CheckMark = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      d="M5 12l5 5L19 7"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // Static for now — `slug` points at an existing /project/:slug case study,
 // leave it out and the row renders without a link.
 const PROJECTS = [
@@ -29,6 +45,10 @@ const PROJECTS = [
     title: "Start Now Fitness App",
     desc: "StartNow is my first UX case study project that I did in order to learn about UX process, and strategy.",
     img: startNowImg,
+    // Higher-quality image used for the hover background (falls back to `img`).
+    bgImg: startNowBg,
+    // Cycled through in the media column while the row is hovered.
+    thumbs: [snThumb1, snThumb2, snThumb3],
     date: "2024",
     duration: "8 weeks",
     platform: "Figma",
@@ -41,7 +61,7 @@ const PROJECTS = [
     date: "2024",
     duration: "6 weeks",
     platform: "Shopify",
-    tags: ["Shopify Ecom", "Development", "Web Performance"],
+    tags: ["Ecom", "Development"],
   },
   {
     title: "30 Days Challenges",
@@ -61,31 +81,107 @@ const PROJECTS = [
     platform: "Figma",
     tags: ["Design"],
   },
-  {
-    title: "iAgree AI",
-    desc: "AI product interface that turns dense legal agreements into plain-language summaries people actually read.",
-    img: iagreeAiImg,
-    date: "2025",
-    duration: "10 weeks",
-    platform: "React",
-    tags: ["Design", "Development"],
-  },
+
 
 ];
 
+// `value` is matched against project tags; `label` is the button text;
+// `slug` is the URL segment, e.g. /projects/development.
 const FILTERS = [
-  "All",
-  "Design",
-  "Development",
-  "Shopify Ecom",
-  "Web Performance",
-  "Search Engine Optimization",
+  { label: "Design", value: "Design", slug: "design" },
+  { label: "Development", value: "Development", slug: "development" },
+  { label: "Search Engine Optimization", value: "SEO", slug: "seo" },
+  { label: "Ecommerce", value: "Ecom", slug: "ecommerce" },
 ];
 
-const ProjectRow = ({ project }) => (
-  <article className="projects-row">
+const ProjectRow = ({ project }) => {
+  const navigate = useNavigate();
+  const go = () => project.slug && navigate(`/project/${project.slug}`);
+
+  // Media column cycles through `thumbs` while hovered; falls back to `img`.
+  const slides = project.thumbs?.length ? project.thumbs : [project.img];
+  const count = slides.length;
+
+  // One filmstrip track holding all slides + a clone of the first, so the
+  // forward auto-loop (…→ last → first) never visibly rewinds.
+  const track = count > 1 ? [...slides, slides[0]] : slides;
+  const [index, setIndex] = useState(0);
+  const [animate, setAnimate] = useState(true);
+  const timerRef = useRef(null);
+
+  const startCarousel = () => {
+    if (count < 2) return;
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setAnimate(true);
+      setIndex((i) => i + 1);
+    }, 2500);
+  };
+  const stopCarousel = () => {
+    clearInterval(timerRef.current);
+    setAnimate(true);
+    setIndex(0);
+  };
+
+  // When we land on the trailing clone (== first slide), snap back to the real
+  // first slide with animation off — invisible since it's the same image.
+  const handleTransitionEnd = () => {
+    if (index === count) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  };
+
+  // Re-enable animation on the frame after a silent snap-back.
+  useEffect(() => {
+    if (!animate) {
+      const id = requestAnimationFrame(() => setAnimate(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animate]);
+
+  // Clear the interval if the row unmounts mid-hover.
+  useEffect(() => () => clearInterval(timerRef.current), []);
+
+  const activeDot = index % count;
+
+  return (
+    <article
+      className="projects-row"
+      style={{
+        "--row-img": `url(${project.bgImg || project.img})`,
+        cursor: project.slug ? "pointer" : "default",
+      }}
+      onClick={go}
+      onMouseEnter={startCarousel}
+      onMouseLeave={stopCarousel}
+    >
     <div className="projects-row-media">
-      <img src={project.img} alt={project.title} />
+      <div
+        className="projects-row-track"
+        style={{
+          transform: `translateX(-${index * 100}%)`,
+          transition: animate
+            ? "transform 0.7s cubic-bezier(0.76, 0, 0.24, 1)"
+            : "none",
+        }}
+        onTransitionEnd={handleTransitionEnd}
+      >
+        {track.map((src, i) => (
+          <img key={i} src={src} alt={project.title} />
+        ))}
+      </div>
+
+      {count > 1 && (
+        <div className="projects-row-dots" aria-hidden="true">
+          {slides.map((_, i) => (
+            <span
+              key={i}
+              className={`projects-row-dot ${i === activeDot ? "is-active" : ""}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
 
     <div className="projects-row-body">
@@ -106,14 +202,27 @@ const ProjectRow = ({ project }) => (
         <span className="projects-row-cta is-disabled">In progress</span>
       )}
     </div>
-  </article>
-);
+    </article>
+  );
+};
 
 const Projects = () => {
-  const [filter, setFilter] = useState("All");
+  const { category } = useParams();
+  const navigate = useNavigate();
 
+  // The active filter is derived from the URL slug (unknown slug → show all).
+  const activeFilter = FILTERS.find(
+    (f) => f.slug === (category || "").toLowerCase()
+  );
+  const active = activeFilter ? activeFilter.value : "";
+
+  // Selecting a box swaps the URL; clicking the active box clears it.
+  const toggle = (slug) =>
+    navigate(activeFilter?.slug === slug ? "/projects" : `/projects/${slug}`);
+
+  // Nothing selected → show everything; otherwise match the selected tag.
   const visible =
-    filter === "All" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(filter));
+    active === "" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(active));
 
   return (
     <section className="projects-page">
@@ -129,15 +238,23 @@ const Projects = () => {
             </p>
 
             <div className="projects-filters">
-              {FILTERS.map((item) => (
-                <button
-                  key={item}
-                  className={`projects-filter ${filter === item ? "is-active" : ""}`}
-                  onClick={() => setFilter(item)}
-                >
-                  {item}
-                </button>
-              ))}
+              {FILTERS.map(({ label, value, slug }) => {
+                const checked = active === value;
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    className={`projects-filter ${checked ? "is-active" : ""}`}
+                    onClick={() => toggle(slug)}
+                    aria-pressed={checked}
+                  >
+                    <span className="projects-filter-box" aria-hidden="true">
+                      {checked && <CheckMark />}
+                    </span>
+                    <span className="projects-filter-label">{label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </aside>

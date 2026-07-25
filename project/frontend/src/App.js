@@ -44,13 +44,14 @@ useEffect(() => {
 
   return (
     <Router>
-    <div>
+    <div className="app-shell">
       <Navigation />
 
-      <div>
+      <div className="app-main">
       <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/projects/:category" element={<Projects />} />
       <Route path="/about" element={<About />} />
       <Route path="/resume" element={<Resume />} />
        <Route path="/project/:slug" element={<ProjectPage />} />
