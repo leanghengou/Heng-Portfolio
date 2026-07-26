@@ -24,7 +24,7 @@
      the moment it becomes sticky — keeps it aligned with the first row. */
   top: 65px;
   align-self: start;
-  padding: 0 40px 60px 5vw;
+  padding: 40px 40px 60px 5vw;
   box-sizing: border-box;
 }
 
@@ -108,6 +108,87 @@
 .projects-filter.is-active .projects-filter-box {
   background: #ffffff;
   border-color: #ffffff;
+}
+
+/* ---------- Mobile filter button + sheet ---------- */
+.projects-filter-toggle {
+  display: none; /* shown on mobile only */
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border: 1px solid #ffffff2e;
+  background: transparent;
+  color: #ffffff;
+  font-family: "Geist Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.projects-filter-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none; /* click-through while closed */
+}
+
+.projects-filter-sheet.is-open {
+  pointer-events: auto;
+}
+
+.projects-filter-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.projects-filter-sheet.is-open .projects-filter-sheet-backdrop {
+  opacity: 1;
+}
+
+/* Full-height panel anchored to the right; slides in from / out to the right. */
+.projects-filter-sheet-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: #0b0713;
+  border-left: 1px solid #ffffff21;
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.projects-filter-sheet.is-open .projects-filter-sheet-panel {
+  transform: translateX(0);
+}
+
+.projects-filter-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+.projects-filter-sheet-close {
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
 }
 
 /* ---------- Row list ---------- */
@@ -339,32 +420,48 @@
 
   .projects-sidebar {
     position: static;
-    padding: 0 16px 40px;
+    padding: 40px 16px 40px;
     border-right: 0;
+  }
+
+  /* Swap the inline checkbox list for a filter button that opens a sheet. */
+  .projects-sidebar .projects-filters {
+    display: none;
+  }
+
+  .projects-filter-toggle {
+    display: inline-flex;
   }
 
   .projects-list {
     border-left: 0;
   }
 
+  /* Image-led cards: no box border, text aligned to the image edges. */
   .projects-row {
     grid-template-columns: minmax(0, 1fr);
-    border-bottom: 0;
-    margin: 0 16px 20px;
-    border: 1px solid #ffffff21;
+    border: 0;
+    margin: 0 16px 44px;
   }
 
-  .projects-row:first-child {
-    border-top: 1px solid #ffffff21;
+  /* No hover background image on touch devices. */
+  .projects-row-body::before {
+    display: none;
   }
 
   .projects-row-media {
     min-height: 0;
-    height: 220px;
+    height: 260px;
   }
 
   .projects-row-body {
-    padding: 26px 22px 30px;
+    padding: 20px 0 0;
+    max-width: none;
+  }
+
+  .projects-row-meta,
+  .projects-row-title,
+  .projects-row-desc {
     max-width: none;
   }
 

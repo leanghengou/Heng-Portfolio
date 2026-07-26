@@ -37,6 +37,17 @@ const CheckMark = () => (
   </svg>
 );
 
+const FilterIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      d="M3 5h18M6 12h12M10 19h4"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 // Static for now — `slug` points at an existing /project/:slug case study,
 // leave it out and the row renders without a link.
 const PROJECTS = [
@@ -90,7 +101,7 @@ const PROJECTS = [
 const FILTERS = [
   { label: "Design", value: "Design", slug: "design" },
   { label: "Development", value: "Development", slug: "development" },
-  { label: "Search Engine Optimization", value: "SEO", slug: "seo" },
+  { label: "Search Engine Optimization", short: "SEO", value: "SEO", slug: "seo" },
   { label: "Ecommerce", value: "Ecom", slug: "ecommerce" },
 ];
 
@@ -209,6 +220,7 @@ const ProjectRow = ({ project }) => {
 const Projects = () => {
   const { category } = useParams();
   const navigate = useNavigate();
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   // The active filter is derived from the URL slug (unknown slug → show all).
   const activeFilter = FILTERS.find(
@@ -217,12 +229,37 @@ const Projects = () => {
   const active = activeFilter ? activeFilter.value : "";
 
   // Selecting a box swaps the URL; clicking the active box clears it.
-  const toggle = (slug) =>
+  // Also closes the mobile filter sheet after a choice is made.
+  const toggle = (slug) => {
     navigate(activeFilter?.slug === slug ? "/projects" : `/projects/${slug}`);
+    setFiltersOpen(false);
+  };
 
   // Nothing selected → show everything; otherwise match the selected tag.
   const visible =
     active === "" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(active));
+
+  const filterList = (
+    <div className="projects-filters">
+      {FILTERS.map(({ label, value, slug }) => {
+        const checked = active === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            className={`projects-filter ${checked ? "is-active" : ""}`}
+            onClick={() => toggle(slug)}
+            aria-pressed={checked}
+          >
+            <span className="projects-filter-box" aria-hidden="true">
+              {checked && <CheckMark />}
+            </span>
+            <span className="projects-filter-label">{label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
 
   return (
     <section className="projects-page">
@@ -237,25 +274,20 @@ const Projects = () => {
               case studies, some are still moving.
             </p>
 
-            <div className="projects-filters">
-              {FILTERS.map(({ label, value, slug }) => {
-                const checked = active === value;
-                return (
-                  <button
-                    key={value}
-                    type="button"
-                    className={`projects-filter ${checked ? "is-active" : ""}`}
-                    onClick={() => toggle(slug)}
-                    aria-pressed={checked}
-                  >
-                    <span className="projects-filter-box" aria-hidden="true">
-                      {checked && <CheckMark />}
-                    </span>
-                    <span className="projects-filter-label">{label}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {/* Mobile: opens the filter sheet. Hidden on desktop. */}
+            <button
+              type="button"
+              className="projects-filter-toggle"
+              onClick={() => setFiltersOpen(true)}
+            >
+              <FilterIcon />
+              {activeFilter
+                ? `Categories: ${activeFilter.short || activeFilter.label}`
+                : "Categories"}
+            </button>
+
+            {/* Desktop: inline checkbox list. Hidden on mobile. */}
+            {filterList}
           </div>
         </aside>
 
@@ -268,6 +300,33 @@ const Projects = () => {
               <ProjectRow key={project.title} project={project} />
             ))
           )}
+        </div>
+      </div>
+
+      {/* Mobile filter popup (right-side drawer) */}
+      <div
+        className={`projects-filter-sheet ${filtersOpen ? "is-open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!filtersOpen}
+      >
+        <div
+          className="projects-filter-sheet-backdrop"
+          onClick={() => setFiltersOpen(false)}
+        />
+        <div className="projects-filter-sheet-panel">
+          <div className="projects-filter-sheet-head">
+            <span>Categories</span>
+            <button
+              type="button"
+              className="projects-filter-sheet-close"
+              aria-label="Close filters"
+              onClick={() => setFiltersOpen(false)}
+            >
+              ×
+            </button>
+          </div>
+          {filterList}
         </div>
       </div>
     </section>
