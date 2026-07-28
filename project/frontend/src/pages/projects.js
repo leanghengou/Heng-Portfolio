@@ -75,15 +75,6 @@ const PROJECTS = [
     tags: ["Ecom", "Development"],
   },
   {
-    title: "30 Days Challenges",
-    desc: "A self-set daily design sprint — thirty interfaces in thirty days to sharpen visual instinct and speed.",
-    img: daysChallengeImg,
-    date: "2023",
-    duration: "30 days",
-    platform: "Figma",
-    tags: ["Design"],
-  },
-  {
     title: "Insper U",
     desc: "Learning platform concept focused on course discovery and keeping students on track through their programme.",
     img: insperUImg,
