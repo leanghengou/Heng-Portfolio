@@ -15,7 +15,7 @@ import CollaborationCta from "../actions/components/collaboration-cta/collaborat
 const Homepage = ()=>{
     return(
         <div>
-     {/* <BuilderHero/> */}
+     <BuilderHero/>
         {/* <IntroSection/> */}
        <ProjectCarousel/>
        <SkillServices/>
