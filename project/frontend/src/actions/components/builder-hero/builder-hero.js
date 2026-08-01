@@ -61,9 +61,8 @@ const BuilderHero = () => {
       <div className="builder-hero-inner site-width-container">
         <div className="builder-hero-copy">
           <h1 className="builder-hero-title">
-            <span className="builder-hero-line">Builder.</span>
-            <span className="builder-hero-line">Designer.</span>
-            <span className="builder-hero-line accent">Wanderer.</span>
+            <span className="builder-hero-line">Designer</span>
+            <span className="builder-hero-line accent">who build.</span>
           </h1>
 
           <p className="builder-hero-sub">

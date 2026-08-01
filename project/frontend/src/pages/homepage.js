@@ -7,6 +7,7 @@ import Testimonials from "../actions/components/testimonials/testimonials"
 import DevProjectBoard from "../actions/components/dev-projct-board/dev-project-board"
 import WebDevSection from "../actions/components/web-dev-section-hp/web-dev-section-hp"
 import BuilderHero from "../actions/components/builder-hero/builder-hero"
+import HeroCarousel from "../actions/components/hero-carousel/hero-carousel"
 import ProjectCarousel from "../actions/components/project-carousel/project-carousel"
 import SkillServices from "../actions/components/skill-services/skill-services"
 import TestimonialCarousel from "../actions/components/testimonial-carousel/testimonial-carousel"
@@ -15,7 +16,8 @@ import CollaborationCta from "../actions/components/collaboration-cta/collaborat
 const Homepage = ()=>{
     return(
         <div>
-     <BuilderHero/>
+     <HeroCarousel/>
+     {/* <BuilderHero/> */}
         {/* <IntroSection/> */}
        <ProjectCarousel/>
        <SkillServices/>
