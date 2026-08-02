@@ -12,6 +12,8 @@
 
 /* ---------- Sliding track ---------- */
 .hero-carousel-track {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex: 1 1 auto;
   height: 100%;
@@ -20,6 +22,7 @@
 }
 
 .hero-carousel-slide {
+  position: relative;
   flex: 0 0 100%;
   width: 100%;
   height: 100%;
@@ -27,7 +30,44 @@
   align-items: center;
 }
 
+/* video fills the whole slide as a full-bleed background, behind the copy */
+.hero-carousel-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-carousel-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* darken the video so the copy and progress bars stay readable */
+.hero-carousel-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      90deg,
+      rgba(21, 20, 20, 0.85) 0%,
+      rgba(21, 20, 20, 0.6) 45%,
+      rgba(21, 20, 20, 0.35) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(21, 20, 20, 0.7) 0%,
+      rgba(21, 20, 20, 0) 45%
+    );
+}
+
 .hero-carousel-inner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: 6vh 0 0;
   display: flex;
@@ -159,6 +199,8 @@
 
 /* ---------- Bottom nav + progress bars ---------- */
 .hero-carousel-nav {
+  position: relative;
+  z-index: 1;
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -247,6 +289,20 @@
 
   .hero-carousel-navlabel {
     font-size: 10px;
+  }
+
+  /* on small screens the video becomes a faded full-width backdrop */
+  .hero-carousel-media {
+    width: 100%;
+  }
+
+  .hero-carousel-media::before {
+    background: linear-gradient(
+      90deg,
+      #151414 0%,
+      rgba(21, 20, 20, 0.72) 45%,
+      rgba(21, 20, 20, 0.45) 100%
+    );
   }
 }
 

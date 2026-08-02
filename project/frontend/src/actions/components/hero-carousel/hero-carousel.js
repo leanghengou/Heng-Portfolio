@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
+import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
@@ -7,6 +8,7 @@ const SLIDES = [
   {
     tag: "ECOMERCE SITE",
     nav: "Welcome",
+    video: welcomeVideo,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -91,6 +93,21 @@ const HeroCarousel = () => {
 
   return (
     <section className="hero-carousel" aria-roledescription="carousel">
+      {/* Full-section background video for the active slide (behind nav too) */}
+      {SLIDES[active].video && (
+        <div className="hero-carousel-media" aria-hidden="true">
+          <video
+            key={active}
+            src={SLIDES[active].video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        </div>
+      )}
+
       {/* Sliding track — all slides sit side by side, we translate the row */}
       <div
         className="hero-carousel-track"
