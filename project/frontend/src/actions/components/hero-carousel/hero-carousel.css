@@ -1,13 +1,13 @@
 .hero-carousel {
  position: relative;
-  height: 70vh;
+  height: 600px;
   overflow: hidden;
   background: #151414;
   color: #fff;
   display: flex;
   flex-direction: column;
-  margin: 5% 2%;
-  border: 1px solid #737373;
+  margin: 5% auto;
+  margin-bottom: 0px;
 }
 
 /* ---------- Sliding track ---------- */
@@ -39,11 +39,17 @@
   pointer-events: none;
 }
 
-.hero-carousel-media video {
+.hero-carousel-media video,
+.hero-carousel-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* no overlay for plain image banners */
+.hero-carousel-media--plain::before {
+  display: none;
 }
 
 /* darken the video so the copy and progress bars stay readable */

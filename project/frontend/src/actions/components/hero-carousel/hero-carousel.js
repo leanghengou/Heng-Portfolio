@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
 import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
+import purpleBg from "../../../resources/purple-bg-img-component-100-opacity.png";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
@@ -8,7 +9,7 @@ const SLIDES = [
   {
     tag: "ECOMERCE SITE",
     nav: "Welcome",
-    video: welcomeVideo,
+    image: purpleBg,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -19,6 +20,7 @@ const SLIDES = [
   {
     tag: "SELECTED WORK",
     nav: "Design Projects",
+    video: welcomeVideo,
     title: ["CRAFTED", "INTERFACES,", "SHIPPED FAST."],
     stats: [
       { value: "30+", label: "Products designed end to end." },
@@ -92,19 +94,28 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <section className="hero-carousel" aria-roledescription="carousel">
-      {/* Full-section background video for the active slide (behind nav too) */}
-      {SLIDES[active].video && (
-        <div className="hero-carousel-media" aria-hidden="true">
-          <video
-            key={active}
-            src={SLIDES[active].video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
+    <section className="hero-carousel site-width-container" aria-roledescription="carousel">
+      {/* Full-section background media for the active slide (behind nav too) */}
+      {(SLIDES[active].video || SLIDES[active].image) && (
+        <div
+          className={`hero-carousel-media ${
+            SLIDES[active].image ? "hero-carousel-media--plain" : ""
+          }`}
+          aria-hidden="true"
+        >
+          {SLIDES[active].video ? (
+            <video
+              key={active}
+              src={SLIDES[active].video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
+          ) : (
+            <img key={active} src={SLIDES[active].image} alt="" />
+          )}
         </div>
       )}
 
