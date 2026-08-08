@@ -1,0 +1,314 @@
+:root {
+  --menu-width: 30em;
+}
+
+/* [data-main] is the page content that slides left to reveal the menu.
+   It must sit ABOVE the fixed menu (z-index:1) and be opaque so the menu
+   only shows once it slides away. */
+[data-main] {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  background-color: #060112;
+  will-change: transform;
+}
+
+/* scope the link reset to the nav so it doesn't affect the rest of the site */
+.underlay-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.underlay-nav__header {
+  z-index: 100;
+  color: #fff;
+  position: fixed;
+  inset: 0% 0% auto;
+}
+
+.underlay-nav__bar {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.underlay-nav__container {
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5em;
+  display: flex;
+}
+
+.underlay-nav__logo {
+  justify-content: center;
+  align-items: center;
+  width: 6.875em;
+  display: flex;
+}
+
+.underlay-nav__logo-svg {
+  width: 100%;
+}
+
+.underlay-nav__toggle {
+  grid-column-gap: 0.75em;
+  grid-row-gap: 0.75em;
+  outline-offset: 0px;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  background-color: #0000;
+  border: 1px #000;
+  outline: 3px #555;
+  justify-content: center;
+  align-items: center;
+  margin: -1em;
+  padding: 1em;
+  display: flex;
+}
+
+.underlay-nav__toggle-text {
+  flex-flow: column;
+  flex: none;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 1.5em;
+  display: flex;
+  overflow: hidden;
+}
+
+.underlay-nav__toggle-label {
+  font-size: 1.25em;
+}
+
+.underlay-nav__toggle-icon {
+  grid-column-gap: 0.375em;
+  grid-row-gap: 0.375em;
+  flex-flow: column;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 1.5em;
+  margin-bottom: -0.3em;
+  display: flex;
+}
+
+.underlay-nav__toggle-bar {
+  background-color: currentColor;
+  flex: none;
+  width: 100%;
+  height: 0.125em;
+  padding: 0;
+}
+
+.underlay-nav__menu {
+  z-index: 1;
+  width: var(--menu-width);
+  color: #fff;
+  background-color: #1c1c1c;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.underlay-nav__overlay {
+  z-index: 100;
+  pointer-events: none;
+  cursor: pointer;
+  visibility: hidden;
+  position: fixed;
+  inset: 0% -1px 0% 0%;
+  overflow: clip;
+}
+
+.underlay-nav__inner {
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  padding: 7.5em 2em 2em;
+  display: flex;
+  overflow-y: auto;
+}
+
+.underlay-nav__list {
+  flex-flow: column;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.underlay-nav__list.is--small {
+  grid-column-gap: 0.75em;
+  grid-row-gap: 0.75em;
+}
+
+.underlay-nav__link-large {
+  display: block;
+  border-radius: 0.25em;
+  width: 100%;
+  padding: 0.75em 1em;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.underlay-nav__link-large:hover {
+  color: #ededed;
+  background-color: #f85931;
+}
+
+.underlay-nav__link-large.w--current {
+  color: #ededed;
+  background-color: #f85931;
+}
+
+.underlay-nav__link-label {
+  display: block;
+  letter-spacing: -0.04em;
+  font-family: inherit;
+  font-size: 3.25em;
+  line-height: 0.9;
+}
+
+.underlay-nav__bottom {
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 1.5em;
+  display: flex;
+  position: relative;
+}
+
+.underlay-nav__bottom-col {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  flex-flow: column;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.underlay-nav__link-small {
+  font-size: 1em;
+  line-height: 1.1;
+  transition: color 0.3s ease;
+}
+
+a.underlay-nav__link-small:hover {
+  color: #f85931;
+}
+
+.underlay-nav__link-small.is--faded {
+  opacity: 0.5;
+}
+
+.underlay-nav__corner {
+  transform-origin: 100% 0;
+  color: #1c1c1c;
+  background-image: radial-gradient(
+    circle farthest-side at 0 100%,
+    #1c1c1c00 99%,
+    #1c1c1c
+  );
+  width: 5px;
+  height: 5px;
+}
+
+.underlay-nav__corner.is--bottom {
+  transform-origin: 100% 100%;
+  background-image: radial-gradient(
+    circle farthest-side at 0 0,
+    #1c1c1c00 99%,
+    #1c1c1c
+  );
+}
+
+.underlay-nav__dark {
+  opacity: 0;
+  background-color: #0000004d;
+  position: absolute;
+  inset: 0%;
+}
+
+.underlay-nav__bottom-border {
+  opacity: 0.15;
+  transform-origin: 0%;
+  background-color: currentColor;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  inset: 0% 0% auto;
+}
+
+.underlay-nav__borders {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  display: flex;
+  position: absolute;
+  inset: 0;
+}
+
+.underlay-nav__border {
+  background-color: #1c1c1c;
+  width: 100%;
+  height: 1em;
+}
+
+.underlay-nav__border-row {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --menu-width: 80vw;
+  }
+
+  .underlay-nav__container {
+    padding: 1.25em;
+  }
+
+  .underlay-nav__logo {
+    width: 5em;
+  }
+
+  .underlay-nav__toggle-text {
+    height: 1.25em;
+  }
+
+  .underlay-nav__toggle-label {
+    font-size: 1em;
+  }
+
+  .underlay-nav__inner {
+    padding: 5em 1.25em 1.25em;
+  }
+
+  .underlay-nav__link-label {
+    font-size: 2em;
+  }
+
+  .underlay-nav__bottom {
+    grid-column-gap: 2em;
+    grid-row-gap: 2em;
+    flex-flow: column;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}

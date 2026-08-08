@@ -16,17 +16,17 @@ import CollaborationCta from "../actions/components/collaboration-cta/collaborat
 const Homepage = ()=>{
     return(
         <div>
-     {/* <HeroCarousel/> */}
-     {/* <BuilderHero/> */}
+     <HeroCarousel/>
+     <BuilderHero/>
         {/* <IntroSection/> */}
-       <ProjectCarousel/>
+       {/* <ProjectCarousel/> */}
        <SkillServices/>
         <TestimonialCarousel/>
        {/* <UpsSkill/> */}
     <CollaborationCta/>
        <WebDevSection/>
        {/* <DevProjectBoard/> */}
-{/*     
+{/*
        <Testimonials/> */}
         </div>
        

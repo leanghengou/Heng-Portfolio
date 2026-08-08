@@ -1,6 +1,7 @@
 import './site-main.css'
 import {BrowserRouter as Router, Route, Switch, Routes } from "react-router-dom"
 import Navigation from "./actions/components/navigation/navigation"
+import UnderlayNav from "./actions/components/underlay-nav/underlay-nav"
 import Homepage from './pages/homepage';
 import About from './pages/about';
 import Footer from "./actions/components/footer/footer"
@@ -45,20 +46,24 @@ useEffect(() => {
   return (
     <Router>
     <div className="app-shell">
-      <Navigation />
+      {/* <Navigation /> hidden for now — using the UnderlayNav instead */}
+      <UnderlayNav />
 
-      <div className="app-main">
-      <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/projects/:category" element={<Projects />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/resume" element={<Resume />} />
-       <Route path="/project/:slug" element={<ProjectPage />} />
-      </Routes>
+      {/* [data-main] is the content the underlay nav slides left to reveal */}
+      <div data-main className="app-underlay-main">
+        <div className="app-main">
+        <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:category" element={<Projects />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/resume" element={<Resume />} />
+         <Route path="/project/:slug" element={<ProjectPage />} />
+        </Routes>
+        </div>
+
+        <Footer/>
       </div>
-
-    <Footer/>
 
 
     </div>
