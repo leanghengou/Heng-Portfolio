@@ -156,6 +156,7 @@ h3{
 .process-body::before,
 .circle-card-img,
 .circle-card-img img,
-.persona-card-avatar {
+.persona-card-avatar,
+.cursor {
     border-radius: 50% !important;
 }

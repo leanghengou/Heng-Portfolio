@@ -1,0 +1,315 @@
+.slider__section {
+  justify-content: center;
+  align-items: center;
+  /* height tracks the slide (28vw at 3:2) plus vertical breathing room */
+  min-height: calc(28vw / 1.5 + 4em);
+  height: calc(28vw / 1.5 + 4em);
+  display: flex;
+  position: relative;
+  margin: 5% 0;
+}
+
+.slider__main {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+  overflow: hidden;
+}
+
+.slider__wrap {
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.slider__list {
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.slider__slide {
+  aspect-ratio: 2 / 2;
+  flex: none;
+  width: 450px;
+  /* NO padding here — padding inflates offsetWidth vs GSAP's measured width
+     and breaks horizontalLoop's wrap math (creates a seam gap). The gap
+     between images lives on the inner instead. */
+  transition: opacity 0.4s;
+  position: relative;
+}
+
+.slider__slide-inner {
+  border-radius: 0.5em;
+  width: calc(100% - 1.2em);
+  height: 100%;
+  margin: 0 0.6em;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide__img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.slide__caption {
+  z-index: 2;
+  grid-column-gap: 0.4em;
+  grid-row-gap: 0.4em;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  white-space: nowrap;
+  /* background-color: #efeeec26; */
+  border-radius: 0.25em;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.4em 0.75em 0.4em 0.5em;
+  display: flex;
+  position: absolute;
+  top: 1.25em;
+  left: 1.25em;
+  overflow: hidden;
+}
+
+.slide__caption-dot {
+  background-color: #a1ff62;
+  border-radius: 10em;
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.slide__caption-label {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+.slider__overlay {
+  z-index: 2;
+  color: #fff;
+  background-image: linear-gradient(
+    90deg,
+    #060112 0%,
+    #060112 42%,
+    #06011200 75%
+  );
+  justify-content: flex-start;
+  align-items: center;
+  width: 36vw;
+  /* height: 100%; */
+  /* align the left content with .site-width-container (1280px / 90%, centered) */
+  padding-left: calc((100% - min(1280px, 90%)) / 2);
+  display: flex;
+  position: absolute;
+  inset: 0% auto 0% 0%;
+  pointer-events: none;
+}
+
+.slider__overlay-nav {
+  pointer-events: auto;
+}
+
+.slider__overlay-inner {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  display: flex;
+}
+
+.slider__overlay-count {
+  grid-column-gap: 0.2em;
+  grid-row-gap: 0.2em;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 4.5em;
+  font-weight: 700;
+  display: flex;
+}
+
+.slider__count-col {
+  height: 1em;
+  overflow: hidden;
+}
+
+.slider__count-heading {
+  width: 2ch;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.slider__count-divider {
+  background-color: #efeeec;
+  width: 2px;
+  height: 0.75em;
+  transform: rotate(15deg);
+}
+
+.slider__overlay-nav {
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  display: flex;
+}
+
+.slider__btn {
+  color: #fff;
+  background-color: #0000;
+  border: 1px solid #fff3;
+  border-radius: 0.4em;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 4em;
+  height: 4em;
+  padding: 0;
+  display: flex;
+  position: relative;
+}
+
+.slider__btn-arrow {
+  flex: none;
+  width: 1em;
+  height: 0.75em;
+}
+
+.slider__btn-arrow.next {
+  transform: rotate(180deg);
+}
+
+.slider__btn-overlay {
+  z-index: 2;
+  position: absolute;
+  inset: -1px;
+}
+
+.slider__btn-overlay-corner {
+  border-top: 1px solid #efeeec;
+  border-left: 1px solid #efeeec;
+  border-top-left-radius: 0.4em;
+  width: 1em;
+  height: 1em;
+}
+
+.slider__btn-overlay-corner.top-right {
+  position: absolute;
+  inset: 0% 0% auto auto;
+  transform: rotate(90deg);
+}
+
+.slider__btn-overlay-corner.bottom-right {
+  position: absolute;
+  inset: auto 0% 0% auto;
+  transform: rotate(180deg);
+}
+
+.slider__btn-overlay-corner.bottom-left {
+  position: absolute;
+  inset: auto auto 0% 0%;
+  transform: rotate(-90deg);
+}
+
+/* Previous and next Button */
+.slider__btn,
+.slider__btn-overlay {
+  transition: transform 0.475s cubic-bezier(0.625, 0.05, 0, 1),
+    opacity 0.475s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.slider__btn:hover .slider__btn-overlay {
+  transform: scale(1.4);
+}
+
+.slider__overlay-nav:hover:has(.slider__btn:hover) .slider__btn {
+  opacity: 0.4;
+}
+
+.slider__btn:hover {
+  transform: scale(0.85);
+  opacity: 1 !important;
+}
+
+/* Styling of active slide's caption */
+.slide__caption {
+  transition: transform 0.525s cubic-bezier(0.625, 0.05, 0, 1),
+    opacity 0.525s cubic-bezier(0.625, 0.05, 0, 1);
+  transition-delay: 0s;
+}
+
+.slide__caption {
+  opacity: 0;
+  transform: translate(-25%, 0px);
+}
+
+[data-slider="slide"].active .slide__caption {
+  opacity: 1;
+  transform: translate(0%, 0px);
+}
+
+/* Styling of active slide */
+[data-slider="slide"] {
+  opacity: 0.2;
+}
+[data-slider="slide"].active {
+  opacity: 1;
+}
+[data-slider="slide"].active .slide__caption {
+  transition-delay: 0.3s;
+}
+
+@media screen and (max-width: 991px) {
+  .slider__section {
+    height: auto;
+    min-height: auto;
+  }
+
+  .slider__main {
+    position: relative;
+  }
+
+  .slider__slide {
+    width: 75vw;
+  }
+
+  .slider__overlay {
+    width: 100%;
+    position: relative;
+    inset: auto;
+    padding-bottom: 2em;
+  }
+
+  .slider__overlay-inner {
+    grid-column-gap: 2em;
+    grid-row-gap: 2em;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .slider__overlay {
+    padding-left: 1.25em;
+  }
+
+  .slider__slide {
+    width: 90vw;
+  }
+
+  .slide__caption {
+    top: 0.5em;
+    left: 0.5em;
+  }
+}

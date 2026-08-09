@@ -2,6 +2,7 @@ import './site-main.css'
 import {BrowserRouter as Router, Route, Switch, Routes } from "react-router-dom"
 import Navigation from "./actions/components/navigation/navigation"
 import UnderlayNav from "./actions/components/underlay-nav/underlay-nav"
+import Cursor from "./actions/components/cursor/cursor"
 import Homepage from './pages/homepage';
 import About from './pages/about';
 import Footer from "./actions/components/footer/footer"
@@ -48,6 +49,7 @@ useEffect(() => {
     <div className="app-shell">
       {/* <Navigation /> hidden for now — using the UnderlayNav instead */}
       <UnderlayNav />
+      <Cursor />{/* outside [data-main] so the nav's transform doesn't break position:fixed */}
 
       {/* [data-main] is the content the underlay nav slides left to reveal */}
       <div data-main className="app-underlay-main">

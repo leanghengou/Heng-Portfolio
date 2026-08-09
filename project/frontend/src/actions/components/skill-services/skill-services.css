@@ -158,34 +158,6 @@ padding: 10rem 0;
   height: 850px;
 }
 
-/* Spinning fan that follows the pointer while hovering the particle object. */
-.fan-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  margin: -10px 0 0 -10px; /* center the image on the pointer */
-  pointer-events: none;
-  opacity: 0;
-  z-index: 50;
-  transition: opacity 0.35s ease;
-}
-.fan-cursor.is-visible {
-  opacity: 1;
-}
-.fan-cursor img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  animation: fan-cursor-spin 0.4s linear infinite;
-}
-@keyframes fan-cursor-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .skill-services {

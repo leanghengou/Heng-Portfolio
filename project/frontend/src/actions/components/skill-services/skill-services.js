@@ -17,7 +17,6 @@ import webflow from "../../../resources/skill-icon/webflow.png";
 import shopify from "../../../resources/skill-icon/shopify.png";
 import github from "../../../resources/skill-icon/github.png";
 import tailwind from "../../../resources/skill-icon/Tailwind_CSS_Logo.png";
-import iconMouseFan from "../../../resources/icon-mouse-fan.png";
 
 const techSkill = [nextjs, react, typescript, javascript, github, shopify, lightspeed, webflow, adobe, figma, tailwind];
 
@@ -44,8 +43,6 @@ const SKILLS = [
 
 const SkillServices = () => {
   let skillBallRef = useRef(null);
-  const sphereHitRef = useRef(null);
-  const fanCursorRef = useRef(null);
 
   // Track the mobile breakpoint. ParticleSphere measures its container size
   // once at mount, so we remount it (via key) whenever we cross 900px to force
@@ -76,47 +73,6 @@ const SkillServices = () => {
       delay: 0.2,
       y: -20,
     });
-  }, []);
-
-  // Custom spinning fan cursor that follows the pointer over the particle sphere.
-  useEffect(() => {
-    const hit = sphereHitRef.current;
-    const cursor = fanCursorRef.current;
-    if (!hit || !cursor) return;
-
-    // The sphere's visual radius ~= half the (square) box width.
-    const RADIUS_FACTOR = 0.5;
-
-    const move = (e) => {
-      const rect = hit.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      const radius = rect.width * RADIUS_FACTOR;
-      const overBall = dx * dx + dy * dy <= radius * radius;
-
-      if (overBall) {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        cursor.classList.add("is-visible");
-        hit.style.cursor = "none";
-      } else {
-        cursor.classList.remove("is-visible");
-        hit.style.cursor = "";
-      }
-    };
-    const leave = () => {
-      cursor.classList.remove("is-visible");
-      hit.style.cursor = "";
-    };
-
-    hit.addEventListener("mousemove", move);
-    hit.addEventListener("mouseleave", leave);
-    return () => {
-      hit.removeEventListener("mousemove", move);
-      hit.removeEventListener("mouseleave", leave);
-    };
   }, []);
 
   return (
@@ -198,7 +154,7 @@ const SkillServices = () => {
 
 
   <div className="skill-services-media" aria-hidden="true">
-          <div className="skill-services-sphere" ref={sphereHitRef}>
+          <div className="skill-services-sphere">
             <ParticleSphere
               key={isMobile ? "mobile" : "desktop"}
               sphereColor="#5B508A"
@@ -209,10 +165,6 @@ const SkillServices = () => {
               cursorOn={true}
             />
           </div>
-        </div>
-
-        <div className="fan-cursor" ref={fanCursorRef} aria-hidden="true">
-          <img src={iconMouseFan} alt="" />
         </div>
 
 
