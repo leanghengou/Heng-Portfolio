@@ -15,6 +15,7 @@
   grid-template-columns: minmax(260px, 24%) minmax(0, 1fr);
   grid-template-rows: 1fr;
   align-items: start;
+  padding: 0;
 }
 
 /* ---------- Sidebar ---------- */
@@ -136,6 +137,11 @@
 
 .projects-filter-sheet.is-open {
   pointer-events: auto;
+}
+
+body[data-menu-status="open"] .projects-filter-sheet {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .projects-filter-sheet-backdrop {

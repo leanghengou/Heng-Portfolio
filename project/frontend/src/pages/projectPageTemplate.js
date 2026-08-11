@@ -12,7 +12,7 @@ export default function ProjectPage() {
   if (!project) return <div>Project not found</div>;
 
   return (
-    <div className="project-page site-width-container">
+    <div className="project-page">
       <div className="project-layout">
         {/* Left: sticky project info */}
         <aside className="project-sidebar">
@@ -54,7 +54,7 @@ export default function ProjectPage() {
         </aside>
 
         {/* Right: scrollable content */}
-        <main className="project-content">
+        <main className="project-content project-content-framed">
           {project.cover && (
             <img
               className="project-content-cover"

@@ -50,7 +50,7 @@ const SLIDES = [
   },
 ];
 
-const SLIDE_DURATION = 6000; // ms each slide stays before auto-advancing
+const SLIDE_DURATION = 8000; // ms each slide stays before auto-advancing
 
 const HeroCarousel = () => {
   const [active, setActive] = useState(0);

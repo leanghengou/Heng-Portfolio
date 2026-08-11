@@ -13,16 +13,19 @@ import SkillServices from "../actions/components/skill-services/skill-services"
 import TestimonialCarousel from "../actions/components/testimonial-carousel/testimonial-carousel"
 import CollaborationCta from "../actions/components/collaboration-cta/collaboration-cta"
 import ImageSlider from "../actions/components/image-slider/image-slider"
+import SpatialSlider from "../actions/components/spatial-slider/spatial-slider"
 
 const Homepage = ()=>{
     return(
         <div>
             
      <HeroCarousel/>
-       <ProjectCarousel/>
+          <SpatialSlider/>
+       {/* <ProjectCarousel/> */}
        <SkillServices/>
         <TestimonialCarousel/>
-   
+  
+
     <CollaborationCta/>
        <WebDevSection/>
 

@@ -1,16 +1,26 @@
-/* Two-column project layout (sticky info + scrollable content) */
-.project-layout {
+/* Full-bleed page shell — matches .projects-page sizing */
+.project-page {
   display: flex;
-  align-items: flex-start;
-  gap: 64px;
-  padding: 60px 0;
+  flex-direction: column;
+  flex: 1;
+  padding: 65px 0 0;
+}
+
+/* Two-column project layout (sticky info + scrollable content).
+   Grid columns + a 5vw-indented sidebar mirror the /projects layout. */
+.project-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(260px, 24%) minmax(0, 1fr);
+  align-items: start;
 }
 
 .project-sidebar {
-  flex: 0 0 25%;
   position: sticky;
-  top: 40px;
-  align-self: flex-start;
+  top: 65px;
+  align-self: start;
+  padding: 40px 40px 60px 5vw;
+  box-sizing: border-box;
 }
 
 .project-sidebar-title {
@@ -57,8 +67,16 @@
 }
 
 .project-content {
-  flex: 1;
   min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Desktop only — 900px is the mobile breakpoint used throughout this file */
+@media (min-width: 901px) {
+  .project-content-framed {
+    border-left: 1px solid #ffffff1f;
+    padding: 0 7%;
+  }
 }
 
 .project-content-cover {
@@ -73,20 +91,19 @@
   }
 
   .project-layout {
-    flex-direction: column;
-    gap: 24px;
+    display: block;
     padding: 24px 0;
   }
 
   .project-sidebar {
     position: static;
-    flex-basis: auto;
     width: 100%;
+    padding: 40px 16px 40px;
   }
 
   .project-content {
-    flex: none;
     width: 100%;
+    padding: 0 16px;
   }
 
   .project-sidebar-title {

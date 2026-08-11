@@ -1,7 +1,18 @@
 import React, { useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import "./underlay-nav.css";
+
+// Menu items mapped to real routes. `to: null` = placeholder (no route yet).
+const MENU = [
+  { label: "Home", to: "/" },
+  { label: "Projects", to: "/projects" },
+  { label: "About", to: "/about" },
+  { label: "Resume", to: "/resume" },
+  { label: "Services", to: null },
+  { label: "Contact", to: null },
+];
 
 gsap.registerPlugin(CustomEase);
 
@@ -11,6 +22,8 @@ gsap.registerPlugin(CustomEase);
 // external [data-main] content wrapper is queried from the document.
 const UnderlayNav = () => {
   const rootRef = useRef(null);
+  const closeRef = useRef(null); // set inside the effect; closes the menu if open
+  const location = useLocation();
 
   useEffect(() => {
     if (!CustomEase.get("energy")) {
@@ -158,6 +171,11 @@ const UnderlayNav = () => {
       if (isOpen) toggle();
     }
 
+    // Let React (menu link clicks) close the menu.
+    closeRef.current = () => {
+      if (isOpen) toggle();
+    };
+
     function onKeydown(e) {
       if (e.key === "Escape" && isOpen) {
         toggle();
@@ -199,7 +217,7 @@ const UnderlayNav = () => {
       <header className="underlay-nav__header">
         <div className="underlay-nav__bar">
           <div className="underlay-nav__container">
-            <a href="#" className="underlay-nav__logo">
+            <a href="/" className="underlay-nav__logo">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="100%"
@@ -238,40 +256,34 @@ const UnderlayNav = () => {
       <nav data-underlay-nav-menu className="underlay-nav__menu">
         <div className="underlay-nav__inner">
           <ul className="underlay-nav__list">
-            <li data-reveal-l>
-              <a
-                href="index.html"
-                aria-current="page"
-                className="underlay-nav__link-large w--current"
-              >
-                <span className="underlay-nav__link-label">Home</span>
-              </a>
-            </li>
-            <li data-reveal-l>
-              <a href="#" className="underlay-nav__link-large">
-                <span className="underlay-nav__link-label">Projects</span>
-              </a>
-            </li>
-            <li data-reveal-l>
-              <a href="#" className="underlay-nav__link-large">
-                <span className="underlay-nav__link-label">About</span>
-              </a>
-            </li>
-            <li data-reveal-l>
-              <a href="#" className="underlay-nav__link-large">
-                <span className="underlay-nav__link-label">Services</span>
-              </a>
-            </li>
-            <li data-reveal-l>
-              <a href="#" className="underlay-nav__link-large">
-                <span className="underlay-nav__link-label">News</span>
-              </a>
-            </li>
-            <li data-reveal-l>
-              <a href="#" className="underlay-nav__link-large">
-                <span className="underlay-nav__link-label">Contact</span>
-              </a>
-            </li>
+            {MENU.map((item) => {
+              const isCurrent = item.to && location.pathname === item.to;
+              const className = `underlay-nav__link-large${
+                isCurrent ? " w--current" : ""
+              }`;
+              return (
+                <li data-reveal-l key={item.label}>
+                  {item.to ? (
+                    <Link
+                      to={item.to}
+                      aria-current={isCurrent ? "page" : undefined}
+                      className={className}
+                      onClick={() => closeRef.current && closeRef.current()}
+                    >
+                      <span className="underlay-nav__link-label">
+                        {item.label}
+                      </span>
+                    </Link>
+                  ) : (
+                    <a href="#" className="underlay-nav__link-large">
+                      <span className="underlay-nav__link-label">
+                        {item.label}
+                      </span>
+                    </a>
+                  )}
+                </li>
+              );
+            })}
           </ul>
           <div className="underlay-nav__bottom">
             <div className="underlay-nav__bottom-col">

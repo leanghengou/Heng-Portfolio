@@ -32,17 +32,20 @@
 
 
 .startnow-gallery-multi-content h3 {
-  font-weight: 300;
-  font-size: 22px;
-  letter-spacing: 0.05em;
+  font-weight: 500;
+  margin-top: 2.7rem;
+  font-family: "Geist", sans-serif;
+  font-size: 1.2rem;
 }
 
 .rich-text-project{
   width: 85%;
 }
 .rich-text-project h2 {
-  font-weight: 300;
+  font-weight: 500;
   margin-top: 2.7rem;
+  font-family: "Geist", sans-serif;
+  font-size: 1.2rem;
 }
 
 
@@ -84,11 +87,12 @@
 }
 
 .process-title {
-  margin: 0 0 12px;
+ margin: 0 0 12px;
   padding-right: 30px;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .process-desc {
@@ -975,9 +979,12 @@ padding:1.5rem;
 
 .text-image-split-text h2 {
   margin: 0 0 18px;
-  font-weight: 300;
   line-height: 1.7;
+  font-weight: 500;
+  font-family: "Geist", sans-serif;
+  font-size: 1.2rem;
 }
+
 
 .text-image-split-text p {
   margin: 0;
@@ -1032,10 +1039,7 @@ padding:1.5rem;
   width: 85%;
 }
 
-.rich-text-images .rich-text-project h2 {
-  font-weight: 300;
-  margin-top: 0;
-}
+
 
 .rich-text-images-center .rich-text-project {
   width: 100%;

@@ -170,21 +170,24 @@
 }
 
 .underlay-nav__link-large:hover {
-  color: #ededed;
-  background-color: #f85931;
+  color: #1c1c1c;
+background-color: #ffffff;
 }
 
 .underlay-nav__link-large.w--current {
   color: #ededed;
-  background-color: #f85931;
+background-color: #ffffff0f;
 }
 
 .underlay-nav__link-label {
   display: block;
   letter-spacing: -0.04em;
   font-family: inherit;
-  font-size: 3.25em;
+  /* font-size: 3.25em; */
+  font-size: 22px;
   line-height: 0.9;
+  font-family: "Geist Mono", monospace;
+  text-transform: uppercase;
 }
 
 .underlay-nav__bottom {

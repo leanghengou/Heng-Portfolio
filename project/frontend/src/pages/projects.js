@@ -213,6 +213,31 @@ const Projects = () => {
   const navigate = useNavigate();
   const [filtersOpen, setFiltersOpen] = useState(false);
 
+  const openFilters = () => {
+    if (document.body.getAttribute("data-menu-status") === "open") return;
+    setFiltersOpen(true);
+  };
+
+  useEffect(() => {
+    if (!filtersOpen || typeof MutationObserver === "undefined") return undefined;
+
+    const closeWhenMenuOpens = () => {
+      if (document.body.getAttribute("data-menu-status") === "open") {
+        setFiltersOpen(false);
+      }
+    };
+
+    closeWhenMenuOpens();
+
+    const observer = new MutationObserver(closeWhenMenuOpens);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["data-menu-status"],
+    });
+
+    return () => observer.disconnect();
+  }, [filtersOpen]);
+
   // The active filter is derived from the URL slug (unknown slug → show all).
   const activeFilter = FILTERS.find(
     (f) => f.slug === (category || "").toLowerCase()
@@ -269,7 +294,7 @@ const Projects = () => {
             <button
               type="button"
               className="projects-filter-toggle"
-              onClick={() => setFiltersOpen(true)}
+              onClick={openFilters}
             >
               <FilterIcon />
               {activeFilter
