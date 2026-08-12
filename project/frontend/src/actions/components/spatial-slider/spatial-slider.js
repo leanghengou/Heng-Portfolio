@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { CustomEase } from "gsap/CustomEase";
+import { Link } from "react-router-dom";
 import "./spatial-slider.css";
 import startnowImg from "../../../resources/startnow-intro-img.png";
 import saintEmberImg from "../../../resources/Mask-group-8.webp";
@@ -19,35 +20,45 @@ const CARDS = [
     title: "Start Now Fitness App",
     desc: "First UX case study — research, strategy and visual design.",
     tags: ["Design", "UI/UX"],
+    url: "/project/start-now-app",
   },
   {
     img: saintEmberImg,
     title: "Saint Embers",
     desc: "Shopify storefront with custom sections and a tuned checkout.",
     tags: ["eCommerce", "Shopify"],
+    url: "/",
   },
   {
     img: insperUImg,
     title: "Insper U",
     desc: "Learning platform concept focused on course discovery.",
     tags: ["Design"],
+    url: "/",
   },
   {
     img: daysChallengeImg,
     title: "30 Days Challenges",
     desc: "Case studies, final designs and prototypes I've built.",
     tags: ["Design", "Creative"],
+    url: "/",
   },
   {
     img: iagreeAiImg,
     title: "iAgree AI",
     desc: "Product design for an AI agreement assistant.",
     tags: ["Design", "Web Dev"],
+    url: "/",
   },
 ];
 
 const slideDuration = 1;
 const clickEase = "spatial";
+
+const preventNonPrimaryNavigation = (event) => {
+  if (event.button === 0) return;
+  event.preventDefault();
+};
 
 function debounceOnWidthChange(fn, ms) {
   let lastWidth = window.innerWidth;
@@ -454,7 +465,13 @@ const SpatialSlider = () => {
                 className="spatial-gsap-slider__item"
                 key={i}
               >
-                <div className="demo-card">
+                <Link
+                  className="demo-card"
+                  to={card.url || "/"}
+                  onClick={preventNonPrimaryNavigation}
+                  onAuxClick={(event) => event.preventDefault()}
+                  onContextMenu={(event) => event.preventDefault()}
+                >
                   <div className="demo-card__media">
                     <img
                       src={card.img}
@@ -474,7 +491,7 @@ const SpatialSlider = () => {
                       ))}
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
