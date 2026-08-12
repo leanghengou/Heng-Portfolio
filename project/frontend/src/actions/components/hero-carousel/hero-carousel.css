@@ -1,5 +1,8 @@
 .hero-carousel {
- position: relative;
+  --hero-carousel-tilt-x: 0deg;
+  --hero-carousel-tilt-y: 0deg;
+  --hero-carousel-tilt-scale: 1;
+  position: relative;
   height: 600px;
   overflow: hidden;
   background: #151414;
@@ -8,6 +11,11 @@
   flex-direction: column;
   margin: 5% auto;
   margin-bottom: 0px;
+  transform: perspective(1100px) rotateX(var(--hero-carousel-tilt-x))
+    rotateY(var(--hero-carousel-tilt-y)) scale(var(--hero-carousel-tilt-scale));
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out;
+  will-change: transform;
 }
 
 /* ---------- Sliding track ---------- */
@@ -52,6 +60,100 @@
   display: none;
 }
 
+/* ---------- CSS "light beam" background (Welcome slide) ----------
+   Dark gradient base + three angled beams that brighten left→right.
+   The media wrapper already has overflow:hidden, so the skew clips cleanly. */
+@property --hero-carousel-beam-hue {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 256;
+}
+
+.hero-carousel-media--beams {
+  --hero-carousel-beam-hue: 256;
+  background: linear-gradient(
+    135deg,
+    #000 5%,
+    #090613 50%,
+    hsl(var(--hero-carousel-beam-hue) 68% 57%) 100%
+  );
+  animation: heroCarouselHueCycle 8s linear infinite;
+}
+
+@keyframes heroCarouselHueCycle {
+  from {
+    --hero-carousel-beam-hue: 0;
+  }
+
+  to {
+    --hero-carousel-beam-hue: 360;
+  }
+}
+.hero-beam {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  transform: skewX(-15deg);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* dimmer purple, nearer the middle */
+.hero-beam--1 {
+  left: 40%;
+  width: 16.5%;
+background: linear-gradient(-90deg,#ffffff24 0%,#0000 79.5%,#d9d9d900 100%);
+  animation-delay: 0s;
+}
+
+
+.hero-beam--1:hover {
+
+  background: linear-gradient(-90deg,#fff3 0%,#fff0 77.5%,#d9d9d93b 100%);
+}
+/* mid-tone */
+.hero-beam--2 {
+  left: 56.5%;
+  width: 16.5%;
+background: linear-gradient(-90deg,#ffffff24 0%,#0000 79.5%,#d9d9d900 100%);
+  animation-delay: -0.9s;
+}
+
+/* brighter */
+.hero-beam--3 {
+  left: 73%;
+  width: 16.5%;
+background: linear-gradient(-90deg,#fff3 0%,#0000 79.5%,#d9d9d900 100%);
+  animation-delay: -1.8s;
+}
+
+/* brightest, toward the right edge */
+.hero-beam--4 {
+  left: 89.5%;
+  width: 16.5%;
+background: linear-gradient(-90deg,#ffffff42 0%,#0000 79.5%,#d9d9d900 100%);
+  animation-delay: -2.7s;
+}
+
+/* soften on small screens so the beams don't wash out the copy */
+@media (max-width: 680px) {
+  .hero-beam {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-media--beams {
+    animation: none;
+  }
+
+  .hero-beam {
+    will-change: auto;
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* darken the video so the copy and progress bars stay readable */
 .hero-carousel-media::before {
   content: "";
@@ -75,7 +177,6 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 6vh 0 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -149,6 +250,7 @@
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.02em;
+  color: white;
 }
 
 .hero-carousel-stat-label {
@@ -157,7 +259,7 @@
   line-height: 1.5;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8a8a90;
+ color: #fff;
   font-weight: 500;
   margin: 5px 0;
 }
@@ -313,6 +415,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-carousel {
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+
   .hero-carousel-track {
     transition: none;
   }

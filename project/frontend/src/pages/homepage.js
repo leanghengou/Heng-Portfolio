@@ -24,7 +24,7 @@ const Homepage = ()=>{
        <ProjectCarousel/>
        <SkillServices/>
         <TestimonialCarousel/>
-  
+       {/* <HeroCarousel/> */}
 
     <CollaborationCta/>
        <WebDevSection/>

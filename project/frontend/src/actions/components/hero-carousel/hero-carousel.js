@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
 import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
-import purpleBg from "../../../resources/purple-bg-img-component-100-opacity.png";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
@@ -9,7 +8,7 @@ const SLIDES = [
   {
     tag: "ECOMERCE SITE",
     nav: "Welcome",
-    image: purpleBg,
+    beams: true,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -61,6 +60,7 @@ const HeroCarousel = () => {
   const activeRef = useRef(0);
   const startRef = useRef(0); // 0 = "restamp me on the next frame"
   const rafRef = useRef(null);
+  const carouselRef = useRef(null);
 
   const goTo = useCallback((index) => {
     const next = ((index % SLIDES.length) + SLIDES.length) % SLIDES.length;
@@ -93,8 +93,53 @@ const HeroCarousel = () => {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
+  const handleTiltMove = useCallback((event) => {
+    const carousel = carouselRef.current;
+    if (!carousel || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const rect = carousel.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    const maxTilt = 7;
+
+    carousel.style.setProperty("--hero-carousel-tilt-x", `${(-y * maxTilt).toFixed(2)}deg`);
+    carousel.style.setProperty("--hero-carousel-tilt-y", `${(x * maxTilt).toFixed(2)}deg`);
+    carousel.style.setProperty("--hero-carousel-tilt-scale", "1.015");
+  }, []);
+
+  const resetTilt = useCallback(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    carousel.style.setProperty("--hero-carousel-tilt-x", "0deg");
+    carousel.style.setProperty("--hero-carousel-tilt-y", "0deg");
+    carousel.style.setProperty("--hero-carousel-tilt-scale", "1");
+  }, []);
+
   return (
-    <section className="hero-carousel site-width-container" aria-roledescription="carousel">
+    <section
+      ref={carouselRef}
+      className="hero-carousel site-width-container"
+      aria-roledescription="carousel"
+      onPointerMove={handleTiltMove}
+      onPointerLeave={resetTilt}
+      onPointerCancel={resetTilt}
+    >
+      {/* CSS "light beam" background — dark gradient base + 3 angled beams */}
+      {SLIDES[active].beams && (
+        <div
+          className="hero-carousel-media hero-carousel-media--plain hero-carousel-media--beams"
+          aria-hidden="true"
+        >
+          <span className="hero-beam hero-beam--1" />
+          <span className="hero-beam hero-beam--2" />
+          <span className="hero-beam hero-beam--3" />
+          <span className="hero-beam hero-beam--4" />
+        </div>
+      )}
+
       {/* Full-section background media for the active slide (behind nav too) */}
       {(SLIDES[active].video || SLIDES[active].image) && (
         <div
