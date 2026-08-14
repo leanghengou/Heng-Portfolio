@@ -52,6 +52,17 @@ const FilterIcon = () => (
 // leave it out and the row renders without a link.
 const PROJECTS = [
   {
+    slug: "decorolala-loyalty-cart-recovery",
+    title: "Decorolala Loyalty & Cart Recovery",
+    desc: "Custom Shopify loyalty program, dynamic cart-drawer rewards, and a Klaviyo-integrated cart recovery flow.",
+    // TODO: swap in a real Decorolala screenshot — using the Saint Embers image as a placeholder for now.
+    img: saintEmberImg,
+    date: "2026",
+    duration: "3 months",
+    platform: "Shopify",
+    tags: ["Development", "Design", "Ecom"],
+  },
+  {
     slug: "start-now-app",
     title: "Start Now Fitness App",
     desc: "StartNow is my first UX case study project that I did in order to learn about UX process, and strategy.",
@@ -67,8 +78,10 @@ const PROJECTS = [
   },
   {
     title: "Saint Embers",
-    desc: "Shopify storefront built from scratch: custom sections, reusable components and a checkout flow tuned for conversion.",
+    desc: "A custom Shopify storefront built from scratch — bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
     img: saintEmberImg,
+    // External link — the CTA opens the live store instead of a case-study page.
+    href: "https://saintembers.com/",
     date: "2024",
     duration: "6 weeks",
     platform: "Shopify",
@@ -98,7 +111,13 @@ const FILTERS = [
 
 const ProjectRow = ({ project }) => {
   const navigate = useNavigate();
-  const go = () => project.slug && navigate(`/project/${project.slug}`);
+  const go = () => {
+    if (project.href) {
+      window.open(project.href, "_blank", "noopener,noreferrer");
+    } else if (project.slug) {
+      navigate(`/project/${project.slug}`);
+    }
+  };
 
   // Media column cycles through `thumbs` while hovered; falls back to `img`.
   const slides = project.thumbs?.length ? project.thumbs : [project.img];
@@ -196,7 +215,17 @@ const ProjectRow = ({ project }) => {
 
       <p className="projects-row-desc">{project.desc}</p>
 
-      {project.slug ? (
+      {project.href ? (
+        <a
+          className="projects-row-cta"
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Visit site <ArrowRight />
+        </a>
+      ) : project.slug ? (
         <Link className="projects-row-cta" to={`/project/${project.slug}`}>
           View project <ArrowRight />
         </Link>

@@ -13,6 +13,7 @@ import PersonaCardsSection from "./persona-cards-section";
 import BadgeBlockGrid from "./badge-block-grid";
 import JourneyMap from "./journey-map";
 import TextImageSplit from "./text-image-split";
+import FeatureImageSplit from "./feature-image-split";
 import RichTextImages from "./rich-text-images";
 import StyleGuide from "./style-guide";
 import ArchitectureMap from "./architecture-map";
@@ -51,6 +52,8 @@ export default function SectionRenderer({ section }) {
       return <JourneyMap {...section} />
     case "text-image-split":
       return <TextImageSplit {...section} />
+    case "feature-image-split":
+      return <FeatureImageSplit {...section} />
     case "rich-text-images":
       return <RichTextImages {...section} />
     case "style-guide":

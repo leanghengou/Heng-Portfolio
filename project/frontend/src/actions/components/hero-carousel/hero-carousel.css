@@ -60,33 +60,106 @@
   display: none;
 }
 
+/* ---------- Framer "glowing horizon" — transparent overlay over the beams ---------- */
+.hero-horizon {
+  background-color: transparent;
+}
+
+/* the bottom-anchored, centered stage the arc is drawn inside */
+.hero-horizon-bg {
+  position: absolute;
+  bottom: 73px;
+  left: calc(12% - 600px);
+  width: 1200px;
+  height: 791px;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 0;
+  transform: rotate(27deg);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, rgba(7, 7, 9, 0), #070709 70%, #07070900 80%, rgba(7, 7, 9, 0));
+  mask-image: linear-gradient(90deg, rgba(7, 7, 9, 0), #070709 70%, #07070900 80%, rgba(7, 7, 9, 0));
+  opacity: 0.37;
+}
+
+/* soft white glow blur above the arc */
+.hero-horizon-radial {
+  position: absolute;
+  bottom: 265px;
+  left: calc(47.9166% - 393.5px);
+  width: 787px;
+  height: 111px;
+  filter: blur(57px);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(10, 10, 10, 0) 100%
+  );
+}
+
+/* large white-to-transparent ellipse (the glow body) */
+.hero-horizon-ellipse {
+  position: absolute;
+  bottom: -662px;
+  left: -443px;
+  right: -443px;
+  height: 955px;
+  border-radius: 100% !important;
+  background: linear-gradient(180deg, #fff0 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+/* dark ellipse on top with a bright inset rim = the glowing horizon line */
+.hero-horizon-base {
+  position: absolute;
+  bottom: -668px;
+  left: -521px;
+  right: -521px;
+  height: 956px;
+  aspect-ratio: 2.346820809248555 / 1;
+  border-radius: 100% !important;
+  background-color: #0a0a0a00;
+  box-shadow: inset 0 2px 20px #fff, 0 -10px 50px 1px #ffffff7d;
+}
+
+/* left/right fades so the sides stay dark and readable */
+.hero-horizon-fade {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-horizon-fade-left {
+  width: 600px;
+  height: 100%;
+  background: linear-gradient(90deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+.hero-horizon-fade-right {
+  width: 600px;
+  height: 100%;
+  background: linear-gradient(270deg, #0a0a0a 0%, rgba(10, 10, 10, 0) 100%);
+}
+
 /* ---------- CSS "light beam" background (Welcome slide) ----------
    Dark gradient base + three angled beams that brighten left→right.
    The media wrapper already has overflow:hidden, so the skew clips cleanly. */
-@property --hero-carousel-beam-hue {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 256;
-}
-
 .hero-carousel-media--beams {
-  --hero-carousel-beam-hue: 256;
-  background: linear-gradient(
-    135deg,
-    #000 5%,
-    #090613 50%,
-    hsl(var(--hero-carousel-beam-hue) 68% 57%) 100%
-  );
+  /* Keep the same shaded area while cycling the banner color. */
+  background: linear-gradient(135deg, #000 5%, #19132f 50%, #6d48dc 100%);
   animation: heroCarouselHueCycle 8s linear infinite;
 }
 
 @keyframes heroCarouselHueCycle {
   from {
-    --hero-carousel-beam-hue: 0;
+    filter: hue-rotate(0deg);
   }
 
   to {
-    --hero-carousel-beam-hue: 360;
+    filter: hue-rotate(360deg);
   }
 }
 .hero-beam {
@@ -104,19 +177,16 @@
   width: 16.5%;
 background: linear-gradient(-90deg,#ffffff24 0%,#0000 79.5%,#d9d9d900 100%);
   animation-delay: 0s;
+  backdrop-filter: blur(52px);
 }
 
-
-.hero-beam--1:hover {
-
-  background: linear-gradient(-90deg,#fff3 0%,#fff0 77.5%,#d9d9d93b 100%);
-}
 /* mid-tone */
 .hero-beam--2 {
   left: 56.5%;
   width: 16.5%;
 background: linear-gradient(-90deg,#ffffff24 0%,#0000 79.5%,#d9d9d900 100%);
   animation-delay: -0.9s;
+  backdrop-filter: blur(52px);
 }
 
 /* brighter */
@@ -125,6 +195,7 @@ background: linear-gradient(-90deg,#ffffff24 0%,#0000 79.5%,#d9d9d900 100%);
   width: 16.5%;
 background: linear-gradient(-90deg,#fff3 0%,#0000 79.5%,#d9d9d900 100%);
   animation-delay: -1.8s;
+  backdrop-filter: blur(52px);
 }
 
 /* brightest, toward the right edge */
@@ -133,6 +204,7 @@ background: linear-gradient(-90deg,#fff3 0%,#0000 79.5%,#d9d9d900 100%);
   width: 16.5%;
 background: linear-gradient(-90deg,#ffffff42 0%,#0000 79.5%,#d9d9d900 100%);
   animation-delay: -2.7s;
+  backdrop-filter: blur(52px);
 }
 
 /* soften on small screens so the beams don't wash out the copy */
@@ -357,7 +429,7 @@ background: linear-gradient(-90deg,#ffffff42 0%,#0000 79.5%,#d9d9d900 100%);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7a7a82;
+color: #ffffffad;
   transition: color 0.4s ease;
 }
 

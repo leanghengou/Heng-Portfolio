@@ -9,6 +9,7 @@ const SLIDES = [
     tag: "ECOMERCE SITE",
     nav: "Welcome",
     beams: true,
+    horizon: true,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -127,7 +128,7 @@ const HeroCarousel = () => {
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
     >
-      {/* CSS "light beam" background — dark gradient base + 3 angled beams */}
+      {/* Light-beam streaks — the base (untouched) */}
       {SLIDES[active].beams && (
         <div
           className="hero-carousel-media hero-carousel-media--plain hero-carousel-media--beams"
@@ -137,6 +138,20 @@ const HeroCarousel = () => {
           <span className="hero-beam hero-beam--2" />
           <span className="hero-beam hero-beam--3" />
           <span className="hero-beam hero-beam--4" />
+        </div>
+      )}
+
+      {/* Glowing globe/arc — transparent overlay ON TOP of the beams */}
+      {SLIDES[active].horizon && (
+        <div
+          className="hero-carousel-media hero-carousel-media--plain hero-horizon"
+          aria-hidden="true"
+        >
+          <div className="hero-horizon-bg">
+            <div className="hero-horizon-radial" />
+            <div className="hero-horizon-ellipse" />
+            <div className="hero-horizon-base" />
+          </div>
         </div>
       )}
 

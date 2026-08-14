@@ -35,6 +35,9 @@ import startNowMobileGroupOne from "../resources/start-now-mobile-img-group-1.pn
 import startNowMobileGroupTwo from "../resources/start-now-mobile-img-group-2.png"
 import startNowMobileGroupThree from "../resources/start-now-mobile-img-group-3.png"
 import startNowMobileGroupFour from "../resources/start-now-mobile-img-group-4.png"
+import decorlala1 from "../resources/decorlala-1.png"
+import decorlala2 from "../resources/decorlala-2.png"
+import decorlala3 from "../resources/decorlala-3.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -719,6 +722,161 @@ export const projects = [
 
     ],
 
-  
+
+  },
+
+  {
+    slug: "decorolala-loyalty-cart-recovery",
+    title: "Decorolala Loyalty & Cart Recovery",
+    category: "Shopify Development & UX Design",
+    intro: {
+      description:
+        "Decorolala wanted to improve customer retention, increase loyalty program visibility, and create more opportunities to recover abandoned carts. I designed and developed a custom loyalty and cart recovery experience directly within the Shopify storefront, focusing on high-intent moments throughout the customer journey.",
+      role: "Shopify Developer & UX Designer",
+      stack: ["Shopify Liquid", "JavaScript (ES6)", "AJAX Cart API", "Klaviyo API"],
+      tools: [
+        "Shopify Liquid",
+        "HTML",
+        "CSS",
+        "JavaScript (ES6)",
+        "Shopify AJAX Cart API",
+        "Klaviyo API",
+        "Responsive Design",
+      ],
+      duration: "May – July 2026",
+    },
+    year: "2026",
+
+    sections: [
+      {
+        type: "rich-text-section",
+        title: "Overview",
+        description:
+          "The project included a loyalty program experience on product pages, dynamic rewards messaging inside the cart drawer, and a custom \"Save Your Cart\" feature integrated with Klaviyo — all built directly into the Shopify storefront around the highest-intent moments in the customer journey.",
+      },
+
+      {
+        type: "rich-text-section",
+        title: "The Challenge",
+        description:
+          "The store needed a better way to communicate value and capture intent before customers left.",
+      },
+
+      {
+        type: "bordered-text-cards",
+        cards: [
+          {
+            title: "The store needed to",
+            body: [
+              "Communicate loyalty program benefits to shoppers.",
+              "Increase visibility of customer rewards before purchase.",
+              "Capture potential customers before they abandoned their carts.",
+              "Create a seamless experience across desktop and mobile devices.",
+              "Support long-term customer retention and repeat purchases.",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "feature-image-split",
+        title: "Club LaLa Loyalty Program",
+        description:
+          "I designed and developed a custom loyalty program section integrated directly into Shopify product pages. The goal was to clearly communicate the value of joining the loyalty program before customers reached checkout.",
+        features: [
+          "Dynamic reward calculations based on product value.",
+          "Membership benefits and cashback rewards.",
+          "Personalized savings messaging.",
+          "Strategic placement near purchasing decisions.",
+          "Fully responsive desktop and mobile experience.",
+        ],
+        image: decorlala1,
+      },
+
+      {
+        type: "feature-image-split",
+        title: "Dynamic Cart Rewards Experience",
+        description:
+          "To reinforce loyalty incentives during checkout, I developed a custom cart drawer experience that displayed real-time reward earnings based on cart value. For example, a customer with a CAD $2,158 order would automatically see a reward value of CAD $215.80 displayed throughout the checkout journey.",
+        features: [
+          "Dynamic reward calculations.",
+          "Real-time cart value updates.",
+          "Loyalty messaging inside the cart drawer.",
+          "Free shipping indicators.",
+          "Trust-building purchase benefits.",
+          "Responsive, mobile-first design.",
+        ],
+        image: decorlala2,
+      },
+
+      {
+        type: "feature-image-split",
+        title: "Save Your Cart + Klaviyo Integration",
+        description:
+          "I built a custom cart recovery feature allowing customers to save their carts before leaving the store. This created an additional opportunity to recover customers who were not yet ready to complete their purchase.",
+        features: [
+          "Custom modal built with HTML, CSS, and JavaScript.",
+          "Email capture workflow.",
+          "Direct Klaviyo API integration.",
+          "Customer information synchronization.",
+          "Cart recovery and remarketing support.",
+        ],
+        image: decorlala3,
+      },
+
+      {
+        type: "rich-text-section",
+        title: "Technical Highlights",
+        description: "",
+      },
+
+      {
+        type: "bordered-text-cards",
+        cards: [
+          {
+            title: "Under the hood",
+            body: [
+              "Built custom Shopify Liquid components.",
+              "Developed dynamic reward calculations using JavaScript.",
+              "Integrated Shopify AJAX Cart functionality.",
+              "Connected customer email submissions to Klaviyo via API.",
+              "Implemented responsive layouts across desktop and mobile devices.",
+              "Created reusable and scalable Shopify components.",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "rich-text-section",
+        title: "Results",
+        description:
+          "During the period following implementation, Shopify Analytics reported:",
+      },
+
+      {
+        type: "research-stats-section",
+        stats: [
+          { value: "129", label: "Orders" },
+          { value: "CAD $29.6K", label: "Total sales" },
+          { value: "+68%", label: "Order growth" },
+          { value: "+52%", label: "Sales growth" },
+          { value: "+138%", label: "Store traffic" },
+        ],
+      },
+
+      {
+        type: "rich-text-section",
+        description:
+          "The store was also running paid advertising campaigns during this period. These results reflect overall business growth and marketing efforts in addition to the features developed for this project.",
+      },
+
+      {
+        type: "rich-text-section",
+        title: "Key Takeaways",
+        description:
+          "This project demonstrates my ability to combine Shopify development, UX design, API integrations, and conversion-focused thinking to build features that support customer retention and long-term business growth. By connecting loyalty rewards, cart recovery, and customer engagement into a cohesive experience, I helped create a more effective purchasing journey across both desktop and mobile devices.",
+      },
+    ],
   }
 ];
