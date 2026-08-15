@@ -12,6 +12,8 @@ import daysChallengeImg from "../resources/30days-challange-img.webp";
 import insperUImg from "../resources/insper-u.png";
 import iagreeAiImg from "../resources/iagree-ai.png";
 import mervImg from "../resources/merv.png";
+import decorolalaThumb from "../resources/Decorolala-thumbmail.png";
+import hornetThumb from "../resources/Hornet-thubmail.png";
 
 const ArrowRight = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -55,8 +57,7 @@ const PROJECTS = [
     slug: "decorolala-loyalty-cart-recovery",
     title: "Decorolala Loyalty & Cart Recovery",
     desc: "Custom Shopify loyalty program, dynamic cart-drawer rewards, and a Klaviyo-integrated cart recovery flow.",
-    // TODO: swap in a real Decorolala screenshot — using the Saint Embers image as a placeholder for now.
-    img: saintEmberImg,
+    img: decorolalaThumb,
     date: "2026",
     duration: "3 months",
     platform: "Shopify",
@@ -77,11 +78,10 @@ const PROJECTS = [
     tags: ["Design"],
   },
   {
+    slug: "saint-embers",
     title: "Saint Embers",
     desc: "A custom Shopify storefront built from scratch — bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
     img: saintEmberImg,
-    // External link — the CTA opens the live store instead of a case-study page.
-    href: "https://saintembers.com/",
     date: "2024",
     duration: "6 weeks",
     platform: "Shopify",
@@ -94,6 +94,26 @@ const PROJECTS = [
     date: "2023",
     duration: "5 weeks",
     platform: "Figma",
+    tags: ["Design"],
+  },
+  {
+    slug: "hornet-energy",
+    title: "Hornet Energy",
+    desc: "Designing and building an early e-commerce experience for a growing energy-gel brand — a clean, conversion-focused Shopify storefront.",
+    img: hornetThumb,
+    date: "2026",
+    duration: "Early-stage build",
+    platform: "Shopify",
+    tags: ["Development", "Design", "Ecom"],
+  },
+  {
+    slug: "30-days-of-daily-posters",
+    title: "30 Days of Daily Posters",
+    desc: "A 30-day exploration of visual communication — one poster every day, each exploring a different idea, opinion, or observation about society.",
+    img: daysChallengeImg,
+    date: "2020",
+    duration: "30 days",
+    platform: "Personal",
     tags: ["Design"],
   },
 
@@ -133,10 +153,16 @@ const ProjectRow = ({ project }) => {
   const startCarousel = () => {
     if (count < 2) return;
     clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
+    // First flip lands sooner (0.7s) so the hover feels responsive, then
+    // settles into the normal 2.5s pace for the rest of the cycle.
+    timerRef.current = setTimeout(() => {
       setAnimate(true);
       setIndex((i) => i + 1);
-    }, 2500);
+      timerRef.current = setInterval(() => {
+        setAnimate(true);
+        setIndex((i) => i + 1);
+      }, 2500);
+    }, 700);
   };
   const stopCarousel = () => {
     clearInterval(timerRef.current);

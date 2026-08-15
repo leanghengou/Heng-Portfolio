@@ -18,6 +18,7 @@ import RichTextImages from "./rich-text-images";
 import StyleGuide from "./style-guide";
 import ArchitectureMap from "./architecture-map";
 import PrototypeEmbed from "./prototype-embed";
+import ExternalCtaSection from "./external-cta-section";
 
 
 export default function SectionRenderer({ section }) {
@@ -62,6 +63,8 @@ export default function SectionRenderer({ section }) {
       return <ArchitectureMap {...section} />
     case "prototype-embed":
       return <PrototypeEmbed {...section} />
+    case "external-cta":
+      return <ExternalCtaSection {...section} />
     default:
       return null;
   }

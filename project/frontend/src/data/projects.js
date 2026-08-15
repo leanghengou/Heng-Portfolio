@@ -38,6 +38,8 @@ import startNowMobileGroupFour from "../resources/start-now-mobile-img-group-4.p
 import decorlala1 from "../resources/decorlala-1.png"
 import decorlala2 from "../resources/decorlala-2.png"
 import decorlala3 from "../resources/decorlala-3.png"
+import saintEmberImg from "../resources/Mask-group-8.webp"
+import dailyPostersImg from "../resources/30days-challange-img.webp"
 export const projects = [
   {
     slug: "start-now-app",
@@ -876,6 +878,190 @@ export const projects = [
         title: "Key Takeaways",
         description:
           "This project demonstrates my ability to combine Shopify development, UX design, API integrations, and conversion-focused thinking to build features that support customer retention and long-term business growth. By connecting loyalty rewards, cart recovery, and customer engagement into a cohesive experience, I helped create a more effective purchasing journey across both desktop and mobile devices.",
+      },
+    ],
+  },
+
+  {
+    slug: "hornet-energy",
+    title: "Hornet Energy",
+    category: "Shopify Development & UX Design",
+    cover: saintEmberImg, // TODO: swap in a real Hornet Energy screenshot — using the Saint Embers image as a placeholder for now.
+    intro: {
+      description:
+        "Designing and building an early e-commerce experience for a growing energy brand. Hornet Energy is an energy-gel brand built around simple, natural ingredients and endurance performance. I designed and built an early version of their Shopify storefront, working directly with the founding team to create a clean, conversion-focused shopping experience.",
+      role: "Shopify Developer & Designer",
+      stack: ["Shopify Liquid", "CSS", "JavaScript"],
+      tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
+      duration: "Early-stage build",
+    },
+
+    sections: [
+      {
+        type: "rich-text-section",
+        title: "The Challenge",
+        description:
+          "Hornet Energy was an early-stage brand looking to establish a stronger online presence and create a storefront that could clearly communicate the product while making it easy for customers to purchase. With a limited timeline, the goal was to create a polished experience that felt credible, modern, and focused on conversion.",
+      },
+
+      {
+        type: "bordered-text-cards",
+        cards: [
+          {
+            title: "My Role",
+            body: [
+              "Homepage design and front-end implementation.",
+              "Product page design and front-end implementation.",
+              "Product presentation and information hierarchy.",
+              "Responsive layouts across devices.",
+              "Conversion-focused shopping flow.",
+              "Shopify storefront customization.",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "rich-text-section",
+        title: "The Approach",
+        description:
+          "Rather than treating the website as a simple product catalog, I focused on helping visitors quickly understand three things: what the product is, why Hornet, and what to do next.",
+      },
+
+      {
+        type: "bordered-text-cards",
+        cards: [
+          {
+            title: "What is it?",
+            body: "A natural energy gel designed for endurance and active performance.",
+          },
+          {
+            title: "Why Hornet?",
+            body: "Simple ingredients, a distinctive brand, and a clear alternative to conventional energy products.",
+          },
+          {
+            title: "What should I do next?",
+            body: "Make the purchasing experience straightforward, with the product and call-to-action taking priority.",
+          },
+        ],
+      },
+
+      {
+        type: "rich-text-section",
+        description:
+          "The product page was designed around a clear hierarchy: product → value proposition → purchase → supporting information → trust.",
+      },
+
+      {
+        type: "rich-text-section",
+        title: "Outcome",
+        description:
+          "The website became part of Hornet Energy's early digital storefront as the company continued developing its brand and product. Since then, the company has evolved its website, branding, and overall digital presence significantly. By 2026, Hornet Energy had grown into a substantially larger business than when I originally worked on the site. I don't attribute that growth solely to the website — many factors contributed — but it was rewarding to see an early-stage project evolve alongside the company.",
+      },
+
+      {
+        type: "rich-text-section",
+        title: "What I Learned",
+        description:
+          "Working on a real e-commerce brand taught me that good product design isn't only about making something look polished.",
+      },
+
+      {
+        type: "bordered-text-cards",
+        cards: [
+          {
+            title: "It's about",
+            body: [
+              "Communicating value quickly.",
+              "Reducing friction in the buying process.",
+              "Creating trust.",
+              "Prioritizing information.",
+              "Designing around an actual business objective.",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "rich-text-section",
+        description:
+          "This project was completed early in Hornet Energy's growth, and it remains one of my favorite examples of designing for a real product, real customers, and a real business.",
+      },
+    ],
+  },
+
+  {
+    slug: "saint-embers",
+    title: "Saint Embers",
+    category: "Shopify Development & Design",
+    cover: saintEmberImg,
+    intro: {
+      description:
+        "A custom Shopify storefront built from scratch — bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
+      role: "Shopify Developer & Designer",
+      stack: ["Shopify Liquid", "CSS", "JavaScript"],
+      tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
+      duration: "6 weeks",
+    },
+    year: "2024",
+
+    sections: [
+      {
+        type: "rich-text-section",
+        description:
+          "Saint Embers is a live, in-production Shopify store I built from the ground up — custom sections, reusable components, and a conversion-tuned checkout, all tailored to the brand.",
+      },
+      {
+        type: "external-cta",
+        title: "See it live",
+        description: "The full experience is best seen on the real storefront.",
+        href: "https://saintembers.com/",
+        cta: "Visit site",
+      },
+    ],
+  },
+
+  {
+    slug: "30-days-of-daily-posters",
+    title: "30 Days of Daily Posters",
+    category: "Graphic Design & Visual Communication",
+    cover: dailyPostersImg,
+    intro: {
+      description: "A 30-day exploration of visual communication.",
+      role: "Graphic Designer",
+      stack: ["Typography", "Composition", "Visual Hierarchy"],
+      tools: ["Typography", "Composition", "Imagery", "Symbolism", "Visual Hierarchy"],
+      duration: "30 days",
+    },
+    year: "2020",
+
+    sections: [
+      {
+        type: "rich-text-section",
+        description:
+          "I challenged myself to create one poster every day for 30 days, with each piece exploring a different idea, opinion, or observation about society.",
+      },
+      {
+        type: "rich-text-section",
+        title: "The Approach",
+        description:
+          "The project focused on turning abstract thoughts into clear visual concepts through typography, composition, imagery, symbolism, and visual hierarchy.",
+      },
+      {
+        type: "rich-text-section",
+        title: "What I Learned",
+        description:
+          "Working under a daily constraint pushed me to develop ideas quickly, experiment with different visual styles, and communicate messages effectively without relying on lengthy explanations.",
+      },
+      {
+        type: "external-cta",
+        ctas: [
+          { label: "Visit gallery" }, // coming soon — no href yet
+          {
+            label: "Behance",
+            href: "https://www.behance.net/gallery/103660995/30-Days-of-Daily-Posters",
+          },
+        ],
       },
     ],
   }

@@ -1,15 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import "./underlay-nav.css";
+import ResumePopup from "../resume-popup/resume-popup";
 
 // Menu items mapped to real routes. `to: null` = placeholder (no route yet).
+// `popup: "resume"` opens the resume popup instead of navigating.
 const MENU = [
   { label: "Home", to: "/" },
   { label: "Projects", to: "/projects" },
   { label: "About", to: "/about" },
-  { label: "Resume", to: "/resume" },
+  { label: "Resume", popup: "resume" },
   { label: "Services", to: null },
   { label: "Contact", to: null },
 ];
@@ -24,6 +26,7 @@ const UnderlayNav = () => {
   const rootRef = useRef(null);
   const closeRef = useRef(null); // set inside the effect; closes the menu if open
   const location = useLocation();
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   useEffect(() => {
     if (!CustomEase.get("energy")) {
@@ -60,7 +63,8 @@ const UnderlayNav = () => {
 
     gsap.set(overlayEl, { visibility: "hidden", pointerEvents: "none" });
     gsap.set(darkEl, { autoAlpha: 0 });
-    gsap.set(mainEl, { x: 0 });
+    // No inline transform on mainEl at rest — see the comment in
+    // underlay-nav.css for why (it would break position: sticky sitewide).
     gsap.set(toggleLabels, { yPercent: 0 });
     gsap.set(toggleBars, { y: 0, rotation: 0 });
     gsap.set(menuBorder, { scaleX: 0 });
@@ -68,10 +72,20 @@ const UnderlayNav = () => {
     gsap.set(overlayBorders[1], { yPercent: 100 });
     gsap.set(corners, { scale: 0 });
 
+    // Both paths that land mainEl back at rest (fully closed): finishing the
+    // close animation, or reversing out of an in-progress open animation.
+    // Strip the inline transform so position: sticky works again for the
+    // rest of the site while the menu is closed.
+    function restMainEl() {
+      gsap.set(mainEl, { clearProps: "transform" });
+    }
+
     function buildTimeline() {
       tl = gsap.timeline({
         paused: true,
         defaults: { ease: "energy", easeReverse: "power2.inOut" },
+        onComplete: restMainEl,
+        onReverseComplete: restMainEl,
       });
 
       tl.set(overlayEl, { visibility: "visible", pointerEvents: "auto" }, 0);
@@ -206,7 +220,7 @@ const UnderlayNav = () => {
       window.removeEventListener("resize", onResize);
       if (tl) tl.kill();
       // reset any layout the nav mutated outside itself
-      gsap.set(mainEl, { clearProps: "transform" });
+      restMainEl();
       document.body.removeAttribute("data-menu-status");
       if (window.__lenis) window.__lenis.start();
     };
@@ -263,7 +277,20 @@ const UnderlayNav = () => {
               }`;
               return (
                 <li data-reveal-l key={item.label}>
-                  {item.to ? (
+                  {item.popup ? (
+                    <button
+                      type="button"
+                      className={className}
+                      onClick={() => {
+                        closeRef.current && closeRef.current();
+                        if (item.popup === "resume") setResumeOpen(true);
+                      }}
+                    >
+                      <span className="underlay-nav__link-label">
+                        {item.label}
+                      </span>
+                    </button>
+                  ) : item.to ? (
                     <Link
                       to={item.to}
                       aria-current={isCurrent ? "page" : undefined}
@@ -346,6 +373,8 @@ const UnderlayNav = () => {
           </div>
         </div>
       </div>
+
+      <ResumePopup open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 };

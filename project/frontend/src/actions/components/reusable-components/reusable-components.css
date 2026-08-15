@@ -41,6 +41,27 @@
 .rich-text-project{
   width: 85%;
 }
+
+.external-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.external-cta-section .rich-text-project .btn {
+  margin-top: 28px;
+}
+
+.external-cta-section .rich-text-project .btn.is-disabled {
+  background: transparent;
+  border: 1px solid #ffffff2e;
+  color: #8a8a99;
+  cursor: default;
+}
+
+.external-cta-section .rich-text-project .btn.is-disabled:hover {
+  background: transparent;
+}
 .rich-text-project h2 {
   font-weight: 500;
   margin-top: 2.7rem;
@@ -989,23 +1010,29 @@ padding:1.5rem;
   flex: 0 0 auto;
 }
 
-/* top-align the row so the short text sits with the image top, not centered */
+/* Fixed-ish columns grouped together (not stretched across the wide content).
+   Overrides the base space-between + 35% percentage sizing. */
 .feature-split {
   align-items: flex-start;
+  justify-content: flex-start;
+  gap: 56px;
+}
+
+.feature-split .text-image-split-text {
+  flex: 0 1 440px;
 }
 
 .feature-split .text-image-split-media {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex: 0 1 640px;
+  display: block;
 }
 
-/* keep the image contained instead of blowing up to its natural size */
+/* image fills its (capped) column instead of blowing up to a % of the page */
 .feature-split .text-image-split-media img {
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: 520px;
+  max-height: 560px;
+  object-fit: contain;
   display: block;
 }
 

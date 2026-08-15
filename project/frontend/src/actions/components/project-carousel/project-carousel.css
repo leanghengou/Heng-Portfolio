@@ -96,6 +96,18 @@
 .project-card-body .btn {
   margin-top: auto;
   align-self: flex-start;
+  text-decoration: none;
+}
+
+.project-card-body .btn.is-disabled {
+  background: transparent;
+  border: 1px solid #ffffff2e;
+  color: #8a8a99;
+  cursor: default;
+}
+
+.project-card-body .btn.is-disabled:hover {
+  background: transparent;
 }
 
 .bubble-tag-all-container {
@@ -123,6 +135,7 @@
   color: white;
   padding: 2px 7px;
   border-radius: 12px;
+  font-family: "Geist Mono", monospace;
 }
 .bubble-tag-item.design {
   background-color: #0F0633;

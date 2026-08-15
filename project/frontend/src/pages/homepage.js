@@ -20,7 +20,7 @@ const Homepage = ()=>{
         <div>
             
      <HeroCarousel/>
-          <SpatialSlider/>
+          {/* <SpatialSlider/> */}
        <ProjectCarousel/>
        <SkillServices/>
         <TestimonialCarousel/>

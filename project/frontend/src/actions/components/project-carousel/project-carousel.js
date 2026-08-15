@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./project-carousel.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -6,19 +7,53 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import saintEmberImg from "../../../resources/Mask-group-8.webp";
-import startnowimg from "../../../resources/startnow-intro-img.png";
 import tDaysChallange from "../../../resources/30days-challange-img.webp";
+import decorolalaThumb from "../../../resources/Decorolala-thumbmail.png";
+import hornetThumb from "../../../resources/Hornet-thubmail.png";
+import startNowThumb from "../../../resources/start-now-thubmail.png";
 
 import { gsap, Power3 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+// `slug` points at an existing /project/:slug case study; `href` opens an
+// external site instead. Leave both out and the card renders without a link.
 const PROJECTS = [
-  { title: "30 days challenges", desc: "Find out about my works: read through my case studies.", img: tDaysChallange, tags: ["Design", "Creative"] },
-  { title: "Start Now Fitness App", desc: "React builds with responsive, pixel-tight execution.", img: startnowimg, tags: ["Design", "UI/UX"] },
-  { title: "Saint Embers", desc: "Reusable components, consistent spacing, scalable styles.", img: saintEmberImg, tags: ["eCommerce", "Web Development", "Design", "Shopify"] },
-  { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img: saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"] },
-  { title: "Speed", desc: "Ship fast, iterate smart, keep code maintainable.", img: saintEmberImg, tags: ["Design", "UI/UX", "Web Development", "Shopify"] },
+  {
+    title: "Decorolala Loyalty & Cart Recovery",
+    desc: "Custom Shopify loyalty program, dynamic cart-drawer rewards.",
+    img: decorolalaThumb,
+    tags: ["eCommerce", "Shopify"],
+    slug: "decorolala-loyalty-cart-recovery",
+  },
+  {
+    title: "Start Now Fitness App",
+    desc: "React builds with responsive, pixel-tight execution.",
+    img: startNowThumb,
+    tags: ["Design", "UI/UX"],
+    slug: "start-now-app",
+  },
+  {
+    title: "Saint Embers",
+    desc: "Reusable components, consistent spacing, scalable styles.",
+    img: saintEmberImg,
+    tags: ["eCommerce", "Web Development", "Design", "Shopify"],
+    slug: "saint-embers",
+  },
+  {
+    title: "Hornet Energy",
+    desc: "Designing and building an early e-commerce experience for a growing energy-gel brand.",
+    img: hornetThumb,
+    tags: ["eCommerce", "Shopify", "Design"],
+    slug: "hornet-energy",
+  },
+  {
+    title: "30 Days of Daily Posters",
+    desc: "A 30-day exploration of visual communication — one poster every day for 30 days.",
+    img: tDaysChallange,
+    tags: ["Design", "Creative"],
+    slug: "30-days-of-daily-posters",
+  },
 ];
 
 const ProjectCarousel = () => {
@@ -78,12 +113,28 @@ const ProjectCarousel = () => {
                   ))}
                 </div>
 
-                <a className="btn">
-                  View project
-                  <div className="arrow-wrapper">
-                    <div className="arrow"></div>
-                  </div>
-                </a>
+                {item.href ? (
+                  <a
+                    className="btn"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View project
+                    <div className="arrow-wrapper">
+                      <div className="arrow"></div>
+                    </div>
+                  </a>
+                ) : item.slug ? (
+                  <Link className="btn" to={`/project/${item.slug}`}>
+                    View project
+                    <div className="arrow-wrapper">
+                      <div className="arrow"></div>
+                    </div>
+                  </Link>
+                ) : (
+                  <span className="btn is-disabled">Coming soon</span>
+                )}
               </div>
             </article>
           </SwiperSlide>

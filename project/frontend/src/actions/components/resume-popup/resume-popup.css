@@ -1,0 +1,348 @@
+/* ---------- Resume popup (browser-tab style, two columns) ---------- */
+.resume-popup-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1100; /* above the nav (1000) */
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  transition: visibility 0s linear 0.35s;
+}
+.resume-popup-root.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.resume-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  /* The site itself is dark, so a light dark-tint overlay barely dims
+     light-colored page content behind it — go near-opaque + a real blur
+     radius so the page reads as clearly backgrounded, not just tinted. */
+  background: rgba(2, 1, 8, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.resume-popup-root.is-open .resume-popup-backdrop {
+  opacity: 1;
+}
+
+/* .resume-popup-frame is the card's shape/animation shell. It never scrolls
+   itself, so the close button (an absolute child of the frame) stays put
+   while .resume-popup (the grid below) scrolls internally — a fixed/absolute
+   child would otherwise track whichever ancestor box actually scrolls. */
+.resume-popup-frame {
+  position: relative;
+  width: min(1176px, 100%);
+  max-height: min(768px, 90vh);
+  display: flex;
+background: #1c1c1c;
+  border: 1px solid #ffffff1f;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* Stops content spilling past the shell instead of scrolling internally. */
+  overflow: hidden;
+}
+.resume-popup-root.is-open .resume-popup-frame {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.resume-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background-color: transparent;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.resume-popup-close:hover {
+  background: #ffffff;
+  color: #0d0d12;
+  border-color: #ffffff;
+}
+
+.resume-popup {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.resume-popup-col {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 40px 32px 40px;
+}
+.resume-popup-col-left {
+  border-right: 1px solid #ffffff1f;
+}
+
+/* Thin, visible scrollbar so it reads like a browser-tab pane, not a hidden one */
+.resume-popup-col {
+scrollbar-width: thin;
+  scrollbar-color: #ffffff26 #ffffff0f;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+.resume-popup-col::-webkit-scrollbar {
+  width: 6px;
+}
+.resume-popup-col::-webkit-scrollbar-thumb {
+  background: #ffffff3d;
+}
+
+.resume-popup-name,
+.resume-popup-heading {
+  margin: 0 0 14px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.resume-popup-bio {
+  margin: 0 0 18px;
+  max-width: 46ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+
+.resume-popup-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.resume-popup-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  background: #ffffff14;
+  color: #ffffff;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.resume-popup-entry {
+  padding: 22px 0;
+  border-top: 1px solid #ffffff1f;
+}
+.resume-popup-col > .resume-popup-entry:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+.resume-popup-entry.no-border {
+  border-top: none;
+}
+.resume-popup-entry-title {
+  margin: 0 0 6px;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.resume-popup-entry-title span {
+  margin-left: 8px;
+  font-weight: 400;
+  color: #8a8a99;
+}
+
+.resume-popup-entry-dates {
+  margin: 0 0 10px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+.resume-popup-entry-body {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+
+.resume-popup-entry-bullets {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+.resume-popup-entry-bullets li {
+  margin-bottom: 4px;
+}
+
+.resume-popup-section-title {
+  margin: 0 0 16px;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.resume-popup-section-title span {
+  margin-left: 8px;
+  font-weight: 400;
+  color: #8a8a99;
+}
+
+/* ---------- Skills accordion ---------- */
+.resume-popup-accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-popup-accordion-item {
+  /* Softer than the site's usual #ffffff1f divider — several stacked items
+     read as noisy at full strength. */
+  border-bottom: 1px solid #ffffff14;
+}
+.resume-popup-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.resume-popup-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 2px;
+  background: none;
+  border: 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a99;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.resume-popup-accordion-trigger:hover {
+  color: #ffffff;
+}
+.resume-popup-accordion-trigger[aria-expanded="true"] {
+  color: #ffffff;
+}
+.resume-popup-accordion-trigger:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.resume-popup-accordion-chevron {
+  flex: none;
+  color: currentColor;
+  transition: transform 0.25s ease;
+}
+.resume-popup-accordion-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+/* Grid-rows collapse trick: animates smoothly to/from the content's natural
+   height without needing JS to measure it. */
+.resume-popup-accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+.resume-popup-accordion-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.resume-popup-accordion-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.resume-popup-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 2px 2px 14px;
+}
+.resume-popup-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #ffffff0f;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d8d8e0;
+  font-family: "Geist Mono", monospace;
+  font-weight: 500;
+}
+
+.resume-popup-language {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+.resume-popup-language:last-child {
+  margin-bottom: 0;
+}
+.resume-popup-language strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ---------- Mobile: stack columns ---------- */
+@media (max-width: 900px) {
+  .resume-popup-frame {
+    max-height: 90vh;
+  }
+  .resume-popup {
+    grid-template-columns: 1fr;
+    /* Two independently-scrolling stacked panes fight over a shared height
+       and don't reliably cap each other on mobile — instead the grid itself
+       scrolls as one region, letting each column size to its natural content
+       height. The close button is unaffected: it's an absolute child of
+       .resume-popup-frame (which never scrolls), not of this grid. */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .resume-popup-col {
+    max-height: none;
+    overflow-y: visible;
+  }
+  .resume-popup-col-left {
+    border-right: none;
+    border-bottom: 1px solid #ffffff1f;
+  }
+  .resume-popup-name,
+  .resume-popup-heading {
+    font-size: 22px;
+  }
+}

@@ -12,7 +12,7 @@ export default function ProjectPage() {
   if (!project) return <div>Project not found</div>;
 
   return (
-    <div className="project-page">
+    <div className="project-page site-width-container">
       <div className="project-layout">
         {/* Left: sticky project info */}
         <aside className="project-sidebar">

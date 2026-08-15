@@ -22,7 +22,14 @@ body{
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /* No overflow rule here on purpose. CSS force-changes a "visible" axis to
+       "auto" the moment the other axis isn't visible (there's no way to keep
+       overflow-y truly visible while clipping overflow-x on the same box),
+       and anything but "visible" on both axes turns this box — which never
+       actually scrolls itself — into the sticky reference container instead
+       of the real viewport, breaking position: sticky sitewide. html/body
+       above already clip horizontal overflow at the root, so this isn't
+       needed here too. */
 }
 
 h1,h2,h3{
