@@ -1,15 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
 import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
+import heroSectionBg from "../../../resources/gradient-background-effect-initial.png";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
+// `image` / `video` = background inside the carousel box.
+// `sectionImage` = full-bleed background painted on .hero-carousel-section, i.e.
+// behind and around the width-constrained carousel. Import the file at the top
+// and point the field at it, e.g. `sectionImage: myBackdrop`.
 const SLIDES = [
   {
     tag: "ECOMERCE SITE",
     nav: "Welcome",
     beams: true,
     horizon: true,
+    sectionImage: heroSectionBg,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -21,6 +27,7 @@ const SLIDES = [
     tag: "SELECTED WORK",
     nav: "Design Projects",
     video: welcomeVideo,
+    sectionImage: null,
     title: ["CRAFTED", "INTERFACES,", "SHIPPED FAST."],
     stats: [
       { value: "30+", label: "Products designed end to end." },
@@ -31,6 +38,7 @@ const SLIDES = [
   {
     tag: "PERSONAL BLOG",
     nav: "Personal Blogs",
+    sectionImage: null,
     title: ["NOTES ON", "DESIGN, CODE", "& THE ROAD."],
     stats: [
       { value: "60+", label: "Essays and case studies." },
@@ -41,6 +49,7 @@ const SLIDES = [
   {
     tag: "ENGINEERING",
     nav: "Development",
+    sectionImage: null,
     title: ["I BUILD", "PRODUCTION", "GRADE SYSTEMS."],
     stats: [
       { value: "React", label: "Front of the stack." },
@@ -120,10 +129,20 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <section
+    <section className="hero-carousel-section" aria-roledescription="carousel">
+    {/* Full-bleed section backdrop for the active slide. Must stay BEFORE the
+        container in the DOM: both are positioned with z-index auto, so paint
+        order follows source order and the carousel lands on top without any
+        z-index (which would trap .hero-carousel under the fixed nav). */}
+    {SLIDES[active].sectionImage && (
+      <div className="hero-carousel-section-media" aria-hidden="true">
+        <img key={active} src={SLIDES[active].sectionImage} alt="" />
+      </div>
+    )}
+    <div className="hero-carousel-container site-width-container">
+    <div
       ref={carouselRef}
-      className="hero-carousel site-width-container"
-      aria-roledescription="carousel"
+      className="hero-carousel"
       onPointerMove={handleTiltMove}
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
@@ -242,6 +261,8 @@ const HeroCarousel = () => {
           );
         })}
       </nav>
+    </div>
+    </div>
     </section>
   );
 };

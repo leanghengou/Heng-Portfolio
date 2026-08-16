@@ -1,3 +1,12 @@
+/* .pill-nav is position:fixed, so the page starts at y=0 underneath it. This
+   clears the bar and leaves ~24px of air below it; the sticky offset below
+   matches so the sidebar doesn't slide under it either. Keyed off the nav's
+   own height var so the two can't drift apart. */
+.project-page {
+  --site-nav-clearance: calc(var(--pill-nav-height, 76px) + 24px);
+  padding-top: var(--site-nav-clearance);
+}
+
 /* Two-column project layout (sticky info + scrollable content) */
 .project-layout {
   display: flex;
@@ -8,7 +17,7 @@
 .project-sidebar {
   flex: 0 0 25%;
   position: sticky;
-  top: 40px;
+  top: var(--site-nav-clearance);
   align-self: flex-start;
 }
 

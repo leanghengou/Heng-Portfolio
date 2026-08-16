@@ -1,0 +1,429 @@
+/* Fixed top bar: avatar flush in the corner, pill row on the right.
+
+   The height is published as a custom property so page-level top padding can
+   key off it instead of hardcoding a number (see --site-nav-clearance in
+   pagesCustomcss.css). The avatar is square and fills the bar, so the two
+   are the same value by definition. */
+:root {
+  --pill-nav-height: 76px;
+}
+
+.pill-nav {
+  z-index: 100;
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--pill-nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background-color: #00000000;
+  transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Scrolled state — toggled from pill-nav.js once window.scrollY > 20. The mask
+   fades the tint out toward the bottom so the bar has no hard edge. */
+.pill-nav.is--scrolled {
+  /* background-color: #00000063;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgb(7, 7, 9),
+    #070709 15.77%,
+    #0707099c 45%,
+    rgba(7, 7, 9, 0)
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgb(7, 7, 9),
+    #070709 15.77%,
+    #0707099c 45%,
+    rgba(7, 7, 9, 0)
+  ); */
+}
+
+/* Flush into the top-left corner — no bar padding on this side. */
+.pill-nav__avatar {
+  flex: none;
+  display: block;
+  width: var(--pill-nav-height);
+  height: var(--pill-nav-height);
+  align-self: flex-start;
+  overflow: hidden;
+}
+
+.pill-nav__avatar-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* Pixel art — keep the edges crisp instead of letting the browser smooth it. */
+  image-rendering: pixelated;
+  transition: transform 0.35s ease;
+}
+
+.pill-nav__avatar:hover .pill-nav__avatar-img {
+  transform: scale(1.06);
+}
+
+.pill-nav__items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 15px;
+}
+
+/* Square corners, not a radius: site-main.css enforces a flat design system
+   sitewide (`border-radius: 0 !important`), so a radius here would be inert.
+   box-sizing is set explicitly because the site has no global reset — without
+   it the anchors render 2px taller than the <button> at the same height. */
+.pill-nav__pill {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  flex: none;
+  height: 34px;
+  padding: 0 1.15em;
+  color: #fff;
+font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  backdrop-filter: blur(8px);
+  background-color: #e6e6e636;
+  border: none;
+}
+
+.pill-nav__pill:hover {
+  background-color: #232b34;
+  border-color: #ffffff26;
+}
+
+.pill-nav__pill.is--current {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0b1015;
+}
+
+.pill-nav__label {
+  display: block;
+  line-height: 1;
+}
+
+/* Rotates into an "×" while the resume panel is open. */
+.pill-nav__plus {
+  display: block;
+  margin-right: -0.2em;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0.45;
+  transition: transform 0.3s ease, opacity 0.25s ease;
+}
+
+.pill-nav__pill:hover .pill-nav__plus {
+  opacity: 0.8;
+}
+
+.pill-nav__pill.is--open .pill-nav__plus {
+  transform: rotate(45deg);
+  opacity: 1;
+}
+
+/* ---- Projects mega menu ---------------------------------------------------
+   Full-screen dim behind the panel, matching .resume-popup-backdrop. z-index
+   99 puts it under the bar (100) so the nav stays readable on top of it, and
+   over all page content. */
+.pill-nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(2, 1, 8, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.pill-nav__backdrop.is--open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+/* Fixed, not absolute: it's a sibling of the bar now, so it positions against
+   the viewport. Width/centring come from .site-width-container — `left`/`right`
+   of 0 plus that class's `margin: 0 auto` centre it at the container width, so
+   it still lines up with the avatar's left edge. */
+.pill-nav__mega {
+  position: fixed;
+  z-index: 101;
+  top: var(--pill-nav-height);
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  background-color: #0e0e11;
+  border: 1px solid #ffffff0f;
+  border-top: none;
+  cursor: default;
+  /* Tall categories scroll inside the panel rather than pushing it off-screen.
+     data-lenis-prevent on the element keeps Lenis off this scroller. */
+  max-height: calc(100vh - var(--pill-nav-height) - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Kept in the tree (not display:none) so it can transition, but pulled out of
+     hit-testing and the a11y tree while closed. */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.28s ease, transform 0.28s ease,
+    visibility 0s linear 0.28s;
+}
+
+.pill-nav__mega.is--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.28s ease, transform 0.28s ease,
+    visibility 0s linear 0s;
+}
+
+.pill-nav__mega-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 270px;
+}
+
+.pill-nav__mega-foot {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px 22px;
+}
+
+/* The Projects pill navigates here too, but that's a small target to aim for
+   once the panel is open — this is the in-panel route to the full listing. */
+.pill-nav__mega-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff8c;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.pill-nav__mega-all:hover {
+  color: #3ce15f;
+}
+
+/* Dividers live on the columns so the first one stays flush with the panel edge. */
+.pill-nav__mega-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 24px 32px;
+  border-left: 1px solid #ffffff14;
+}
+
+.pill-nav__mega-col:first-child {
+  border-left: none;
+}
+
+.pill-nav__mega-eyebrow {
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff59;
+}
+
+.pill-nav__mega-title {
+  margin-top: 10px;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.pill-nav__mega-title:hover {
+  color: #3ce15f;
+}
+
+.pill-nav__mega-rule {
+  width: 100%;
+  height: 1px;
+  margin-top: 18px;
+  background-color: #ffffff1f;
+}
+
+.pill-nav__mega-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.pill-nav__mega-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.pill-nav__mega-item:hover .pill-nav__mega-item-title {
+  color: #3ce15f;
+}
+
+.pill-nav__mega-item-title {
+ font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  transition: color 0.25s ease;
+}
+
+/* Left in sentence case on purpose — these are real sentences from the project
+   data, and uppercasing them at 10px is unreadable. Clamped so a long
+   description can't stretch the panel. */
+.pill-nav__mega-item-desc {
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #ffffff6b;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Availability dot on Contact. */
+.pill-nav__status {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3ce15f;
+  box-shadow: 0 0 0 0 #3ce15f80;
+  animation: pill-nav-pulse 2.4s ease-out infinite;
+}
+
+@keyframes pill-nav-pulse {
+  0% {
+    box-shadow: 0 0 0 0 #3ce15f80;
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 6px #3ce15f00;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-nav__status {
+    animation: none;
+  }
+
+  .pill-nav__avatar-img,
+  .pill-nav__plus {
+    transition: none;
+  }
+
+  .pill-nav__mega {
+    transform: none;
+    transition: opacity 0.01s linear, visibility 0s linear 0.01s;
+  }
+
+  .pill-nav__mega.is--open {
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --pill-nav-height: 56px;
+  }
+
+  /* The four pills are tuned to just fit a 375px viewport alongside the avatar,
+     so Contact (the CTA, and the only one carrying the status dot) stays on
+     screen. Below that the row scrolls rather than hiding links in a menu. */
+  .pill-nav__items {
+    padding-right: 0.75em;
+    padding-left: 0.5em;
+    gap: 5px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .pill-nav__items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pill-nav__pill {
+    height: 30px;
+    padding: 0 0.6em;
+    gap: 0.4em;
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+  }
+
+  .pill-nav__status {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Four columns can't fit, so the menu becomes a single scrolling stack
+     filling the screen below the bar. .site-width-container adds 16px of side
+     padding at this width — the columns already carry their own, so drop it. */
+  .pill-nav__mega {
+    padding-left: 0;
+    padding-right: 0;
+    bottom: 0;
+    max-height: none;
+  }
+
+  .pill-nav__mega-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .pill-nav__mega-col {
+    border-left: none;
+    border-top: 1px solid #ffffff14;
+    padding: 20px 16px 24px;
+  }
+
+  .pill-nav__mega-col:first-child {
+    border-top: none;
+  }
+
+  .pill-nav__mega-title {
+    font-size: 17px;
+  }
+
+  .pill-nav__mega-foot {
+    padding: 0 16px 20px;
+  }
+}

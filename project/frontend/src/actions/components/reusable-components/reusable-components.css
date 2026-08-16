@@ -991,40 +991,59 @@ padding:1.5rem;
 /* ---------- Feature checklist (feature-image-split) ---------- */
 .feature-split-list {
   list-style: none;
-  margin: 28px 0 0;
+  margin: 26px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 7px;
 }
 
+/* Icon tracks the first line of the label rather than the middle of the block,
+   so two-line items don't push their check out of line with the text. */
 .feature-split-item {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: flex-start;
+  gap: 12px;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .feature-split-check {
   flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
 }
 
-/* Fixed-ish columns grouped together (not stretched across the wide content).
-   Overrides the base space-between + 35% percentage sizing. */
+/* Proportional columns, not fixed ones: the old 440px + 640px basis assumed a
+   far wider container than the ~740px this actually renders in, so both columns
+   were shrinking off their bases and the copy ended up too narrow to read. */
 .feature-split {
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  gap: 56px;
+  gap: 44px;
 }
 
 .feature-split .text-image-split-text {
-  flex: 0 1 440px;
+  flex: 1 1 46%;
+  min-width: 0;
 }
 
 .feature-split .text-image-split-media {
-  flex: 0 1 640px;
+  flex: 1 1 54%;
+  min-width: 0;
   display: block;
+}
+
+.feature-split .text-image-split-text h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.feature-split .text-image-split-text p {
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 /* image fills its (capped) column instead of blowing up to a % of the page */
@@ -1136,6 +1155,227 @@ padding:1.5rem;
   .rich-text-images-media {
     gap: 16px;
     margin-top: 28px;
+  }
+}
+
+
+/* Icon feature grid */
+
+/* No top margin: when the block carries its own title, the intro h2's margin
+   collapses through and gives the same 43px other section headings get. The
+   100px of project-section-margin detached these blocks from the copy above
+   that introduces them. */
+.icon-feature-section,
+.stat-cards-section {
+  margin: 0 0 100px;
+}
+
+/* Title-less block — it sits under a heading in the section before it, so the
+   grid itself supplies the air the missing intro would have. */
+.icon-feature-frame:first-child,
+.stat-cards-grid:first-child {
+  margin-top: 36px;
+}
+
+.icon-feature-intro {
+  margin-bottom: 40px;
+}
+
+/* Every rule is painted by a real border, never by a clipped overhang: cells
+   supply the interior lines plus the outer right and bottom, and the frame
+   supplies the two edges no cell borders — top and left. Nothing lands on a
+   clip boundary, so the lines survive fractional DPRs and browser zoom, where
+   an overflow-clipped 1px hairline rounds away on some displays and not
+   others. */
+.icon-feature-frame {
+  --icon-feature-line: #ffffff26;
+  border-top: 1px solid var(--icon-feature-line);
+  border-left: 1px solid var(--icon-feature-line);
+}
+
+.icon-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--icon-feature-columns, 4), 1fr);
+}
+
+.icon-feature-item {
+  box-sizing: border-box;
+  padding: 34px 26px 32px;
+  border-right: 1px solid var(--icon-feature-line);
+  border-bottom: 1px solid var(--icon-feature-line);
+}
+
+.icon-feature-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 26px;
+  color: #ffffffd9;
+}
+
+.icon-feature-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Sans, not the mono a page-level h3 rule would otherwise apply — the grid
+   reads as a feature list, not a card heading. */
+.icon-feature-title {
+  margin: 0 0 8px;
+  font-family: "Geist", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.icon-feature-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #ffffff99;
+}
+
+@media (max-width: 900px) {
+  .icon-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .icon-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-feature-item {
+    padding: 26px 20px 24px;
+  }
+
+  .icon-feature-icon {
+    margin-bottom: 18px;
+  }
+}
+
+
+/* Stat cards */
+.stat-cards-intro {
+  margin-bottom: 40px;
+}
+
+/* minmax(0, 1fr), not 1fr: a bare 1fr floors at the content width, so the card
+   holding the longest figure would widen its whole column. */
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--stat-cards-columns, 3), minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* clip-path cuts the bottom-left corner. It also cuts the border there, so the
+   diagonal's own hairline is drawn by ::after below — a background sandwich
+   would need an opaque fill, and these cards are deliberately transparent. */
+.stat-card {
+--stat-card-notch: 34px;
+  --stat-card-line: #ffffff3d;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  padding: 26px 26px 22px;
+  background: #262626;
+  clip-path: polygon( 0 0, 100% 0, 100% 100%, var(--stat-card-notch) 100%, 0 calc(100% - var(--stat-card-notch)) );
+}
+
+/* Pivots on its own bottom-left corner so the stroke thickness falls inside the
+   clip; anchored 1.5px above the cut so none of it is trimmed away. */
+.stat-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% - var(--stat-card-notch) - 1.5px);
+  width: calc(var(--stat-card-notch) * 1.4143);
+  height: 1.5px;
+  transform-origin: 0 100%;
+  transform: rotate(45deg);
+}
+
+.stat-card-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--stat-card-line);
+  border-radius: 12px;
+  color: #ffffffd9;
+}
+
+.stat-card-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* wraps rather than spilling past the card if a figure runs long */
+.stat-card-value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+  margin: 26px 0 0;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.stat-card-value span {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.stat-card-label {
+  margin: 12px 0 0;
+  font-family: "Geist", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #fff;
+}
+
+/* Bottom-right by design: the left padding keeps the copy off the cut corner. */
+.stat-card-note {
+  margin: auto 0 0;
+  padding: 22px 0 0 var(--stat-card-notch);
+  text-align: right;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #ffffff8a;
+}
+
+@media (max-width: 900px) {
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .stat-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    min-height: 0;
+    padding: 22px 22px 20px;
+  }
+
+  .stat-card-value {
+    margin-top: 22px;
+    font-size: 38px;
   }
 }
 

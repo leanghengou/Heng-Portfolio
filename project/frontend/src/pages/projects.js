@@ -52,7 +52,9 @@ const FilterIcon = () => (
 
 // Static for now — `slug` points at an existing /project/:slug case study,
 // leave it out and the row renders without a link.
-const PROJECTS = [
+// Exported because the nav's mega menu groups these same entries by tag; one
+// source of truth so the menu can't drift from the listing.
+export const PROJECTS = [
   {
     slug: "decorolala-loyalty-cart-recovery",
     title: "Decorolala Loyalty & Cart Recovery",
@@ -122,7 +124,8 @@ const PROJECTS = [
 
 // `value` is matched against project tags; `label` is the button text;
 // `slug` is the URL segment, e.g. /projects/development.
-const FILTERS = [
+// Exported for the nav mega menu — its columns are these same categories.
+export const FILTERS = [
   { label: "Design", value: "Design", slug: "design" },
   { label: "Development", value: "Development", slug: "development" },
   { label: "Search Engine Optimization", short: "SEO", value: "SEO", slug: "seo" },

@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import "./underlay-nav.css";
 import ResumePopup from "../resume-popup/resume-popup";
+import hengLogo from "../../../resources/heng-logo.png";
 
 // Menu items mapped to real routes. `to: null` = placeholder (no route yet).
 // `popup: "resume"` opens the resume popup instead of navigating.
@@ -27,6 +28,16 @@ const UnderlayNav = () => {
   const closeRef = useRef(null); // set inside the effect; closes the menu if open
   const location = useLocation();
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Tint + blur the bar once the page is scrolled off the top. Lenis drives the
+  // native scroll position, so a plain window listener covers both.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!CustomEase.get("energy")) {
@@ -229,25 +240,16 @@ const UnderlayNav = () => {
   return (
     <div className="underlay-nav" ref={rootRef}>
       <header className="underlay-nav__header">
-        <div className="underlay-nav__bar">
-          <div className="underlay-nav__container">
+        <div
+          className={`underlay-nav__bar${scrolled ? " is--scrolled" : ""}`}
+        >
+          <div className="underlay-nav__container site-width-container">
             <a href="/" className="underlay-nav__logo">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="100%"
-                viewBox="0 0 110 25"
-                fill="none"
-                className="underlay-nav__logo-svg"
-              >
-                <path
-                  d="M38.6539 24.1686C42.7853 24.1686 46.43 22.0917 48.6052 18.9263C49.8548 22.1497 53.0871 24.1686 57.3667 24.1686C60.4499 24.1686 63.0505 23.1833 64.7214 21.5632L64.4805 23.6683H69.7011L70.9507 12.7679L73.8518 23.6683H79.0772L81.9784 12.7679L83.2271 23.6683H88.4477L87.8886 18.7885C90.0518 22.0313 93.7424 24.1686 97.9334 24.1686C104.598 24.1686 110 18.766 110 12.1016C110 5.43732 104.596 0.0346429 97.9318 0.0346429C92.7612 0.0346429 88.3518 3.28785 86.6342 7.85749L85.7907 0.499502H80.0215L76.4629 13.8708L72.9044 0.499502H67.1351L66.3246 7.56906C66.2264 5.51224 65.382 3.64878 63.9254 2.29932C62.3021 0.795175 60.0342 0 57.3659 0C54.8659 0 52.7116 0.712193 51.1358 2.06004C49.974 3.05421 49.2135 4.33761 48.9194 5.76119C46.7933 2.32429 42.9923 0.0346429 38.6539 0.0346429C31.9896 0.0346429 26.5869 5.43732 26.5869 12.1016C26.5869 18.766 31.9896 24.1686 38.6539 24.1686ZM97.9318 5.46471C101.597 5.46471 104.569 8.43594 104.569 12.1016C104.569 15.7673 101.597 18.7386 97.9318 18.7386C94.2661 18.7386 91.2949 15.7673 91.2949 12.1016C91.2949 8.43594 94.2661 5.46471 97.9318 5.46471ZM57.3667 5.05786C59.6321 5.05786 61.0227 6.10681 61.0855 7.86393L61.1049 8.39808H66.2304L65.7019 13.0128C65.4392 12.5899 65.1275 12.1991 64.7641 11.8438C63.5685 10.6773 61.8154 9.88289 59.5524 9.48328L56.5014 8.93706C54.48 8.5729 54.0659 7.94127 54.0659 7.10501C54.0659 6.89554 54.1586 5.05705 57.3667 5.05705V5.05786ZM55.1761 14.0094L58.7709 14.6837C61.092 15.1293 61.4046 16.0711 61.4046 16.9339C61.4046 18.2963 59.8569 19.1422 57.365 19.1422C54.4059 19.1422 53.2877 17.4729 53.2289 16.0437L53.2071 15.5128H50.2278C50.5461 14.4308 50.7201 13.2868 50.7201 12.1016C50.7201 12.0452 50.7168 11.9889 50.716 11.9325C51.7876 12.95 53.2836 13.6598 55.1753 14.0094H55.1761ZM38.6539 5.46471C42.3196 5.46471 45.2908 8.43594 45.2908 12.1016C45.2908 15.7673 42.3196 18.7386 38.6539 18.7386C34.9882 18.7386 32.017 15.7673 32.017 12.1016C32.017 8.43594 34.9882 5.46471 38.6539 5.46471Z"
-                  fill="#F4F4F4"
-                />
-                <path
-                  d="M16.3506 9.9554L21.6985 4.6075L19.5619 2.47092L14.214 7.81882C13.986 8.04762 13.5953 7.88569 13.5953 7.56262V0H10.5741V9.12397C10.5741 9.92478 9.92476 10.5741 9.12395 10.5741H0V13.5953H7.56261C7.88567 13.5953 8.04761 13.9861 7.8188 14.2141L2.47172 19.5619L4.6083 21.6985L9.95618 16.3506C10.1842 16.1226 10.5749 16.2838 10.5749 16.6068V24.1694H13.5961V15.0455C13.5961 14.2447 14.2454 13.5953 15.0463 13.5953H24.1702V10.5741H16.6076C16.2845 10.5741 16.1226 10.1834 16.3514 9.9554H16.3506Z"
-                  fill="#F85931"
-                />
-              </svg>
+              <img
+                src={hengLogo}
+                alt="Heng"
+                className="underlay-nav__logo-img"
+              />
             </a>
             <button
               data-underlay-nav-toggle

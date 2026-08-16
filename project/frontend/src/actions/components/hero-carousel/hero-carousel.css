@@ -1,3 +1,96 @@
+/* Full-bleed parent around the width-constrained carousel, so full-width
+   backgrounds/bleeds can hang off it.
+   Deliberately carries no z-index, transform, mask, filter or isolation: any
+   of those would make it a stacking context and re-trap .hero-carousel's
+   z-index below the fixed nav.
+   Flex column mirrors .app-main (its previous parent) so the carousel's auto
+   side margins and 75px top offset resolve exactly as they did before. */
+.hero-carousel-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* Per-slide full-bleed backdrop (SLIDES[i].sectionImage). Deliberately has no
+   z-index: it's a positioned sibling that sits earlier in the DOM than
+   .hero-carousel-container, so paint order alone keeps the carousel above it
+   and .hero-carousel's z-index stays free to rise over the fixed nav. */
+.hero-carousel-section-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #070709 80%, rgba(7, 7, 9, 0));
+  mask-image: linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #070709 80%, rgba(7, 7, 9, 0));
+}
+
+.hero-carousel-section-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: heroCarouselSectionFade 0.7s ease both;
+}
+
+@keyframes heroCarouselSectionFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-section-media img {
+    animation: none;
+  }
+}
+
+/* Width-constrained wrapper: pairs with .site-width-container, which supplies
+   the 1280px / 90% width and the centring. Don't set width here — it'd collide
+   with that class at equal specificity and win or lose on file order.
+   Same stacking rule as the section above: no z-index/transform/mask/filter,
+   or .hero-carousel's z-index gets trapped and slips back under the fixed nav.
+   `position: relative` is safe (no z-index = no stacking context) and gives
+   absolutely-positioned children something to anchor to. */
+.hero-carousel-container {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+/* The side rules and bottom fade live on a decorative layer rather than on the
+   container itself. A mask on the container would (a) clip the carousel's tilt,
+   since an ancestor's mask clips a descendant's transformed painting, and
+   (b) make the container a stacking context, trapping .hero-carousel's z-index
+   and dropping it back under the fixed nav. As a sibling layer it can't do
+   either — its mask only ever affects itself. */
+.hero-carousel-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-left: 1px solid #363636;
+  border-right: 1px solid #363636;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgb(7, 7, 9),
+    #070709 15.77%,
+    #070709 80%,
+    rgba(7, 7, 9, 0)
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgb(7, 7, 9),
+    #070709 15.77%,
+    #070709 80%,
+    rgba(7, 7, 9, 0)
+  );
+}
+
 .hero-carousel {
   --hero-carousel-tilt-x: 0deg;
   --hero-carousel-tilt-y: 0deg;
@@ -9,13 +102,26 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  margin: 5% auto;
+  margin:auto;
   margin-bottom: 0px;
   transform: perspective(1100px) rotateX(var(--hero-carousel-tilt-x))
     rotateY(var(--hero-carousel-tilt-y)) scale(var(--hero-carousel-tilt-scale));
   transform-style: preserve-3d;
   transition: transform 0.18s ease-out;
   will-change: transform;
+    margin-top: 75px;
+
+  padding-bottom: 2rem;
+  -webkit-mask-image:linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #070709 80%, rgba(7, 7, 9, 0));
+  mask-image: linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #070709 80%, rgba(7, 7, 9, 0));
+}
+
+
+.hero-carousel:hover{
+   /* -webkit-mask-image:none;
+  mask-image: none; */
+      z-index: 99999999;
+
 }
 
 /* ---------- Sliding track ---------- */
@@ -386,7 +492,7 @@ background: linear-gradient(-90deg,#ffffff42 0%,#0000 79.5%,#d9d9d900 100%);
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   width: 100%;
-  padding-bottom: 34px;
+  padding-bottom: 50px;
 }
 
 .hero-carousel-navitem {

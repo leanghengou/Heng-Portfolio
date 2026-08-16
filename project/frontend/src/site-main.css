@@ -18,6 +18,24 @@ body{
     min-height: 100vh;
 }
 
+/* The page-content wrapper. It used to be styled from underlay-nav.css (the
+   nav slid it left to reveal the menu); moved here so the layout survives with
+   no nav mounted.
+   No `z-index` on purpose: any value makes this a stacking context, which traps
+   every descendant's z-index inside it — that's what stopped `.hero-carousel`
+   from painting over the fixed header.
+   `will-change`/`transform` are likewise NOT set here at rest — a transformed
+   ancestor becomes a new containing block, which breaks `position: sticky` for
+   every descendant on every page. */
+.app-underlay-main {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    background-color: #060112;
+}
+
 .app-main {
     flex: 1 0 auto;
     display: flex;
@@ -165,6 +183,7 @@ h3{
 .circle-card-img,
 .circle-card-img img,
 .persona-card-avatar,
+.pill-nav__status,
 .cursor {
     border-radius: 50% !important;
 }

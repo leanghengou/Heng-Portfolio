@@ -1,7 +1,8 @@
 import './site-main.css'
 import {BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom"
 import Navigation from "./actions/components/navigation/navigation"
-import UnderlayNav from "./actions/components/underlay-nav/underlay-nav"
+// import UnderlayNav from "./actions/components/underlay-nav/underlay-nav"
+import PillNav from "./actions/components/pill-nav/pill-nav"
 import Cursor from "./actions/components/cursor/cursor"
 import CtaScramble from "./actions/components/cta-scramble/cta-scramble"
 import PageTransition from "./actions/components/page-transition/page-transition"
@@ -13,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import ProjectPage from './pages/projectPageTemplate';
 import Projects from './pages/projects';
+import PostersGallery from './pages/posters-gallery';
 
 // Everything that needs the router lives here (useLocation must be inside <Router>).
 function AppInner() {
@@ -53,9 +55,9 @@ function AppInner() {
 
   return (
     <div className="app-shell">
-      {/* <Navigation /> hidden for now — using the UnderlayNav instead */}
-      <UnderlayNav />
-      <Cursor />{/* outside [data-main] so the nav's transform doesn't break position:fixed */}
+      {/* <Navigation /> and <UnderlayNav /> are parked — still on disk, not mounted. */}
+      <PillNav />
+      <Cursor />{/* outside [data-main] so a nav transform can't break position:fixed */}
       <CtaScramble />{/* text-scramble hover effect on all CTA buttons */}
       <PageTransition ref={overlayRef} />
 
@@ -69,6 +71,11 @@ function AppInner() {
             <Route path="/about" element={<About />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/project/:slug" element={<ProjectPage />} />
+            {/* Sits above /project/:slug — 3 segments, so no overlap with it. */}
+            <Route
+              path="/project/30-days-of-daily-posters/gallery"
+              element={<PostersGallery />}
+            />
           </Routes>
         </div>
 

@@ -1,0 +1,71 @@
+.infinite-grid {
+  touch-action: none;
+  width: 100%;
+  height: 100svh;
+  position: relative;
+  overflow: clip;
+  cursor: grab;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.infinite-grid[data-infinite-grid-status="loading"] {
+  opacity: 0;
+}
+
+.infinite-grid[data-infinite-grid-status="dragging"] {
+  cursor: grabbing;
+}
+
+/* React owns the markup in here and the init effect clones out of it — it is
+   never appended to the live collection, so React's tree stays intact. */
+.infinite-grid__source {
+  display: none;
+}
+
+.infinite-grid__collection {
+  will-change: transform;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.infinite-grid__list {
+  grid-template-columns: repeat(var(--grid-columns), auto);
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.infinite-grid__item {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 13em;
+  padding: 1.75em;
+  font-size: clamp(1.5em, 2vw, 3em);
+  display: flex;
+}
+
+.infinite-grid__card {
+  -webkit-user-select: none;
+  user-select: none;
+  width: 80%;
+  height: 100%;
+  position: relative;
+}
+
+.infinite-grid__card.is--landscape {
+  width: 100%;
+  height: 75%;
+}
+
+.infinite-grid__card-img {
+  pointer-events: none;
+  object-fit: cover;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}

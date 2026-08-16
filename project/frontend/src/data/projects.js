@@ -38,6 +38,7 @@ import startNowMobileGroupFour from "../resources/start-now-mobile-img-group-4.p
 import decorlala1 from "../resources/decorlala-1.png"
 import decorlala2 from "../resources/decorlala-2.png"
 import decorlala3 from "../resources/decorlala-3.png"
+import klaviyoProcessEmail from "../resources/klaviyo-process-email.png"
 import saintEmberImg from "../resources/Mask-group-8.webp"
 import dailyPostersImg from "../resources/30days-challange-img.webp"
 export const projects = [
@@ -765,17 +766,39 @@ export const projects = [
       },
 
       {
-        type: "bordered-text-cards",
-        cards: [
+        type: "icon-feature-grid",
+        title: "The store needed to",
+        columns: 3,
+        items: [
           {
-            title: "The store needed to",
-            body: [
-              "Communicate loyalty program benefits to shoppers.",
-              "Increase visibility of customer rewards before purchase.",
-              "Capture potential customers before they abandoned their carts.",
-              "Create a seamless experience across desktop and mobile devices.",
-              "Support long-term customer retention and repeat purchases.",
-            ],
+            icon: "megaphone",
+            title: "Loyalty visibility",
+            description: "Communicate program benefits to shoppers",
+          },
+          {
+            icon: "sparkle",
+            title: "Rewards in view",
+            description: "Surface customer rewards before purchase",
+          },
+          {
+            icon: "cart",
+            title: "Cart recovery",
+            description: "Capture shoppers before they abandon carts",
+          },
+          {
+            icon: "mail",
+            title: "Klaviyo sync",
+            description: "Send saved carts into email follow-up flows",
+          },
+          {
+            icon: "devices",
+            title: "Every screen",
+            description: "One seamless experience on desktop and mobile",
+          },
+          {
+            icon: "repeat",
+            title: "Repeat purchases",
+            description: "Support retention and long-term customer value",
           },
         ],
       },
@@ -827,24 +850,44 @@ export const projects = [
       },
 
       {
-        type: "rich-text-section",
-        title: "Technical Highlights",
-        description: "",
+        type: "rich-text-images",
+        images: [klaviyoProcessEmail],
       },
 
       {
-        type: "bordered-text-cards",
-        cards: [
+        type: "icon-feature-grid",
+        title: "Technical Highlights",
+        columns: 3,
+        items: [
           {
-            title: "Under the hood",
-            body: [
-              "Built custom Shopify Liquid components.",
-              "Developed dynamic reward calculations using JavaScript.",
-              "Integrated Shopify AJAX Cart functionality.",
-              "Connected customer email submissions to Klaviyo via API.",
-              "Implemented responsive layouts across desktop and mobile devices.",
-              "Created reusable and scalable Shopify components.",
-            ],
+            icon: "code",
+            title: "Liquid components",
+            description: "Custom Shopify sections built from scratch",
+          },
+          {
+            icon: "chart",
+            title: "Dynamic rewards",
+            description: "Reward values calculated live in JavaScript",
+          },
+          {
+            icon: "bolt",
+            title: "AJAX cart",
+            description: "Cart updates without a page reload",
+          },
+          {
+            icon: "link",
+            title: "Klaviyo API",
+            description: "Email submissions posted straight to Klaviyo",
+          },
+          {
+            icon: "layout",
+            title: "Responsive layouts",
+            description: "Built for desktop and mobile from the start",
+          },
+          {
+            icon: "layers",
+            title: "Reusable components",
+            description: "Modular pieces the store can scale",
           },
         ],
       },
@@ -857,13 +900,42 @@ export const projects = [
       },
 
       {
-        type: "research-stats-section",
+        type: "stat-cards",
+        columns: 3,
         stats: [
-          { value: "129", label: "Orders" },
-          { value: "CAD $29.6K", label: "Total sales" },
-          { value: "+68%", label: "Order growth" },
-          { value: "+52%", label: "Sales growth" },
-          { value: "+138%", label: "Store traffic" },
+          {
+            icon: "cart",
+            value: "129",
+            label: "Orders",
+            note: "Placed in the period after launch",
+          },
+          {
+            icon: "money",
+            value: "$29.6K",
+            label: "Total sales (CAD)",
+            note: "Revenue over the same period",
+          },
+          {
+            icon: "trending",
+            value: "+68",
+            suffix: "%",
+            label: "Order growth",
+            note: "Against the previous period",
+          },
+          {
+            icon: "chart",
+            value: "+52",
+            suffix: "%",
+            label: "Sales growth",
+            note: "Against the previous period",
+          },
+          {
+            icon: "users",
+            value: "+138",
+            suffix: "%",
+            label: "Store traffic",
+            note: "Against the previous period",
+          },
         ],
       },
 
@@ -1056,7 +1128,10 @@ export const projects = [
       {
         type: "external-cta",
         ctas: [
-          { label: "Visit gallery" }, // coming soon — no href yet
+          {
+            label: "Visit gallery",
+            to: "/project/30-days-of-daily-posters/gallery",
+          },
           {
             label: "Behance",
             href: "https://www.behance.net/gallery/103660995/30-Days-of-Daily-Posters",

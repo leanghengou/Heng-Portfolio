@@ -3,16 +3,19 @@
 }
 
 /* [data-main] is the page content that slides left to reveal the menu.
-   It must sit ABOVE the fixed menu (z-index:1) and be opaque so the menu
-   only shows once it slides away.
-   `will-change`/`transform` are intentionally NOT set here at rest — a
+   It must sit ABOVE the fixed menu and be opaque so the menu only shows once
+   it slides away — handled by paint order now (the menu sits earlier in the
+   DOM at z-index 0) rather than by giving this a z-index.
+   No `z-index` here on purpose: any value makes this a stacking context, which
+   traps every descendant's z-index inside it — that's what stopped
+   `.hero-carousel` from painting over the fixed header.
+   `will-change`/`transform` are likewise NOT set here at rest — a
    transformed ancestor becomes a new containing block, which breaks
    `position: sticky` for every descendant on every page. underlay-nav.js
    applies both only while the slide animation is running and clears them
    back off once it settles. */
 [data-main] {
   position: relative;
-  z-index: 2;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,12 +40,25 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  border-bottom: 1px solid #363636;
+  background-color: #00000000;
+  transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* scrolled state — set from underlay-nav.js once window.scrollY > 20 */
+.underlay-nav__bar.is--scrolled {
+  background-color: #00000063;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+   border-bottom: none;
+   -webkit-mask-image: linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #0707099c 45%, rgba(7, 7, 9, 0));
+  mask-image: linear-gradient(180deg, rgb(7, 7, 9), #070709 15.77%, #0707099c 45%, rgba(7, 7, 9, 0));
 }
 
 .underlay-nav__container {
   justify-content: space-between;
   align-items: center;
-  padding: 2.5em;
+  padding: 20px 2.5em;
   display: flex;
 }
 
@@ -53,8 +69,11 @@
   display: flex;
 }
 
-.underlay-nav__logo-svg {
+.underlay-nav__logo-img {
   width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .underlay-nav__toggle {
@@ -113,8 +132,10 @@
   padding: 0;
 }
 
+/* z-index 0 (not 1) so [data-main], which is later in the DOM and no longer
+   carries a z-index of its own, still paints over the menu at rest. */
 .underlay-nav__menu {
-  z-index: 1;
+  z-index: 0;
   width: var(--menu-width);
   color: #fff;
   background-color: #1c1c1c;

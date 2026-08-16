@@ -1,8 +1,17 @@
+import { Link } from "react-router-dom";
+
 // Pass either a single { href, cta } pair, or a `ctas` array for multiple
-// buttons — e.g. [{ label: "Visit gallery" }, { label: "Behance", href: "…" }].
-// A cta entry with no href renders as a disabled placeholder (link coming soon).
+// buttons — e.g. [{ label: "Visit gallery", to: "/…" }, { label: "Behance", href: "…" }].
+// `to` routes internally, `href` opens an external site in a new tab, and an
+// entry with neither renders as a disabled placeholder (link coming soon).
 export default function ExternalCtaSection({ title, description, href, cta = "Visit site", ctas }) {
   const items = ctas || (href ? [{ label: cta, href }] : []);
+
+  const arrow = (
+    <div className="arrow-wrapper">
+      <div className="arrow"></div>
+    </div>
+  );
 
   return (
     <section className="rich-text-container external-cta-section">
@@ -12,7 +21,12 @@ export default function ExternalCtaSection({ title, description, href, cta = "Vi
 
         <div className="external-cta-actions">
           {items.map((item, index) =>
-            item.href ? (
+            item.to ? (
+              <Link key={index} className="btn" to={item.to}>
+                {item.label}
+                {arrow}
+              </Link>
+            ) : item.href ? (
               <a
                 key={index}
                 className="btn"
@@ -21,9 +35,7 @@ export default function ExternalCtaSection({ title, description, href, cta = "Vi
                 rel="noopener noreferrer"
               >
                 {item.label}
-                <div className="arrow-wrapper">
-                  <div className="arrow"></div>
-                </div>
+                {arrow}
               </a>
             ) : (
               <span key={index} className="btn is-disabled">

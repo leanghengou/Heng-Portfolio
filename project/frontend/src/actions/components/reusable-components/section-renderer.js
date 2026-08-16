@@ -15,6 +15,8 @@ import JourneyMap from "./journey-map";
 import TextImageSplit from "./text-image-split";
 import FeatureImageSplit from "./feature-image-split";
 import RichTextImages from "./rich-text-images";
+import IconFeatureGrid from "./icon-feature-grid";
+import StatCards from "./stat-cards";
 import StyleGuide from "./style-guide";
 import ArchitectureMap from "./architecture-map";
 import PrototypeEmbed from "./prototype-embed";
@@ -57,6 +59,10 @@ export default function SectionRenderer({ section }) {
       return <FeatureImageSplit {...section} />
     case "rich-text-images":
       return <RichTextImages {...section} />
+    case "icon-feature-grid":
+      return <IconFeatureGrid {...section} />
+    case "stat-cards":
+      return <StatCards {...section} />
     case "style-guide":
       return <StyleGuide />
     case "architecture-map":
