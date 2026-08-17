@@ -1025,6 +1025,16 @@ export const projects = [
       },
 
       {
+        type: "prototype-embed",
+        title: "Prototype",
+        description: "Walk through the interactive Hornet Energy prototype.",
+        // embed.figma.com + embed-host=share is the embeddable form of a
+        // /proto/ share link. The `t=` token from the shared URL is a
+        // session-scoped share token and is intentionally dropped.
+        src: "https://embed.figma.com/proto/6NsWS42MqdBiEphZ9INIgN/Hornet-Energy?page-id=0%3A1&node-id=17-3&viewport=132%2C519%2C0.09&scaling=min-zoom&content-scaling=fixed&embed-host=share",
+      },
+
+      {
         type: "rich-text-section",
         title: "Outcome",
         description:

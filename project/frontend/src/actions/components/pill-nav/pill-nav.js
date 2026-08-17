@@ -2,16 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./pill-nav.css";
 import ResumePopup from "../resume-popup/resume-popup";
+import AboutSlidePanel from "../about-slide-panel/about-slide-panel";
 import { PROJECTS, FILTERS } from "../../../pages/projects";
 import hengAvatar from "../../../resources/heng-favicon.png";
 
-// Right-hand pill row. `to` = route link, `popup` = opens an overlay instead of
-// navigating, `hash` = same-page anchor, `status` = green availability dot,
-// `mega` = hovering opens the projects mega menu (the pill still navigates).
+// Right-hand pill row. `to` = route link, `popup` = click opens that overlay
+// instead of navigating, `hash` = same-page anchor, `status` = green
+// availability dot, `mega` = hovering opens the projects mega menu (the pill
+// still navigates).
 const ITEMS = [
   { label: "Projects", to: "/projects", mega: true },
   { label: "Resume", popup: "resume", plus: true },
-  { label: "About", to: "/about" },
+  { label: "About", popup: "about", plus: true },
   // Matches the footer's existing "/#contact" link. See note in pill-nav.css.
   { label: "Contact", hash: "/#contact", status: true },
 ];
@@ -36,40 +38,41 @@ const canHover = () => window.matchMedia("(hover: hover)").matches;
 
 const PillNav = () => {
   const location = useLocation();
-  const [resumeOpen, setResumeOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+
+  // One slot, not a boolean each: every overlay here locks page scroll, so two
+  // being open at once means whichever closes second restores `overflow` while
+  // the other still needs it. A single slot makes them mutually exclusive by
+  // construction rather than by each handler remembering to close the others.
+  const [overlay, setOverlay] = useState(null); // "mega" | "resume" | "about"
+  const megaOpen = overlay === "mega";
 
   const hoverTimer = useRef(null);
 
-  // Only one overlay at a time — both lock page scroll, and whichever unmounted
-  // second would otherwise restore `overflow` while the other still needs it.
-  const openMega = () => {
+  const openOverlay = (name) => {
     clearTimeout(hoverTimer.current);
-    setResumeOpen(false);
-    setMegaOpen(true);
+    setOverlay(name);
   };
-  const openResume = () => {
+  const closeOverlay = () => {
     clearTimeout(hoverTimer.current);
-    setMegaOpen(false);
-    setResumeOpen(true);
+    setOverlay(null);
   };
-  const closeMega = () => {
-    clearTimeout(hoverTimer.current);
-    setMegaOpen(false);
-  };
+  // Only clears the slot if `name` is still the one in it — a deferred close
+  // must not shut an overlay the user opened in the meantime.
+  const closeIfStill = (name) =>
+    setOverlay((cur) => (cur === name ? null : cur));
 
   // Both sides of the hover are deferred: the pill and the panel are separate
   // top-level elements, so crossing between them fires a real mouseleave.
   const hoverOpen = () => {
     if (!canHover()) return;
     clearTimeout(hoverTimer.current);
-    hoverTimer.current = setTimeout(openMega, OPEN_DELAY);
+    hoverTimer.current = setTimeout(() => setOverlay("mega"), OPEN_DELAY);
   };
   const hoverClose = () => {
     if (!canHover()) return;
     clearTimeout(hoverTimer.current);
-    hoverTimer.current = setTimeout(() => setMegaOpen(false), CLOSE_DELAY);
+    hoverTimer.current = setTimeout(() => closeIfStill("mega"), CLOSE_DELAY);
   };
   const hoverKeep = () => {
     if (!canHover()) return;
@@ -87,17 +90,18 @@ const PillNav = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // A route change while these are open would leave them stranded over the new
-  // page, so close them on navigate.
+  // A route change while one is open would leave it stranded over the new
+  // page, so close on navigate.
   useEffect(() => {
-    setResumeOpen(false);
-    setMegaOpen(false);
+    setOverlay(null);
   }, [location.pathname]);
 
+  // The popup components bring their own Escape handling; this covers the mega
+  // menu, which is rendered here.
   useEffect(() => {
     if (!megaOpen) return undefined;
     const onKeydown = (e) => {
-      if (e.key === "Escape") closeMega();
+      if (e.key === "Escape") closeIfStill("mega");
     };
     document.addEventListener("keydown", onKeydown);
     return () => document.removeEventListener("keydown", onKeydown);
@@ -130,7 +134,7 @@ const PillNav = () => {
           the nav stays legible above it, like the resume popup's backdrop. */}
       <div
         className={`pill-nav__backdrop${megaOpen ? " is--open" : ""}`}
-        onClick={closeMega}
+        onClick={closeOverlay}
         onMouseEnter={hoverClose}
         aria-hidden="true"
       />
@@ -174,14 +178,14 @@ const PillNav = () => {
                   onMouseEnter={hoverOpen}
                   onMouseLeave={hoverClose}
                   // Keyboard users get no hover, so focus opens it directly.
-                  onFocus={openMega}
+                  onFocus={() => openOverlay("mega")}
                   onClick={(e) => {
                     // Where hover exists, clicking through to /projects is the
                     // point. On touch there's no hover to open the panel with,
                     // so the tap toggles it instead of navigating.
                     if (!canHover()) {
                       e.preventDefault();
-                      megaOpen ? closeMega() : openMega();
+                      megaOpen ? closeOverlay() : openOverlay("mega");
                     }
                   }}
                 >
@@ -191,7 +195,7 @@ const PillNav = () => {
             }
 
             if (item.popup) {
-              const isOpen = resumeOpen && item.popup === "resume";
+              const isOpen = overlay === item.popup;
               return (
                 <button
                   key={item.label}
@@ -199,7 +203,7 @@ const PillNav = () => {
                   className={`pill-nav__pill${isOpen ? " is--open" : ""}`}
                   aria-expanded={isOpen}
                   onClick={() =>
-                    isOpen ? setResumeOpen(false) : openResume()
+                    isOpen ? closeOverlay() : openOverlay(item.popup)
                   }
                 >
                   {inner}
@@ -307,7 +311,8 @@ const PillNav = () => {
         </div>
       </div>
 
-      <ResumePopup open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <ResumePopup open={overlay === "resume"} onClose={closeOverlay} />
+      <AboutSlidePanel open={overlay === "about"} onClose={closeOverlay} />
     </>
   );
 };

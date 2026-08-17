@@ -371,7 +371,9 @@ a.pill-nav__mega-item:hover .pill-nav__mega-item-title {
   .pill-nav__items {
     padding-right: 0.75em;
     padding-left: 0.5em;
-    gap: 5px;
+    /* Tight: two pills now carry a "+", and at 375px the row is within a few
+       px of overflowing. */
+    gap: 4px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;

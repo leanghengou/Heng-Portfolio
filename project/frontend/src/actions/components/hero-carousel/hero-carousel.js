@@ -1,20 +1,27 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
 import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
+// Used in two slots now (slide 1's section backdrop and slide 4's box), so the
+// name describes the asset rather than a placement.
+import heroLoopVideo from "../../../resources/hf_20260817_023358_60d3a79c-a679-4851-949e-973ccb9a00be.mp4";
 import heroSectionBg from "../../../resources/gradient-background-effect-initial.png";
+import pixelBgGradient from "../../../resources/pixel-bg-gradient.png";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
 // `image` / `video` = background inside the carousel box.
-// `sectionImage` = full-bleed background painted on .hero-carousel-section, i.e.
-// behind and around the width-constrained carousel. Import the file at the top
-// and point the field at it, e.g. `sectionImage: myBackdrop`.
+// `sectionImage` / `sectionVideo` = full-bleed background painted on
+// .hero-carousel-section, i.e. behind and around the width-constrained
+// carousel. Import the file at the top and point the field at it, e.g.
+// `sectionImage: myBackdrop`. If both are set `sectionVideo` wins, so the
+// image stays as a one-line revert.
 const SLIDES = [
   {
     tag: "ECOMERCE SITE",
     nav: "Welcome",
     beams: true,
     horizon: true,
+    sectionVideo: heroLoopVideo,
     sectionImage: heroSectionBg,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
@@ -38,6 +45,7 @@ const SLIDES = [
   {
     tag: "PERSONAL BLOG",
     nav: "Personal Blogs",
+    image: pixelBgGradient,
     sectionImage: null,
     title: ["NOTES ON", "DESIGN, CODE", "& THE ROAD."],
     stats: [
@@ -49,6 +57,7 @@ const SLIDES = [
   {
     tag: "ENGINEERING",
     nav: "Development",
+    video: heroLoopVideo,
     sectionImage: null,
     title: ["I BUILD", "PRODUCTION", "GRADE SYSTEMS."],
     stats: [
@@ -59,7 +68,7 @@ const SLIDES = [
   },
 ];
 
-const SLIDE_DURATION = 8000; // ms each slide stays before auto-advancing
+const SLIDE_DURATION = 800000000000000000; // ms each slide stays before auto-advancing
 
 const HeroCarousel = () => {
   const [active, setActive] = useState(0);
@@ -134,9 +143,21 @@ const HeroCarousel = () => {
         container in the DOM: both are positioned with z-index auto, so paint
         order follows source order and the carousel lands on top without any
         z-index (which would trap .hero-carousel under the fixed nav). */}
-    {SLIDES[active].sectionImage && (
+    {(SLIDES[active].sectionVideo || SLIDES[active].sectionImage) && (
       <div className="hero-carousel-section-media" aria-hidden="true">
-        <img key={active} src={SLIDES[active].sectionImage} alt="" />
+        {SLIDES[active].sectionVideo ? (
+          <video
+            key={active}
+            src={SLIDES[active].sectionVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <img key={active} src={SLIDES[active].sectionImage} alt="" />
+        )}
       </div>
     )}
     <div className="hero-carousel-container site-width-container">
