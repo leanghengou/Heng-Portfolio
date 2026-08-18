@@ -20,6 +20,7 @@ import StatCards from "./stat-cards";
 import StyleGuide from "./style-guide";
 import ArchitectureMap from "./architecture-map";
 import PrototypeEmbed from "./prototype-embed";
+import InstagramSplit from "./instagram-split";
 import ExternalCtaSection from "./external-cta-section";
 
 
@@ -69,6 +70,8 @@ export default function SectionRenderer({ section }) {
       return <ArchitectureMap {...section} />
     case "prototype-embed":
       return <PrototypeEmbed {...section} />
+    case "instagram-split":
+      return <InstagramSplit {...section} />
     case "external-cta":
       return <ExternalCtaSection {...section} />
     default:

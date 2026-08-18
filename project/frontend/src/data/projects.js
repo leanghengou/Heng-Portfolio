@@ -41,6 +41,10 @@ import decorlala3 from "../resources/decorlala-3.png"
 import klaviyoProcessEmail from "../resources/klaviyo-process-email.png"
 import saintEmberImg from "../resources/Mask-group-8.webp"
 import dailyPostersImg from "../resources/30days-challange-img.webp"
+import hornetCoverImg from "../resources/hornet-project-bg-cover.png"
+import hornetImgOne from "../resources/Hornet-img-one.png"
+import hornetImgTwo from "../resources/Hornet-img-two.png"
+import hornetImgThree from "../resources/Hornet-img-three.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -958,7 +962,7 @@ export const projects = [
     slug: "hornet-energy",
     title: "Hornet Energy",
     category: "Shopify Development & UX Design",
-    cover: saintEmberImg, // TODO: swap in a real Hornet Energy screenshot — using the Saint Embers image as a placeholder for now.
+    cover: hornetCoverImg,
     intro: {
       description:
         "Designing and building an early e-commerce experience for a growing energy brand. Hornet Energy is an energy-gel brand built around simple, natural ingredients and endurance performance. I designed and built an early version of their Shopify storefront, working directly with the founding team to create a clean, conversion-focused shopping experience.",
@@ -977,51 +981,31 @@ export const projects = [
       },
 
       {
-        type: "bordered-text-cards",
-        cards: [
-          {
-            title: "My Role",
-            body: [
-              "Homepage design and front-end implementation.",
-              "Product page design and front-end implementation.",
-              "Product presentation and information hierarchy.",
-              "Responsive layouts across devices.",
-              "Conversion-focused shopping flow.",
-              "Shopify storefront customization.",
-            ],
-          },
-        ],
+        type: "text-image-split",
+        title: "Leading with the ingredients",
+        text: "The product section pairs the pack with the nutrition panel and the ingredients it's actually made of — matcha, honey, pink Himalayan salt — so the \"simple ingredients\" claim is shown rather than stated. Non-GMO, no sugar added, and all natural sit directly underneath as the first trust signals a visitor meets.",
+        image: hornetImgOne,
+        mediaWidth: "narrow",
+        // "right" puts the text on the right, so the image sits on the left.
+        textPosition: "right",
       },
 
       {
-        type: "rich-text-section",
-        title: "The Approach",
-        description:
-          "Rather than treating the website as a simple product catalog, I focused on helping visitors quickly understand three things: what the product is, why Hornet, and what to do next.",
+        type: "text-image-split",
+        title: "Backing the value proposition with evidence",
+        text: "\"Why all-natural?\" is the question the brand lives on, so it gets its own section rather than a line of body copy. The statistics on chemical pre-workout side-effects are set as scannable figures with the source studies linked beside them, turning a brand claim into something a skeptical customer can verify.",
+        image: hornetImgTwo,
+        mediaWidth: "narrow",
+        textPosition: "right",
       },
 
       {
-        type: "bordered-text-cards",
-        cards: [
-          {
-            title: "What is it?",
-            body: "A natural energy gel designed for endurance and active performance.",
-          },
-          {
-            title: "Why Hornet?",
-            body: "Simple ingredients, a distinctive brand, and a clear alternative to conventional energy products.",
-          },
-          {
-            title: "What should I do next?",
-            body: "Make the purchasing experience straightforward, with the product and call-to-action taking priority.",
-          },
-        ],
-      },
-
-      {
-        type: "rich-text-section",
-        description:
-          "The product page was designed around a clear hierarchy: product → value proposition → purchase → supporting information → trust.",
+        type: "text-image-split",
+        title: "Closing on social proof",
+        text: "Reviews sit at the end of the page, where the remaining hesitation is trust rather than information. Real customer videos in a horizontal scroll keep the section light on the page while showing the product being used mid-ride and mid-run — the exact moment the gel is for.",
+        image: hornetImgThree,
+        mediaWidth: "narrow",
+        textPosition: "right",
       },
 
       {
@@ -1031,7 +1015,11 @@ export const projects = [
         // embed.figma.com + embed-host=share is the embeddable form of a
         // /proto/ share link. The `t=` token from the shared URL is a
         // session-scoped share token and is intentionally dropped.
-        src: "https://embed.figma.com/proto/6NsWS42MqdBiEphZ9INIgN/Hornet-Energy?page-id=0%3A1&node-id=17-3&viewport=132%2C519%2C0.09&scaling=min-zoom&content-scaling=fixed&embed-host=share",
+        // scaling=scale-down-width, not the share link's min-zoom: min-zoom
+        // renders at a fixed zoom and crops whatever doesn't fit, which in a
+        // 440px column is most of the page. The `viewport` param is dropped for
+        // the same reason — it pinned the view to a 0.09 zoom at an offset.
+        src: "https://embed.figma.com/proto/6NsWS42MqdBiEphZ9INIgN/Hornet-Energy?page-id=0%3A1&node-id=17-3&scaling=scale-down-width&content-scaling=fixed&embed-host=share",
       },
 
       {
@@ -1039,6 +1027,45 @@ export const projects = [
         title: "Outcome",
         description:
           "The website became part of Hornet Energy's early digital storefront as the company continued developing its brand and product. Since then, the company has evolved its website, branding, and overall digital presence significantly. By 2026, Hornet Energy had grown into a substantially larger business than when I originally worked on the site. I don't attribute that growth solely to the website — many factors contributed — but it was rewarding to see an early-stage project evolve alongside the company.",
+      },
+
+      {
+        type: "instagram-split",
+        title: "Where the brand is today",
+        text: "The early storefront was one step in a much longer story. In the brand's own 2025 wrap-up, Hornet counted 11 million bees, 6,600kg of honey, 120 retailers and 200,000 gels shipped — a business several orders of magnitude past the one I built the first store for. The site was never the cause of that, but it's satisfying to see where an early-stage project ends up.",
+        // utm_source / utm_campaign from the share sheet are dropped — the
+        // permalink is all Instagram's embed script needs.
+        permalink: "https://www.instagram.com/reel/DUBURKLjY95/",
+        caption: "A post shared by Hornet Energy (@hornetenergy)",
+        textPosition: "right",
+        // Hornet's own figures, from the reel's caption.
+        stats: [
+          {
+            icon: "bolt",
+            value: "200,000",
+            label: "Gels made",
+            note: "Over the year",
+          },
+          {
+            icon: "cart",
+            value: "120",
+            label: "Retailers",
+            note: "Stocking by end of 2025",
+          },
+          {
+            icon: "layers",
+            value: "6,600",
+            suffix: "kg",
+            label: "Honey used",
+            note: "Same production run",
+          },
+          {
+            icon: "sparkle",
+            value: "11M",
+            label: "Bees",
+            note: "Behind the harvest",
+          },
+        ],
       },
 
       {

@@ -1103,6 +1103,105 @@ padding:1.5rem;
   min-width: 0;
 }
 
+/* Opt-in narrower image column (`mediaWidth: "narrow"` on the section). The
+   text takes the width the image gives up rather than leaving it to
+   space-between, which would open a hole down the middle of the row. */
+.text-image-split-narrow .text-image-split-text {
+  /* basis 0, not auto: with auto the paragraph's max-content width wins the
+     flex negotiation and squeezes the image down to a sliver. */
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* The one number to turn if these want to be wider or narrower again. */
+.text-image-split-narrow .text-image-split-media {
+  flex: 0 0 45%;
+}
+
+/* Instagram won't render an embed below 326px, so this column is a fixed width
+   rather than the percentage the image splits use — at narrow desktop widths a
+   percentage would drop under that floor and the embed would overflow.
+   Deliberately uncapped: Instagram renders the caption below the video, so any
+   max-height that shortens the frame clips off the caption — which is the part
+   of this embed worth showing. */
+.text-image-split-embed .text-image-split-media {
+  flex: 0 0 340px;
+}
+
+.text-image-split-embed .text-image-split-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ---------- Stat cards inside a split's text column ----------
+   Same cards as the standalone block, scaled to a ~360px column instead of the
+   full content width: at full size the 44px figure alone is wider than the
+   card. Everything below is proportion, not new styling — the chamfer, border,
+   icon badge and note placement are untouched. */
+.text-image-split-text .stat-cards-section {
+  margin: 32px 0 0;
+}
+
+.text-image-split-text .stat-cards-grid {
+  gap: 14px;
+}
+
+.text-image-split-text .stat-card {
+  --stat-card-notch: 24px;
+  min-height: 0;
+  padding: 18px 18px 16px;
+}
+
+.text-image-split-text .stat-card-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.text-image-split-text .stat-card-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.text-image-split-text .stat-card-value {
+  margin-top: 18px;
+  font-size: 26px;
+}
+
+.text-image-split-text .stat-card-value span {
+  font-size: 14px;
+}
+
+.text-image-split-text .stat-card-label {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.text-image-split-text .stat-card-note {
+  padding-top: 14px;
+  font-size: 11px;
+}
+
+/* Overrides the min/max width Instagram sets inline on both the placeholder
+   blockquote and the iframe it swaps in, so the embed tracks the column. */
+.instagram-embed-media .instagram-media {
+  margin: 0 !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  /* The iframe carries a 1px border; without this it renders 2px past the
+     column it was told to fill. */
+  box-sizing: border-box !important;
+}
+
+/* Fallback state only — once the script runs, this content is replaced. */
+.instagram-embed-media blockquote.instagram-media {
+  padding: 20px;
+}
+
+.instagram-embed-media blockquote.instagram-media a {
+  color: inherit;
+}
+
 .text-image-split-media img {
   width: 100%;
   border-radius: 12px;
@@ -1118,6 +1217,26 @@ padding:1.5rem;
 
   .text-image-split-text {
     flex-basis: auto;
+  }
+
+  /* Stacked, the row's align-items:center becomes horizontal, so the media
+     column shrinks to its content. An image still fills it from its intrinsic
+     width, but media sized purely in percentages would collapse to nothing. */
+  .text-image-split-media {
+    width: 100%;
+  }
+
+  /* Stacked, flex-basis is a height — drop the narrow column's basis or it
+     would squash the image instead of narrowing it. */
+  .text-image-split-narrow .text-image-split-media,
+  .text-image-split-embed .text-image-split-media {
+    flex: 0 0 auto;
+  }
+
+  /* Full width once stacked, but never under Instagram's 326px floor. */
+  .text-image-split-embed .text-image-split-media {
+    width: 100%;
+    min-width: 326px;
   }
 }
 
@@ -1496,6 +1615,9 @@ padding:1.5rem;
 /* Prototype / Figma embed */
 .prototype-embed-frame {
   position: relative;
+  /* Its 1px border would otherwise sit outside the 100% width and push the
+     frame past its column. */
+  box-sizing: border-box;
   width: 100%;
   aspect-ratio: 16 / 9;
   margin-top: 40px;

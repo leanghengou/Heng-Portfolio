@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./pill-nav.css";
 import ResumePopup from "../resume-popup/resume-popup";
 import AboutSlidePanel from "../about-slide-panel/about-slide-panel";
+import ContactSlidePanel from "../contact-slide-panel/contact-slide-panel";
 import { PROJECTS, FILTERS } from "../../../pages/projects";
 import hengAvatar from "../../../resources/heng-favicon.png";
 
@@ -14,8 +15,7 @@ const ITEMS = [
   { label: "Projects", to: "/projects", mega: true },
   { label: "Resume", popup: "resume", plus: true },
   { label: "About", popup: "about", plus: true },
-  // Matches the footer's existing "/#contact" link. See note in pill-nav.css.
-  { label: "Contact", hash: "/#contact", status: true },
+  { label: "Contact", popup: "contact", status: true },
 ];
 
 // One column per category, in the order they read across the menu. Both the
@@ -44,7 +44,8 @@ const PillNav = () => {
   // being open at once means whichever closes second restores `overflow` while
   // the other still needs it. A single slot makes them mutually exclusive by
   // construction rather than by each handler remembering to close the others.
-  const [overlay, setOverlay] = useState(null); // "mega" | "resume" | "about"
+  // "mega" | "resume" | "about" | "contact"
+  const [overlay, setOverlay] = useState(null);
   const megaOpen = overlay === "mega";
 
   const hoverTimer = useRef(null);
@@ -313,6 +314,7 @@ const PillNav = () => {
 
       <ResumePopup open={overlay === "resume"} onClose={closeOverlay} />
       <AboutSlidePanel open={overlay === "about"} onClose={closeOverlay} />
+      <ContactSlidePanel open={overlay === "contact"} onClose={closeOverlay} />
     </>
   );
 };

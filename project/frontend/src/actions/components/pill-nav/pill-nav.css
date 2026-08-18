@@ -104,8 +104,9 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
 }
 
 .pill-nav__pill:hover {
-  background-color: #232b34;
+ background-color: #fff;
   border-color: #ffffff26;
+  color: black;
 }
 
 .pill-nav__pill.is--current {

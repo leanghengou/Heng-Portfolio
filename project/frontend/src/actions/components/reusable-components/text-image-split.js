@@ -7,12 +7,15 @@ export default function TextImageSplit({
   image,
   cta,
   textPosition = "left",
+  // "narrow" holds the image to a smaller column and gives the space to the
+  // text. Opt-in so existing sections keep the wide default.
+  mediaWidth,
 }) {
   return (
     <section
       className={`text-image-split project-section-margin${
         textPosition === "right" ? " text-image-split-reverse" : ""
-      }`}
+      }${mediaWidth === "narrow" ? " text-image-split-narrow" : ""}`}
     >
       <div className="text-image-split-text">
         {tagline && <span className="text-image-split-tagline">{tagline}</span>}

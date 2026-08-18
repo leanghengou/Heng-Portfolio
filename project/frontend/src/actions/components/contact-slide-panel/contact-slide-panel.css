@@ -1,0 +1,263 @@
+/* ---------- Slide-in Contact panel ----------
+   Shell (root / backdrop / panel / close / scroll) mirrors
+   about-slide-panel.css so the two overlays open identically; only the form
+   styling below is specific to this panel. */
+.contact-panel-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1100; /* above the nav (1000) */
+  visibility: hidden;
+  pointer-events: none;
+  /* Keep it visible through the slide-out, then hide */
+  transition: visibility 0s linear 0.4s;
+}
+.contact-panel-root.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.contact-panel-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 1, 10, 0.6);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.contact-panel-root.is-open .contact-panel-backdrop {
+  opacity: 1;
+}
+
+.contact-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(540px, 92vw);
+  display: flex;
+  flex-direction: column;
+  background: #0b0713;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.contact-panel-root.is-open .contact-panel {
+  transform: translateX(0);
+}
+
+.contact-panel-close {
+  align-self: flex-end;
+  margin: 18px 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.contact-panel-close:hover {
+  background: #ffffff;
+  color: #0d0d12;
+  border-color: #ffffff;
+}
+
+.contact-panel-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 34px 60px;
+}
+
+.contact-panel-section {
+  padding: 26px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.contact-panel-section:first-of-type {
+  border-top: none;
+  padding-top: 8px;
+}
+.contact-panel-section h3 {
+  margin: 0 0 14px;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.contact-panel-section p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #b9b9c4;
+}
+
+/* Availability line — same green as the nav's Contact pill dot. */
+.contact-panel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3ce15f;
+}
+.contact-panel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3ce15f;
+}
+
+/* ---------- Form ---------- */
+.contact-panel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Name + email share a line on desktop; they wrap on their own once the
+   panel hits its 92vw cap on small screens. */
+.contact-panel-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.contact-panel-row .contact-panel-field {
+  flex: 1 1 190px;
+}
+
+.contact-panel-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.contact-panel-field label {
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.contact-panel-optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: #6f6f80;
+}
+
+.contact-panel-field input,
+.contact-panel-field textarea {
+  /* No global border-box reset in this project, so without this the padding
+     and border are added on top of the 100% width and each field spills ~30px
+     past its column — enough for the email input to sit over the name one. */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.contact-panel-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-panel-field input::placeholder,
+.contact-panel-field textarea::placeholder {
+  color: #6f6f80;
+}
+.contact-panel-field input:focus,
+.contact-panel-field textarea:focus {
+  border-color: #3ce15f;
+  background: rgba(255, 255, 255, 0.07);
+}
+.contact-panel-field input[aria-invalid="true"],
+.contact-panel-field textarea[aria-invalid="true"] {
+  border-color: #ff6b6b;
+}
+
+.contact-panel-error {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #ff8f8f;
+}
+
+.contact-panel-submit,
+.contact-panel-again {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0d0d12;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.contact-panel-submit:hover,
+.contact-panel-again:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+.contact-panel-again {
+  margin-top: 20px;
+  color: #ffffff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.contact-panel-again:hover {
+  background: #ffffff;
+  color: #0d0d12;
+  border-color: #ffffff;
+}
+
+.contact-panel-sent h3 {
+  color: #3ce15f;
+}
+.contact-panel-sent a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-panel,
+  .contact-panel-backdrop {
+    transition: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contact-panel-scroll {
+    padding: 0 22px 48px;
+  }
+}
