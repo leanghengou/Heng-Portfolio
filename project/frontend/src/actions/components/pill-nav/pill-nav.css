@@ -19,11 +19,13 @@
   color: #fff;
   background-color: #00000000;
   transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
+  border-bottom: 1px solid #ffffff30;
 }
 
 /* Scrolled state — toggled from pill-nav.js once window.scrollY > 20. The mask
    fades the tint out toward the bottom so the bar has no hard edge. */
 .pill-nav.is--scrolled {
+    border-bottom: none;
   /* background-color: #00000063;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);

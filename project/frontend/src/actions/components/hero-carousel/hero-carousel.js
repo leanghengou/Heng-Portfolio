@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./hero-carousel.css";
-import welcomeVideo from "../../../resources/hf_20260802_020247_76a3d74b-f02f-411e-b904-c6fa4ab19ae7.mp4.mp4";
+import welcomeVideo from "../../../resources/hf_20260817_033113_bb0ccb10-215e-4e9a-8de6-e329667cfc25.mp4";
 // Used in two slots now (slide 1's section backdrop and slide 4's box), so the
 // name describes the asset rather than a placement.
-import heroLoopVideo from "../../../resources/hf_20260817_023358_60d3a79c-a679-4851-949e-973ccb9a00be.mp4";
+import heroLoopVideo from "../../../resources/gradient-hero-animated-banner.webm";
 import heroSectionBg from "../../../resources/gradient-background-effect-initial.png";
 import pixelBgGradient from "../../../resources/pixel-bg-gradient.png";
+import blogVideo from "../../../resources/hf_20260817_032414_86a7089c-e297-4796-bd4c-49d6557e794a.mp4";
 
 // One entry per slide. `tag` renders in the white pill, `title` is the big
 // headline (array = one line per element), `stats` fills the metric row.
@@ -21,8 +22,8 @@ const SLIDES = [
     nav: "Welcome",
     beams: true,
     horizon: true,
-    sectionVideo: heroLoopVideo,
-    sectionImage: heroSectionBg,
+    sectionVideo:  heroLoopVideo,
+    sectionImage: heroLoopVideo,
     title: ["I'M HENG,", "A DESIGNER &", "A BUILDER."],
     stats: [
       { value: "4 YEARS", label: "Nine years of making software." },
@@ -45,6 +46,8 @@ const SLIDES = [
   {
     tag: "PERSONAL BLOG",
     nav: "Personal Blogs",
+    video: blogVideo,
+    // Kept as the one-line revert: `video` wins over `image` when both are set.
     image: pixelBgGradient,
     sectionImage: null,
     title: ["NOTES ON", "DESIGN, CODE", "& THE ROAD."],
@@ -168,7 +171,7 @@ const HeroCarousel = () => {
       onPointerLeave={resetTilt}
       onPointerCancel={resetTilt}
     >
-      {/* Light-beam streaks — the base (untouched) */}
+      {/* Light-beam streaks — the base (untouched) 
       {SLIDES[active].beams && (
         <div
           className="hero-carousel-media hero-carousel-media--plain hero-carousel-media--beams"
@@ -181,7 +184,7 @@ const HeroCarousel = () => {
         </div>
       )}
 
-      {/* Glowing globe/arc — transparent overlay ON TOP of the beams */}
+      {/* Glowing globe/arc — transparent overlay ON TOP of the beams 
       {SLIDES[active].horizon && (
         <div
           className="hero-carousel-media hero-carousel-media--plain hero-horizon"
@@ -193,13 +196,16 @@ const HeroCarousel = () => {
             <div className="hero-horizon-base" />
           </div>
         </div>
-      )}
+      )}*/}
 
       {/* Full-section background media for the active slide (behind nav too) */}
       {(SLIDES[active].video || SLIDES[active].image) && (
         <div
+          // --plain (no overlay tint) is for still banners only. Keyed off the
+          // same condition as the element below, so a slide carrying both a
+          // video and a fallback image still gets the video's tint.
           className={`hero-carousel-media ${
-            SLIDES[active].image ? "hero-carousel-media--plain" : ""
+            SLIDES[active].video ? "" : "hero-carousel-media--plain"
           }`}
           aria-hidden="true"
         >
