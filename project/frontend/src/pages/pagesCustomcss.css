@@ -11,7 +11,7 @@
 .project-layout {
   display: flex;
   align-items: flex-start;
-  gap: 64px;
+  gap: 10px;
 }
 
 .project-sidebar {
@@ -300,4 +300,23 @@ object-fit: cover;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
+}
+
+/* ---- Hornet Energy only ----
+   Its sections are short and image-led, so the 100px page rhythm leaves large
+   empty bands between them. Doubled-up class for specificity: it has to beat
+   the responsive `.project-page .project-section-margin` overrides above
+   regardless of source order. */
+.project-page.project-page--hornet-energy .project-section-margin {
+  margin: 25px 0;
+}
+
+/* Stacked, lead with the image rather than dropping it under the paragraph —
+   these sections are carrying the screenshots. Matches the 786px breakpoint
+   the split itself stacks at. */
+@media (max-width: 786px) {
+  .project-page--hornet-energy .text-image-split,
+  .project-page--hornet-energy .text-image-split-reverse {
+    flex-direction: column-reverse;
+  }
 }

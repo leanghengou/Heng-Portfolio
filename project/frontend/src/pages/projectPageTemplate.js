@@ -12,7 +12,12 @@ export default function ProjectPage() {
   if (!project) return <div>Project not found</div>;
 
   return (
-    <div className="project-page site-width-container">
+    // The per-project modifier is a hook for page-specific overrides. It comes
+    // from the matched project, not the raw route param, so it's always one of
+    // our own slugs.
+    <div
+      className={`project-page site-width-container project-page--${project.slug}`}
+    >
       <div className="project-layout">
         {/* Left: sticky project info */}
         <aside className="project-sidebar">

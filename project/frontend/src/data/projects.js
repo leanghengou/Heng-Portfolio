@@ -45,6 +45,8 @@ import hornetCoverImg from "../resources/hornet-project-bg-cover.png"
 import hornetImgOne from "../resources/Hornet-img-one.png"
 import hornetImgTwo from "../resources/Hornet-img-two.png"
 import hornetImgThree from "../resources/Hornet-img-three.png"
+import hornetImgProductDetail from "../resources/Hornet-img-product-detail.png"
+import hornetUserFlow from "../resources/users-hornet-flow.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -975,15 +977,27 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
-        title: "The Challenge",
-        description:
-          "Hornet Energy was an early-stage brand looking to establish a stronger online presence and create a storefront that could clearly communicate the product while making it easy for customers to purchase. With a limited timeline, the goal was to create a polished experience that felt credible, modern, and focused on conversion.",
+        title: "When the Product Page Is the Whole Storefront",
+        description: [
+          "This project began during Hornet Energy's early growth. The co-founder (Mahdi, Chief Marketing Officer) and I were discussing how the brand could establish its online presence, and one thing quickly became clear: the website needed to do more than showcase the product, it needed to explain it.",
+          "At the time, Hornet was selling a single natural energy gel, and most traffic came directly from paid ads. Rather than landing on a homepage, visitors were sent straight to the product page, making it the primary touchpoint for discovery, education, and purchase.",
+          "Together, we decided to focus our efforts on creating a product page that could do two things well: drive conversions and serve as a strong representation of the brand. The page needed to communicate the product's value, build trust with first-time visitors, and support the company's growth as it expanded its presence in the endurance sports market.",
+        ],
       },
 
       {
         type: "text-image-split",
-        title: "Leading with the ingredients",
-        text: "The product section pairs the pack with the nutrition panel and the ingredients it's actually made of — matcha, honey, pink Himalayan salt — so the \"simple ingredients\" claim is shown rather than stated. Non-GMO, no sugar added, and all natural sit directly underneath as the first trust signals a visitor meets.",
+        title: "Designing the First Impression",
+        text: "The first screen often determines whether users keep exploring or leave. Key information, pricing, and purchase actions were prioritized above the fold, so the product reads clearly and the next step stays obvious without unnecessary scrolling.",
+        image: hornetImgProductDetail,
+        mediaWidth: "narrow",
+        textPosition: "right",
+      },
+
+      {
+        type: "text-image-split",
+        title: "Leading with Ingredients",
+        text: "Natural products rely on trust and transparency: customers want to know what the product is made of and why those ingredients matter. Ingredients, nutrition information, and key benefits were brought forward so the gel can be evaluated at a glance, without digging through long blocks of content.",
         image: hornetImgOne,
         mediaWidth: "narrow",
         // "right" puts the text on the right, so the image sits on the left.
@@ -992,8 +1006,8 @@ export const projects = [
 
       {
         type: "text-image-split",
-        title: "Backing the value proposition with evidence",
-        text: "\"Why all-natural?\" is the question the brand lives on, so it gets its own section rather than a line of body copy. The statistics on chemical pre-workout side-effects are set as scannable figures with the source studies linked beside them, turning a brand claim into something a skeptical customer can verify.",
+        title: "Backing the Value Proposition with Evidence",
+        text: "Product claims become more convincing when users can verify them for themselves. Scientific research was given a prominent role, with supporting visuals and direct access to the sources, giving the page a path to validation rather than marketing language alone.",
         image: hornetImgTwo,
         mediaWidth: "narrow",
         textPosition: "right",
@@ -1001,38 +1015,24 @@ export const projects = [
 
       {
         type: "text-image-split",
-        title: "Closing on social proof",
-        text: "Reviews sit at the end of the page, where the remaining hesitation is trust rather than information. Real customer videos in a horizontal scroll keep the section light on the page while showing the product being used mid-ride and mid-run — the exact moment the gel is for.",
+        title: "Closing with Social Proof",
+        text: "Even after understanding the product, many customers look for reassurance from other people before purchasing. Athlete testimonials, reviews, and video content provide that final layer of confidence, showing how the product performs in practice.",
         image: hornetImgThree,
         mediaWidth: "narrow",
         textPosition: "right",
       },
 
       {
-        type: "prototype-embed",
-        title: "Prototype",
-        description: "Walk through the interactive Hornet Energy prototype.",
-        // embed.figma.com + embed-host=share is the embeddable form of a
-        // /proto/ share link. The `t=` token from the shared URL is a
-        // session-scoped share token and is intentionally dropped.
-        // scaling=scale-down-width, not the share link's min-zoom: min-zoom
-        // renders at a fixed zoom and crops whatever doesn't fit, which in a
-        // 440px column is most of the page. The `viewport` param is dropped for
-        // the same reason — it pinned the view to a 0.09 zoom at an offset.
-        src: "https://embed.figma.com/proto/6NsWS42MqdBiEphZ9INIgN/Hornet-Energy?page-id=0%3A1&node-id=17-3&scaling=scale-down-width&content-scaling=fixed&embed-host=share",
-      },
-
-      {
         type: "rich-text-section",
         title: "Outcome",
         description:
-          "The website became part of Hornet Energy's early digital storefront as the company continued developing its brand and product. Since then, the company has evolved its website, branding, and overall digital presence significantly. By 2026, Hornet Energy had grown into a substantially larger business than when I originally worked on the site. I don't attribute that growth solely to the website — many factors contributed — but it was rewarding to see an early-stage project evolve alongside the company.",
+          "The site carried Hornet through its early growth and has since been replaced, as the company outgrew the version I built. Plenty of things drove that growth, but the first store held up long enough to stop being the constraint.",
       },
 
       {
         type: "instagram-split",
         title: "Where the brand is today",
-        text: "The early storefront was one step in a much longer story. In the brand's own 2025 wrap-up, Hornet counted 11 million bees, 6,600kg of honey, 120 retailers and 200,000 gels shipped — a business several orders of magnitude past the one I built the first store for. The site was never the cause of that, but it's satisfying to see where an early-stage project ends up.",
+        text: "Hornet's own 2025 recap counts 11 million bees, 6,600kg of honey, 120 retailers and 200,000 gels, a business far past the one I built the first store for. Watching a client outgrow your work is the best version of a project ending.",
         // utm_source / utm_campaign from the share sheet are dropped — the
         // permalink is all Instagram's embed script needs.
         permalink: "https://www.instagram.com/reel/DUBURKLjY95/",
@@ -1069,32 +1069,26 @@ export const projects = [
       },
 
       {
-        type: "rich-text-section",
-        title: "What I Learned",
+        type: "architecture-map",
+        title: "User flow",
         description:
-          "Working on a real e-commerce brand taught me that good product design isn't only about making something look polished.",
+          "Every section maps to one step of the same journey: land, understand, trust, validate, review, buy. Mapping the flow first kept the page short, since anything that didn't serve a step came off.",
+        images: [hornetUserFlow],
       },
 
       {
-        type: "bordered-text-cards",
-        cards: [
-          {
-            title: "It's about",
-            body: [
-              "Communicating value quickly.",
-              "Reducing friction in the buying process.",
-              "Creating trust.",
-              "Prioritizing information.",
-              "Designing around an actual business objective.",
-            ],
-          },
-        ],
-      },
-
-      {
-        type: "rich-text-section",
+        type: "prototype-embed",
+        title: "Prototype",
         description:
-          "This project was completed early in Hornet Energy's growth, and it remains one of my favorite examples of designing for a real product, real customers, and a real business.",
+          "The whole page, clickable. Scroll it the way a customer would.",
+        // embed.figma.com + embed-host=share is the embeddable form of a
+        // /proto/ share link. The `t=` token from the shared URL is a
+        // session-scoped share token and is intentionally dropped.
+        // scaling=scale-down-width, not the share link's min-zoom: min-zoom
+        // renders at a fixed zoom and crops whatever doesn't fit. The
+        // `viewport` param is dropped for the same reason — it pinned the view
+        // to a 0.09 zoom at an offset.
+        src: "https://embed.figma.com/proto/6NsWS42MqdBiEphZ9INIgN/Hornet-Energy?page-id=0%3A1&node-id=17-3&scaling=scale-down-width&content-scaling=fixed&embed-host=share",
       },
     ],
   },
@@ -1147,20 +1141,11 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
-        description:
-          "I challenged myself to create one poster every day for 30 days, with each piece exploring a different idea, opinion, or observation about society.",
-      },
-      {
-        type: "rich-text-section",
-        title: "The Approach",
-        description:
-          "The project focused on turning abstract thoughts into clear visual concepts through typography, composition, imagery, symbolism, and visual hierarchy.",
-      },
-      {
-        type: "rich-text-section",
-        title: "What I Learned",
-        description:
-          "Working under a daily constraint pushed me to develop ideas quickly, experiment with different visual styles, and communicate messages effectively without relying on lengthy explanations.",
+        title: "30 Days, 30 Posters",
+        description: [
+          "A personal challenge to create one poster every day for 30 days. The goal was to explore ideas quickly, build a consistent creative habit, and experiment with visual storytelling through simple illustrations and compositions.",
+          "One of the biggest lessons from this project was that consistency can be as powerful as complexity. Individually, each poster is simple, but repeated over 30 days, they form a cohesive visual language and a collection that feels greater than the sum of its parts. This challenge reinforced the value of showing up, creating daily, and trusting the process.",
+        ],
       },
       {
         type: "external-cta",

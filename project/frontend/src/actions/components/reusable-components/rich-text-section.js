@@ -9,7 +9,13 @@ export default function RichtextSection({ title, images, subtitle, description }
         
         {subtitle ? <h3>{subtitle}</h3> : null}
         
-        <p>{description}</p>
+        {/* An array renders one paragraph per entry; a plain string still
+            renders a single one. */}
+        {Array.isArray(description) ? (
+          description.map((paragraph, i) => <p key={i}>{paragraph}</p>)
+        ) : (
+          <p>{description}</p>
+        )}
         </div>
    
     

@@ -41,7 +41,7 @@ line-height:1.7rem;
 }
 
 .margin-top-bottom-space-70{
-  margin: 70px 0;
+  margin: 20px 0;
 }
 
 .collarboration-section {
@@ -150,6 +150,8 @@ mask-image: linear-gradient(
   box-sizing: border-box;
   border: 0;
   border-radius: 20px;
+  /* It's a button — the global anchor underline doesn't belong on it. */
+  text-decoration: none;
   color: var(--secondary-color);
 padding: 15px 25px;
   background: var(--primary-color);

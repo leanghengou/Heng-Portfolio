@@ -16,6 +16,14 @@ import ProjectPage from './pages/projectPageTemplate';
 import Projects from './pages/projects';
 import PostersGallery from './pages/posters-gallery';
 
+// Routes that own the whole viewport. The posters gallery is a full-screen
+// drag surface, so a footer underneath it only gives the page something to
+// scroll down to.
+const FOOTERLESS_ROUTES = ["/project/30-days-of-daily-posters/gallery"];
+
+const hasFooter = (pathname) =>
+  !FOOTERLESS_ROUTES.includes(pathname.replace(/\/+$/, "") || "/");
+
 // Everything that needs the router lives here (useLocation must be inside <Router>).
 function AppInner() {
   const location = useLocation();
@@ -79,7 +87,9 @@ function AppInner() {
           </Routes>
         </div>
 
-        <Footer />
+        {/* Keyed off displayLocation, not location, so the footer disappears
+            behind the transition overlay along with the page swap. */}
+        {hasFooter(displayLocation.pathname) && <Footer />}
       </div>
     </div>
   );

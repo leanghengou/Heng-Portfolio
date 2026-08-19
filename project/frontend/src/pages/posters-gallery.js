@@ -3,16 +3,27 @@ import { Link } from "react-router-dom";
 import InfiniteGrid from "../actions/components/infinite-grid/infinite-grid";
 import "./posters-gallery.css";
 
-import postersImg from "../resources/30days-challange-img.webp";
+// Every image in src/resources/30days-challange, resolved at build time, so a
+// new poster only has to be dropped into that folder. Sorted by filename to
+// keep the order stable across builds.
+const posterFiles = require.context(
+  "../resources/30days-challange",
+  false,
+  /\.(png|jpe?g|webp)$/
+);
 
-// TODO: drop the real poster files into src/resources/ and list them here —
-// one entry per poster. `landscape` widens a card for non-square artwork.
-// The grid clones this list to fill the viewport, so the count is up to you.
-const POSTERS = [
-  { src: postersImg, alt: "30 Days of Daily Posters" },
-  { src: postersImg, alt: "30 Days of Daily Posters", landscape: true },
-  { src: postersImg, alt: "30 Days of Daily Posters" },
-];
+const POSTERS = posterFiles
+  .keys()
+  .sort()
+  .map((key, i) => {
+    const mod = posterFiles(key);
+    return {
+      // Asset modules hand back the URL directly; the `.default` covers the
+      // ES-module shape some loader configs produce.
+      src: mod.default || mod,
+      alt: `30 Days of Daily Posters, poster ${i + 1}`,
+    };
+  });
 
 const PostersGallery = () => {
   return (

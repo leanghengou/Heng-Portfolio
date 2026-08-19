@@ -20,7 +20,11 @@ export default function TextImageSplit({
       <div className="text-image-split-text">
         {tagline && <span className="text-image-split-tagline">{tagline}</span>}
         {title && <h2>{title}</h2>}
-        {text && <p>{text}</p>}
+        {/* An array renders one paragraph per entry; a plain string still
+            renders a single one. */}
+        {Array.isArray(text)
+          ? text.map((paragraph, i) => <p key={i}>{paragraph}</p>)
+          : text && <p>{text}</p>}
         {cta && cta.label && (
           <a
             className="text-image-split-cta"
