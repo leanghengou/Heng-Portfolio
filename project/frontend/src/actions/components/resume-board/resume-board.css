@@ -40,6 +40,18 @@
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+/* Full legal name rides alongside the brand name, one step down in emphasis. */
+.profile-fullname {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  white-space: nowrap;
 }
 .experience-team span {
   font-size: 14px;

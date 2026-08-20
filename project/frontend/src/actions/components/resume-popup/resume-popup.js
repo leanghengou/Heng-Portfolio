@@ -20,13 +20,22 @@ const ChevronIcon = ({ className }) => (
   </svg>
 );
 
-const BADGES = ["TS", "React", "Shopify"];
+const RESUME_PDF = "/leangheng-ou-resume.pdf";
 
 const EXPERIENCE = [
   {
+    title: "Freelance Designer / Developer + SEO",
+    company: "Self-employed · Freelance",
+    dates: "May 2026 – Present · Montreal, QC",
+    bullets: [
+      "Design and build Shopify storefronts and custom features for direct clients, from UX through frontend implementation.",
+      "Recent work includes a custom loyalty program, dynamic cart rewards, and Klaviyo-integrated cart recovery for Decorolala.",
+    ],
+  },
+  {
     title: "UI/UX Designer & Frontend Developer",
     company: "EZShop · Full-time",
-    dates: "Mar 2022 – May 2026 · Montreal, QC",
+    dates: "Mar 2022 – Mar 2026 · Montreal, QC",
     bullets: [
       "Designed end-to-end UI/UX for e-commerce clients on Shopify, delivering polished storefronts in Figma.",
       "Built and maintained responsive frontends for multiple client websites.",
@@ -67,11 +76,15 @@ const EDUCATION = [
     title: "Diploma, Full Stack Web Development",
     meta: "2022",
     school: "Concordia University",
+    description:
+      "Intensive full-stack program covering HTML, CSS, JavaScript, React, Node.js, Express, and MongoDB, built around shipping complete web applications from database to interface.",
   },
   {
     title: "Associate's Degree, Graphic Design",
     meta: "Apr 2019 – Nov 2020",
     school: "Shadd Health & Business Centre",
+    description:
+      "Studied typography, layout, branding, and production for both print and digital across the Adobe suite, building the visual foundation I still design interfaces on today.",
   },
 ];
 
@@ -136,9 +149,14 @@ const ResumePopup = ({ open, onClose }) => {
           scrolls, so the close button (an absolute child of it, not of the
           scrolling grid) stays put while the grid below scrolls internally. */}
       <div className="resume-popup-frame">
-        <button className="resume-popup-close" onClick={onClose}>
-          Close tab <span aria-hidden="true">✕</span>
-        </button>
+        <div className="resume-popup-actions">
+          <a className="resume-popup-download" href={RESUME_PDF} download>
+            Download PDF
+          </a>
+          <button className="resume-popup-close" onClick={onClose}>
+            Close tab <span aria-hidden="true">✕</span>
+          </button>
+        </div>
 
         <div
           className="resume-popup"
@@ -147,19 +165,15 @@ const ResumePopup = ({ open, onClose }) => {
           aria-label="Resume"
         >
         <div className="resume-popup-col resume-popup-col-left" data-lenis-prevent>
-          <h1 className="resume-popup-name">Leangheng Ou</h1>
+          <h1 className="resume-popup-name">
+            Heng <span className="resume-popup-name-full">Leangheng Ou</span>
+          </h1>
           <p className="resume-popup-bio">
-            UI/UX Designer &amp; Frontend Developer based in Montreal, Quebec,
-            Canada.
+            UI/UX Designer &amp; Frontend Developer with 4+ years of experience
+            designing and building websites and e-commerce stores. Based in
+            Montreal, specializing in Shopify, frontend development, technical
+            SEO, and conversion-focused user experiences.
           </p>
-
-          <div className="resume-popup-badges">
-            {BADGES.map((badge, i) => (
-              <span className="resume-popup-badge" key={i}>
-                {badge}
-              </span>
-            ))}
-          </div>
 
           {EXPERIENCE.map((job, i) => (
             <div className="resume-popup-entry" key={i}>
@@ -183,10 +197,15 @@ const ResumePopup = ({ open, onClose }) => {
 
           {EDUCATION.map((school, i) => (
             <div className="resume-popup-entry" key={i}>
-              <h3 className="resume-popup-entry-title">
-                {school.title} <span>{school.meta}</span>
-              </h3>
-              <p className="resume-popup-entry-body">{school.school}</p>
+              <h3 className="resume-popup-entry-title">{school.title}</h3>
+              <p className="resume-popup-entry-dates">
+                {school.school}
+                <br />
+                {school.meta}
+              </p>
+              {school.description && (
+                <p className="resume-popup-entry-body">{school.description}</p>
+              )}
             </div>
           ))}
 
@@ -243,7 +262,7 @@ const ResumePopup = ({ open, onClose }) => {
             <h3 className="resume-popup-section-title">Languages</h3>
             {LANGUAGES.map((lang, i) => (
               <p className="resume-popup-language" key={i}>
-                <strong>{lang.label}</strong> — {lang.level}
+                <strong>{lang.label}</strong>: {lang.level}
               </p>
             ))}
           </div>

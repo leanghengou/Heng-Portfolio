@@ -60,7 +60,7 @@ useEffect(()=>{
 
 
         <div className="profile">
-            <h2>Leangheng Ou</h2>
+            <h2>Heng <span className="profile-fullname">Leangheng Ou</span></h2>
             <p>I’m Flo, a UX/UI designer based in Italy. I have 10 years experience in user interfaces and product design. I can help you build innovative digital products from UX research to UI design and prototyping.</p>
 
         </div>

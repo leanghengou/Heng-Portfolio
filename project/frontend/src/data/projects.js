@@ -35,6 +35,7 @@ import startNowMobileGroupOne from "../resources/start-now-mobile-img-group-1.pn
 import startNowMobileGroupTwo from "../resources/start-now-mobile-img-group-2.png"
 import startNowMobileGroupThree from "../resources/start-now-mobile-img-group-3.png"
 import startNowMobileGroupFour from "../resources/start-now-mobile-img-group-4.png"
+import decorlalaCoverImg from "../resources/decorlala-cover-img.png"
 import decorlala1 from "../resources/decorlala-1.png"
 import decorlala2 from "../resources/decorlala-2.png"
 import decorlala3 from "../resources/decorlala-3.png"
@@ -738,6 +739,7 @@ export const projects = [
     slug: "decorolala-loyalty-cart-recovery",
     title: "Decorolala Loyalty & Cart Recovery",
     category: "Shopify Development & UX Design",
+    cover: decorlalaCoverImg,
     intro: {
       description:
         "Decorolala wanted to improve customer retention, increase loyalty program visibility, and create more opportunities to recover abandoned carts. I designed and developed a custom loyalty and cart recovery experience directly within the Shopify storefront, focusing on high-intent moments throughout the customer journey.",
@@ -986,6 +988,14 @@ export const projects = [
       },
 
       {
+        type: "architecture-map",
+        title: "User flow",
+        description:
+          "Every section maps to one step of the same journey: land, understand, trust, validate, review, buy. Mapping the flow first kept the page short, since anything that didn't serve a step came off.",
+        images: [hornetUserFlow],
+      },
+
+      {
         type: "text-image-split",
         title: "Designing the First Impression",
         text: "The first screen often determines whether users keep exploring or leave. Key information, pricing, and purchase actions were prioritized above the fold, so the product reads clearly and the next step stays obvious without unnecessary scrolling.",
@@ -1031,7 +1041,7 @@ export const projects = [
 
       {
         type: "instagram-split",
-        title: "Where the brand is today",
+        title: "1 year after the site was published",
         text: "Hornet's own 2025 recap counts 11 million bees, 6,600kg of honey, 120 retailers and 200,000 gels, a business far past the one I built the first store for. Watching a client outgrow your work is the best version of a project ending.",
         // utm_source / utm_campaign from the share sheet are dropped — the
         // permalink is all Instagram's embed script needs.
@@ -1069,14 +1079,6 @@ export const projects = [
       },
 
       {
-        type: "architecture-map",
-        title: "User flow",
-        description:
-          "Every section maps to one step of the same journey: land, understand, trust, validate, review, buy. Mapping the flow first kept the page short, since anything that didn't serve a step came off.",
-        images: [hornetUserFlow],
-      },
-
-      {
         type: "prototype-embed",
         title: "Prototype",
         description:
@@ -1100,24 +1102,29 @@ export const projects = [
     cover: saintEmberImg,
     intro: {
       description:
-        "A custom Shopify storefront built from scratch — bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
+        "A custom Shopify storefront built from scratch in under 10 days: bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
       role: "Shopify Developer & Designer",
       stack: ["Shopify Liquid", "CSS", "JavaScript"],
       tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
-      duration: "6 weeks",
+      duration: "Under 10 days",
     },
     year: "2024",
 
     sections: [
       {
         type: "rich-text-section",
+        title: "Overview",
         description:
-          "Saint Embers is a live, in-production Shopify store I built from the ground up — custom sections, reusable components, and a conversion-tuned checkout, all tailored to the brand.",
+          "Saint Embers is a live, in-production Shopify store I built from the ground up: custom sections, reusable components, and a conversion-tuned checkout, all tailored to the brand.",
+      },
+      {
+        type: "rich-text-section",
+        title: "The Challenge",
+        description:
+          "Saint Embers had to go from nothing to a live storefront in under 10 days. It was a rush project, so the build leaned on tight scoping and reusable components: only the sections the brand actually needed, built once and reused across the store.",
       },
       {
         type: "external-cta",
-        title: "See it live",
-        description: "The full experience is best seen on the real storefront.",
         href: "https://saintembers.com/",
         cta: "Visit site",
       },

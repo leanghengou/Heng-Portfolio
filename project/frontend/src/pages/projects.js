@@ -13,7 +13,9 @@ import insperUImg from "../resources/insper-u.png";
 import iagreeAiImg from "../resources/iagree-ai.png";
 import mervImg from "../resources/merv.png";
 import decorolalaThumb from "../resources/Decorolala-thumbmail.png";
+import decorolalaBg from "../resources/Bazul-Dining-Table-Mocha-Solid-Mango-Wood-8-Seater 1.png";
 import hornetThumb from "../resources/Hornet-thubmail.png";
+import hornetBg from "../resources/Hornet-project-thubmail-cover.png";
 
 const ArrowRight = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -60,6 +62,7 @@ export const PROJECTS = [
     title: "Decorolala Loyalty & Cart Recovery",
     desc: "Custom Shopify loyalty program, dynamic cart-drawer rewards, and a Klaviyo-integrated cart recovery flow.",
     img: decorolalaThumb,
+    bgImg: decorolalaBg,
     date: "2026",
     duration: "3 months",
     platform: "Shopify",
@@ -103,6 +106,7 @@ export const PROJECTS = [
     title: "Hornet Energy",
     desc: "Designing and building an early e-commerce experience for a growing energy-gel brand — a clean, conversion-focused Shopify storefront.",
     img: hornetThumb,
+    bgImg: hornetBg,
     date: "2026",
     duration: "Early-stage build",
     platform: "Shopify",
@@ -199,7 +203,9 @@ const ProjectRow = ({ project }) => {
     <article
       className="projects-row"
       style={{
-        "--row-img": `url(${project.bgImg || project.img})`,
+        // Quoted: asset filenames can contain spaces, and an unquoted
+        // url() with a space is invalid CSS, so setProperty drops it silently.
+        "--row-img": `url("${project.bgImg || project.img}")`,
         cursor: project.slug ? "pointer" : "default",
       }}
       onClick={go}

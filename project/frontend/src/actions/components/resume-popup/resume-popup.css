@@ -56,11 +56,20 @@ background: #1c1c1c;
   transform: scale(1);
 }
 
-.resume-popup-close {
+/* Both CTAs sit in one absolutely-positioned row on .resume-popup-frame, which
+   never scrolls, so they stay put while the grid below scrolls internally. */
+.resume-popup-actions {
   position: absolute;
   top: 16px;
   right: 16px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resume-popup-close,
+.resume-popup-download {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -70,6 +79,7 @@ background: #1c1c1c;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
+  line-height: 1.4;
   text-transform: uppercase;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -80,6 +90,18 @@ background: #1c1c1c;
   background: #ffffff;
   color: #0d0d12;
   border-color: #ffffff;
+}
+
+.resume-popup-download {
+  background-color: #ffffff;
+  color: #0d0d12;
+  border-color: #ffffff;
+  text-decoration: none;
+}
+.resume-popup-download:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .resume-popup {
@@ -116,38 +138,42 @@ scrollbar-width: thin;
 .resume-popup-name,
 .resume-popup-heading {
   margin: 0 0 14px;
-  font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
+.resume-popup-heading {
+  font-size: 26px;
+}
+
+/* Largest type in the panel by a clear step, so the name anchors the page. */
+.resume-popup-name {
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+/* Full legal name rides alongside the brand name, one step down in emphasis. */
+.resume-popup-name-full {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
 .resume-popup-bio {
-  margin: 0 0 18px;
+  margin: 0 0 32px;
   max-width: 46ch;
   font-size: 14px;
   line-height: 1.7;
   color: #b9b9c4;
-}
-
-.resume-popup-badges {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-.resume-popup-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  padding: 0 8px;
-  background: #ffffff14;
-  color: #ffffff;
-  font-family: "Geist Mono", monospace;
-  font-size: 11px;
-  font-weight: 600;
 }
 
 .resume-popup-entry {
@@ -164,29 +190,24 @@ scrollbar-width: thin;
 .resume-popup-entry-title {
   margin: 0 0 6px;
   font-family: "Geist Mono", monospace;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #ffffff;
 }
-.resume-popup-entry-title span {
-  margin-left: 8px;
-  font-weight: 400;
-  color: #8a8a99;
-}
-
 .resume-popup-entry-dates {
   margin: 0 0 10px;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-weight: 500;
   color: #8a8a99;
 }
 
 .resume-popup-entry-body {
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 14px;
   line-height: 1.7;
   color: #b9b9c4;
@@ -195,7 +216,7 @@ scrollbar-width: thin;
 .resume-popup-entry-bullets {
   margin: 0;
   padding-left: 18px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   color: #b9b9c4;
 }
@@ -341,7 +362,14 @@ scrollbar-width: thin;
     border-right: none;
     border-bottom: 1px solid #ffffff1f;
   }
-  .resume-popup-name,
+  /* Stacked, the column runs full width and would slide under the CTA row,
+     so it starts below it instead. */
+  .resume-popup-col-left {
+    padding-top: 76px;
+  }
+  .resume-popup-name {
+    font-size: 32px;
+  }
   .resume-popup-heading {
     font-size: 22px;
   }
