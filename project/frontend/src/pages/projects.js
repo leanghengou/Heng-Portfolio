@@ -16,6 +16,7 @@ import decorolalaThumb from "../resources/Decorolala-thumbmail.png";
 import decorolalaBg from "../resources/Bazul-Dining-Table-Mocha-Solid-Mango-Wood-8-Seater 1.png";
 import hornetThumb from "../resources/Hornet-thubmail.png";
 import hornetBg from "../resources/Hornet-project-thubmail-cover.png";
+import showroomThumb from "../resources/showroom-thubmail.png";
 
 const ArrowRight = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -91,6 +92,16 @@ export const PROJECTS = [
     duration: "6 weeks",
     platform: "Shopify",
     tags: ["Ecom", "Development"],
+  },
+  {
+    slug: "showroom",
+    title: "Showroom",
+    desc: "Logo and brand identity for a product information management platform — a geometric mark built around connectivity, structure, and centralization.",
+    img: showroomThumb,
+    date: "2023",
+    duration: "4 weeks",
+    platform: "Figma",
+    tags: ["Design"],
   },
   {
     title: "Insper U",

@@ -48,6 +48,22 @@ import hornetImgTwo from "../resources/Hornet-img-two.png"
 import hornetImgThree from "../resources/Hornet-img-three.png"
 import hornetImgProductDetail from "../resources/Hornet-img-product-detail.png"
 import hornetUserFlow from "../resources/users-hornet-flow.png"
+import showroomCoverImg from "../resources/showroom-cover-logo-img.png"
+import showroomProcessImg from "../resources/showroom-process-how-it-works-img.png"
+import showroomLogoConstructionImg from "../resources/Showroom-logo-construction.png"
+import showroomLogoColorImg from "../resources/showroom-logo-in-color.png"
+import showroomOnApplicationImg from "../resources/showroom-on-application.png"
+import showroomBoxInspirationImg from "../resources/showroom-box-inspiration.png"
+import showroomRoomInspirationImg from "../resources/Showroom-room-inspiration.png"
+import showroomBtd83 from "../resources/showroom-behind-the-design/image 83.png"
+import showroomBtd84 from "../resources/showroom-behind-the-design/image 84.png"
+import showroomBtd85 from "../resources/showroom-behind-the-design/image 85.png"
+import showroomBtd86 from "../resources/showroom-behind-the-design/image 86.png"
+import showroomBtd87 from "../resources/showroom-behind-the-design/image 87.png"
+import showroomBtd88 from "../resources/showroom-behind-the-design/image 88.png"
+import showroomBtd89 from "../resources/showroom-behind-the-design/image 89.png"
+import showroomBtd90 from "../resources/showroom-behind-the-design/image 90.png"
+import showroomBtd91 from "../resources/showroom-behind-the-design/image 91.png"
 export const projects = [
   {
     slug: "start-now-app",
@@ -1165,6 +1181,96 @@ export const projects = [
             label: "Behance",
             href: "https://www.behance.net/gallery/103660995/30-Days-of-Daily-Posters",
           },
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "showroom",
+    title: "Showroom",
+    category: "Logo Design & Brand Identity",
+    cover: showroomCoverImg,
+    intro: {
+      description:
+        "Logo and brand identity for Showroom, a product information management platform that helps brands organize, manage, and distribute product data from a single source of truth.",
+      role: "Logo & Brand Identity Designer",
+      stack: ["Logo Design", "Brand Identity", "Visual Systems"],
+      tools: ["Figma", "Adobe Illustrator", "Typography", "Colour Systems"],
+      duration: "4 weeks",
+    },
+    year: "2023",
+
+    sections: [
+      {
+        type: "rich-text-section",
+        title: "Overview",
+        description:
+          "Showroom is a product information management platform designed to help brands organize, manage, and distribute product data from a single source of truth. The platform streamlines the way businesses maintain product information while improving collaboration with retailers and distribution partners.",
+      },
+      {
+        type: "text-image-split",
+        title: "What does Showroom do?",
+        text: "Many brands struggle with managing product information across multiple spreadsheets, files, and retail channels. Showroom solves this challenge by centralizing product data, images, descriptions, and digital assets into one accessible platform. This enables teams to maintain consistent information, reduce manual work, and share accurate product content with external partners.",
+        image: showroomProcessImg,
+        textPosition: "right",
+        mediaWidth: "narrow",
+      },
+      {
+        type: "inspiration-section",
+        title: "Inspiration",
+        description:
+          "The references and visual territory the Showroom identity was developed against.",
+        cards: [
+          {
+            title: "The Box as a Symbol",
+            text: "The shipping box was chosen as the foundation of the brand concept because it represents products, inventory, and distribution — the core elements of the Showroom ecosystem. It serves as a recognizable visual metaphor for how brands package, manage, and deliver product information across retail channels.",
+            image: showroomBoxInspirationImg,
+          },
+          {
+            title: "From Storage to Showroom",
+            text: "The 3D room illustration explores the idea of transforming a simple package into an organized digital environment. This concept visualizes how Showroom turns scattered product assets, descriptions, and information into a structured and accessible experience. The room acts as a metaphor for a centralized workspace where all product data can be managed in one place.",
+            image: showroomRoomInspirationImg,
+          },
+        ],
+      },
+      {
+        type: "rich-text-images",
+        title: "Selected outcome",
+        description:
+          "After exploring multiple concepts, the final logo was developed around the idea of connectivity, structure, and centralization. The geometric form creates a modern and scalable mark that reflects Showroom's role as a hub for organizing and distributing product information.",
+        images: [showroomLogoConstructionImg],
+        mediaWidth: "narrow",
+      },
+      {
+        type: "rich-text-images",
+        title: "Logo with colors",
+        description:
+          "Multiple color variations were explored to evaluate visibility, contrast, and brand personality across different environments. The selected palette balances professionalism and approachability while ensuring the logo remains recognizable in both digital products and marketing materials.",
+        images: [showroomLogoColorImg],
+      },
+      {
+        type: "rich-text-images",
+        title: "Logo on digital applications",
+        description:
+          "A strong identity system extends beyond the logo itself. To ensure consistency across customer touchpoints, the Showroom brand was applied to various digital platforms and environments, including social media, professional networking profiles, and marketplace integrations.",
+        images: [showroomOnApplicationImg],
+      },
+      {
+        type: "image-masonry",
+        title: "Behind the Design",
+        description:
+          "An overview of the research, experimentation, and visual development that shaped the Showroom brand. Through continuous iteration, the project evolved from initial concepts into a complete and cohesive identity system.",
+        images: [
+          showroomBtd83,
+          showroomBtd84,
+          showroomBtd85,
+          showroomBtd86,
+          showroomBtd87,
+          showroomBtd88,
+          showroomBtd89,
+          showroomBtd90,
+          showroomBtd91,
         ],
       },
     ],

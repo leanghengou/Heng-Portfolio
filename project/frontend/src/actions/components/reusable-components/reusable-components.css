@@ -1284,6 +1284,16 @@ padding:1.5rem;
   display: block;
 }
 
+/* Opt-in smaller media column: the images sit at ~65% width and hug the left
+   edge so they line up with the copy above instead of spanning the frame. */
+.rich-text-images-narrow .rich-text-images-media {
+  align-items: flex-start;
+}
+
+.rich-text-images-narrow .rich-text-images-media img {
+  width: 65%;
+}
+
 @media(max-width:786px){
   .rich-text-images .rich-text-project {
     width: 100%;
@@ -1292,6 +1302,11 @@ padding:1.5rem;
   .rich-text-images-media {
     gap: 16px;
     margin-top: 28px;
+  }
+
+  /* Narrow is a desktop-only reduction: on phones the column is already tight. */
+  .rich-text-images-narrow .rich-text-images-media img {
+    width: 100%;
   }
 }
 
@@ -1678,4 +1693,296 @@ padding:1.5rem;
 
 .architecture-map-images img:first-child {
   margin-top: 0;
+}
+
+
+/* Image masonry — process/exploration gallery */
+
+.image-masonry-section {
+  width: 100%;
+}
+
+.image-masonry-section .rich-text-project {
+  width: 85%;
+}
+
+.image-masonry-grid {
+  columns: 2;
+  column-gap: 20px;
+  margin-top: 40px;
+}
+
+.image-masonry-item {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  /* Without this an image can be sliced across the column break. */
+  break-inside: avoid;
+}
+
+.image-masonry-swiper {
+  display: none;
+}
+
+@media(max-width:786px){
+  .image-masonry-section .rich-text-project {
+    width: 100%;
+  }
+
+  .image-masonry-grid {
+    display: none;
+  }
+
+  .image-masonry-swiper {
+    display: block;
+    overflow: hidden;
+    margin-top: 28px;
+  }
+
+  /* Lets the next slide peek past the section edge instead of being clipped. */
+  .image-masonry-swiper .swiper {
+    overflow: visible;
+  }
+
+  .image-masonry-swiper img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+  }
+}
+
+
+/* Inspiration card stack (Osmo) */
+
+.inspiration-section {
+  width: 100%;
+}
+
+.inspiration-section .rich-text-project {
+  width: 85%;
+}
+
+.card-stack {
+  --stack-row: 100svh;
+  --stack-top: 18svh;
+  --stack-card-height: calc(var(--stack-row) - 2 * var(--stack-top));
+  view-timeline-name: --card-stack;
+  grid-auto-rows: var(--stack-row);
+  width: 100%;
+  margin-top: 40px;
+  display: grid;
+  position: relative;
+}
+
+.card-stack__item {
+  transform-origin: 50% 100%;
+  color: #ffffff;
+  top: var(--stack-top);
+  height: var(--stack-card-height);
+  /* The card height is meant to include its padding — without this the card
+     overshoots its sticky slot by the padding on both edges. */
+  box-sizing: border-box;
+  background-color: #212121;
+  /* site-main.css squares every corner sitewide with `border-radius: 0
+     !important`. This card's shape depends on the radius, so it opts out. */
+  border-radius: 12px !important;
+  padding: 3em;
+  position: sticky;
+  overflow: hidden;
+}
+
+.card-stack__item.is--2 {
+  color: #ffffff;
+  background-color: #847e70;
+}
+
+.card-stack__item.is--3 {
+  color: #121a24;
+  background-color: #c9d6e8;
+}
+
+.card-stack__item.is--4 {
+  color: #241c0c;
+  background-color: #e6d3a3;
+}
+
+.card-stack__item.is--5 {
+  color: #1c1224;
+  background-color: #d8c7e8;
+}
+
+.card-stack__item-inner {
+  grid-column-gap: 4em;
+  grid-row-gap: 4em;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  display: flex;
+}
+
+.card-stack__item-top {
+  grid-column-gap: 2em;
+  grid-row-gap: 2em;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  place-items: end start;
+  display: grid;
+}
+
+/* Font family is left to the page (Geist) rather than the demo's Haffer. */
+.card-stack__item-h {
+  letter-spacing: -.02em;
+  max-width: 5.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3em;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.card-stack__item-p {
+  /* The site's body copy is 70% white, which is too faint against the lighter
+     card. Take the card's own colour instead. */
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1em;
+  line-height: 1.3;
+}
+
+.card-stack__item-bottom {
+  background-color: #00000017;
+  border-radius: 1.75em !important;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-stack__item-bottom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Illustration-carrying card: artwork on the left, copy on the right. */
+.card-stack__item.has--media .card-stack__item-inner {
+  grid-column-gap: 3em;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  display: grid;
+}
+
+.card-stack__item-media {
+  /* No panel behind the artwork — the illustration sits straight on the card. */
+  background-color: transparent;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* contain, not cover: these are whole isometric illustrations, so cropping
+   the edges off them defeats the point. */
+.card-stack__item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-stack__item.has--media .card-stack__item-top {
+  grid-row-gap: 1em;
+  flex-flow: column;
+  place-items: stretch;
+  display: flex;
+}
+
+.card-stack__item.has--media .card-stack__item-h {
+  max-width: none;
+  font-size: 2.25em;
+  line-height: 1;
+}
+
+.card-stack__item.has--media .card-stack__item-p {
+  line-height: 1.5;
+}
+
+@supports (animation-timeline: view()) {
+  .card-stack__item {
+    animation: card-stack-away linear forwards;
+    animation-timeline: --card-stack;
+    animation-range:
+      exit-crossing calc(var(--stack-i, 1) * var(--stack-row) - 100svh)
+      exit-crossing calc(var(--stack-i, 1) * var(--stack-row) - var(--stack-top));
+  }
+
+  .card-stack__item:last-of-type {
+    animation: none;
+  }
+}
+
+@keyframes card-stack-away {
+  to {
+    transform: perspective(60em) rotateX(25deg) scale(0.85);
+    filter: brightness(0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-stack__item {
+    animation: none;
+  }
+}
+
+/* Under 900px .project-page turns on overflow-x, which makes it a scroll
+   container and stops position: sticky from pinning to the viewport. Fall back
+   to a plain stacked list there instead of cards that look stuck mid-scroll. */
+@media (max-width: 900px) {
+  .inspiration-section .rich-text-project {
+    width: 100%;
+  }
+
+  .card-stack {
+    grid-auto-rows: auto;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .card-stack__item {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 60svh;
+    animation: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-stack__item-top {
+    grid-template-columns: 1fr;
+  }
+
+  .card-stack__item-inner {
+    grid-column-gap: 2em;
+    grid-row-gap: 2em;
+  }
+
+  .card-stack__item {
+    padding: 2em;
+  }
+
+  .card-stack__item.has--media .card-stack__item-inner {
+    grid-template-columns: 1fr;
+    grid-row-gap: 2em;
+  }
+
+  .card-stack__item-media {
+    min-height: 40svh;
+  }
+
+  .card-stack__item.has--media .card-stack__item-h {
+    font-size: 1.9em;
+  }
 }

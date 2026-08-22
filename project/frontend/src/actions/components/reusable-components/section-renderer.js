@@ -22,6 +22,8 @@ import ArchitectureMap from "./architecture-map";
 import PrototypeEmbed from "./prototype-embed";
 import InstagramSplit from "./instagram-split";
 import ExternalCtaSection from "./external-cta-section";
+import ImageMasonry from "./image-masonry";
+import InspirationCardStack from "./inspiration-card-stack";
 
 
 export default function SectionRenderer({ section }) {
@@ -74,6 +76,10 @@ export default function SectionRenderer({ section }) {
       return <InstagramSplit {...section} />
     case "external-cta":
       return <ExternalCtaSection {...section} />
+    case "image-masonry":
+      return <ImageMasonry {...section} />
+    case "inspiration-section":
+      return <InspirationCardStack {...section} />
     default:
       return null;
   }

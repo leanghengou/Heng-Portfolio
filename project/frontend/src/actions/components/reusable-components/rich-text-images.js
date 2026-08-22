@@ -1,13 +1,22 @@
 import "./reusable-components.css";
 
-export default function RichTextImages({ title, subtitle, description, images, align }) {
+// `mediaWidth: "narrow"` holds the images to a smaller, left-aligned column —
+// for marks and diagrams that read fine well below the full content width.
+export default function RichTextImages({
+  title,
+  subtitle,
+  description,
+  images,
+  align,
+  mediaWidth,
+}) {
   const imageList = Array.isArray(images) ? images : images ? [images] : [];
 
   return (
     <section
       className={`rich-text-images project-section-margin${
         align === "center" ? " rich-text-images-center" : ""
-      }`}
+      }${mediaWidth === "narrow" ? " rich-text-images-narrow" : ""}`}
     >
       {(title || subtitle || description) && (
         <div className="rich-text-project">
