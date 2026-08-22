@@ -22,7 +22,7 @@ const Homepage = ()=>{
      <HeroCarousel/>
 
 
-         <HeroCarousel/>    <HeroCarousel/>    <HeroCarousel/>    <HeroCarousel/>    <HeroCarousel/>
+
           {/* <SpatialSlider/> */}
        <ProjectCarousel/>
        <SkillServices/>
