@@ -8,7 +8,7 @@ import { PROJECTS, FILTERS } from "../../../pages/projects";
 import hengAvatar from "../../../resources/heng-favicon.png";
 
 // Right-hand pill row. `to` = route link, `popup` = click opens that overlay
-// instead of navigating, `hash` = same-page anchor, `status` = green
+// instead of navigating, `hash` = same-page anchor, `status` = the green
 // availability dot, `mega` = hovering opens the projects mega menu (the pill
 // still navigates).
 const ITEMS = [
@@ -140,10 +140,12 @@ const PillNav = () => {
         aria-hidden="true"
       />
 
+      {/* is--home gates the hairline under the bar: it belongs to the top of
+          the landing screen only, not to every page. */}
       <header
         className={`site-width-container pill-nav${
           scrolled ? " is--scrolled" : ""
-        }`}
+        }${location.pathname === "/" ? " is--home" : ""}`}
       >
         <Link to="/" className="pill-nav__avatar" aria-label="Heng — home">
           <img src={hengAvatar} alt="" className="pill-nav__avatar-img" />
@@ -280,7 +282,16 @@ const PillNav = () => {
                             {p.title}
                           </span>
                           <span className="pill-nav__mega-item-desc">
-                            {p.desc}
+                            {p.navDesc || p.desc}
+                          </span>
+                          {/* Collapsed to nothing until the row is hovered, so the
+                              idle column keeps its spacing. */}
+                          <span className="pill-nav__mega-item-cta" aria-hidden="true">
+                            Read more
+                            {/* Same CSS chevron as the site's .btn (index.css):
+                                a hidden shaft plus a rotated-border head that
+                                slides out into it. */}
+                            <span className="pill-nav__mega-item-cta-arrow" />
                           </span>
                         </Link>
                       ) : (
@@ -289,7 +300,7 @@ const PillNav = () => {
                             {p.title}
                           </span>
                           <span className="pill-nav__mega-item-desc">
-                            {p.desc}
+                            {p.navDesc || p.desc}
                           </span>
                         </span>
                       )}

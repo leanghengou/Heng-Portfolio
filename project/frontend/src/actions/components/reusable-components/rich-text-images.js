@@ -1,7 +1,8 @@
 import "./reusable-components.css";
 
-// `mediaWidth: "narrow"` holds the images to a smaller, left-aligned column —
-// for marks and diagrams that read fine well below the full content width.
+// `mediaWidth` holds the images to a smaller, left-aligned column — for marks
+// and diagrams that read fine below the full content width. "narrow" is the
+// preset (65%); any CSS width ("85%", "640px") is passed straight through.
 export default function RichTextImages({
   title,
   subtitle,
@@ -11,6 +12,8 @@ export default function RichTextImages({
   mediaWidth,
 }) {
   const imageList = Array.isArray(images) ? images : images ? [images] : [];
+  const customWidth =
+    mediaWidth && mediaWidth !== "narrow" ? mediaWidth : undefined;
 
   return (
     <section
@@ -27,7 +30,10 @@ export default function RichTextImages({
       )}
 
       {imageList.length > 0 && (
-        <div className="rich-text-images-media">
+        <div
+          className="rich-text-images-media"
+          style={customWidth ? { "--rti-media-width": customWidth } : undefined}
+        >
           {imageList.map((img, i) => (
             <img key={i} src={img} alt={title ? `${title} ${i + 1}` : ""} />
           ))}

@@ -56,7 +56,7 @@
   gap: 8px;
   padding: 8px 12px;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -104,24 +104,24 @@
   color: #b9b9c4;
 }
 
-/* Availability line — same green as the nav's Contact pill dot. */
+/* Availability line — same light grey as the nav.s Contact pill dot. */
 .contact-panel-status {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #3ce15f;
+  color: #eaeaf0;
 }
 .contact-panel-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #3ce15f;
+  background-color: #eaeaf0;
 }
 
 /* ---------- Form ---------- */
@@ -150,7 +150,7 @@
 }
 .contact-panel-field label {
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -191,7 +191,7 @@
 }
 .contact-panel-field input:focus,
 .contact-panel-field textarea:focus {
-  border-color: #3ce15f;
+  border-color: #ffffffa6;
   background: rgba(255, 255, 255, 0.07);
 }
 .contact-panel-field input[aria-invalid="true"],
@@ -213,7 +213,7 @@
   gap: 8px;
   padding: 12px 20px;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -242,7 +242,7 @@
 }
 
 .contact-panel-sent h3 {
-  color: #3ce15f;
+  color: #ffffff;
 }
 .contact-panel-sent a {
   color: #ffffff;

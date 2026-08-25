@@ -77,6 +77,7 @@ export const projects = [
       tools:["Figma", "Adobe Illustrator", "Adobe Illustrator", "Adobe Illustrator"],
       duration: "8 weeks",
     },
+    year: "2024",
 
     sections: [
       {
@@ -991,6 +992,7 @@ export const projects = [
       tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
       duration: "Early-stage build",
     },
+    year: "2026",
 
     sections: [
       {
@@ -1240,7 +1242,6 @@ export const projects = [
         description:
           "After exploring multiple concepts, the final logo was developed around the idea of connectivity, structure, and centralization. The geometric form creates a modern and scalable mark that reflects Showroom's role as a hub for organizing and distributing product information.",
         images: [showroomLogoConstructionImg],
-        mediaWidth: "narrow",
       },
       {
         type: "rich-text-images",
@@ -1248,6 +1249,7 @@ export const projects = [
         description:
           "Multiple color variations were explored to evaluate visibility, contrast, and brand personality across different environments. The selected palette balances professionalism and approachability while ensuring the logo remains recognizable in both digital products and marketing materials.",
         images: [showroomLogoColorImg],
+        mediaWidth: "85%",
       },
       {
         type: "rich-text-images",

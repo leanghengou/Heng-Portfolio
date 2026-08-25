@@ -28,19 +28,10 @@
   font-size: 2rem;
 }
 
-.project-category-badge {
-  display: inline-block;
-  margin-bottom: 24px;
-  padding: 7px 18px;
-  border-radius: 20px;
-  background-color: #ffffff14;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-}
 
 .project-sidebar-desc {
   margin: 0 0 34px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   opacity: 0.85;
 }
@@ -51,19 +42,41 @@
 }
 
 .project-meta-row {
-  padding: 15px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #ffffff1f;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 }
 
+/* Label above its value rather than inline: the values run long enough that
+   a shared line wrapped raggedly around the colon. */
 .project-meta-label {
-  margin-right: 6px;
+  display: block;
+  margin-bottom: 0px;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .project-meta-value {
+  display: block;
+  text-transform: uppercase;
   opacity: 0.85;
+}
+
+/* The row sets line-height 1.7 for its running text, which the chips inherit
+   and turns into ~31px boxes around 11px type. They carry their own padding,
+   so give them a tight line box instead. */
+.project-meta-row .skill-tag {
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+/* No extra top gap: the chips sit directly under the label, and .skill-tags
+   ships with a 10px margin meant for the skills section layout. */
+.project-meta-row .skill-tags {
+  margin-top: 8px;
 }
 
 .project-content {
@@ -76,6 +89,12 @@
   .project-content-framed {
     border-left: 1px solid #ffffff1f;
     padding: 0 25px;
+  }
+
+  /* Matches the padding the content column carries on the other side of that
+     border, so the sidebar copy is not pressed up against the divider. */
+  .project-sidebar-inner {
+    padding-right: 25px;
   }
 }
 

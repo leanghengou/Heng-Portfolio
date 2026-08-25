@@ -91,7 +91,7 @@ const EDUCATION = [
 const SKILLS = [
   { label: "Frontend", items: ["HTML/CSS", "JavaScript", "TypeScript", "React.js", "Node.js", "Express.js", "MongoDB"] },
   { label: "Design", items: ["Figma", "Adobe Illustrator", "Adobe InDesign", "User Interface Design", "Branding & Identity"] },
-  { label: "CMS & Tools", items: ["WordPress", "Shopify Liquid", "Webflow", "Elementor", "Duda", "Rain (Lightspeed)"] },
+  { label: "CMS & Tools", items: ["WordPress", "Shopify Liquid", "Webflow", "Elementor", "Duda", "Rain (Lightspeed)", "Git & GitHub", "DNS & Domain Management"] },
   { label: "SEO & Growth", items: ["Technical SEO", "Search Engine Optimisation", "Conversion Rate Optimisation", "Performance & SEO"] },
 ];
 

@@ -18,14 +18,22 @@
   justify-content: space-between;
   color: #fff;
   background-color: #00000000;
-  transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
-  border-bottom: 1px solid #ffffff30;
+  transition: background-color 0.35s ease, backdrop-filter 0.35s ease,
+    border-color 0.35s ease;
+  /* Transparent rather than absent so the bar is the same 77px tall on every
+     page — a border that comes and goes would shift the layout by a pixel. */
+  border-bottom: 1px solid transparent;
+}
+
+/* The hairline is part of the landing screen only: homepage, before the page
+   has scrolled. .is--scrolled already clears it everywhere else. */
+.pill-nav.is--home:not(.is--scrolled) {
+  border-bottom-color: #ffffff30;
 }
 
 /* Scrolled state — toggled from pill-nav.js once window.scrollY > 20. The mask
    fades the tint out toward the bottom so the bar has no hard edge. */
 .pill-nav.is--scrolled {
-    border-bottom: none;
   /* background-color: #00000063;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
@@ -230,7 +238,7 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
 }
 
 .pill-nav__mega-all:hover {
-  color: #3ce15f;
+  color: #fff;
 }
 
 /* Dividers live on the columns so the first one stays flush with the panel edge. */
@@ -268,7 +276,11 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
 }
 
 .pill-nav__mega-title:hover {
-  color: #3ce15f;
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #ffffff59;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
 }
 
 .pill-nav__mega-rule {
@@ -278,27 +290,116 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
   background-color: #ffffff1f;
 }
 
+/* Pulled 12px wider than the column on both sides so the hover highlight
+   can carry its own padding while the text still lines up with the heading
+   above it. */
 .pill-nav__mega-list {
-  width: 100%;
-  margin: 0;
+  width: calc(100% + 24px);
+  margin: 16px -12px 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  margin-top: 20px;
+  gap: 2px;
 }
 
+/* The link wraps title *and* description, so anywhere in the block
+   navigates — the highlight is what tells you so. */
 .pill-nav__mega-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  padding: 9px 12px;
   text-decoration: none;
   color: inherit;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
 }
 
-a.pill-nav__mega-item:hover .pill-nav__mega-item-title {
-  color: #3ce15f;
+/* One flat, opaque tone — a translucent white would stack with whatever sits
+   under it (the panel, the cursor blob that inflates over links) and read as
+   two different shades inside the same block. */
+a.pill-nav__mega-item:hover,
+a.pill-nav__mega-item:focus-visible {
+  background-color: #24242c;
+  outline: none;
+}
+
+/* Nothing inside the link paints its own background — the block is one tone. */
+.pill-nav__mega-item-title,
+.pill-nav__mega-item-desc {
+  background-color: transparent;
+}
+
+/* Collapsed to zero height while idle so the rows keep their normal rhythm —
+   the block grows into it on hover rather than reserving the space. */
+.pill-nav__mega-item-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  align-self: flex-start;
+  height: 0;
+  padding: 0 14px;
+  /* Cancels the parent flex gap as well, so an idle block is exactly the
+     height it was before the CTA existed. */
+  margin-top: -4px;
+  overflow: hidden;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #0b0b0f;
+  background-color: #fff;
+  opacity: 0;
+  transition: height 0.2s ease, margin-top 0.2s ease, opacity 0.2s ease;
+}
+
+a.pill-nav__mega-item:hover .pill-nav__mega-item-cta,
+a.pill-nav__mega-item:focus-visible .pill-nav__mega-item-cta {
+  height: 34px;
+  margin-top: 8px;
+  opacity: 1;
+}
+
+/* Lifted from .btn in index.css: the shaft is painted in the button colour so
+   only the head shows, then it darkens and the head slides out to full length
+   when the button itself is hovered. */
+.pill-nav__mega-item-cta-arrow {
+  flex: none;
+  width: 10px;
+  height: 2px;
+  margin-top: 1px;
+  position: relative;
+  background: #fff;
+  transition: background-color 0.2s ease;
+}
+
+.pill-nav__mega-item-cta-arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: -3px;
+  right: 3px;
+  padding: 3px;
+  border: solid #0b0b0f;
+  border-width: 0 2px 2px 0;
+  transform: rotate(-45deg);
+  transition: right 0.2s ease;
+}
+
+.pill-nav__mega-item-cta:hover .pill-nav__mega-item-cta-arrow {
+  background: #0b0b0f;
+}
+
+.pill-nav__mega-item-cta:hover .pill-nav__mega-item-cta-arrow::before {
+  right: 0;
+}
+
+a.pill-nav__mega-item:hover .pill-nav__mega-item-desc,
+a.pill-nav__mega-item:focus-visible .pill-nav__mega-item-desc {
+  color: #ffffffa6;
 }
 
 .pill-nav__mega-item-title {
@@ -308,18 +409,27 @@ a.pill-nav__mega-item:hover .pill-nav__mega-item-title {
   transition: color 0.25s ease;
 }
 
-/* Left in sentence case on purpose — these are real sentences from the project
-   data, and uppercasing them at 10px is unreadable. Clamped so a long
-   description can't stretch the panel. */
+/* Short one-liners (`navDesc`), left in sentence case — uppercasing them at
+   this size is unreadable. Still clamped, as a fallback to the long `desc`
+   would otherwise stretch the panel. */
 .pill-nav__mega-item-desc {
   font-family: "Geist", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.45;
   color: #ffffff6b;
+  transition: color 0.2s ease;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* The site cursor inflates over any link and fills itself with a purple wash
+   (see cursor.css). Inside the menu that lands on top of the hover block and
+   reads as a second colour inside it — keep the ring, drop the fill while the
+   panel is open. */
+body:has(.pill-nav__mega.is--open) .cursor {
+  background-color: transparent;
 }
 
 /* Availability dot on Contact. */
@@ -350,6 +460,12 @@ a.pill-nav__mega-item:hover .pill-nav__mega-item-title {
 
   .pill-nav__avatar-img,
   .pill-nav__plus {
+    transition: none;
+  }
+
+  .pill-nav__mega-item-cta,
+  .pill-nav__mega-item-cta-arrow,
+  .pill-nav__mega-item-cta-arrow::before {
     transition: none;
   }
 

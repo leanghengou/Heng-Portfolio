@@ -29,7 +29,7 @@
 .testimonial-carousel-sub {
   max-width: 440px;
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: #b9b9c4;
 }
@@ -78,7 +78,7 @@
 .testimonial-card-role {
   margin: 0;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8a99;
@@ -93,7 +93,7 @@
 }
 .testimonial-card-quote {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: #b9b9c4;
 }

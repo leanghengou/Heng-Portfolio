@@ -54,7 +54,8 @@ const FilterIcon = () => (
 );
 
 // Static for now — `slug` points at an existing /project/:slug case study,
-// leave it out and the row renders without a link.
+// leave it out and the row renders without a link. `navDesc` is the short
+// one-line version shown in the nav mega menu, where `desc` runs too long.
 // Exported because the nav's mega menu groups these same entries by tag; one
 // source of truth so the menu can't drift from the listing.
 export const PROJECTS = [
@@ -62,17 +63,19 @@ export const PROJECTS = [
     slug: "decorolala-loyalty-cart-recovery",
     title: "Decorolala Loyalty & Cart Recovery",
     desc: "Custom Shopify loyalty program, dynamic cart-drawer rewards, and a Klaviyo-integrated cart recovery flow.",
+    navDesc: "Loyalty program & cart recovery.",
     img: decorolalaThumb,
     bgImg: decorolalaBg,
     date: "2026",
     duration: "3 months",
     platform: "Shopify",
-    tags: ["Development", "Design", "Ecom"],
+    tags: ["Development", "Ecom"],
   },
   {
     slug: "start-now-app",
     title: "Start Now Fitness App",
     desc: "StartNow is my first UX case study project that I did in order to learn about UX process, and strategy.",
+    navDesc: "Fitness app UX case study.",
     img: startNowImg,
     // Higher-quality image used for the hover background (falls back to `img`).
     bgImg: startNowBg,
@@ -87,6 +90,7 @@ export const PROJECTS = [
     slug: "saint-embers",
     title: "Saint Embers",
     desc: "A custom Shopify storefront built from scratch — bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
+    navDesc: "Custom Shopify storefront, live.",
     img: saintEmberImg,
     date: "2024",
     duration: "6 weeks",
@@ -97,6 +101,7 @@ export const PROJECTS = [
     slug: "showroom",
     title: "Showroom",
     desc: "Logo and brand identity for a product information management platform — a geometric mark built around connectivity, structure, and centralization.",
+    navDesc: "Logo and brand identity.",
     img: showroomThumb,
     date: "2023",
     duration: "4 weeks",
@@ -106,27 +111,30 @@ export const PROJECTS = [
   {
     title: "Insper U",
     desc: "Learning platform concept focused on course discovery and keeping students on track through their programme.",
+    navDesc: "Learning platform concept.",
     img: insperUImg,
     date: "2023",
     duration: "5 weeks",
     platform: "Figma",
-    tags: ["Design"],
+    tags: ["Development"],
   },
   {
     slug: "hornet-energy",
     title: "Hornet Energy",
     desc: "Designing and building an early e-commerce experience for a growing energy-gel brand — a clean, conversion-focused Shopify storefront.",
+    navDesc: "Shopify build for an energy brand.",
     img: hornetThumb,
     bgImg: hornetBg,
     date: "2026",
     duration: "Early-stage build",
     platform: "Shopify",
-    tags: ["Development", "Design", "Ecom"],
+    tags: ["Development", "Ecom"],
   },
   {
     slug: "30-days-of-daily-posters",
     title: "30 Days of Daily Posters",
     desc: "A 30-day exploration of visual communication — one poster every day, each exploring a different idea, opinion, or observation about society.",
+    navDesc: "A poster a day, for 30 days.",
     img: daysChallengeImg,
     date: "2020",
     duration: "30 days",

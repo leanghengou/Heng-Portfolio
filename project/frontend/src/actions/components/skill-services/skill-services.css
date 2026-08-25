@@ -113,7 +113,7 @@ padding: 10rem 0;
 }
 .skill-item-body p {
   margin: 0;
-  font-size: 15px;
+  font-size: 1em;
   line-height: 1.55;
   color: #b9b9c4;
 }
@@ -132,7 +132,7 @@ padding: 10rem 0;
   background: #ffffff;
   color: #0d0d12;
   font-family: "Geist Mono", monospace;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
