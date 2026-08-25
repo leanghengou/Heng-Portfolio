@@ -363,19 +363,20 @@ body[data-menu-status="open"] .projects-filter-sheet {
   transition: 0.2s ease;
 }
 
-.projects-row-cta svg {
-  transition: transform 0.2s ease;
-}
-
 .projects-row-cta:hover,
 .projects-row:hover .projects-row-cta:not(.is-disabled) {
   background: #ffffff;
   color: #060112;
 }
 
-.projects-row-cta:hover svg,
-.projects-row:hover .projects-row-cta:not(.is-disabled) svg {
-  transform: translateX(4px);
+/* The CTA also reacts to the whole row being hovered, not just itself, so the
+   arrow needs the row-level trigger the global rule cannot express. */
+.projects-row:hover .projects-row-cta:not(.is-disabled) .arrow {
+  background-color: currentColor;
+}
+
+.projects-row:hover .projects-row-cta:not(.is-disabled) .arrow::before {
+  right: 0;
 }
 
 .projects-row-cta.is-disabled {

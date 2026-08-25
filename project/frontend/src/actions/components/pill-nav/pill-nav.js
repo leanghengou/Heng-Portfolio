@@ -288,10 +288,9 @@ const PillNav = () => {
                               idle column keeps its spacing. */}
                           <span className="pill-nav__mega-item-cta" aria-hidden="true">
                             Read more
-                            {/* Same CSS chevron as the site's .btn (index.css):
-                                a hidden shaft plus a rotated-border head that
-                                slides out into it. */}
-                            <span className="pill-nav__mega-item-cta-arrow" />
+                            <span className="arrow-wrapper" aria-hidden="true">
+                              <span className="arrow" />
+                            </span>
                           </span>
                         </Link>
                       ) : (
@@ -318,7 +317,10 @@ const PillNav = () => {
             className="pill-nav__mega-all"
             tabIndex={megaOpen ? undefined : -1}
           >
-            All projects <span aria-hidden="true">→</span>
+            All projects
+            <span className="arrow-wrapper" aria-hidden="true">
+              <span className="arrow" />
+            </span>
           </Link>
         </div>
       </div>

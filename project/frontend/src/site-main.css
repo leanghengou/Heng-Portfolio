@@ -101,6 +101,59 @@ h3{
   }
 
 
+
+/* ---------- Shared CTA arrow ----------
+   Markup: <a class="…">Label<span class="arrow-wrapper"><span class="arrow"></span></span></a>
+   A shaft that only paints on hover plus a rotated-border head that slides
+   out into it, so the arrow grows as you point at the button. .btn (index.css)
+   drives its own colours from --primary/--secondary; everywhere else the arrow
+   inherits the host's text colour, which means it flips automatically with
+   buttons that invert on hover. */
+.arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  position: relative;
+  width: 10px;
+  height: 2px;
+  margin-top: 1px;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: -3px;
+  right: 3px;
+  padding: 3px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(-45deg);
+  transition: right 0.2s ease;
+}
+
+/* The subject is the arrow's host — the element the wrapper sits directly
+   inside — so pointing anywhere on the button extends its arrow. */
+*:hover > .arrow-wrapper > .arrow {
+  background-color: currentColor;
+}
+
+*:hover > .arrow-wrapper > .arrow::before {
+  right: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow,
+  .arrow::before {
+    transition: none;
+  }
+}
+
 /* ---------- Mobile / tablet ---------- */
 @media (max-width: 768px) {
     h3 {

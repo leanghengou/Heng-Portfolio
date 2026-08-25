@@ -363,40 +363,6 @@ a.pill-nav__mega-item:focus-visible .pill-nav__mega-item-cta {
   opacity: 1;
 }
 
-/* Lifted from .btn in index.css: the shaft is painted in the button colour so
-   only the head shows, then it darkens and the head slides out to full length
-   when the button itself is hovered. */
-.pill-nav__mega-item-cta-arrow {
-  flex: none;
-  width: 10px;
-  height: 2px;
-  margin-top: 1px;
-  position: relative;
-  background: #fff;
-  transition: background-color 0.2s ease;
-}
-
-.pill-nav__mega-item-cta-arrow::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  top: -3px;
-  right: 3px;
-  padding: 3px;
-  border: solid #0b0b0f;
-  border-width: 0 2px 2px 0;
-  transform: rotate(-45deg);
-  transition: right 0.2s ease;
-}
-
-.pill-nav__mega-item-cta:hover .pill-nav__mega-item-cta-arrow {
-  background: #0b0b0f;
-}
-
-.pill-nav__mega-item-cta:hover .pill-nav__mega-item-cta-arrow::before {
-  right: 0;
-}
-
 a.pill-nav__mega-item:hover .pill-nav__mega-item-desc,
 a.pill-nav__mega-item:focus-visible .pill-nav__mega-item-desc {
   color: #ffffffa6;
@@ -463,9 +429,7 @@ body:has(.pill-nav__mega.is--open) .cursor {
     transition: none;
   }
 
-  .pill-nav__mega-item-cta,
-  .pill-nav__mega-item-cta-arrow,
-  .pill-nav__mega-item-cta-arrow::before {
+  .pill-nav__mega-item-cta {
     transition: none;
   }
 

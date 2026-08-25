@@ -96,6 +96,14 @@
   text-transform: uppercase;
   color: #ffffff;
 }
+
+/* The panel opens on this one, so it reads as the title rather than another
+   section label. Tighter tracking too — 0.1em is a lot at this size. */
+.contact-panel-section:first-of-type h3 {
+  margin-bottom: 12px;
+  font-size: 26px;
+  letter-spacing: 0.03em;
+}
 .contact-panel-section p {
   margin: 0;
   max-width: 60ch;
@@ -117,11 +125,26 @@
   text-transform: uppercase;
   color: #eaeaf0;
 }
+/* Live availability signal: the same green and pulse the nav Contact pill
+   carries. It reads square because site-main.css squares every corner
+   sitewide, so the pulse rings are square too. */
 .contact-panel-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #eaeaf0;
+  background-color: #3ce15f;
+  box-shadow: 0 0 0 0 #3ce15f80;
+  animation: contact-panel-pulse 2.4s ease-out infinite;
+}
+
+@keyframes contact-panel-pulse {
+  0% {
+    box-shadow: 0 0 0 0 #3ce15f80;
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 6px #3ce15f00;
+  }
 }
 
 /* ---------- Form ---------- */
@@ -253,6 +276,10 @@
   .contact-panel,
   .contact-panel-backdrop {
     transition: none;
+  }
+
+  .contact-panel-dot {
+    animation: none;
   }
 }
 

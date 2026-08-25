@@ -18,18 +18,6 @@ import hornetThumb from "../resources/Hornet-thubmail.png";
 import hornetBg from "../resources/Hornet-project-thubmail-cover.png";
 import showroomThumb from "../resources/showroom-thubmail.png";
 
-const ArrowRight = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M5 12h14M13 6l6 6-6 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const CheckMark = () => (
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path
@@ -277,11 +265,17 @@ const ProjectRow = ({ project }) => {
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
         >
-          Visit site <ArrowRight />
+          Visit site
+          <span className="arrow-wrapper" aria-hidden="true">
+            <span className="arrow" />
+          </span>
         </a>
       ) : project.slug ? (
         <Link className="projects-row-cta" to={`/project/${project.slug}`}>
-          View project <ArrowRight />
+          View project
+          <span className="arrow-wrapper" aria-hidden="true">
+            <span className="arrow" />
+          </span>
         </Link>
       ) : (
         <span className="projects-row-cta is-disabled">In progress</span>

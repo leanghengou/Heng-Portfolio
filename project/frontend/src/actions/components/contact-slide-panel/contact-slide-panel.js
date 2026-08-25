@@ -229,7 +229,10 @@ const ContactSlidePanel = ({ open, onClose }) => {
                 </div>
 
                 <button type="submit" className="contact-panel-submit">
-                  Send message <span aria-hidden="true">→</span>
+                  Send message
+                  <span className="arrow-wrapper" aria-hidden="true">
+                    <span className="arrow" />
+                  </span>
                 </button>
               </form>
             )}
