@@ -18,8 +18,8 @@ import SpatialSlider from "../actions/components/spatial-slider/spatial-slider"
 const Homepage = ()=>{
     return(
         <div>
-*             
-     {/* <HeroCarousel/>  */}
+           
+     {/* <HeroCarousel/>   */}
 
 
 
