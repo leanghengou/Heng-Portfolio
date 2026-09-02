@@ -32,6 +32,11 @@ const MEGA_COLUMNS = ["development", "design", "ecommerce", "seo"].map((slug) =>
 const OPEN_DELAY = 130;
 const CLOSE_DELAY = 180;
 
+// Routes that open on a full-bleed hero running behind the bar: the landing
+// screen and a project page (but not the deeper routes under one, e.g. a
+// project's gallery, which start on ordinary page background).
+const OVER_HERO = /^\/(?:project\/[^/]+)?$/;
+
 // Checked at event time, not render time, so a resize or a hybrid device
 // (touchscreen laptop) is read correctly on each interaction.
 const canHover = () => window.matchMedia("(hover: hover)").matches;
@@ -140,12 +145,13 @@ const PillNav = () => {
         aria-hidden="true"
       />
 
-      {/* is--home gates the hairline under the bar: it belongs to the top of
-          the landing screen only, not to every page. */}
+      {/* is--over-hero gates the hairline under the bar: it belongs to pages
+          that open on a full-bleed hero running behind the bar — the landing
+          screen and the project pages — and only until they scroll. */}
       <header
         className={`site-width-container pill-nav${
           scrolled ? " is--scrolled" : ""
-        }${location.pathname === "/" ? " is--home" : ""}`}
+        }${OVER_HERO.test(location.pathname) ? " is--over-hero" : ""}`}
       >
         <Link to="/" className="pill-nav__avatar" aria-label="Heng — home">
           <img src={hengAvatar} alt="" className="pill-nav__avatar-img" />

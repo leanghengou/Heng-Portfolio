@@ -12,8 +12,8 @@ export default function InstagramSplit({
   text,
   permalink,
   caption,
-  // Same cards as a standalone stat-cards section, scaled down by the CSS to
-  // fit the text column rather than the full content width.
+  // The index-row stat layout, scaled down by the CSS to fit the text column
+  // rather than the full content width.
   stats = [],
   textPosition = "left",
 }) {
@@ -50,7 +50,9 @@ export default function InstagramSplit({
         {tagline && <span className="text-image-split-tagline">{tagline}</span>}
         {title && <h2>{title}</h2>}
         {text && <p>{text}</p>}
-        {stats.length > 0 && <StatCards stats={stats} columns={2} />}
+        {stats.length > 0 && (
+          <StatCards stats={stats} columns={2} variant="index-row" />
+        )}
       </div>
 
       <div className="text-image-split-media instagram-embed-media">

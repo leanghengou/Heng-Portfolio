@@ -76,12 +76,35 @@ export const projects = [
       stack: ["React", "CSS", "Figma"],
       tools:["Figma", "Adobe Illustrator", "Adobe Illustrator", "Adobe Illustrator"],
       duration: "8 weeks",
+      // Takeaway cards under the overview headline. Optional — a project
+      // without them just gets the headline, copy and cover.
+      highlights: [
+        {
+          label: "Research",
+          title: "20+ interviews",
+          description:
+            "Video and phone interviews with 17 to 25 year olds, six of them mid-transformation.",
+        },
+        {
+          label: "Scope",
+          title: "Nine-stage UX process",
+          description:
+            "From project assessment and competitive analysis through to a build-ready design.",
+        },
+        {
+          label: "Outcome",
+          title: "Clickable prototype",
+          description:
+            "Wireframes, a full UI system, and a Figma prototype you can run at the end of the page.",
+        },
+      ],
     },
     year: "2024",
 
     sections: [
       {
         type: "bubble-text-badge",
+        chapter: "Process",
         title: "",
         content:[
           {
@@ -270,6 +293,7 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        chapter: "Research",
         title: "Interviews",
         subtitle:"",
         description:"I have interviewed more than 20 people on video call and phone, those people are the specific group that StartNow is targeting, they are between 17 to 25 years old. Among the 20 people, 6 of them are people who on their workout routine and self-transformation period. I asked dozen of important questions to know more about their journey, motivation, goal, difficulty, and their views on fitness app in general. Just to get an idea and build empathy for the potential users in order to understand on can StartNow solve their product and help smoothing the way for users to reach their desire destination.",
@@ -451,6 +475,7 @@ export const projects = [
 
  {
         type: "rich-text-section",
+        chapter: "User flows",
         title: "Senario of new users",
         description:"This is the senario of new users when they start using StartNow. They will be introduced to free classes workout by professional as they have expected from the fitness app.",
       },
@@ -543,6 +568,7 @@ export const projects = [
 
 {
   type: "architecture-map",
+  chapter: "Architecture",
   title: "Information architicture",
   description:
     "After identifying the solutions and features that need to be added, it's time to build the sitemap based on the plan.",
@@ -553,6 +579,7 @@ export const projects = [
 
 {
   type: "rich-text-images",
+  chapter: "Wireframes",
   title: "Paper wireframes",
   description:
     "I planned how these contents would look like in the actual app by sketching the wireframe on my personal Ipad.",
@@ -598,6 +625,7 @@ export const projects = [
       
 {
   type: "text-image-split",
+  chapter: "Visual design",
   title: "Visual design",
   text: "Black is being put as the background color. The white and green texts are presented on a dark background to create color combinations. And with a soft green gradient, it makes the app look unique in its own way.",
   image: beforeAfterimgTwelve,
@@ -737,6 +765,7 @@ export const projects = [
 
 {
   type: "prototype-embed",
+  chapter: "Prototype",
   title: "Prototype",
   description: "Try out the interactive prototype of StartNow.",
   src: "https://embed.figma.com/proto/iaVsKCqcdEk23fzDUcvbIj/Start-Now-Prototypes?node-id=2-6057&p=f&viewport=-125%2C523%2C0.09&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2%3A6057&show-proto-sidebar=1&page-id=2%3A5413&embed-host=share",
@@ -830,53 +859,55 @@ export const projects = [
 
       {
         type: "feature-image-split",
+        tagline: "01 / Product page",
         title: "Club LaLa Loyalty Program",
         description:
           "I designed and developed a custom loyalty program section integrated directly into Shopify product pages. The goal was to clearly communicate the value of joining the loyalty program before customers reached checkout.",
         features: [
-          "Dynamic reward calculations based on product value.",
-          "Membership benefits and cashback rewards.",
-          "Personalized savings messaging.",
-          "Strategic placement near purchasing decisions.",
-          "Fully responsive desktop and mobile experience.",
+          "Rewards calculated from the product's own value",
+          "Savings message placed beside the buy button",
+          "Responsive across desktop and mobile",
         ],
         image: decorlala1,
       },
 
       {
         type: "feature-image-split",
+        tagline: "02 / Cart drawer",
         title: "Dynamic Cart Rewards Experience",
         description:
           "To reinforce loyalty incentives during checkout, I developed a custom cart drawer experience that displayed real-time reward earnings based on cart value. For example, a customer with a CAD $2,158 order would automatically see a reward value of CAD $215.80 displayed throughout the checkout journey.",
         features: [
-          "Dynamic reward calculations.",
-          "Real-time cart value updates.",
-          "Loyalty messaging inside the cart drawer.",
-          "Free shipping indicators.",
-          "Trust-building purchase benefits.",
-          "Responsive, mobile-first design.",
+          "Reward total recalculated as the cart changes",
+          "Loyalty and free-shipping messaging in the drawer",
+          "Mobile-first drawer layout",
         ],
         image: decorlala2,
       },
 
       {
         type: "feature-image-split",
+        tagline: "03 / Cart recovery",
         title: "Save Your Cart + Klaviyo Integration",
         description:
           "I built a custom cart recovery feature allowing customers to save their carts before leaving the store. This created an additional opportunity to recover customers who were not yet ready to complete their purchase.",
         features: [
-          "Custom modal built with HTML, CSS, and JavaScript.",
-          "Email capture workflow.",
-          "Direct Klaviyo API integration.",
-          "Customer information synchronization.",
-          "Cart recovery and remarketing support.",
+          "Custom modal with an email capture step",
+          "Direct Klaviyo API integration",
+          "Feeds the cart recovery and remarketing flows",
         ],
         image: decorlala3,
       },
 
       {
         type: "rich-text-images",
+        title: "From saved cart to recovery email",
+        description:
+          "Saving a cart is only the first step — the value comes from what happens after the customer leaves. Submitting an email creates a Klaviyo profile with the cart contents attached, drops the shopper into a dedicated recovery segment, and triggers an automated follow-up flow that brings them back to the exact cart they left behind.",
         images: [klaviyoProcessEmail],
+        // The flow diagram reads fine below the full content width.
+        mediaWidth: "narrow",
+        mediaAlign: "center",
       },
 
       {
@@ -926,7 +957,8 @@ export const projects = [
 
       {
         type: "stat-cards",
-        columns: 3,
+        variant: "index-row",
+        columns: 5,
         stats: [
           {
             icon: "cart",
@@ -1011,6 +1043,8 @@ export const projects = [
         description:
           "Every section maps to one step of the same journey: land, understand, trust, validate, review, buy. Mapping the flow first kept the page short, since anything that didn't serve a step came off.",
         images: [hornetUserFlow],
+        // The flow diagram reads fine below the full content width.
+        mediaWidth: "narrow",
       },
 
       {

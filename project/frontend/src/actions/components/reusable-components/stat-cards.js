@@ -4,15 +4,24 @@ import { ICONS } from "./icon-feature-grid";
 /* Big-number stat cards with a chamfered bottom-left corner: icon badge, the
    figure with an optional small suffix, its label, and a right-aligned note
    that sits clear of the cut corner.
-   Each stat: { icon, value, suffix, label, note }. */
+   Each stat: { icon, value, suffix, label, note }.
+
+   `variant: "index-row"` swaps the boxes for a bare row: a counter, the figure
+   over a hairline, then the label. That layout carries no icon and no note, so
+   both are dropped rather than rendered somewhere they don't belong. */
 export default function StatCards({
   title,
   description,
   columns = 3,
   stats = [],
+  variant,
 }) {
+  const isIndexRow = variant === "index-row";
+
   return (
-    <section className="stat-cards-section">
+    <section
+      className={`stat-cards-section${isIndexRow ? " stat-cards-row" : ""}`}
+    >
       {(title || description) && (
         <div className="rich-text-project stat-cards-intro">
           {title ? <h2>{title}</h2> : null}
@@ -25,8 +34,12 @@ export default function StatCards({
         style={{ "--stat-cards-columns": columns }}
       >
         {stats.map((stat, i) => (
-          <div className="stat-card" key={i}>
-            {ICONS[stat.icon] ? (
+          <div className={isIndexRow ? "stat-row-item" : "stat-card"} key={i}>
+            {isIndexRow ? (
+              <span className="stat-row-index" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            ) : ICONS[stat.icon] ? (
               <span className="stat-card-icon" aria-hidden="true">
                 <svg
                   viewBox="0 0 24 24"
@@ -48,7 +61,9 @@ export default function StatCards({
 
             <h3 className="stat-card-label">{stat.label}</h3>
 
-            {stat.note ? <p className="stat-card-note">{stat.note}</p> : null}
+            {!isIndexRow && stat.note ? (
+              <p className="stat-card-note">{stat.note}</p>
+            ) : null}
           </div>
         ))}
       </div>

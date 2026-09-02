@@ -19,7 +19,7 @@
 }
 
 .project-section-margin{
-    margin: 100px 0;
+    margin: 140px 0;
 }
 
 .project-section-title {
@@ -982,8 +982,12 @@ padding:1.5rem;
     width: 100%;
   }
 }
+/* Body copy is held to a readable measure. The content column runs the full
+   page width now that the project sidebar is gone, and a 1200px line of 16px
+   type is far past the point where the eye can find the next line. */
 .rich-text-project {
   width: 100%;
+  max-width: 78ch;
 }
 
 /* Text + image split */
@@ -1002,31 +1006,52 @@ padding:1.5rem;
   flex: 0 0 35%;
 }
 
-/* ---------- Feature checklist (feature-image-split) ---------- */
+/* ---------- Feature list (feature-image-split) ----------
+   Numbered hairline rows rather than a stack of filled check badges: these
+   sections sit beside busy product screenshots, and the badges added a second
+   column of loud colour right where the eye is trying to read. */
+/* Same section mark the homepage carousel uses ("01 / Works"), so a project
+   page and the homepage label their sections the same way. Selector carries
+   the extra class because the paragraph rule below would otherwise win. */
+.feature-split .text-image-split-text .feature-split-eyebrow {
+  margin: 0 0 20px;
+  font-family: "Geist Mono", monospace;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
 .feature-split-list {
   list-style: none;
-  margin: 26px 0 0;
+  margin: 40px 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+  border-bottom: 1px solid #ffffff1f;
 }
 
-/* Icon tracks the first line of the label rather than the middle of the block,
-   so two-line items don't push their check out of line with the text. */
 .feature-split-item {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 16px;
-  line-height: 1.55;
+  align-items: baseline;
+  gap: 28px;
+  padding: 24px 0;
+  border-top: 1px solid #ffffff1f;
 }
 
-.feature-split-check {
+/* Fixed width so the labels line up whatever the number is. */
+.feature-split-index {
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
+  width: 2ch;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+}
+
+.feature-split-label {
+  font-size: 18px;
+  line-height: 1.45;
 }
 
 /* Proportional columns, not fixed ones: the old 440px + 640px basis assumed a
@@ -1035,7 +1060,7 @@ padding:1.5rem;
 .feature-split {
   align-items: center;
   justify-content: flex-start;
-  gap: 44px;
+  gap: 64px;
 }
 
 .feature-split .text-image-split-text {
@@ -1050,12 +1075,14 @@ padding:1.5rem;
 }
 
 .feature-split .text-image-split-text h2 {
-  margin: 0 0 14px;
-  font-size: 22px;
-  line-height: 1.3;
+  margin: 0 0 18px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.15;
 }
 
 .feature-split .text-image-split-text p {
+  max-width: 46ch;
   font-size: 16px;
   line-height: 1.65;
 }
@@ -1152,52 +1179,35 @@ padding:1.5rem;
   min-width: 0;
 }
 
-/* ---------- Stat cards inside a split's text column ----------
-   Same cards as the standalone block, scaled to a ~360px column instead of the
-   full content width: at full size the 44px figure alone is wider than the
-   card. Everything below is proportion, not new styling — the chamfer, border,
-   icon badge and note placement are untouched. */
+/* ---------- Stats inside a split's text column ----------
+   Same index rows as the standalone block, eased down a step: the split's text
+   column runs two stats across where the standalone runs five, so the figure
+   sits beside 16px body copy rather than leading its own section. Everything
+   below is proportion, not new styling. */
 .text-image-split-text .stat-cards-section {
   margin: 32px 0 0;
 }
 
-.text-image-split-text .stat-cards-grid {
-  gap: 14px;
+/* Pinned to two across at every width: the column is never wide enough for the
+   3-up the standalone block drops to, and this selector outranks that rule. */
+.text-image-split-text .stat-cards-row .stat-cards-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
 }
 
-.text-image-split-text .stat-card {
-  --stat-card-notch: 24px;
-  min-height: 0;
-  padding: 18px 18px 16px;
+.text-image-split-text .stat-cards-row .stat-card-value {
+  margin-top: 14px;
+  padding-bottom: 14px;
+  font-size: 40px;
 }
 
-.text-image-split-text .stat-card-icon {
-  width: 34px;
-  height: 34px;
+.text-image-split-text .stat-cards-row .stat-card-value span {
+  font-size: 18px;
 }
 
-.text-image-split-text .stat-card-icon svg {
-  width: 16px;
-  height: 16px;
-}
-
-.text-image-split-text .stat-card-value {
-  margin-top: 18px;
-  font-size: 26px;
-}
-
-.text-image-split-text .stat-card-value span {
-  font-size: 14px;
-}
-
-.text-image-split-text .stat-card-label {
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.text-image-split-text .stat-card-note {
-  padding-top: 14px;
-  font-size: 14px;
+.text-image-split-text .stat-cards-row .stat-card-label {
+  margin-top: 12px;
+  font-size: 13px;
 }
 
 /* Overrides the min/max width Instagram sets inline on both the placeholder
@@ -1257,6 +1267,27 @@ padding:1.5rem;
     width: 100%;
     min-width: 326px;
   }
+
+  .feature-split .text-image-split-text h2 {
+    font-size: 26px;
+  }
+
+  .feature-split .text-image-split-text p {
+    max-width: none;
+  }
+
+  .feature-split-list {
+    margin-top: 30px;
+  }
+
+  .feature-split-item {
+    gap: 18px;
+    padding: 18px 0;
+  }
+
+  .feature-split-label {
+    font-size: 16px;
+  }
 }
 
 
@@ -1298,6 +1329,12 @@ padding:1.5rem;
   width: 65%;
 }
 
+/* Centres a reduced media column in the frame while the copy above stays
+   left-aligned with the rest of the page. */
+.rich-text-images-media-center .rich-text-images-media {
+  align-items: center;
+}
+
 @media(max-width:786px){
   .rich-text-images .rich-text-project {
     width: 100%;
@@ -1320,11 +1357,11 @@ padding:1.5rem;
 
 /* No top margin: when the block carries its own title, the intro h2's margin
    collapses through and gives the same 43px other section headings get. The
-   100px of project-section-margin detached these blocks from the copy above
+   page rhythm of project-section-margin detached these blocks from the copy above
    that introduces them. */
 .icon-feature-section,
 .stat-cards-section {
-  margin: 0 0 100px;
+  margin: 0 0 140px;
 }
 
 /* Title-less block — it sits under a heading in the section before it, so the
@@ -1513,9 +1550,61 @@ padding:1.5rem;
   color: #ffffff8a;
 }
 
+/* Index-row variant: no box, no icon, no note. The figure is the whole card,
+   sat on a hairline with the counter above it and the label below. */
+.stat-cards-row .stat-cards-grid {
+  gap: 44px 34px;
+}
+
+.stat-row-item {
+  min-width: 0;
+}
+
+.stat-row-index {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: #6f7ba0;
+}
+
+/* The figure sets the column's rhythm, so the rule hangs off its own bottom
+   padding rather than a margin on the label below it. */
+.stat-cards-row .stat-card-value {
+  gap: 1px;
+  margin: 18px 0 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ffffff26;
+  font-size: 54px;
+  letter-spacing: -0.03em;
+}
+
+.stat-cards-row .stat-card-value span {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-cards-row .stat-card-label {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff8a;
+}
+
 @media (max-width: 900px) {
   .stat-cards-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Three across still fits; two would leave the figures stranded. */
+  .stat-cards-row .stat-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px 28px;
+  }
+
+  .stat-cards-row .stat-card-value {
+    font-size: 42px;
   }
 }
 
@@ -1533,6 +1622,31 @@ padding:1.5rem;
   .stat-card-value {
     margin-top: 22px;
     font-size: 38px;
+  }
+
+  .stat-cards-row .stat-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 22px;
+  }
+
+  .stat-cards-row .stat-card-value {
+    margin-top: 14px;
+    padding-bottom: 12px;
+    font-size: 36px;
+  }
+
+  .stat-cards-row .stat-card-value span {
+    font-size: 18px;
+  }
+
+  /* The split stays two across on phones, so its figures get less room than
+     the standalone block's — "200,000" fills the column at 40px. */
+  .text-image-split-text .stat-cards-row .stat-card-value {
+    font-size: 30px;
+  }
+
+  .text-image-split-text .stat-cards-row .stat-card-value span {
+    font-size: 15px;
   }
 }
 
@@ -1690,14 +1804,29 @@ padding:1.5rem;
   margin-top: 40px;
 }
 
+/* --am-media-width is set inline when a section passes a custom mediaWidth;
+   full width otherwise. The flex column centres whatever it ends up as. */
 .architecture-map-images img {
   display: block;
-  width: 100%;
+  width: var(--am-media-width, 100%);
   margin-top: -1px;
 }
 
 .architecture-map-images img:first-child {
   margin-top: 0;
+}
+
+.architecture-map-narrow img {
+  width: 65%;
+}
+
+/* Desktop-only, like the rich-text-images reduction: on phones the column is
+   already tight enough. */
+@media (max-width: 786px) {
+  .architecture-map-images img,
+  .architecture-map-narrow img {
+    width: 100%;
+  }
 }
 
 
@@ -1861,5 +1990,87 @@ padding:1.5rem;
   .inspiration-grid__media {
     height: 200px;
     margin-bottom: 24px;
+  }
+}
+
+/* ---------- Full-bleed image marquee ---------- */
+.image-marquee-section {
+  width: 100%;
+}
+
+/* Breaks out of the content column so the strip runs to both screen edges.
+   100vw counts the scrollbar; the few px of overhang are clipped by the
+   overflow-x already set on the page body. */
+.image-marquee-viewport {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.image-marquee-track {
+  display: flex;
+  /* max-content so the two row copies lay out at their natural width instead
+     of being squeezed into the viewport. */
+  width: max-content;
+  animation: image-marquee-scroll var(--image-marquee-duration, 40s) linear
+    infinite;
+}
+
+.image-marquee-track--reverse {
+  animation-direction: reverse;
+}
+
+/* Let people stop the strip to look at an image. */
+.image-marquee-viewport:hover .image-marquee-track {
+  animation-play-state: paused;
+}
+
+.image-marquee-row {
+  display: flex;
+  gap: 16px;
+  /* Keeps the seam gap equal to the gaps inside the row. */
+  padding-right: 16px;
+}
+
+.image-marquee-item {
+  display: block;
+  height: 320px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* One copy of the row, which is exactly half the track. */
+@keyframes image-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 786px) {
+  .image-marquee-viewport {
+    margin-top: 28px;
+  }
+
+  .image-marquee-item {
+    height: 200px;
+    border-radius: 8px;
+  }
+}
+
+/* No drift for anyone who asked for less motion — the strip becomes a plain
+   sideways scroller instead. */
+@media (prefers-reduced-motion: reduce) {
+  .image-marquee-viewport {
+    overflow-x: auto;
+  }
+
+  .image-marquee-track {
+    animation: none;
   }
 }

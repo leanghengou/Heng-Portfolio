@@ -1,173 +1,60 @@
-/* .pill-nav is position:fixed, so the page starts at y=0 underneath it. This
-   clears the bar and leaves ~24px of air below it; the sticky offset below
-   matches so the sidebar doesn't slide under it either. Keyed off the nav's
-   own height var so the two can't drift apart. */
+/* The hero runs full-bleed behind the fixed .pill-nav (it supplies its own
+   nav clearance), so the page itself starts flush at y=0. */
 .project-page {
   --site-nav-clearance: calc(var(--pill-nav-height, 76px) + 24px);
-  padding-top: var(--site-nav-clearance);
 }
 
-/* Two-column project layout (sticky info + scrollable content) */
-.project-layout {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.project-sidebar {
-  flex: 0 0 25%;
-  position: sticky;
-  top: var(--site-nav-clearance);
-  align-self: flex-start;
-}
-
-.project-sidebar-title {
- margin: 0 0 20px;
-  font-weight: 500;
-  text-transform: uppercase;
-  font-size: 2rem;
-}
-
-
-.project-sidebar-desc {
-  margin: 0 0 34px;
-  font-size: 16px;
-  line-height: 1.65;
-  opacity: 0.85;
-}
-
-.project-sidebar-meta {
-  display: flex;
-  flex-direction: column;
-}
-
-.project-meta-row {
-  padding: 10px 0;
-  border-bottom: 1px solid #ffffff1f;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* Label above its value rather than inline: the values run long enough that
-   a shared line wrapped raggedly around the colon. */
-.project-meta-label {
-  display: block;
-  margin-bottom: 0px;
-  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.project-meta-value {
-  display: block;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-
-/* The row sets line-height 1.7 for its running text, which the chips inherit
-   and turns into ~31px boxes around 11px type. They carry their own padding,
-   so give them a tight line box instead. */
-.project-meta-row .skill-tag {
-  font-size: 14px;
-  line-height: 1.1;
-}
-
-/* No extra top gap: the chips sit directly under the label, and .skill-tags
-   ships with a 10px margin meant for the skills section layout. */
-.project-meta-row .skill-tags {
-  margin-top: 8px;
-}
-
+/* No width here: .site-width-container on the same element supplies the
+   1280px / 90% width, and an equal-specificity width would fight it on file
+   order. */
 .project-content {
-  flex: 1;
   min-width: 0;
 }
 
-/* Desktop only — 900px is the mobile breakpoint used throughout this file */
-@media (min-width: 901px) {
-  .project-content-framed {
-    border-left: 1px solid #ffffff1f;
-    padding: 0 25px;
-  }
-
-  /* Matches the padding the content column carries on the other side of that
-     border, so the sidebar copy is not pressed up against the divider. */
-  .project-sidebar-inner {
-    padding-right: 25px;
-  }
+/* Not every section carries .project-section-margin. The copy blocks sit
+   directly on top of the block they introduce — that closeness is deliberate —
+   so the page rhythm goes above the copy instead, and the heading keeps its
+   grip on whatever follows it. */
+.project-content > .rich-text-container {
+  margin-top: 96px;
 }
 
-.project-content-cover {
-  width: 100%;
-  border-radius: 14px;
-  display: block;
+/* A run of copy blocks is one passage, so those stay closer than the rhythm
+   between topics. */
+.project-content > .rich-text-container + .rich-text-container {
+  margin-top: 48px;
 }
 
-/* Saint Embers' cover is a 3:2 photo where the others are ~2.2:1 banners, so
-   it opens the page a third taller. Crop it to the same band. */
-.project-page--saint-embers .project-content-cover {
-  aspect-ratio: 2.2 / 1;
-  object-fit: cover;
-}
 
 @media(max-width:900px){
   .project-page {
     overflow-x: hidden;
   }
 
-  .project-layout {
-    flex-direction: column;
-    gap: 24px;
-    padding: 24px 0;
-  }
-
-  .project-sidebar {
-    position: static;
-    flex-basis: auto;
-    width: 100%;
-  }
-
-  .project-content {
-    flex: none;
-    width: 100%;
-  }
-
-  .project-sidebar-title {
-    font-size: 1.9rem;
-  }
-
-  .project-sidebar-desc {
-    margin-bottom: 26px;
-  }
-
-  /* the sidebar already sits above the content, so drop the huge
+  /* the page opens straight into the content, so drop the huge
      first-section top gap and shrink the section rhythm overall */
   .project-page .project-section-margin {
-    margin: 56px 0;
+    margin: 76px 0;
+  }
+
+  .project-content > .rich-text-container {
+    margin-top: 56px;
+  }
+
+  .project-content > .rich-text-container + .rich-text-container {
+    margin-top: 32px;
   }
 
   .project-page .project-content > .project-section-margin:first-child {
     margin-top: 40px;
   }
-
-  .project-content-cover {
-    border-radius: 10px;
-  }
 }
 
 @media(max-width:520px){
   .project-page .project-section-margin {
-    margin: 44px 0;
+    margin: 60px 0;
   }
 
-  .project-sidebar-title {
-    font-size: 1.6rem;
-  }
-
-  .project-meta-row {
-    padding: 13px 0;
-  }
 }
 
 
@@ -291,7 +178,7 @@ object-fit: cover;
   }
   /* ---- Generic section spacing ---- */
   .project-page .project-section-margin {
-    margin: 56px 0;
+    margin: 76px 0;
   }
 
   /* ---- Design Process (circular badges) ---- */
@@ -331,12 +218,12 @@ object-fit: cover;
 }
 
 /* ---- Hornet Energy only ----
-   Its sections are short and image-led, so the 100px page rhythm leaves large
+   Its sections are short and image-led, so the full page rhythm leaves large
    empty bands between them. Doubled-up class for specificity: it has to beat
    the responsive `.project-page .project-section-margin` overrides above
    regardless of source order. */
 .project-page.project-page--hornet-energy .project-section-margin {
-  margin: 25px 0;
+  margin: 70px 0;
 }
 
 /* Stacked, lead with the image rather than dropping it under the paragraph —

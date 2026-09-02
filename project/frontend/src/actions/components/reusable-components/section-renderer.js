@@ -23,6 +23,7 @@ import PrototypeEmbed from "./prototype-embed";
 import InstagramSplit from "./instagram-split";
 import ExternalCtaSection from "./external-cta-section";
 import ImageMasonry from "./image-masonry";
+import ImageMarquee from "./image-marquee";
 import InspirationGrid from "./inspiration-grid";
 
 
@@ -78,6 +79,8 @@ export default function SectionRenderer({ section }) {
       return <ExternalCtaSection {...section} />
     case "image-masonry":
       return <ImageMasonry {...section} />
+    case "image-marquee":
+      return <ImageMarquee {...section} />
     case "inspiration-section":
       return <InspirationGrid {...section} />
     default:

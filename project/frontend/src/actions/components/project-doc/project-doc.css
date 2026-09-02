@@ -1,0 +1,515 @@
+/* Documentation-style project page: a sticky meta rail on the left, the case
+   study itself in the column beside it. Alternative to the full-bleed
+   .project-hero layout — the page template picks one.
+   Nothing here sets transform / filter / overflow on an ancestor of the rail:
+   any of those would break the rail's position: sticky. */
+
+.project-doc-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 0 56px;
+  padding-top: calc(var(--pill-nav-height, 76px) + 56px);
+  padding-bottom: 40px;
+}
+
+/* The rail runs the full height of the right column's two rows, so it has
+   somewhere to stick to for the whole case study. */
+.project-doc-shell > .project-rail {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.project-doc-shell > .project-overview {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.project-doc-shell > .project-content {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Full-height divider between the two columns. It lives on the shell rather
+   than as a border on the rail, which would stop at the sticky box's own
+   height instead of running the length of the case study. */
+.project-doc-shell::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--pill-nav-height, 76px) + 40px);
+  bottom: 0;
+  left: 250px;
+  width: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #ffffff2b,
+    #ffffff14 55%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* ---------- Rail ---------- */
+
+.project-rail {
+  position: sticky;
+  top: calc(var(--pill-nav-height, 76px) + 32px);
+  align-self: start;
+  /* its own scrollbar on short viewports, so a long contents list can never
+     push the CTA out of reach */
+  max-height: calc(100vh - var(--pill-nav-height, 76px) - 64px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.project-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.project-rail-inner {
+  padding-right: 8px;
+}
+
+.project-rail-name {
+  margin: 0 0 30px;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b9a9ff;
+}
+
+.project-rail-field {
+  margin-bottom: 22px;
+}
+
+.project-rail-label {
+  display: block;
+  margin-bottom: 7px;
+  font-family: "Geist Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff5c;
+}
+
+.project-rail-value {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #ffffffe0;
+}
+
+.project-rail-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Outlined chips rather than the solid white .skill-tag ones: at rail width a
+   row of filled blocks reads louder than the headline next to it. */
+.project-rail-tool {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid #7d63ff59;
+  border-radius: 4px;
+  font-family: "Geist Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c3b5ff;
+  white-space: nowrap;
+}
+
+/* ---------- Contents ---------- */
+
+.project-rail-toc {
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid #ffffff1a;
+}
+
+.project-rail-toc ul {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Two tracks so the active item's dash sits in the gutter and every label
+   stays on the same left edge, active or not. */
+.project-toc-link {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  font-size: 15px;
+  line-height: 1.3;
+  color: #ffffff8a;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.project-toc-link:hover {
+  color: #ffffffd6;
+}
+
+.project-toc-dash {
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.3);
+  transform-origin: left center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.project-toc-link.is-active {
+  color: #ffffff;
+}
+
+.project-toc-link.is-active .project-toc-dash {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ---------- Rail CTA ---------- */
+
+.project-rail-cta {
+  display: block;
+  margin-top: 30px;
+  padding: 12px 16px;
+  border: 1px solid #7d63ff73;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: #c9bcff;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.project-rail-cta:hover {
+  background: #7d63ff1f;
+  border-color: #7d63ffb3;
+  color: #ffffff;
+}
+
+/* ---------- Overview block ---------- */
+
+.project-overview-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 48px;
+  align-items: start;
+}
+
+.project-overview-title {
+  margin: 0;
+  font-family: "Geist", sans-serif;
+  font-weight: 700;
+  font-size: clamp(38px, 4.6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.project-overview-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.02em 0;
+}
+
+/* inner span is what actually slides up on reveal */
+.project-overview-line > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-overview.is-active .project-overview-line > span {
+  transform: translateY(0);
+}
+
+.project-overview.is-active .project-overview-line:nth-child(1) > span {
+  transition-delay: 0.12s;
+}
+.project-overview.is-active .project-overview-line:nth-child(2) > span {
+  transition-delay: 0.2s;
+}
+.project-overview.is-active .project-overview-line:nth-child(3) > span {
+  transition-delay: 0.28s;
+}
+.project-overview.is-active .project-overview-line:nth-child(4) > span {
+  transition-delay: 0.36s;
+}
+
+.project-overview-desc {
+  max-width: 46ch;
+  margin: 28px 0 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #ffffffcc;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-overview.is-active .project-overview-desc {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.project-overview-cover {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid #ffffff1f;
+  border-radius: 14px;
+  background: #ffffff08;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.project-overview.is-active .project-overview-cover {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+/* Blurred fill. Inflated past the card on every side so the blur can't pull
+   transparency in from the edges; the figure's overflow: hidden crops it. */
+.project-overview-cover-bg {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  object-fit: cover;
+  display: block;
+  filter: blur(26px) saturate(1.1) brightness(0.55);
+}
+
+.project-overview-cover-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---------- Highlight cards ---------- */
+
+.project-overview-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-highlight-card {
+  padding: 18px 20px 20px;
+  border: 1px solid #ffffff1a;
+  border-radius: 10px;
+  background: #ffffff08;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-overview.is-active .project-highlight-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-overview.is-active .project-highlight-card:nth-child(1) {
+  transition-delay: 0.36s;
+}
+.project-overview.is-active .project-highlight-card:nth-child(2) {
+  transition-delay: 0.44s;
+}
+.project-overview.is-active .project-highlight-card:nth-child(3) {
+  transition-delay: 0.52s;
+}
+
+.project-highlight-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Geist Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b9a9ff;
+}
+
+.project-highlight-title {
+  margin: 0 0 8px;
+  font-family: "Geist", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.project-highlight-desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #ffffffa6;
+}
+
+/* ---------- Chapter anchors ---------- */
+
+/* Zero-height marker dropped in front of a section that opens a chapter, so
+   the contents list has something to scroll to and spy on. It sits between
+   sections, so the adjacent-sibling rhythm rules in pagesCustomcss.css can't
+   see past it — the two rules below hand the spacing to the anchor instead. */
+.project-chapter-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: calc(var(--pill-nav-height, 76px) + 32px);
+}
+
+.project-content > .rich-text-container + .project-chapter-anchor {
+  margin-top: 96px;
+}
+
+.project-content > .project-chapter-anchor + .rich-text-container {
+  margin-top: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .project-doc-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 0 40px;
+  }
+
+  .project-doc-shell::before {
+    left: 220px;
+  }
+
+  .project-overview-top {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* One column: the headline leads, the rail becomes a meta block under it,
+     and the contents list drops out — a sticky rail has nowhere to sit here. */
+  .project-doc-shell {
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(var(--pill-nav-height, 76px) + 36px);
+  }
+
+  .project-doc-shell > .project-overview {
+    order: 1;
+  }
+
+  .project-doc-shell > .project-rail {
+    order: 2;
+  }
+
+  .project-doc-shell > .project-content {
+    order: 3;
+  }
+
+  .project-doc-shell::before {
+    display: none;
+  }
+
+  /* Bracketed by rules top and bottom: it now sits between the overview and
+     the case study rather than above both. */
+  .project-rail {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin: 44px 0 0;
+    padding: 32px 0;
+    border-top: 1px solid #ffffff1a;
+    border-bottom: 1px solid #ffffff1a;
+  }
+
+  .project-rail-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 24px;
+    padding-right: 0;
+  }
+
+  .project-rail-name {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .project-rail-field {
+    margin-bottom: 0;
+  }
+
+  /* Role and timeline pair up; the chips get the full width to wrap into, so
+     the meta block stays short enough to keep the headline near the fold. */
+  .project-rail-field--tools {
+    grid-column: 1 / -1;
+  }
+
+  .project-rail-toc {
+    display: none;
+  }
+
+  .project-rail-cta {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+
+  .project-overview-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .project-overview-cover {
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-overview-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 620px) {
+  .project-rail-inner {
+    gap: 18px 20px;
+  }
+
+  .project-rail-value {
+    font-size: 14px;
+  }
+
+  .project-overview-highlights {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-overview-line > span,
+  .project-overview-desc,
+  .project-overview-cover,
+  .project-highlight-card,
+  .project-toc-dash {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}

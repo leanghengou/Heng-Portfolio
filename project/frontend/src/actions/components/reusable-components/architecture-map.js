@@ -1,6 +1,17 @@
 import "./reusable-components.css";
 
-export default function ArchitectureMap({ title, description, images = [] }) {
+// `mediaWidth` matches the prop on rich-text-images: "narrow" is the 65%
+// preset, any CSS width ("85%", "640px") is passed straight through. The
+// images stay centred in the frame either way.
+export default function ArchitectureMap({
+  title,
+  description,
+  images = [],
+  mediaWidth,
+}) {
+  const customWidth =
+    mediaWidth && mediaWidth !== "narrow" ? mediaWidth : undefined;
+
   return (
     <section className="architecture-map project-section-margin">
       <div className="rich-text-project">
@@ -8,7 +19,12 @@ export default function ArchitectureMap({ title, description, images = [] }) {
         {description && <p>{description}</p>}
       </div>
 
-      <div className="architecture-map-images">
+      <div
+        className={`architecture-map-images${
+          mediaWidth === "narrow" ? " architecture-map-narrow" : ""
+        }`}
+        style={customWidth ? { "--am-media-width": customWidth } : undefined}
+      >
         {images.map((img, i) => (
           <img key={i} src={img} alt={`${title || "Architecture"} part ${i + 1}`} />
         ))}

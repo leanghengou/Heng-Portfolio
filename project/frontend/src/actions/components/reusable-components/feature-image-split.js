@@ -1,27 +1,10 @@
 import "./reusable-components.css";
 
-const CheckIcon = () => (
-  <svg
-    className="feature-split-check"
-    viewBox="0 0 24 24"
-    width="22"
-    height="22"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="12" fill="#22c55e" />
-    <path
-      d="M7 12.4l3.2 3.1L17 8.6"
-      fill="none"
-      stroke="#fff"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-// Title + description + green-check feature list on the left, image on the right.
+// Eyebrow ("01 / Label", same mark as the homepage sections) + title + description + numbered feature list on the left, image on
+// the right. The list is an <ol> — the printed 01/02/03 are decoration on top
+// of the ordering the markup already carries, so they stay out of the a11y tree.
 export default function FeatureImageSplit({
+  tagline,
   title,
   description,
   features = [],
@@ -35,17 +18,20 @@ export default function FeatureImageSplit({
       }`}
     >
       <div className="text-image-split-text">
+        {tagline && <p className="feature-split-eyebrow">{tagline}</p>}
         {title && <h2>{title}</h2>}
         {description && <p>{description}</p>}
         {features.length > 0 && (
-          <ul className="feature-split-list">
+          <ol className="feature-split-list">
             {features.map((feature, i) => (
               <li className="feature-split-item" key={i}>
-                <CheckIcon />
-                <span>{feature}</span>
+                <span className="feature-split-index" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="feature-split-label">{feature}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         )}
       </div>
       <div className="text-image-split-media">
