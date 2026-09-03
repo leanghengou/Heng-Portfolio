@@ -73,7 +73,7 @@ const ProjectCarousel = () => {
     <section className="project-carousel">
       <div className="site-width-container">
         <div className="project-carousel-header">
-          <p className="project-carousel-eyebrow">01 / Works</p>
+          <p className="project-carousel-eyebrow">{"{ Works }"}</p>
           <h2 className="project-carousel-title">
             Where I build things that don't have a brief yet.
           </h2>

@@ -85,7 +85,7 @@ const SkillServices = () => {
 
 
         <div className="skill-services-left">
-          <p className="skill-services-eyebrow">02 / Skill and Services</p>
+          <p className="skill-services-eyebrow">{"{ Skill and Services }"}</p>
           <h2 className="skill-services-title">
             Continuesouly learning and connecting the dots
           </h2>

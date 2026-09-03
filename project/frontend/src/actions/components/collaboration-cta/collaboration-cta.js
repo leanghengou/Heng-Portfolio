@@ -19,7 +19,7 @@ const CollaborationCta = () => {
             alt=""
             aria-hidden="true"
           />
-          <p className="collaboration-cta__eyebrow">02 / Get in touch</p>
+          <p className="collaboration-cta__eyebrow">{"{ Get in touch }"}</p>
           <h2 id="collaboration-cta-title">Interested in collaboration?</h2>
           <p className="collaboration-cta__copy">
             Find out about my works: read through my case studies, have a look

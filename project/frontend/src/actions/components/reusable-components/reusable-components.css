@@ -1010,7 +1010,7 @@ padding:1.5rem;
    Numbered hairline rows rather than a stack of filled check badges: these
    sections sit beside busy product screenshots, and the badges added a second
    column of loud colour right where the eye is trying to read. */
-/* Same section mark the homepage carousel uses ("01 / Works"), so a project
+/* Same section mark the homepage carousel uses ("{ Works }"), so a project
    page and the homepage label their sections the same way. Selector carries
    the extra class because the paragraph rule below would otherwise win. */
 .feature-split .text-image-split-text .feature-split-eyebrow {

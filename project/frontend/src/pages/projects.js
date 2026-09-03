@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./projects.css";
 
 import startNowImg from "../resources/startnow-intro-img.png";
@@ -115,13 +115,42 @@ export const PROJECTS = [
 // Exported for the nav mega menu — its columns are these same categories,
 // and they are now the only way into a filtered listing.
 export const FILTERS = [
-  { label: "Design", value: "Design", slug: "design" },
-  { label: "Development", value: "Development", slug: "development" },
-  { label: "Search Engine Optimization", short: "SEO", value: "SEO", slug: "seo" },
-  { label: "Ecommerce", value: "Ecom", slug: "ecommerce" },
+  {
+    label: "Design",
+    value: "Design",
+    slug: "design",
+    blurb:
+      "UX research, interface design and identity work — the thinking that happens before anything gets built.",
+  },
+  {
+    label: "Development",
+    value: "Development",
+    slug: "development",
+    blurb:
+      "Front-end and full builds — storefronts, platforms and interfaces taken from design file to production.",
+  },
+  {
+    label: "Search Engine Optimization",
+    short: "SEO",
+    value: "SEO",
+    slug: "seo",
+    blurb:
+      "Technical and on-page work aimed at how these builds get found.",
+  },
+  {
+    label: "Ecommerce",
+    value: "Ecom",
+    slug: "ecommerce",
+    blurb:
+      "Shopify storefronts and the conversion work around them — carts, loyalty, checkout.",
+  },
 ];
 
-const ProjectRow = ({ project }) => {
+// Projects carrying a given category tag, in listing order.
+export const byCategory = (value) =>
+  PROJECTS.filter((p) => p.tags.includes(value));
+
+export const ProjectRow = ({ project }) => {
   const navigate = useNavigate();
   const go = () => {
     if (project.href) {
@@ -263,45 +292,64 @@ const ProjectRow = ({ project }) => {
   );
 };
 
-const Projects = () => {
-  const { category } = useParams();
-
-  // The listing is filtered by the URL slug alone — the nav's mega menu links
-  // to /projects/<slug>; an unknown slug shows everything.
-  const activeFilter = FILTERS.find(
-    (f) => f.slug === (category || "").toLowerCase()
-  );
-  const active = activeFilter ? activeFilter.value : "";
-
-  // Nothing selected → show everything; otherwise match the selected tag.
-  const visible =
-    active === "" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(active));
+// The index: one card per category, each opening that category's own page.
+// Categories with nothing in them yet still get a card — the nav's mega menu
+// lists them too, and a missing column there would read as a bug.
+const CategoryCard = ({ filter }) => {
+  const items = byCategory(filter.value);
+  const lead = items[0];
 
   return (
-    <section className="projects-page">
-      <div className="projects-layout site-width-container">
-        {/* Left: sticky intro */}
-        <aside className="projects-sidebar">
-          <div className="projects-sidebar-inner">
-            <p className="projects-eyebrow">Project</p>
-            <h1 className="projects-heading">Projects</h1>
-            <p className="projects-sidebar-desc">
-              A mix of UX research, interface design and front-end builds. Some are finished
-              case studies, some are still moving.
-            </p>
-          </div>
-        </aside>
+    <Link
+      className="projects-cat"
+      to={`/projects/${filter.slug}`}
+      style={
+        lead
+          ? // Quoted: asset filenames can contain spaces, and an unquoted
+            // url() with a space is invalid CSS.
+            { "--cat-img": `url("${lead.bgImg || lead.img}")` }
+          : undefined
+      }
+    >
+      <p className="projects-cat-count">
+        {items.length > 0
+          ? `${items.length} ${items.length === 1 ? "Project" : "Projects"}`
+          : "In progress"}
+      </p>
 
-        {/* Right: project rows */}
-        <div className="projects-list">
-          {visible.length === 0 ? (
-            <p className="projects-empty">Nothing here yet.</p>
-          ) : (
-            visible.map((project) => (
-              <ProjectRow key={project.title} project={project} />
-            ))
-          )}
+      <h2 className="projects-cat-title">{filter.label}</h2>
+
+      <p className="projects-cat-desc">{filter.blurb}</p>
+
+      <span className="projects-cat-cta">
+        View category
+        <span className="arrow-wrapper" aria-hidden="true">
+          <span className="arrow" />
+        </span>
+      </span>
+    </Link>
+  );
+};
+
+const Projects = () => {
+  return (
+    <section className="projects-page">
+      <header className="projects-header site-width-container">
+        <div className="projects-header-lead">
+          <p className="projects-eyebrow">Project</p>
+          <h1 className="projects-heading">Projects</h1>
         </div>
+
+        <p className="projects-intro">
+          A mix of UX research, interface design and front-end builds. Some are
+          finished case studies, some are still moving.
+        </p>
+      </header>
+
+      <div className="projects-cats site-width-container">
+        {FILTERS.map((filter) => (
+          <CategoryCard key={filter.slug} filter={filter} />
+        ))}
       </div>
     </section>
   );

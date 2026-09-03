@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import ProjectPage from './pages/projectPageTemplate';
 import Projects from './pages/projects';
+import ProjectsCategory from './pages/projectsCategory';
 import PostersGallery from './pages/posters-gallery';
 
 // Routes that own the whole viewport. The posters gallery is a full-screen
@@ -75,7 +76,7 @@ function AppInner() {
           <Routes location={displayLocation}>
             <Route path="/" element={<Homepage />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:category" element={<Projects />} />
+            <Route path="/projects/:category" element={<ProjectsCategory />} />
             <Route path="/about" element={<About />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/project/:slug" element={<ProjectPage />} />

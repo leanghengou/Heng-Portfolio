@@ -6,6 +6,7 @@ import AboutSlidePanel from "../about-slide-panel/about-slide-panel";
 import ContactSlidePanel from "../contact-slide-panel/contact-slide-panel";
 import { PROJECTS, FILTERS } from "../../../pages/projects";
 import hengAvatar from "../../../resources/heng-favicon.png";
+import heggfieldVideo from "../../../resources/hf_20260831_011006_31a21478-73dc-4aba-9132-bf9ae3882c6b.mp4";
 
 // Right-hand pill row. `to` = route link, `popup` = click opens that overlay
 // instead of navigating, `hash` = same-page anchor, `status` = the green
@@ -20,8 +21,10 @@ const ITEMS = [
 
 // One column per category, in the order they read across the menu. Both the
 // labels and the /projects/<slug> routes come from the listing page's own
-// FILTERS, so a category added there shows up here automatically.
-const MEGA_COLUMNS = ["development", "design", "ecommerce", "seo"].map((slug) =>
+// FILTERS, so a category added there shows up here automatically. Three only —
+// the fourth column of the grid is the feature clip below, so SEO is reachable
+// from the listing page rather than from here.
+const MEGA_COLUMNS = ["development", "design", "ecommerce"].map((slug) =>
   FILTERS.find((f) => f.slug === slug)
 );
 
@@ -54,6 +57,7 @@ const PillNav = () => {
   const megaOpen = overlay === "mega";
 
   const hoverTimer = useRef(null);
+  const featureVideoRef = useRef(null);
 
   const openOverlay = (name) => {
     clearTimeout(hoverTimer.current);
@@ -86,6 +90,17 @@ const PillNav = () => {
   };
 
   useEffect(() => () => clearTimeout(hoverTimer.current), []);
+
+  // The panel stays mounted while closed, so the feature clip must not run (or
+  // download) behind it: preload="none" holds the file back until the first
+  // open, and it's paused again on close. play() rejects if the panel closes
+  // mid-promise, which is nothing to handle.
+  useEffect(() => {
+    const video = featureVideoRef.current;
+    if (!video) return;
+    if (megaOpen) video.play()?.catch(() => {});
+    else video.pause();
+  }, [megaOpen]);
 
   // Tint + blur the bar once the page is scrolled off the top. Lenis drives the
   // native scroll position, so a plain window listener covers both.
@@ -315,19 +330,27 @@ const PillNav = () => {
               </div>
             );
           })}
-        </div>
 
-        <div className="pill-nav__mega-foot">
-          <Link
-            to="/projects"
-            className="pill-nav__mega-all"
-            tabIndex={megaOpen ? undefined : -1}
-          >
-            All projects
-            <span className="arrow-wrapper" aria-hidden="true">
-              <span className="arrow" />
-            </span>
-          </Link>
+          {/* Fourth column: a looping clip instead of a category list. It's the
+              same .pill-nav__mega-col box as the three lists, so it picks up
+              their padding and divider and lines up with them. */}
+          <div className="pill-nav__mega-col is--feature">
+            <video
+              ref={featureVideoRef}
+              className="pill-nav__mega-feature-media"
+              src={heggfieldVideo}
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-hidden="true"
+            />
+            <span className="pill-nav__mega-feature-title">Heggfield</span>
+            <p className="pill-nav__mega-feature-desc">
+              Nine years of making software people actually use. Three that say
+              the most.
+            </p>
+          </div>
         </div>
       </div>
 

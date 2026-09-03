@@ -215,32 +215,6 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
   min-height: 270px;
 }
 
-.pill-nav__mega-foot {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 24px 22px;
-}
-
-/* The Projects pill navigates here too, but that's a small target to aim for
-   once the panel is open — this is the in-panel route to the full listing. */
-.pill-nav__mega-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #ffffff8c;
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-
-.pill-nav__mega-all:hover {
-  color: #fff;
-}
-
 /* Dividers live on the columns so the first one stays flush with the panel edge. */
 .pill-nav__mega-col {
   display: flex;
@@ -390,6 +364,43 @@ a.pill-nav__mega-item:focus-visible .pill-nav__mega-item-desc {
   overflow: hidden;
 }
 
+/* ---- Feature column -------------------------------------------------------
+   The menu's fourth column is a looping clip rather than a category list. It
+   reuses .pill-nav__mega-col for its padding and left divider; only what sits
+   inside it is different. */
+.pill-nav__mega-feature-media {
+  display: block;
+  align-self: stretch;
+  width: 100%;
+  /* Fixed 6:4 box rather than stretching to the tallest category column — the
+     clip reads better wide and short, and the height then follows the column
+     width at every breakpoint. */
+aspect-ratio: 4/5;
+  flex: none;
+  object-fit: cover;
+  /* Shows through until the clip is fetched — preload is held off until the
+     panel's first open. */
+  background-color: #17171c;
+}
+
+.pill-nav__mega-feature-title {
+  margin-top: 18px;
+  font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.pill-nav__mega-feature-desc {
+  margin: 8px 0 0;
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #ffffff6b;
+}
+
 /* The site cursor inflates over any link and fills itself with a purple wash
    (see cursor.css). Inside the menu that lands on top of the hover block and
    reads as a second colour inside it — keep the ring, drop the fill while the
@@ -506,9 +517,5 @@ body:has(.pill-nav__mega.is--open) .cursor {
 
   .pill-nav__mega-title {
     font-size: 17px;
-  }
-
-  .pill-nav__mega-foot {
-    padding: 0 16px 20px;
   }
 }

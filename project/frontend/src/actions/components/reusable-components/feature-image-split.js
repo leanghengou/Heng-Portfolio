@@ -1,6 +1,6 @@
 import "./reusable-components.css";
 
-// Eyebrow ("01 / Label", same mark as the homepage sections) + title + description + numbered feature list on the left, image on
+// Eyebrow ("{ Label }", same mark as the homepage sections) + title + description + numbered feature list on the left, image on
 // the right. The list is an <ol> — the printed 01/02/03 are decoration on top
 // of the ordering the markup already carries, so they stay out of the a11y tree.
 export default function FeatureImageSplit({

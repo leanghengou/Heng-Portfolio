@@ -117,7 +117,7 @@ const WebDevSection = () => {
 
   const header = (
     <div className="web-dev-header">
-      <p className="web-dev-eyebrow">03 / Development</p>
+      <p className="web-dev-eyebrow">{"{ Development }"}</p>
       <h2 className="web-dev-title">
         Where I turn ideas into working products.
       </h2>

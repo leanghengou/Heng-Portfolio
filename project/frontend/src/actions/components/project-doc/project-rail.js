@@ -94,6 +94,12 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
 
         <p className="project-rail-name">{project.title}</p>
 
+        {/* Plain-language "what this is" line. `intro.summary` is the short
+            rail copy; `intro.description` is the longer hero paragraph. */}
+        {project.intro?.summary && (
+          <p className="project-rail-summary">{project.intro.summary}</p>
+        )}
+
         {project.intro?.role && (
           <div className="project-rail-field">
             <span className="project-rail-label">Role</span>
@@ -123,7 +129,7 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
 
         {chapters.length > 0 && (
           <nav className="project-rail-toc" aria-label="Case study contents">
-            <span className="project-rail-label">Contents</span>
+            <span className="project-rail-label">On this page</span>
             <ul>
               {chapters.map(chapter => (
                 <li key={chapter.id}>

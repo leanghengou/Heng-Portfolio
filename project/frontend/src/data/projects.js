@@ -72,6 +72,10 @@ export const projects = [
     cover: startNowFeaturedImg,
     intro: {
       description: "StartNow is my first UX case study project that I did in order to learn about UX process, and strategy. I also designed visual for the project to make it both UI and UX project.",
+      // One or two plain sentences for the rail, under the title. Kept
+      // separate from `description` above, which the hero block uses at length.
+      summary:
+        "A fitness app concept for people starting their first transformation. My first end-to-end UX case study, from user interviews through to a clickable prototype.",
       role: "UX reseacher & Visual designer",
       stack: ["React", "CSS", "Figma"],
       tools:["Figma", "Adobe Illustrator", "Adobe Illustrator", "Adobe Illustrator"],
@@ -789,6 +793,8 @@ export const projects = [
     intro: {
       description:
         "Decorolala wanted to improve customer retention, increase loyalty program visibility, and create more opportunities to recover abandoned carts. I designed and developed a custom loyalty and cart recovery experience directly within the Shopify storefront, focusing on high-intent moments throughout the customer journey.",
+      summary:
+        "A loyalty and cart-recovery experience built straight into a Shopify store. Shoppers see their rewards and their forgotten carts at the moments they are most likely to buy.",
       role: "Shopify Developer & UX Designer",
       stack: ["Shopify Liquid", "JavaScript (ES6)", "AJAX Cart API", "Klaviyo API"],
       tools: [
@@ -807,6 +813,7 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
+        chapter: "Overview",
         title: "Overview",
         description:
           "The project included a loyalty program experience on product pages, dynamic rewards messaging inside the cart drawer, and a custom \"Save Your Cart\" feature integrated with Klaviyo — all built directly into the Shopify storefront around the highest-intent moments in the customer journey.",
@@ -814,6 +821,7 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        chapter: "The challenge",
         title: "The Challenge",
         description:
           "The store needed a better way to communicate value and capture intent before customers left.",
@@ -859,7 +867,8 @@ export const projects = [
 
       {
         type: "feature-image-split",
-        tagline: "01 / Product page",
+        tagline: "{ Product page }",
+        chapter: "Loyalty program",
         title: "Club LaLa Loyalty Program",
         description:
           "I designed and developed a custom loyalty program section integrated directly into Shopify product pages. The goal was to clearly communicate the value of joining the loyalty program before customers reached checkout.",
@@ -873,7 +882,8 @@ export const projects = [
 
       {
         type: "feature-image-split",
-        tagline: "02 / Cart drawer",
+        tagline: "{ Cart drawer }",
+        chapter: "Cart rewards",
         title: "Dynamic Cart Rewards Experience",
         description:
           "To reinforce loyalty incentives during checkout, I developed a custom cart drawer experience that displayed real-time reward earnings based on cart value. For example, a customer with a CAD $2,158 order would automatically see a reward value of CAD $215.80 displayed throughout the checkout journey.",
@@ -887,7 +897,8 @@ export const projects = [
 
       {
         type: "feature-image-split",
-        tagline: "03 / Cart recovery",
+        tagline: "{ Cart recovery }",
+        chapter: "Cart recovery",
         title: "Save Your Cart + Klaviyo Integration",
         description:
           "I built a custom cart recovery feature allowing customers to save their carts before leaving the store. This created an additional opportunity to recover customers who were not yet ready to complete their purchase.",
@@ -901,6 +912,7 @@ export const projects = [
 
       {
         type: "rich-text-images",
+        chapter: "Recovery flow",
         title: "From saved cart to recovery email",
         description:
           "Saving a cart is only the first step — the value comes from what happens after the customer leaves. Submitting an email creates a Klaviyo profile with the cart contents attached, drops the shopper into a dedicated recovery segment, and triggers an automated follow-up flow that brings them back to the exact cart they left behind.",
@@ -912,6 +924,7 @@ export const projects = [
 
       {
         type: "icon-feature-grid",
+        chapter: "Technical highlights",
         title: "Technical Highlights",
         columns: 3,
         items: [
@@ -950,6 +963,7 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        chapter: "Results",
         title: "Results",
         description:
           "During the period following implementation, Shopify Analytics reported:",
@@ -1004,6 +1018,7 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        chapter: "Key takeaways",
         title: "Key Takeaways",
         description:
           "This project demonstrates my ability to combine Shopify development, UX design, API integrations, and conversion-focused thinking to build features that support customer retention and long-term business growth. By connecting loyalty rewards, cart recovery, and customer engagement into a cohesive experience, I helped create a more effective purchasing journey across both desktop and mobile devices.",
@@ -1019,6 +1034,8 @@ export const projects = [
     intro: {
       description:
         "Designing and building an early e-commerce experience for a growing energy brand. Hornet Energy is an energy-gel brand built around simple, natural ingredients and endurance performance. I designed and built an early version of their Shopify storefront, working directly with the founding team to create a clean, conversion-focused shopping experience.",
+      summary:
+        "An early Shopify storefront for a natural energy-gel brand. Nearly all traffic came from ads landing on the product page, so that one page had to sell the whole brand.",
       role: "Shopify Developer & Designer",
       stack: ["Shopify Liquid", "CSS", "JavaScript"],
       tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
@@ -1029,6 +1046,7 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
+        chapter: "Overview",
         title: "When the Product Page Is the Whole Storefront",
         description: [
           "This project began during Hornet Energy's early growth. The co-founder (Mahdi, Chief Marketing Officer) and I were discussing how the brand could establish its online presence, and one thing quickly became clear: the website needed to do more than showcase the product, it needed to explain it.",
@@ -1039,6 +1057,7 @@ export const projects = [
 
       {
         type: "architecture-map",
+        chapter: "User flow",
         title: "User flow",
         description:
           "Every section maps to one step of the same journey: land, understand, trust, validate, review, buy. Mapping the flow first kept the page short, since anything that didn't serve a step came off.",
@@ -1049,6 +1068,7 @@ export const projects = [
 
       {
         type: "text-image-split",
+        chapter: "First impression",
         title: "Designing the First Impression",
         text: "The first screen often determines whether users keep exploring or leave. Key information, pricing, and purchase actions were prioritized above the fold, so the product reads clearly and the next step stays obvious without unnecessary scrolling.",
         image: hornetImgProductDetail,
@@ -1058,6 +1078,7 @@ export const projects = [
 
       {
         type: "text-image-split",
+        chapter: "Ingredients",
         title: "Leading with Ingredients",
         text: "Natural products rely on trust and transparency: customers want to know what the product is made of and why those ingredients matter. Ingredients, nutrition information, and key benefits were brought forward so the gel can be evaluated at a glance, without digging through long blocks of content.",
         image: hornetImgOne,
@@ -1068,6 +1089,7 @@ export const projects = [
 
       {
         type: "text-image-split",
+        chapter: "Evidence",
         title: "Backing the Value Proposition with Evidence",
         text: "Product claims become more convincing when users can verify them for themselves. Scientific research was given a prominent role, with supporting visuals and direct access to the sources, giving the page a path to validation rather than marketing language alone.",
         image: hornetImgTwo,
@@ -1077,6 +1099,7 @@ export const projects = [
 
       {
         type: "text-image-split",
+        chapter: "Social proof",
         title: "Closing with Social Proof",
         text: "Even after understanding the product, many customers look for reassurance from other people before purchasing. Athlete testimonials, reviews, and video content provide that final layer of confidence, showing how the product performs in practice.",
         image: hornetImgThree,
@@ -1086,6 +1109,7 @@ export const projects = [
 
       {
         type: "rich-text-section",
+        chapter: "Outcome",
         title: "Outcome",
         description:
           "The site carried Hornet through its early growth and has since been replaced, as the company outgrew the version I built. Plenty of things drove that growth, but the first store held up long enough to stop being the constraint.",
@@ -1093,6 +1117,7 @@ export const projects = [
 
       {
         type: "instagram-split",
+        chapter: "One year later",
         title: "1 year after the site was published",
         text: "Hornet's own 2025 recap counts 11 million bees, 6,600kg of honey, 120 retailers and 200,000 gels, a business far past the one I built the first store for. Watching a client outgrow your work is the best version of a project ending.",
         // utm_source / utm_campaign from the share sheet are dropped — the
@@ -1132,6 +1157,7 @@ export const projects = [
 
       {
         type: "prototype-embed",
+        chapter: "Prototype",
         title: "Prototype",
         description:
           "The whole page, clickable. Scroll it the way a customer would.",
@@ -1155,6 +1181,8 @@ export const projects = [
     intro: {
       description:
         "A custom Shopify storefront built from scratch in under 10 days: bespoke sections, reusable components, and a conversion-tuned checkout. Live and in production.",
+      summary:
+        "A custom Shopify store built from scratch in under ten days, with its own sections and components rather than a stock theme. Live and selling today.",
       role: "Shopify Developer & Designer",
       stack: ["Shopify Liquid", "CSS", "JavaScript"],
       tools: ["Shopify", "Shopify Liquid", "CSS", "JavaScript", "Responsive Design"],
@@ -1165,12 +1193,14 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
+        chapter: "Overview",
         title: "Overview",
         description:
           "Saint Embers is a live, in-production Shopify store I built from the ground up: custom sections, reusable components, and a conversion-tuned checkout, all tailored to the brand.",
       },
       {
         type: "rich-text-section",
+        chapter: "The challenge",
         title: "The Challenge",
         description:
           "Saint Embers had to go from nothing to a live storefront in under 10 days. It was a rush project, so the build leaned on tight scoping and reusable components: only the sections the brand actually needed, built once and reused across the store.",
@@ -1190,6 +1220,8 @@ export const projects = [
     cover: dailyPostersImg,
     intro: {
       description: "A 30-day exploration of visual communication.",
+      summary:
+        "One poster a day for thirty days straight. A personal challenge to think faster, design simpler, and build a daily creative habit.",
       role: "Graphic Designer",
       stack: ["Typography", "Composition", "Visual Hierarchy"],
       tools: ["Typography", "Composition", "Imagery", "Symbolism", "Visual Hierarchy"],
@@ -1200,6 +1232,7 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
+        chapter: "Overview",
         title: "30 Days, 30 Posters",
         description: [
           "A personal challenge to create one poster every day for 30 days. The goal was to explore ideas quickly, build a consistent creative habit, and experiment with visual storytelling through simple illustrations and compositions.",
@@ -1208,6 +1241,7 @@ export const projects = [
       },
       {
         type: "external-cta",
+        chapter: "Gallery",
         ctas: [
           {
             label: "Visit gallery",
@@ -1230,6 +1264,8 @@ export const projects = [
     intro: {
       description:
         "Logo and brand identity for Showroom, a product information management platform that helps brands organize, manage, and distribute product data from a single source of truth.",
+      summary:
+        "Logo and brand identity for Showroom, a platform that keeps all of a brand's product information in one place. Mark, type, and colour system built from scratch.",
       role: "Logo & Brand Identity Designer",
       stack: ["Logo Design", "Brand Identity", "Visual Systems"],
       tools: ["Figma", "Adobe Illustrator", "Typography", "Colour Systems"],
@@ -1240,12 +1276,14 @@ export const projects = [
     sections: [
       {
         type: "rich-text-section",
+        chapter: "Overview",
         title: "Overview",
         description:
           "Showroom is a product information management platform designed to help brands organize, manage, and distribute product data from a single source of truth. The platform streamlines the way businesses maintain product information while improving collaboration with retailers and distribution partners.",
       },
       {
         type: "text-image-split",
+        chapter: "The platform",
         title: "What does Showroom do?",
         text: "Many brands struggle with managing product information across multiple spreadsheets, files, and retail channels. Showroom solves this challenge by centralizing product data, images, descriptions, and digital assets into one accessible platform. This enables teams to maintain consistent information, reduce manual work, and share accurate product content with external partners.",
         image: showroomProcessImg,
@@ -1254,6 +1292,7 @@ export const projects = [
       },
       {
         type: "inspiration-section",
+        chapter: "Inspiration",
         title: "Inspiration",
         description:
           "The references and visual territory the Showroom identity was developed against.",
@@ -1272,6 +1311,7 @@ export const projects = [
       },
       {
         type: "rich-text-images",
+        chapter: "Logo design",
         title: "Selected outcome",
         description:
           "After exploring multiple concepts, the final logo was developed around the idea of connectivity, structure, and centralization. The geometric form creates a modern and scalable mark that reflects Showroom's role as a hub for organizing and distributing product information.",
@@ -1279,6 +1319,7 @@ export const projects = [
       },
       {
         type: "rich-text-images",
+        chapter: "Colour system",
         title: "Logo with colors",
         description:
           "Multiple color variations were explored to evaluate visibility, contrast, and brand personality across different environments. The selected palette balances professionalism and approachability while ensuring the logo remains recognizable in both digital products and marketing materials.",
@@ -1287,6 +1328,7 @@ export const projects = [
       },
       {
         type: "rich-text-images",
+        chapter: "Applications",
         title: "Logo on digital applications",
         description:
           "A strong identity system extends beyond the logo itself. To ensure consistency across customer touchpoints, the Showroom brand was applied to various digital platforms and environments, including social media, professional networking profiles, and marketplace integrations.",
@@ -1296,6 +1338,7 @@ export const projects = [
       },
       {
         type: "image-masonry",
+        chapter: "Behind the design",
         title: "Behind the Design",
         description:
           "An overview of the research, experimentation, and visual development that shaped the Showroom brand. Through continuous iteration, the project evolved from initial concepts into a complete and cohesive identity system.",

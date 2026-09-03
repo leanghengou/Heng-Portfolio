@@ -6,8 +6,11 @@
 
 .project-doc-shell {
   position: relative;
+  /* One source for the rail width: the grid track and the divider's offset
+     both read it, so widening the rail can't leave the divider behind. */
+  --project-rail-width: 300px;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-columns: var(--project-rail-width) minmax(0, 1fr);
   gap: 0 56px;
   padding-top: calc(var(--pill-nav-height, 76px) + 56px);
   padding-bottom: 40px;
@@ -33,7 +36,7 @@
   position: absolute;
   top: calc(var(--pill-nav-height, 76px) + 40px);
   bottom: 0;
-  left: 250px;
+  left: var(--project-rail-width);
   width: 1px;
   pointer-events: none;
   background: linear-gradient(
@@ -42,6 +45,17 @@
     #ffffff14 55%,
     rgba(255, 255, 255, 0)
   );
+}
+
+/* Zooming the browser out below 100% takes the device-pixel ratio under 1,
+   which leaves this hairline covering a fraction of a physical pixel: the
+   browser anti-aliases it down to a fraction of an already-low alpha and the
+   line reads as missing. A second pixel buys back roughly the weight it has at
+   1x. Retina panels zoomed out sit at 1dppx or above and keep the hairline. */
+@media (max-resolution: 0.99dppx), (-webkit-max-device-pixel-ratio: 0.99) {
+  .project-doc-shell::before {
+    width: 2px;
+  }
 }
 
 /* ---------- Rail ---------- */
@@ -61,15 +75,21 @@
   display: none;
 }
 
+/* The rail's gutter against the divider. It sits here rather than on the
+   individual pieces so the thumbnail, the copy, the contents rule and the CTA
+   all stop on the same line — nothing in the rail reaches the divider. */
 .project-rail-inner {
-  padding-right: 20px;
+  padding-right: 24px;
 }
+
 
 /* Thumbnail at the head of the rail. It keeps the cover's own aspect ratio
    rather than being cropped to a fixed one — the covers range from landscape
    artwork to portrait screenshots, and either reads fine at rail width. */
 .project-rail-thumb {
-  margin: 0 0 20px;
+  /* It stops short of the divider with everything else in the rail, so it
+     carries a border on all four sides again. */
+  margin: 10px 0;
   overflow: hidden;
   border: 1px solid #ffffff1f;
   border-radius: 10px;
@@ -90,6 +110,22 @@
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
+}
+
+/* The title carries the gap down to the meta fields on its own; when a summary
+   sits between them, the summary carries it instead. */
+.project-rail-name:has(+ .project-rail-summary) {
+  margin-bottom: 12px;
+}
+
+/* A sentence or two of plain language — what the project is, before the fields
+   below get specific. Set quieter than .project-rail-value so it reads as
+   context rather than as another piece of metadata. */
+.project-rail-summary {
+  margin: 0 0 30px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff9e;
 }
 
 .project-rail-field {
@@ -151,16 +187,16 @@
   list-style: none;
 }
 
-/* Two tracks so the active item's dash sits in the gutter and every label
-   stays on the same left edge, active or not. */
+/* Two tracks: a hairline gutter the active item's bar fills, and the label.
+   Every label stays on the same left edge, active or not. */
 .project-toc-link {
   display: grid;
-  grid-template-columns: 16px minmax(0, 1fr);
+  grid-template-columns: 2px minmax(0, 1fr);
   align-items: center;
-  gap: 8px;
-  padding: 7px 0;
+  gap: 14px;
+  padding: 8px 0;
   font-size: 15px;
-  line-height: 1.3;
+  line-height: 1.35;
   color: #ffffff8a;
   text-decoration: none;
   transition: color 0.25s ease;
@@ -170,22 +206,29 @@
   color: #ffffffd6;
 }
 
+/* The marker is a bar in the gutter rather than a glyph, so the list reads as
+   a position on the page. Painted from the link's own colour so it picks up
+   the hover and active states without a second colour to keep in sync. */
 .project-toc-dash {
-  height: 1px;
+  width: 2px;
+  height: 17px;
+  border-radius: 1px;
   background: currentColor;
   opacity: 0;
-  transform: scaleX(0.3);
-  transform-origin: left center;
+  transform: scaleY(0.35);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+/* Weight rather than colour alone does the work at this size; the label sits
+   in its own grid track, so the wider glyphs don't shift anything around it. */
 .project-toc-link.is-active {
   color: #ffffff;
+  font-weight: 500;
 }
 
 .project-toc-link.is-active .project-toc-dash {
   opacity: 1;
-  transform: scaleX(1);
+  transform: scaleY(1);
 }
 
 /* ---------- Rail CTA ---------- */
@@ -405,12 +448,9 @@
 
 @media (max-width: 1100px) {
   .project-doc-shell {
-    grid-template-columns: 220px minmax(0, 1fr);
+    /* The grid track and the divider both follow from this one value. */
+    --project-rail-width: 260px;
     gap: 0 40px;
-  }
-
-  .project-doc-shell::before {
-    left: 220px;
   }
 
   .project-overview-top {
@@ -460,8 +500,17 @@
     margin: 0;
   }
 
-  .project-rail-name {
+  /* The grid's own gap handles the spacing here, so both the plain title and
+     the one followed by a summary hand their bottom margin back. */
+  .project-rail-name,
+  .project-rail-name:has(+ .project-rail-summary) {
     grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .project-rail-summary {
+    grid-column: 1 / -1;
+    max-width: 62ch;
     margin-bottom: 0;
   }
 
@@ -517,10 +566,15 @@
   .project-overview-line > span,
   .project-overview-desc,
   .project-overview-cover,
-  .project-highlight-card,
-  .project-toc-dash {
+  .project-highlight-card {
     transition: none;
     transform: none;
     opacity: 1;
+  }
+
+  /* Only the movement goes: the bar still marks the section being read. */
+  .project-toc-dash {
+    transition: none;
+    transform: none;
   }
 }

@@ -54,7 +54,7 @@ const TestimonialCarousel = () => {
     <section className="testimonial-carousel">
       <div className="site-width-container">
         <div className="testimonial-carousel-header">
-          <p className="testimonial-carousel-eyebrow">02 / Testimonials</p>
+          <p className="testimonial-carousel-eyebrow">{"{ Testimonials }"}</p>
           <h2 className="testimonial-carousel-title">Meaningful Connections</h2>
           <p className="testimonial-carousel-sub">
             I'm Flo, a UX/UI designer based in Italy. I have 10 years experience
