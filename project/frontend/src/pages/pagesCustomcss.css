@@ -25,6 +25,19 @@
   margin-top: 48px;
 }
 
+/* Beside the rail there is nothing above the first section, so that rhythm
+   would just be dead space under the nav — the case study starts level with
+   the rail's title instead. Scoped to the two-column layout: below 900px the
+   rail stacks on top and the gap is doing real work. */
+@media (min-width: 901px) {
+  .project-content > :first-child,
+  /* A chapter anchor is zero-height, so when one leads the column it's the
+     section behind it that actually sits at the top. */
+  .project-content > .project-chapter-anchor:first-child + * {
+    margin-top: 0;
+  }
+}
+
 
 @media(max-width:900px){
   .project-page {

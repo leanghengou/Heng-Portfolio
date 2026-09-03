@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import SectionRenderer from "../actions/components/reusable-components/section-renderer";
 import ProjectRail from "../actions/components/project-doc/project-rail";
-import ProjectOverview from "../actions/components/project-doc/project-overview";
+// <ProjectOverview /> is parked — the headline/cover block is still on disk at
+// project-doc/project-overview.js, just not mounted. The rail carries the
+// project's name and meta, and the case study opens straight into its first
+// chapter.
 import styles from "./pagesCustomcss.css";
 // .skill-tag/.skill-tags live with the skills section; imported here so the
 // tool chips are styled whether or not that component is on the page.
@@ -24,18 +27,14 @@ export default function ProjectPage() {
 
   if (!project) return <div>Project not found</div>;
 
-  // Contents list: the overview at the top, then one entry per section that
-  // declares a `chapter` label. A project with no chapters just gets a meta
-  // rail — the list hides itself.
-  const chapters = [
-    { id: "overview", label: "Overview" },
-    ...project.sections
-      .filter(section => section.chapter)
-      .map(section => ({
-        id: chapterId(section.chapter),
-        label: section.chapter,
-      })),
-  ];
+  // Contents list: one entry per section that declares a `chapter` label. A
+  // project with no chapters just gets a meta rail — the list hides itself.
+  const chapters = project.sections
+    .filter(section => section.chapter)
+    .map(section => ({
+      id: chapterId(section.chapter),
+      label: section.chapter,
+    }));
 
   // The rail button points at an external prototype when the project names
   // one, otherwise at the embedded prototype section if the page has one.
@@ -63,11 +62,6 @@ export default function ProjectPage() {
           chapters={chapters}
           prototypeHref={prototypeHref}
         />
-
-        {/* Overview and content are separate grid children rather than one
-            wrapper: that lets the mobile stack put the headline above the meta
-            rail while the desktop grid keeps both in the right-hand column. */}
-        <ProjectOverview project={project} />
 
         <main className="project-content">
           {project.sections.map((section, index) => {

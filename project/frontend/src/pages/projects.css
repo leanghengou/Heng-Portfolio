@@ -6,8 +6,7 @@
 }
 
 /* ---------- Two-column shell ----------
-   Sidebar is padded in from the viewport edge; the row list runs
-   flush to the right edge so the dividers read as full-bleed rules.
+   Width and centring come from .site-width-container on the same element.
    The layout fills the page height so the divider reaches the footer. */
 .projects-layout {
   flex: 1;
@@ -25,7 +24,7 @@
      the moment it becomes sticky — keeps it aligned with the first row. */
   top: 65px;
   align-self: start;
-  padding: 40px 40px 60px 5vw;
+  padding: 40px 40px 60px 0;
   box-sizing: border-box;
 }
 
@@ -50,151 +49,9 @@
 }
 
 .projects-sidebar-desc {
-  margin: 0 0 26px;
+  margin: 0;
   font-size: 1em;
   line-height: 1.7;
-}
-
-/* ---------- Filters (checkbox list) ---------- */
-.projects-filters {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid #ffffff21;
-}
-
-.projects-filter {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  padding: 15px 2px;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid #ffffff21;
-  text-align: left;
-  font-family: "Geist Mono", monospace;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #ffffffb2;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.projects-filter:hover {
-  color: #ffffff;
-}
-
-.projects-filter-box {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #ffffff40;
-  color: #060112;
-  transition: 0.2s ease;
-}
-
-.projects-filter:hover .projects-filter-box {
-  border-color: #ffffff80;
-}
-
-.projects-filter.is-active {
-  color: #ffffff;
-}
-
-.projects-filter.is-active .projects-filter-box {
-  background: #ffffff;
-  border-color: #ffffff;
-}
-
-/* ---------- Mobile filter button + sheet ---------- */
-.projects-filter-toggle {
-  display: none; /* shown on mobile only */
-  align-items: center;
-  gap: 10px;
-  padding: 13px 18px;
-  border: 1px solid #ffffff2e;
-  background: transparent;
-  color: #ffffff;
-  font-family: "Geist Mono", monospace;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.projects-filter-sheet {
-  position: fixed;
-  inset: 0;
-  z-index: 1200;
-  pointer-events: none; /* click-through while closed */
-}
-
-.projects-filter-sheet.is-open {
-  pointer-events: auto;
-}
-
-body[data-menu-status="open"] .projects-filter-sheet {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.projects-filter-sheet-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.projects-filter-sheet.is-open .projects-filter-sheet-backdrop {
-  opacity: 1;
-}
-
-/* Full-height panel anchored to the right; slides in from / out to the right. */
-.projects-filter-sheet-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  background: #0b0713;
-  border-left: 1px solid #ffffff21;
-  padding: 20px 24px 24px;
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.projects-filter-sheet.is-open .projects-filter-sheet-panel {
-  transform: translateX(0);
-}
-
-.projects-filter-sheet-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  font-family: "Geist Mono", monospace;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #8a8a99;
-}
-
-.projects-filter-sheet-close {
-  border: 0;
-  background: transparent;
-  color: #ffffff;
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0 4px;
 }
 
 /* ---------- Row list ---------- */
@@ -427,17 +284,8 @@ body[data-menu-status="open"] .projects-filter-sheet {
 
   .projects-sidebar {
     position: static;
-    padding: 40px 16px 40px;
+    padding: 40px 0;
     border-right: 0;
-  }
-
-  /* Swap the inline checkbox list for a filter button that opens a sheet. */
-  .projects-sidebar .projects-filters {
-    display: none;
-  }
-
-  .projects-filter-toggle {
-    display: inline-flex;
   }
 
   .projects-list {
@@ -448,7 +296,7 @@ body[data-menu-status="open"] .projects-filter-sheet {
   .projects-row {
     grid-template-columns: minmax(0, 1fr);
     border: 0;
-    margin: 0 16px 44px;
+    margin: 0 0 44px;
   }
 
   /* No hover background image on touch devices. */
@@ -477,6 +325,6 @@ body[data-menu-status="open"] .projects-filter-sheet {
   }
 
   .projects-empty {
-    padding: 60px 16px;
+    padding: 60px 0;
   }
 }

@@ -18,29 +18,6 @@ import hornetThumb from "../resources/Hornet-thubmail.png";
 import hornetBg from "../resources/Hornet-project-thubmail-cover.png";
 import showroomThumb from "../resources/showroom-thubmail.png";
 
-const CheckMark = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M5 12l5 5L19 7"
-      stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const FilterIcon = () => (
-  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M3 5h18M6 12h12M10 19h4"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 // Static for now — `slug` points at an existing /project/:slug case study,
 // leave it out and the row renders without a link. `navDesc` is the short
 // one-line version shown in the nav mega menu, where `desc` runs too long.
@@ -133,9 +110,10 @@ export const PROJECTS = [
 
 ];
 
-// `value` is matched against project tags; `label` is the button text;
-// `slug` is the URL segment, e.g. /projects/development.
-// Exported for the nav mega menu — its columns are these same categories.
+// `value` is matched against project tags; `slug` is the URL segment,
+// e.g. /projects/development, and `label` is how the category is named.
+// Exported for the nav mega menu — its columns are these same categories,
+// and they are now the only way into a filtered listing.
 export const FILTERS = [
   { label: "Design", value: "Design", slug: "design" },
   { label: "Development", value: "Development", slug: "development" },
@@ -287,77 +265,22 @@ const ProjectRow = ({ project }) => {
 
 const Projects = () => {
   const { category } = useParams();
-  const navigate = useNavigate();
-  const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const openFilters = () => {
-    if (document.body.getAttribute("data-menu-status") === "open") return;
-    setFiltersOpen(true);
-  };
-
-  useEffect(() => {
-    if (!filtersOpen || typeof MutationObserver === "undefined") return undefined;
-
-    const closeWhenMenuOpens = () => {
-      if (document.body.getAttribute("data-menu-status") === "open") {
-        setFiltersOpen(false);
-      }
-    };
-
-    closeWhenMenuOpens();
-
-    const observer = new MutationObserver(closeWhenMenuOpens);
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["data-menu-status"],
-    });
-
-    return () => observer.disconnect();
-  }, [filtersOpen]);
-
-  // The active filter is derived from the URL slug (unknown slug → show all).
+  // The listing is filtered by the URL slug alone — the nav's mega menu links
+  // to /projects/<slug>; an unknown slug shows everything.
   const activeFilter = FILTERS.find(
     (f) => f.slug === (category || "").toLowerCase()
   );
   const active = activeFilter ? activeFilter.value : "";
 
-  // Selecting a box swaps the URL; clicking the active box clears it.
-  // Also closes the mobile filter sheet after a choice is made.
-  const toggle = (slug) => {
-    navigate(activeFilter?.slug === slug ? "/projects" : `/projects/${slug}`);
-    setFiltersOpen(false);
-  };
-
   // Nothing selected → show everything; otherwise match the selected tag.
   const visible =
     active === "" ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(active));
 
-  const filterList = (
-    <div className="projects-filters">
-      {FILTERS.map(({ label, value, slug }) => {
-        const checked = active === value;
-        return (
-          <button
-            key={value}
-            type="button"
-            className={`projects-filter ${checked ? "is-active" : ""}`}
-            onClick={() => toggle(slug)}
-            aria-pressed={checked}
-          >
-            <span className="projects-filter-box" aria-hidden="true">
-              {checked && <CheckMark />}
-            </span>
-            <span className="projects-filter-label">{label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
-
   return (
     <section className="projects-page">
-      <div className="projects-layout">
-        {/* Left: sticky intro + filters */}
+      <div className="projects-layout site-width-container">
+        {/* Left: sticky intro */}
         <aside className="projects-sidebar">
           <div className="projects-sidebar-inner">
             <p className="projects-eyebrow">Project</p>
@@ -366,21 +289,6 @@ const Projects = () => {
               A mix of UX research, interface design and front-end builds. Some are finished
               case studies, some are still moving.
             </p>
-
-            {/* Mobile: opens the filter sheet. Hidden on desktop. */}
-            <button
-              type="button"
-              className="projects-filter-toggle"
-              onClick={openFilters}
-            >
-              <FilterIcon />
-              {activeFilter
-                ? `Categories: ${activeFilter.short || activeFilter.label}`
-                : "Categories"}
-            </button>
-
-            {/* Desktop: inline checkbox list. Hidden on mobile. */}
-            {filterList}
           </div>
         </aside>
 
@@ -393,33 +301,6 @@ const Projects = () => {
               <ProjectRow key={project.title} project={project} />
             ))
           )}
-        </div>
-      </div>
-
-      {/* Mobile filter popup (right-side drawer) */}
-      <div
-        className={`projects-filter-sheet ${filtersOpen ? "is-open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-        aria-hidden={!filtersOpen}
-      >
-        <div
-          className="projects-filter-sheet-backdrop"
-          onClick={() => setFiltersOpen(false)}
-        />
-        <div className="projects-filter-sheet-panel">
-          <div className="projects-filter-sheet-head">
-            <span>Categories</span>
-            <button
-              type="button"
-              className="projects-filter-sheet-close"
-              aria-label="Close filters"
-              onClick={() => setFiltersOpen(false)}
-            >
-              ×
-            </button>
-          </div>
-          {filterList}
         </div>
       </div>
     </section>

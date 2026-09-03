@@ -5,7 +5,7 @@ import "./project-doc.css";
 // role / timeline / tools, a contents list that tracks the section you're
 // reading, and an optional prototype button.
 // `chapters` is built by the page (one entry per section carrying a `chapter`
-// label, plus the overview at the top); with none the rail is meta only.
+// label); with none the rail is meta only.
 export default function ProjectRail({ project, chapters = [], prototypeHref }) {
   const [activeId, setActiveId] = useState(chapters[0]?.id || "");
 
@@ -79,9 +79,19 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
     .filter(Boolean)
     .join(" · ");
 
+  // Same source the parked overview block used for its cover, so a project
+  // that names its own hero image still gets that one in the rail.
+  const thumb = project.intro?.heroImage || project.cover;
+
   return (
     <aside className="project-rail">
       <div className="project-rail-inner">
+        {thumb && (
+          <figure className="project-rail-thumb">
+            <img src={thumb} alt={project.title} loading="lazy" />
+          </figure>
+        )}
+
         <p className="project-rail-name">{project.title}</p>
 
         {project.intro?.role && (
@@ -111,7 +121,7 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
           </div>
         )}
 
-        {chapters.length > 1 && (
+        {chapters.length > 0 && (
           <nav className="project-rail-toc" aria-label="Case study contents">
             <span className="project-rail-label">Contents</span>
             <ul>

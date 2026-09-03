@@ -13,21 +13,16 @@
   padding-bottom: 40px;
 }
 
-/* The rail runs the full height of the right column's two rows, so it has
-   somewhere to stick to for the whole case study. */
+/* One row: the rail on the left, the case study beside it. The rail is as tall
+   as the content column, so it has somewhere to stick to the whole way down. */
 .project-doc-shell > .project-rail {
   grid-column: 1;
-  grid-row: 1 / span 2;
-}
-
-.project-doc-shell > .project-overview {
-  grid-column: 2;
   grid-row: 1;
 }
 
 .project-doc-shell > .project-content {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 /* Full-height divider between the two columns. It lives on the shell rather
@@ -67,17 +62,34 @@
 }
 
 .project-rail-inner {
-  padding-right: 8px;
+  padding-right: 20px;
+}
+
+/* Thumbnail at the head of the rail. It keeps the cover's own aspect ratio
+   rather than being cropped to a fixed one — the covers range from landscape
+   artwork to portrait screenshots, and either reads fine at rail width. */
+.project-rail-thumb {
+  margin: 0 0 20px;
+  overflow: hidden;
+  border: 1px solid #ffffff1f;
+  border-radius: 10px;
+  background: #ffffff08;
+  /* the figure wraps a block image; kills the inline-descender gap */
+  line-height: 0;
+}
+
+.project-rail-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .project-rail-name {
   margin: 0 0 30px;
-  font-family: "Geist Mono", monospace;
-  font-size: 13px;
+  font-size: 1.5rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #b9a9ff;
+  color: #fff;
+  line-height: 1.4;
 }
 
 .project-rail-field {
@@ -85,14 +97,14 @@
 }
 
 .project-rail-label {
-  display: block;
+ display: block;
   margin-bottom: 7px;
   font-family: "Geist Mono", monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
   color: #ffffff5c;
+  letter-spacing: 0.05rem;
 }
 
 .project-rail-value {
@@ -114,14 +126,14 @@
   display: inline-flex;
   align-items: center;
   padding: 4px 8px;
-  border: 1px solid #7d63ff59;
+  border: 1px solid #ffffff2e;
   border-radius: 4px;
   font-family: "Geist Mono", monospace;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #c3b5ff;
+  color: #ffffffb8;
   white-space: nowrap;
 }
 
@@ -182,24 +194,26 @@
   display: block;
   margin-top: 30px;
   padding: 12px 16px;
-  border: 1px solid #7d63ff73;
+  border: 1px solid #ffffff33;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   text-align: center;
   text-decoration: none;
-  color: #c9bcff;
+  color: #ffffffd1;
   transition: background-color 0.25s ease, border-color 0.25s ease,
     color 0.25s ease;
 }
 
 .project-rail-cta:hover {
-  background: #7d63ff1f;
-  border-color: #7d63ffb3;
+  background: #ffffff14;
+  border-color: #ffffff5c;
   color: #ffffff;
 }
 
-/* ---------- Overview block ---------- */
+/* ---------- Overview block (parked) ----------
+   The headline / cover / highlight-card block is no longer mounted by the page
+   template — these rules stay with project-overview.js in case it comes back. */
 
 .project-overview-top {
   display: grid;
@@ -348,7 +362,7 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #b9a9ff;
+  color: #ffffff8a;
 }
 
 .project-highlight-title {
@@ -406,39 +420,27 @@
 }
 
 @media (max-width: 900px) {
-  /* One column: the headline leads, the rail becomes a meta block under it,
-     and the contents list drops out — a sticky rail has nowhere to sit here. */
+  /* One column: the meta block leads, the case study follows, and the contents
+     list drops out — a sticky rail has nowhere to sit here. */
   .project-doc-shell {
     display: flex;
     flex-direction: column;
     padding-top: calc(var(--pill-nav-height, 76px) + 36px);
   }
 
-  .project-doc-shell > .project-overview {
-    order: 1;
-  }
-
-  .project-doc-shell > .project-rail {
-    order: 2;
-  }
-
-  .project-doc-shell > .project-content {
-    order: 3;
-  }
-
   .project-doc-shell::before {
     display: none;
   }
 
-  /* Bracketed by rules top and bottom: it now sits between the overview and
-     the case study rather than above both. */
+  /* It now leads the page as a meta block rather than sitting beside the case
+     study, so only the rule underneath it earns its place — one above would be
+     a stray line hanging under the nav. */
   .project-rail {
     position: static;
     max-height: none;
     overflow: visible;
-    margin: 44px 0 0;
-    padding: 32px 0;
-    border-top: 1px solid #ffffff1a;
+    margin: 0;
+    padding: 0 0 32px;
     border-bottom: 1px solid #ffffff1a;
   }
 
@@ -447,6 +449,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px 24px;
     padding-right: 0;
+  }
+
+  /* Its own row above the name, held to thumbnail size — at phone width the
+     rail is the full column, and a cover stretched across it would read as a
+     hero rather than a thumbnail. */
+  .project-rail-thumb {
+    grid-column: 1 / -1;
+    max-width: 220px;
+    margin: 0;
   }
 
   .project-rail-name {

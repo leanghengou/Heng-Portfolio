@@ -1291,6 +1291,8 @@ export const projects = [
         description:
           "A strong identity system extends beyond the logo itself. To ensure consistency across customer touchpoints, the Showroom brand was applied to various digital platforms and environments, including social media, professional networking profiles, and marketplace integrations.",
         images: [showroomOnApplicationImg],
+        mediaWidth: "75%",
+        mediaAlign: "center",
       },
       {
         type: "image-masonry",

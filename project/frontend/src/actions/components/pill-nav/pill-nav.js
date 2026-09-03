@@ -32,10 +32,10 @@ const MEGA_COLUMNS = ["development", "design", "ecommerce", "seo"].map((slug) =>
 const OPEN_DELAY = 130;
 const CLOSE_DELAY = 180;
 
-// Routes that open on a full-bleed hero running behind the bar: the landing
-// screen and a project page (but not the deeper routes under one, e.g. a
-// project's gallery, which start on ordinary page background).
-const OVER_HERO = /^\/(?:project\/[^/]+)?$/;
+// Routes that open on a full-bleed hero running behind the bar and want the
+// hairline under it: the landing screen only. A project page also opens on a
+// hero, but reads better with no line, so it is deliberately left out.
+const OVER_HERO = /^\/$/;
 
 // Checked at event time, not render time, so a resize or a hybrid device
 // (touchscreen laptop) is read correctly on each interaction.

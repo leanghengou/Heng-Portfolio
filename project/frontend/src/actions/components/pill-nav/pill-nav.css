@@ -25,9 +25,8 @@
   border-bottom: 1px solid transparent;
 }
 
-/* The hairline belongs to the pages whose hero image runs behind the bar —
-   the homepage and the project pages — before they have scrolled.
-   .is--scrolled already clears it everywhere else. */
+/* The hairline belongs to the homepage, whose hero image runs behind the bar,
+   before it has scrolled. .is--scrolled already clears it everywhere else. */
 .pill-nav.is--over-hero:not(.is--scrolled) {
   border-bottom-color: #ffffff30;
 }
