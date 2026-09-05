@@ -1835,10 +1835,51 @@ padding:1.5rem;
   width: 85%;
 }
 
+/* The clamp lives on this wrapper rather than on the grid itself, so the grid
+   keeps reporting its natural height to the component that measures it. */
+.image-masonry-collapse {
+  position: relative;
+  margin-top: 40px;
+}
+
+.image-masonry-collapse.is-clamped {
+  max-height: var(--image-masonry-clamp, 760px);
+  overflow: hidden;
+}
+
+/* Fades the cut-off row into the page instead of slicing it mid-image. */
+.image-masonry-collapse.is-clamped::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 240px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 1, 18, 0), #060112 88%);
+}
+
 .image-masonry-grid {
   columns: 2;
   column-gap: 20px;
-  margin-top: 40px;
+}
+
+.image-masonry-toggle {
+  margin-top: 24px;
+  padding: 12px 22px;
+  border: 1px solid #ffffff33;
+  border-radius: 8px;
+  background: transparent;
+  color: #ffffffd1;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.image-masonry-toggle:hover {
+  background: #ffffff14;
+  border-color: #ffffff5c;
+  color: #ffffff;
 }
 
 .image-masonry-item {
@@ -1859,7 +1900,9 @@ padding:1.5rem;
     width: 100%;
   }
 
-  .image-masonry-grid {
+  /* The carousel below already keeps the section short here. */
+  .image-masonry-collapse,
+  .image-masonry-toggle {
     display: none;
   }
 
