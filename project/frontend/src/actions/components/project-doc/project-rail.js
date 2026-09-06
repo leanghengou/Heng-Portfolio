@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./project-doc.css";
 
-// Sticky meta rail for the documentation-style project layout: the project's
-// role / timeline / tools, a contents list that tracks the section you're
-// reading, and an optional prototype button.
+// Sticky rail for the documentation-style project layout: the project's name
+// and summary, a contents list that tracks the section you're reading, and an
+// optional prototype button. Role / timeline / tools moved out to
+// <ProjectDetail /> at the head of the page, so the contents list sits near
+// the top of the rail rather than below a stack of metadata.
 // `chapters` is built by the page (one entry per section carrying a `chapter`
-// label); with none the rail is meta only.
+// label); with none the rail is the project's name and summary alone.
 export default function ProjectRail({ project, chapters = [], prototypeHref }) {
   const [activeId, setActiveId] = useState(chapters[0]?.id || "");
 
@@ -75,12 +77,8 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
     }
   };
 
-  const timeline = [project.intro?.duration, project.year]
-    .filter(Boolean)
-    .join(" · ");
-
-  // Same source the parked overview block used for its cover, so a project
-  // that names its own hero image still gets that one in the rail.
+  // Same source the detail band uses for its background, so a project that
+  // names its own hero image gets that one in the rail too.
   const thumb = project.intro?.heroImage || project.cover;
 
   return (
@@ -92,39 +90,13 @@ export default function ProjectRail({ project, chapters = [], prototypeHref }) {
           </figure>
         )}
 
+        <span className="project-rail-label">Project</span>
         <p className="project-rail-name">{project.title}</p>
 
         {/* Plain-language "what this is" line. `intro.summary` is the short
             rail copy; `intro.description` is the longer hero paragraph. */}
         {project.intro?.summary && (
           <p className="project-rail-summary">{project.intro.summary}</p>
-        )}
-
-        {project.intro?.role && (
-          <div className="project-rail-field">
-            <span className="project-rail-label">Role</span>
-            <span className="project-rail-value">{project.intro.role}</span>
-          </div>
-        )}
-
-        {timeline && (
-          <div className="project-rail-field">
-            <span className="project-rail-label">Timeline</span>
-            <span className="project-rail-value">{timeline}</span>
-          </div>
-        )}
-
-        {project.intro?.tools?.length > 0 && (
-          <div className="project-rail-field project-rail-field--tools">
-            <span className="project-rail-label">Tools</span>
-            <div className="project-rail-tools">
-              {project.intro.tools.map((tool, i) => (
-                <span className="project-rail-tool" key={`${tool}-${i}`}>
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
         )}
 
         {chapters.length > 0 && (

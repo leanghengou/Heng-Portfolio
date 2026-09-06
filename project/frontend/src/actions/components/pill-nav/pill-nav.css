@@ -152,13 +152,16 @@ font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
    Full-screen dim behind the panel, matching .resume-popup-backdrop. z-index
    99 puts it under the bar (100) so the nav stays readable on top of it, and
    over all page content. */
+/* No backdrop-filter here. The dim is 92% opaque, so a blur behind it was
+   invisible anyway — and on some GPUs Chrome composites a backdrop-filtered
+   layer by dropping the element's own translucent background and drawing the
+   blurred backdrop over the white base colour, which washed the whole page
+   light grey while the menu was open. A flat fill can't hit that path. */
 .pill-nav__backdrop {
   position: fixed;
   inset: 0;
   z-index: 99;
   background: rgba(2, 1, 8, 0.92);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0s linear 0.3s;
@@ -459,32 +462,14 @@ body:has(.pill-nav__mega.is--open) .cursor {
     --pill-nav-height: 56px;
   }
 
-  /* The four pills are tuned to just fit a 375px viewport alongside the avatar,
-     so Contact (the CTA, and the only one carrying the status dot) stays on
-     screen. Below that the row scrolls rather than hiding links in a menu. */
+  /* The pill row is replaced by the burger below — the four pills only just
+     fit a 375px viewport, and the sideways scroll that kept Contact reachable
+     hid links behind a gesture nothing signposted. */
   .pill-nav__items {
-    padding-right: 0.75em;
-    padding-left: 0.5em;
-    /* Tight: two pills now carry a "+", and at 375px the row is within a few
-       px of overflowing. */
-    gap: 4px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .pill-nav__items::-webkit-scrollbar {
     display: none;
   }
 
-  .pill-nav__pill {
-    height: 30px;
-    padding: 0 0.6em;
-    gap: 0.4em;
-    font-size: 10.5px;
-    letter-spacing: 0.03em;
-  }
-
+  /* Still used: the drawer's Contact row carries the same dot. */
   .pill-nav__status {
     width: 6px;
     height: 6px;
@@ -517,5 +502,214 @@ body:has(.pill-nav__mega.is--open) .cursor {
 
   .pill-nav__mega-title {
     font-size: 17px;
+  }
+}
+
+/* ---- Mobile burger + drawer -----------------------------------------------
+   Below 768px the pill row is replaced by a burger. Both the button and the
+   drawer render at every width and are hidden here on desktop, so the choice
+   is CSS rather than a resize listener deciding which nav is in the tree. */
+.pill-nav__burger,
+.pill-nav__drawer {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  /* Square, flush to the right edge the way the avatar is flush to the left,
+     and 44px so the tap target clears the 20px of ink inside it. */
+  .pill-nav__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: var(--pill-nav-height);
+    height: var(--pill-nav-height);
+    padding: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* The bars are absolutely placed inside this box so they rotate about one
+     shared centre — with them in flow, the X's two halves cross off-centre. */
+  .pill-nav__burger-box {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 12px;
+  }
+
+  .pill-nav__burger-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: currentColor;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pill-nav__burger-bar:nth-child(1) {
+    top: 0;
+  }
+
+  .pill-nav__burger-bar:nth-child(2) {
+    bottom: 0;
+  }
+
+  /* Slide both to the middle first, then rotate — one transform, so the two
+     stages read as a single motion rather than a collapse and a spin. */
+  .pill-nav__burger.is--open .pill-nav__burger-bar:nth-child(1) {
+    transform: translateY(5.25px) rotate(45deg);
+  }
+
+  .pill-nav__burger.is--open .pill-nav__burger-bar:nth-child(2) {
+    transform: translateY(-5.25px) rotate(-45deg);
+  }
+
+  /* Fills the screen under the bar. z-index 101 matches the mega panel: above
+     the bar's backdrop (99) and the bar itself (100), below the slide panels
+     (1100) that a row here hands off to. */
+  .pill-nav__drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 101;
+    top: var(--pill-nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding-bottom: env(safe-area-inset-bottom);
+    background-color: #0e0e11;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    /* Same closed-state treatment as .pill-nav__mega — kept in the tree to
+       transition, out of hit-testing and the a11y tree while closed. */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.28s ease, transform 0.28s ease,
+      visibility 0s linear 0.28s;
+  }
+
+  .pill-nav__drawer.is--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.28s ease, transform 0.28s ease,
+      visibility 0s linear 0s;
+  }
+
+  .pill-nav__drawer-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Buttons and anchors sit in the same list, so everything a <button> brings
+     of its own — width, font, alignment — is reset to match the links. */
+  .pill-nav__drawer-row {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    width: 100%;
+    padding: 22px 20px;
+    border: none;
+    border-bottom: 1px solid #ffffff14;
+    background: none;
+    color: #fff;
+    font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* No hover on touch, so :active is the only feedback there is. */
+  .pill-nav__drawer-row:active {
+    background-color: #24242c;
+  }
+
+  .pill-nav__drawer-row.is--current {
+    color: #fff;
+    background-color: #17171c;
+  }
+
+  .pill-nav__drawer-label {
+    flex: 1;
+    line-height: 1;
+  }
+
+  /* "+" for the rows that open a panel in place, "→" for the one that
+     navigates — the row says which kind it is before you tap it. */
+  .pill-nav__drawer-mark {
+    flex: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    opacity: 0.45;
+  }
+
+  .pill-nav__drawer-cats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 26px 20px 32px;
+  }
+
+  .pill-nav__drawer-cat-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill-nav__drawer-cat {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 0.9em;
+    border: 1px solid #ffffff24;
+    color: #ffffffd6;
+    font-family: "Geist Mono", "SFMono-Regular", Menlo, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .pill-nav__drawer-cat:active {
+    background-color: #fff;
+    border-color: #fff;
+    color: #0b1015;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill-nav__burger-bar {
+    transition: none;
+  }
+
+  .pill-nav__drawer {
+    transform: none;
+    transition: opacity 0.01s linear, visibility 0s linear 0.01s;
+  }
+
+  .pill-nav__drawer.is--open {
+    transform: none;
   }
 }

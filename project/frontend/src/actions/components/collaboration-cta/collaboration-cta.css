@@ -35,7 +35,8 @@
   min-height: 358px;
 }
 
-.collaboration-cta__media img {
+.collaboration-cta__media img,
+.collaboration-cta__media video {
   position: relative;
   z-index: 1;
 width: min(100%, 395px);
@@ -116,7 +117,8 @@ width: min(100%, 395px);
     order:2;
   }
 
-   .collaboration-cta__media img {
+   .collaboration-cta__media img,
+   .collaboration-cta__media video {
     width: min(100%, 335px);
     max-height: none;
   }

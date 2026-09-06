@@ -1,6 +1,12 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { FILTERS, ProjectRow, byCategory } from "./projects";
+import {
+  CollectionPills,
+  CollectionSwitcher,
+  FILTERS,
+  ProjectRow,
+  byCategory,
+} from "./projects";
 import "./projects.css";
 
 // One category of the listing on its own page — /projects/design and friends.
@@ -47,20 +53,27 @@ const ProjectsCategory = () => {
 
   return (
     <section className="projects-page">
-      <header className="projects-header site-width-container">
-        <div className="projects-header-lead">
-          {/* Doubles as the way back up to the index. */}
-          <p className="projects-eyebrow">
-            <Link className="projects-eyebrow-link" to="/projects">
-              Projects
-            </Link>
-            <span className="projects-eyebrow-sep">/</span>
+      <header className="projects-collection-header site-width-container">
+        {/* Title and blurb centred over the switcher, kept small so the first
+            project row still carries the page. The strip below already says
+            which collection this is, so there is no breadcrumb — only the
+            quiet way back up to the index. */}
+        <div className="projects-collection-lead">
+          <Link className="projects-collection-back" to="/projects">
+            All projects
+          </Link>
+
+          <h1 className="projects-collection-title">
             {filter.short || filter.label}
-          </p>
-          <h1 className="projects-heading">{filter.label}</h1>
+          </h1>
+          <p className="projects-collection-blurb">{filter.blurb}</p>
+
+          {/* Phone only. Sits inside the lead because at that width it reads as
+              part of the title block, not as a band under it. */}
+          <CollectionPills active={filter.slug} />
         </div>
 
-        <p className="projects-intro">{filter.blurb}</p>
+        <CollectionSwitcher active={filter.slug} />
       </header>
 
       <div className="projects-list site-width-container">

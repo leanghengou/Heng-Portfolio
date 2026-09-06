@@ -1,7 +1,7 @@
 import React from "react";
 import "./collaboration-cta.css";
 
-import hengCharacterPc from "../../../resources/heng-character-pc.png";
+import hengCharacterPc from "../../../resources/b60e52a7600c48e3b80892503b3566e2.webm";
 import belleCharacter from "../../../resources/belle-character.png";
 
 const CollaborationCta = () => {
@@ -9,7 +9,14 @@ const CollaborationCta = () => {
     <section className="collaboration-cta" aria-labelledby="collaboration-cta-title">
       <div className="site-width-container collaboration-cta__inner">
         <div className="collaboration-cta__media" aria-hidden="true">
-          <img src={hengCharacterPc} alt="" />
+          <video
+            src={hengCharacterPc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
         </div>
 
         <div className="collaboration-cta__content">

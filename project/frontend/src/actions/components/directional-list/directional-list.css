@@ -1,0 +1,197 @@
+/* ---------- Directional hover list ----------
+   Rows on hairlines with a tile that wipes in from the edge the pointer
+   crossed. Sizing is in em off the block's own font-size, so the whole list
+   scales from the one declaration below. */
+.directional-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* Column labels, sitting on the same track widths as the rows below so each
+   one lines up with the column it names. */
+.directional-list__info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  width: 100%;
+  padding: 0 0 1.5em;
+}
+
+.directional-list__eyebrow {
+  margin: 0;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8a99;
+}
+
+/* Rows overlap by a pixel so each pair shares one hairline rather than
+   stacking two. Clipped, or the tile would show outside the row. */
+.directional-list__item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-top: -1px;
+  padding: 2em;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Positioned, so they paint above the tile without needing a z-index of
+   their own — the tile comes first in the DOM. */
+.directional-list__col {
+  position: relative;
+}
+
+.directional-list__col.is--lead {
+  min-width: 30%;
+}
+
+.directional-list__col.is--main {
+  flex: 1;
+}
+
+.directional-list__col.is--meta {
+  flex: none;
+  min-width: 3em;
+  text-align: right;
+}
+
+/* `color: inherit` on purpose: index.css dresses every bare <p> in a
+   translucent white, which would otherwise beat the block's own colour. */
+.directional-list__p {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1;
+  color: inherit;
+  /* No delay on the way out: the tile is leaving, so the text has to come
+     back to white immediately. The delay going in is on the hover rule. */
+  transition: color 0.3s ease;
+}
+
+.is--lead .directional-list__p {
+  font-family: "Geist", sans-serif;
+  font-size: 1.15em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.is--main .directional-list__p {
+  max-width: 30em;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #b9b9c4;
+}
+
+.is--meta .directional-list__p {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: #8a8a99;
+}
+
+/* Held above the tile so the hairlines stay visible across a filled row. */
+.directional-list__border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff21;
+}
+
+.directional-list__border.is--item {
+  top: 0;
+  bottom: auto;
+}
+
+.directional-list__hover-tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* The row's image behind the site's ink — dark enough that the copy keeps
+     its contrast, light enough that the image still reads. The colour under
+     it covers rows that supply no --tile-img at all. */
+  background-color: #060112;
+  background-image: linear-gradient(
+      rgba(6, 1, 18, 0.82),
+      rgba(6, 1, 18, 0.82)
+    ),
+    var(--tile-img, none);
+  background-size: cover;
+  background-position: center;
+  /* Parked off the top until a pointer enters; the entry edge is rewritten
+     inline on mouseenter. */
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* The copy stays white over the veil — the tile is dark, so nothing needs to
+   flip. Only the muted columns lift, to hold their contrast over the image. */
+.directional-list__item:hover .is--main .directional-list__p,
+.directional-list__item:hover .is--meta .directional-list__p {
+  color: #ffffff;
+  transition-delay: 0.12s;
+}
+
+/* ---------- Mobile: stack ----------
+   Lead and meta keep one line, the middle column drops underneath. The label
+   row goes with them — it can't head columns that no longer line up. */
+@media (max-width: 700px) {
+  .directional-list {
+    font-size: 15px;
+  }
+
+  .directional-list__info {
+    display: none;
+  }
+
+  .directional-list__item {
+    flex-wrap: wrap;
+    gap: 0.75em 1em;
+    padding: 1.6em 0;
+  }
+
+  .directional-list__col.is--lead {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .directional-list__col.is--meta {
+    order: 2;
+  }
+
+  .directional-list__col.is--main {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .is--main .directional-list__p {
+    max-width: none;
+    font-size: 0.9em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directional-list__hover-tile {
+    transition: none;
+  }
+}

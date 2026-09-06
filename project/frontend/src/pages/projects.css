@@ -43,14 +43,15 @@
   color: #ffffff40;
 }
 
+/* Sentence case and sans here, against the mono eyebrow above it — the size
+   carries the weight, so the uppercase mono treatment isn't needed twice. */
 .projects-heading {
   margin: 0;
-  font-family: "Geist Mono", monospace;
-  font-size: clamp(34px, 5vw, 56px);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  font-family: "Geist", sans-serif;
+  font-size: clamp(40px, 5.4vw, 64px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   color: #ffffff;
 }
 
@@ -67,117 +68,292 @@
   text-underline-offset: 3px;
 }
 
-/* ---------- Category index ----------
-   Two columns divided by hairlines rather than boxed cards, so the grid keeps
-   the same rule language as the row list on the category pages. */
-.projects-cats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+/* ---------- Collection header ----------
+   The category pages only; the index keeps .projects-header above. Title and
+   blurb centred over a strip of every collection, so the header reads as a
+   lid on the listing rather than as the first row of it. */
+
+/* padding-top/bottom only: .site-width-container supplies the side padding on
+   mobile, and a shorthand here would reset it to zero. */
+.projects-collection-header {
+  padding-top: 56px;
+  padding-bottom: 6px;
 }
 
-.projects-cat {
-  position: relative;
-  overflow: hidden;
+.projects-collection-lead {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 300px;
-  padding: 44px 40px 40px 0;
-  border-bottom: 1px solid #ffffff21;
+  align-items: center;
+  padding: 0 0 44px;
+  text-align: center;
+}
+
+/* Small and muted above the title. The switcher below covers sideways moves
+   between collections, so this only has to hold the way back up to the index. */
+.projects-collection-back {
+  margin: 0 0 22px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   text-decoration: none;
+  color: #8a8a99;
+  transition: color 0.2s ease;
 }
 
-/* The vertical rule between the two columns; the second column is inset from
-   it by the same amount the first is inset from the container edge. */
-.projects-cat:nth-child(even) {
-  padding-left: 40px;
-  border-left: 1px solid #ffffff21;
+.projects-collection-back:hover {
+  color: #ffffff;
 }
 
-/* Same hover treatment as a project row: the lead project's image fades in
-   behind the copy, darkened enough to keep it readable. */
-.projects-cat::before {
+.projects-collection-title {
+  margin: 0 0 18px;
+  font-family: "Geist Mono", monospace;
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Narrow measure so the blurb breaks into a couple of centred lines under the
+   title rather than running the width of the page. */
+.projects-collection-blurb {
+  margin: 0;
+  max-width: 430px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #b9b9c4;
+}
+
+/* ---------- Collection switcher ----------
+   Every collection as one bordered band: name on the left of its cell, its
+   way in on the right, the current one flagged instead. Cells pull themselves
+   1px up and left so their own hairlines land on the band's border and on
+   each other — one hairline per join at any column count, which is what lets
+   the grid drop to two columns and then one without per-breakpoint border
+   rules. */
+.collection-switcher {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #ffffff2b;
+  /* The band's right edge, on the same downward ramp as the dividers. Drawn
+     as a 1px background rather than a border so it can fade, and as a
+     background rather than a pseudo-element so it stays out of the grid. */
+  background-image: linear-gradient(180deg, #ffffff2b, #ffffff08 60%, #ffffff00);
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  background-position: 100% 0;
+  margin-bottom: 15px;
+}
+
+/* margin-top lands each cell's top rule on the band's own, so the two read
+   as one hairline and the wrapped breakpoints get their row divider free. */
+.collection-switcher__cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: -1px 0 0;
+  padding: 25px 20px;
+  border-top: 1px solid #ffffff2b;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Dividers fade out downwards and the band carries no bottom rule, so it
+   opens onto the first project row instead of closing into a box. A
+   pseudo-element rather than border-left: a border can't hold a gradient,
+   and one on every cell doubles as the band's left edge at any column
+   count — which is what lets the grid rewrap without border rules per
+   breakpoint. */
+.collection-switcher__cell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background-image: linear-gradient(180deg, #ffffff2b, #ffffff08 60%, #ffffff00);
+}
+
+/* The same top-lit fill the current cell carries, pitched lighter so a
+   hovered cell never reads as the one you are on. It rides on an overlay
+   faded by opacity because no browser interpolates background-image —
+   swapping the gradient straight onto the cell would snap it on. */
+.collection-switcher__cell::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(
-      rgba(6, 1, 18, 0.79),
-      rgba(6, 1, 18, 0.79)
-    ),
-    var(--cat-img);
-  background-size: cover;
-  background-position: center;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  background-image: linear-gradient(to bottom, #ffffff0f, #ffffff04 55%, #ffffff00);
+  transition: opacity 0.25s ease;
   pointer-events: none;
 }
 
-.projects-cat:hover::before {
+/* Tag-qualified: the current cell is a span, and it keeps its own fill. */
+a.collection-switcher__cell:hover::after {
   opacity: 1;
 }
 
-.projects-cat > * {
+/* Lit along the top rule and falling to nothing at the bottom, so the
+   current collection reads as the one you are standing in without a heavier
+   border saying so, and its fill dies out at the open bottom edge the same
+   way the dividers do. */
+.collection-switcher__cell.is-active {
+  background-image: linear-gradient(to bottom, #ffffff17, #ffffff05 55%, #ffffff00);
+}
+
+/* Positioned so they paint above the hover overlay, which is itself a
+   positioned descendant of the cell. */
+/* line-height 1 on both labels: the copy is all caps, so a normal line box
+   reserves descender space no capital ever fills and the ink rides high in
+   a cell this tall. Collapsing the box to the type size sits it on the
+   cell's centre line. Same trick as .pill-nav__label. */
+.collection-switcher__name {
   position: relative;
-  z-index: 1;
-}
-
-.projects-cat-count {
-  margin: 0 0 14px;
   font-family: "Geist Mono", monospace;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #8a8a99;
-}
-
-.projects-cat-title {
-  margin: 0 0 14px;
-  font-family: "Geist Mono", monospace;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #ffffff;
 }
 
-/* Pushed off the CTA so the card bottoms line up whatever the copy length. */
-.projects-cat-desc {
-  margin: 0 0 26px;
-  max-width: 420px;
-  font-size: 16px;
-  line-height: 1.7;
+.collection-switcher__cta,
+.collection-switcher__state {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #8a8a99;
+  transition: color 0.25s ease;
 }
 
-.projects-cat-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7em;
-  margin-top: auto;
-  padding: 13px 22px;
-  border: 1px solid #ffffff;
+a.collection-switcher__cell:hover .collection-switcher__cta {
+  color: #ffffff;
+}
+
+.collection-switcher__state {
+  color: #d3d3dd;
+}
+
+/* Same availability dot the nav's Contact pill carries, so "current" reads
+   as the same kind of status marker. Listed in the square-corners allow-list
+   in site-main.css — without that entry the global reset squares it off. */
+.collection-switcher__dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3ce15f;
+  box-shadow: 0 0 0 3px #3ce15f26;
+}
+
+/* Four cells stop fitting their name and CTA on one line well before the
+   page itself gets narrow, so the band halves early. */
+@media (max-width: 1100px) {
+  .collection-switcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-collection-header {
+    padding-top: 34px;
+  }
+
+  .projects-collection-lead {
+    padding-bottom: 32px;
+  }
+
+  .projects-collection-blurb {
+    max-width: none;
+  }
+
+  .collection-switcher__cell {
+    padding: 32px 18px;
+  }
+}
+
+/* ---------- Collection pills ----------
+   The phone form of the switcher: a row under the title rather than a band
+   under the header. Hidden above its breakpoint, where the band does this
+   job. It scrolls sideways rather than wrapping — a second line of pills
+   reads as a second control. */
+.collection-pills {
+  display: none;
+  gap: 10px;
+  margin-top: 26px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* The lead is a centring column, so without this the row would shrink to
+     its content and never have an overflow to scroll. */
+  align-self: stretch;
+  /* .site-width-container's gutter is 5% of the viewport on each side. Giving
+     it back lets a scrolled pill run off the screen edge instead of stopping
+     short of it in the gutter. */
+  margin-right: -5vw;
+  padding-right: 5vw;
+}
+
+.collection-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.collection-pill {
+  flex: none;
+  padding: 11px 18px;
+  border: 1px solid #ffffff2b;
   font-family: "Geist Mono", monospace;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffffff;
-  transition: 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #b9b9c4;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    color 0.25s ease;
 }
 
-.projects-cat:hover .projects-cat-cta {
-  background: #ffffff;
-  color: #060112;
+/* White fill on dark text — the same way the nav pills mark the page you are
+   on, so the two read as one system. Rounded via the allow-list in
+   site-main.css; the global reset squares everything else. */
+.collection-pill.is-active {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #0b1015;
 }
 
-/* The CTA is a span inside the card link, so the arrow has to be driven by the
-   card's hover rather than its own. */
-.projects-cat:hover .projects-cat-cta .arrow {
-  background-color: currentColor;
+.collection-pill:focus-visible {
+  outline: 2px solid #3ce15f;
+  outline-offset: 2px;
 }
 
-.projects-cat:hover .projects-cat-cta .arrow::before {
-  right: 0;
+/* ---------- Category index ----------
+   The four categories as a directional-hover list: name, blurb and count on
+   hairlines, so they read as one list you scan top to bottom instead of four
+   boxes competing for weight. Rows and hover live in directional-list.css. */
+.projects-cats {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The list runs straight off the page header, so the header's own hairline
+   is the top edge of the first row — its border would otherwise double it. */
+.projects-cats .directional-list__item:first-child .directional-list__border {
+  display: none;
 }
 
 /* ---------- Row list ---------- */
@@ -205,16 +381,21 @@
 
 .projects-row-media {
   position: relative;
-  min-height: 338px;
+  min-height: 330px;
   overflow: hidden;
   background-color: #0b0713;
 }
 
 /* Horizontal filmstrip: all slides sit in a row and the whole track slides
-   as one unit (transform + transition are set inline). */
+   as one unit (transform + transition are set inline). Absolute rather than
+   in flow, so the images crop to the media column instead of setting its
+   height from their own aspect ratio — in flow, `height: 100%` against an
+   auto-height parent resolves to auto and every row ends up a different
+   height depending on the shape of its lead image. */
 .projects-row-track {
+  position: absolute;
+  inset: 0;
   display: flex;
-  height: 100%;
   will-change: transform;
 }
 
@@ -255,28 +436,42 @@
   background: #ffffff;
 }
 
+/* Centred rather than top-aligned: the panel is taller than the copy needs,
+   and hanging it off the top left the slack pooled under the CTA. */
 .projects-row-body {
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 40px 40px 40px 48px;
+  justify-content: center;
+  padding: 28px 32px 28px 40px;
 }
 
 /* Cap line length while the body itself fills the whole column. */
 .projects-row-meta,
 .projects-row-title,
 .projects-row-desc {
-  max-width: 460px;
+  max-width: 560px;
 }
 
-/* On hover, the project image fades in behind the text (darkened so the
-   copy stays readable). Image comes from the --row-img var set in JSX. */
-.projects-row-body::before {
-  content: "";
+/* Keep the text/cta above the hover tile. Both sit at z-index 1, so the copy
+   wins on document order — the tile is the panel's first child. */
+.projects-row-body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* The text panel fills on hover with a tile that wipes in from the edge the
+   pointer actually crossed — the same behaviour as the category index above,
+   driven by useDirectionalHover. Only the panel fills: the media column keeps
+   its carousel. Declared after `> *` so `position` isn't reset by it. */
+.projects-row-tile {
   position: absolute;
   inset: 0;
+  /* The project image behind the site's ink — dark enough that the copy keeps
+     its contrast, light enough that the image still reads. The colour
+     underneath covers the moment before a large image has decoded. */
+  background-color: #060112;
   background-image: linear-gradient(
       rgba(6, 1, 18, 0.79),
       rgba(6, 1, 18, 0.79)
@@ -284,23 +479,16 @@
     var(--row-img);
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  /* Parked off the top until a pointer enters; the entry edge is rewritten
+     inline on mouseenter. */
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
   pointer-events: none;
 }
 
-.projects-row:hover .projects-row-body::before {
-  opacity: 1;
-}
-
-/* Keep the text/cta above the hover image layer. */
-.projects-row-body > * {
-  position: relative;
-  z-index: 1;
-}
-
 .projects-row-meta {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   font-family: "Geist Mono", monospace;
   font-size: 14px;
   font-weight: 500;
@@ -315,7 +503,7 @@
 }
 
 .projects-row-title {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   font-family: "Geist Mono", monospace;
   font-size: 22px;
   font-weight: 600;
@@ -325,7 +513,7 @@
 }
 
 .projects-row-desc {
-  margin: 0 0 26px;
+  margin: 0 0 20px;
   font-size: 16px;
   line-height: 1.7;
 }
@@ -335,7 +523,7 @@
   align-items: center;
   align-self: flex-start;
   gap: 0.7em;
-  padding: 13px 22px;
+  padding: 11px 20px;
   border: 1px solid #ffffff;
   font-family: "Geist Mono", monospace;
   font-size: 12px;
@@ -391,11 +579,11 @@
   }
 
   .projects-row-body {
-    padding: 32px 32px 32px 36px;
+    padding: 24px 26px 24px 30px;
   }
 
   .projects-row-media {
-    min-height: 288px;
+    min-height: 285px;
   }
 }
 
@@ -414,25 +602,6 @@
     margin-top: 18px;
   }
 
-  .projects-cats {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .projects-cat {
-    min-height: 0;
-    padding: 32px 0;
-  }
-
-  .projects-cat:nth-child(even) {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  /* No hover background image on touch devices. */
-  .projects-cat::before {
-    display: none;
-  }
-
   /* Image-led cards: no box border, text aligned to the image edges. */
   .projects-row {
     grid-template-columns: minmax(0, 1fr);
@@ -440,8 +609,8 @@
     margin: 0 0 44px;
   }
 
-  /* No hover background image on touch devices. */
-  .projects-row-body::before {
+  /* No hover fill on touch devices — nothing there triggers a mouseleave. */
+  .projects-row-tile {
     display: none;
   }
 
@@ -467,5 +636,52 @@
 
   .projects-empty {
     padding: 60px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-row-tile {
+    transition: none;
+  }
+}
+
+/* ---------- Phone ----------
+   Below 640 the four-cell band has nowhere to go, so it is replaced by the
+   pill row and the header stops being a centred lid: title, blurb and pills
+   stack left, read top to bottom, and the listing follows. */
+@media (max-width: 640px) {
+  .collection-switcher {
+    display: none;
+  }
+
+  .projects-collection-header {
+    padding-top: 26px;
+  }
+
+  .projects-collection-lead {
+    align-items: flex-start;
+    padding: 0 0 30px;
+    text-align: left;
+  }
+
+  .projects-collection-back {
+    margin-bottom: 18px;
+  }
+
+  /* Scales with the viewport and tops out where the longest collection name
+     ("Development") still holds one line — mono uppercase does not break
+     kindly, and a fixed size big enough to carry the page wraps it. */
+  .projects-collection-title {
+    margin-bottom: 14px;
+    font-size: clamp(32px, 11vw, 48px);
+    letter-spacing: 0.02em;
+  }
+
+  .projects-collection-blurb {
+    max-width: 290px;
+  }
+
+  .collection-pills {
+    display: flex;
   }
 }

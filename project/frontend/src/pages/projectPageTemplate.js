@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import SectionRenderer from "../actions/components/reusable-components/section-renderer";
 import ProjectRail from "../actions/components/project-doc/project-rail";
+import ProjectDetail from "../actions/components/project-doc/project-detail";
 // <ProjectOverview /> is parked — the headline/cover block is still on disk at
 // project-doc/project-overview.js, just not mounted. The rail carries the
 // project's name and meta, and the case study opens straight into its first
@@ -57,6 +58,11 @@ export default function ProjectPage() {
     // our own slugs.
     <div className={`project-page project-page--${project.slug}`}>
       <div className="project-doc-shell site-width-container">
+        {/* Role / timeline / tools over the cover image. A shell child rather
+            than the first thing in the content column, so the stacked layout
+            can lift it above the rail — the shell's own rules place it. */}
+        <ProjectDetail project={project} />
+
         <ProjectRail
           project={project}
           chapters={chapters}

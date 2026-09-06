@@ -8,24 +8,30 @@
   position: relative;
   /* One source for the rail width: the grid track and the divider's offset
      both read it, so widening the rail can't leave the divider behind. */
-  --project-rail-width: 300px;
+  --project-rail-width: 345px;
   display: grid;
   grid-template-columns: var(--project-rail-width) minmax(0, 1fr);
-  gap: 0 56px;
+  gap: 56px;
   padding-top: calc(var(--pill-nav-height, 76px) + 56px);
   padding-bottom: 40px;
 }
 
-/* One row: the rail on the left, the case study beside it. The rail is as tall
-   as the content column, so it has somewhere to stick to the whole way down. */
+/* Two rows in the right-hand column — the detail band, then the case study —
+   with the rail running the height of both, so it has somewhere to stick to
+   the whole way down. */
 .project-doc-shell > .project-rail {
   grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.project-doc-shell > .project-detail {
+  grid-column: 2;
   grid-row: 1;
 }
 
 .project-doc-shell > .project-content {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 /* Full-height divider between the two columns. It lives on the shell rather
@@ -88,8 +94,8 @@
    artwork to portrait screenshots, and either reads fine at rail width. */
 .project-rail-thumb {
   /* It stops short of the divider with everything else in the rail, so it
-     carries a border on all four sides again. */
-  margin: 10px 0;
+     carries a border on all four sides. */
+  margin: 0 0 24px;
   overflow: hidden;
   border: 1px solid #ffffff1f;
   border-radius: 10px;
@@ -105,31 +111,29 @@
 }
 
 .project-rail-name {
-  margin: 0 0 30px;
-  font-size: 1.5rem;
+  margin: 10px 0 30px;
+  font-family: "Geist Mono", monospace;
+  font-size: 1.375rem;
   font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: #fff;
   line-height: 1.4;
 }
 
-/* The title carries the gap down to the meta fields on its own; when a summary
-   sits between them, the summary carries it instead. */
+/* The title carries the gap down to the contents list on its own; when a
+   summary sits between them, the summary carries it instead. */
 .project-rail-name:has(+ .project-rail-summary) {
   margin-bottom: 12px;
 }
 
-/* A sentence or two of plain language — what the project is, before the fields
-   below get specific. Set quieter than .project-rail-value so it reads as
-   context rather than as another piece of metadata. */
+/* A sentence or two of plain language — what the project is. Set quieter than
+   the title above it so it reads as context rather than as a second heading. */
 .project-rail-summary {
   margin: 0 0 30px;
   font-size: 14px;
   line-height: 1.6;
   color: #ffffff9e;
-}
-
-.project-rail-field {
-  margin-bottom: 22px;
 }
 
 .project-rail-label {
@@ -143,38 +147,10 @@
   letter-spacing: 0.05rem;
 }
 
-.project-rail-value {
-  display: block;
-  font-size: 15px;
-  line-height: 1.45;
-  color: #ffffffe0;
-}
-
-.project-rail-tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* Outlined chips rather than the solid white .skill-tag ones: at rail width a
-   row of filled blocks reads louder than the headline next to it. */
-.project-rail-tool {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  border: 1px solid #ffffff2e;
-  border-radius: 4px;
-  font-family: "Geist Mono", monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #ffffffb8;
-  white-space: nowrap;
-}
-
 /* ---------- Contents ---------- */
 
+/* With the meta fields gone this rides right under the summary, near the top
+   of the rail. */
 .project-rail-toc {
   margin-top: 30px;
   padding-top: 26px;
@@ -449,7 +425,7 @@
 @media (max-width: 1100px) {
   .project-doc-shell {
     /* The grid track and the divider both follow from this one value. */
-    --project-rail-width: 260px;
+    --project-rail-width: 300px;
     gap: 0 40px;
   }
 
@@ -460,12 +436,28 @@
 }
 
 @media (max-width: 900px) {
-  /* One column: the meta block leads, the case study follows, and the contents
-     list drops out — a sticky rail has nowhere to sit here. */
+  /* One column: the detail band leads, the project's name and summary follow,
+     then the case study. The contents list drops out — a sticky rail has
+     nowhere to sit here. */
   .project-doc-shell {
     display: flex;
     flex-direction: column;
+    gap: 0;
     padding-top: calc(var(--pill-nav-height, 76px) + 36px);
+  }
+
+  /* Source order puts the rail first; here the band goes above it. */
+  .project-doc-shell > .project-detail {
+    order: 1;
+    margin-bottom: 32px;
+  }
+
+  .project-doc-shell > .project-rail {
+    order: 2;
+  }
+
+  .project-doc-shell > .project-content {
+    order: 3;
   }
 
   .project-doc-shell::before {
@@ -484,44 +476,26 @@
     border-bottom: 1px solid #ffffff1a;
   }
 
+  /* Nothing left to pair up in columns — the name, the summary and the CTA
+     stack in one column at the full width of the page. */
   .project-rail-inner {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
     padding-right: 0;
   }
 
-  /* Its own row above the name, held to thumbnail size — at phone width the
-     rail is the full column, and a cover stretched across it would read as a
-     hero rather than a thumbnail. */
-  .project-rail-thumb {
-    grid-column: 1 / -1;
-    max-width: 220px;
+  /* The flex gap handles the spacing here, so both the plain title and the one
+     followed by a summary hand their bottom margin back. */
+  .project-rail-name,
+  .project-rail-name:has(+ .project-rail-summary) {
     margin: 0;
   }
 
-  /* The grid's own gap handles the spacing here, so both the plain title and
-     the one followed by a summary hand their bottom margin back. */
-  .project-rail-name,
-  .project-rail-name:has(+ .project-rail-summary) {
-    grid-column: 1 / -1;
-    margin-bottom: 0;
-  }
-
   .project-rail-summary {
-    grid-column: 1 / -1;
     max-width: 62ch;
     margin-bottom: 0;
-  }
-
-  .project-rail-field {
-    margin-bottom: 0;
-  }
-
-  /* Role and timeline pair up; the chips get the full width to wrap into, so
-     the meta block stays short enough to keep the headline near the fold. */
-  .project-rail-field--tools {
-    grid-column: 1 / -1;
   }
 
   .project-rail-toc {
@@ -529,7 +503,7 @@
   }
 
   .project-rail-cta {
-    grid-column: 1 / -1;
+    align-self: stretch;
     margin-top: 4px;
   }
 
@@ -550,11 +524,7 @@
 
 @media (max-width: 620px) {
   .project-rail-inner {
-    gap: 18px 20px;
-  }
-
-  .project-rail-value {
-    font-size: 14px;
+    gap: 12px;
   }
 
   .project-overview-highlights {

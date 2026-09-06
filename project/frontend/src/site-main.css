@@ -237,6 +237,13 @@ h3{
 .circle-card-img img,
 .persona-card-avatar,
 .pill-nav__status,
+.collection-switcher__dot,
 .cursor {
     border-radius: 50% !important;
+}
+
+/* Genuinely pill-shaped controls: a 50% radius on a wide box gives an
+   ellipse, so these need their own step out of the reset. */
+.collection-pill {
+    border-radius: 999px !important;
 }

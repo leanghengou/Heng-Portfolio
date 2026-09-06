@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import DirectionalList, {
+  useDirectionalHover,
+} from "../actions/components/directional-list/directional-list";
 import "./projects.css";
 
 import startNowImg from "../resources/startnow-intro-img.png";
@@ -150,6 +153,80 @@ export const FILTERS = [
 export const byCategory = (value) =>
   PROJECTS.filter((p) => p.tags.includes(value));
 
+// The category strip that heads every collection page: one cell per
+// collection in a single bordered band, the current one flagged rather than
+// linked. It also replaces the breadcrumb those pages used to carry.
+export const CollectionSwitcher = ({ active }) => (
+  <nav className="collection-switcher" aria-label="Project categories">
+    {FILTERS.map((filter) => {
+      const name = (
+        <span className="collection-switcher__name">
+          {filter.short || filter.label}
+        </span>
+      );
+
+      // The current collection is a label, not a link — a link back to the
+      // page you are already on reads as a dead control.
+      if (filter.slug === active) {
+        return (
+          <span
+            key={filter.slug}
+            className="collection-switcher__cell is-active"
+            aria-current="page"
+          >
+            {name}
+            <span className="collection-switcher__state">
+              <span className="collection-switcher__dot" aria-hidden="true" />
+              Current
+            </span>
+          </span>
+        );
+      }
+
+      return (
+        <Link
+          key={filter.slug}
+          className="collection-switcher__cell"
+          to={`/projects/${filter.slug}`}
+        >
+          {name}
+          <span className="collection-switcher__cta">View projects</span>
+        </Link>
+      );
+    })}
+  </nav>
+);
+
+// The phone form of the switcher: the collections as a row of pills under
+// the page title. The current one is hoisted to the front rather than left
+// in place — the row scrolls sideways, and hoisting is what guarantees the
+// one you are on is the first thing in it instead of off the left edge.
+export const CollectionPills = ({ active }) => {
+  const ordered = [
+    ...FILTERS.filter((f) => f.slug === active),
+    ...FILTERS.filter((f) => f.slug !== active),
+  ];
+
+  return (
+    <nav className="collection-pills" aria-label="Project categories">
+      {ordered.map((filter) => {
+        const isActive = filter.slug === active;
+
+        return (
+          <Link
+            key={filter.slug}
+            className={`collection-pill ${isActive ? "is-active" : ""}`}
+            to={`/projects/${filter.slug}`}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {filter.short || filter.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+};
+
 export const ProjectRow = ({ project }) => {
   const navigate = useNavigate();
   const go = () => {
@@ -213,9 +290,15 @@ export const ProjectRow = ({ project }) => {
 
   const activeDot = index % count;
 
+  // The same wipe the category index uses: the pointer enters the whole row,
+  // but only the text panel fills — the media column keeps its carousel.
+  const { hoverRef, tileRef, onMouseEnter, onMouseLeave } =
+    useDirectionalHover("y");
+
   return (
     <article
       className="projects-row"
+      ref={hoverRef}
       style={{
         // Quoted: asset filenames can contain spaces, and an unquoted
         // url() with a space is invalid CSS, so setProperty drops it silently.
@@ -223,8 +306,14 @@ export const ProjectRow = ({ project }) => {
         cursor: project.slug ? "pointer" : "default",
       }}
       onClick={go}
-      onMouseEnter={startCarousel}
-      onMouseLeave={stopCarousel}
+      onMouseEnter={(e) => {
+        startCarousel();
+        onMouseEnter(e);
+      }}
+      onMouseLeave={(e) => {
+        stopCarousel();
+        onMouseLeave(e);
+      }}
     >
     <div className="projects-row-media">
       <div
@@ -255,6 +344,8 @@ export const ProjectRow = ({ project }) => {
     </div>
 
     <div className="projects-row-body">
+      <div className="projects-row-tile" ref={tileRef} aria-hidden="true" />
+
       <p className="projects-row-meta">
         {project.date} <span className="projects-row-meta-sep">/</span> {project.duration}{" "}
         <span className="projects-row-meta-sep">/</span> {project.platform}
@@ -292,44 +383,36 @@ export const ProjectRow = ({ project }) => {
   );
 };
 
-// The index: one card per category, each opening that category's own page.
-// Categories with nothing in them yet still get a card — the nav's mega menu
+// The index: one row per category, each opening that category's own page.
+// Categories with nothing in them yet still get a row — the nav's mega menu
 // lists them too, and a missing column there would read as a bug.
-const CategoryCard = ({ filter }) => {
+// Unlabelled: the rows say what they are, and a header band under the page
+// title read as a second heading rather than as column names.
+const CATEGORY_COLUMNS = [{ key: "category" }, { key: "covers" }, { key: "count" }];
+
+// FILTERS and PROJECTS are static, so the rows are built once at module load
+// rather than on every render of the page.
+const CATEGORY_ITEMS = FILTERS.map((filter) => {
   const items = byCategory(filter.value);
   const lead = items[0];
 
-  return (
-    <Link
-      className="projects-cat"
-      to={`/projects/${filter.slug}`}
-      style={
-        lead
-          ? // Quoted: asset filenames can contain spaces, and an unquoted
-            // url() with a space is invalid CSS.
-            { "--cat-img": `url("${lead.bgImg || lead.img}")` }
-          : undefined
-      }
-    >
-      <p className="projects-cat-count">
-        {items.length > 0
-          ? `${items.length} ${items.length === 1 ? "Project" : "Projects"}`
-          : "In progress"}
-      </p>
-
-      <h2 className="projects-cat-title">{filter.label}</h2>
-
-      <p className="projects-cat-desc">{filter.blurb}</p>
-
-      <span className="projects-cat-cta">
-        View category
-        <span className="arrow-wrapper" aria-hidden="true">
-          <span className="arrow" />
-        </span>
-      </span>
-    </Link>
-  );
-};
+  return {
+    key: filter.slug,
+    to: `/projects/${filter.slug}`,
+    // Quoted: asset filenames can contain spaces, and an unquoted url() with
+    // a space is invalid CSS. Sits faintly under the hover tile.
+    style: lead
+      ? { "--tile-img": `url("${lead.bgImg || lead.img}")` }
+      : undefined,
+    cells: [
+      filter.label,
+      filter.blurb,
+      items.length > 0
+        ? `${items.length} ${items.length === 1 ? "project" : "projects"}`
+        : "In progress",
+    ],
+  };
+});
 
 const Projects = () => {
   return (
@@ -347,9 +430,11 @@ const Projects = () => {
       </header>
 
       <div className="projects-cats site-width-container">
-        {FILTERS.map((filter) => (
-          <CategoryCard key={filter.slug} filter={filter} />
-        ))}
+        <DirectionalList
+          columns={CATEGORY_COLUMNS}
+          items={CATEGORY_ITEMS}
+          type="y"
+        />
       </div>
     </section>
   );

@@ -52,9 +52,13 @@ const PillNav = () => {
   // being open at once means whichever closes second restores `overflow` while
   // the other still needs it. A single slot makes them mutually exclusive by
   // construction rather than by each handler remembering to close the others.
-  // "mega" | "resume" | "about" | "contact"
+  // "mega" | "burger" | "resume" | "about" | "contact"
   const [overlay, setOverlay] = useState(null);
   const megaOpen = overlay === "mega";
+  // The mobile drawer. Sharing the slot is what makes tapping "Resume" inside
+  // it hand over cleanly: the drawer closes and the popup opens in one state
+  // change, and only one of them ever holds the scroll lock.
+  const burgerOpen = overlay === "burger";
 
   const hoverTimer = useRef(null);
   const featureVideoRef = useRef(null);
@@ -120,18 +124,18 @@ const PillNav = () => {
   // The popup components bring their own Escape handling; this covers the mega
   // menu, which is rendered here.
   useEffect(() => {
-    if (!megaOpen) return undefined;
+    if (!megaOpen && !burgerOpen) return undefined;
     const onKeydown = (e) => {
-      if (e.key === "Escape") closeIfStill("mega");
+      if (e.key === "Escape") closeOverlay();
     };
     document.addEventListener("keydown", onKeydown);
     return () => document.removeEventListener("keydown", onKeydown);
-  }, [megaOpen]);
+  }, [megaOpen, burgerOpen]);
 
   // Lock the page (stop Lenis + freeze html/body) while the menu is open —
   // same approach as resume-popup.js, so the two behave identically.
   useEffect(() => {
-    if (!megaOpen) return undefined;
+    if (!megaOpen && !burgerOpen) return undefined;
     const lenis = window.__lenis;
     const html = document.documentElement;
     const body = document.body;
@@ -147,14 +151,16 @@ const PillNav = () => {
       html.style.overflow = prevHtml;
       body.style.overflow = prevBody;
     };
-  }, [megaOpen]);
+  }, [megaOpen, burgerOpen]);
 
   return (
     <>
       {/* Full-screen dim behind the panel. z-index sits just under the bar so
           the nav stays legible above it, like the resume popup's backdrop. */}
       <div
-        className={`pill-nav__backdrop${megaOpen ? " is--open" : ""}`}
+        className={`pill-nav__backdrop${
+          megaOpen || burgerOpen ? " is--open" : ""
+        }`}
         onClick={closeOverlay}
         onMouseEnter={hoverClose}
         aria-hidden="true"
@@ -255,6 +261,23 @@ const PillNav = () => {
             );
           })}
         </nav>
+
+        {/* Replaces the pill row below 768px. The row was already scrolling
+            sideways at 375px to keep Contact on screen, which hid links behind
+            a gesture nothing signposts. Rendered at every width and hidden by
+            CSS on desktop, so no resize listener decides which nav exists. */}
+        <button
+          type="button"
+          className={`pill-nav__burger${burgerOpen ? " is--open" : ""}`}
+          aria-label={burgerOpen ? "Close menu" : "Open menu"}
+          aria-expanded={burgerOpen}
+          onClick={() => (burgerOpen ? closeOverlay() : openOverlay("burger"))}
+        >
+          <span className="pill-nav__burger-box" aria-hidden="true">
+            <span className="pill-nav__burger-bar" />
+            <span className="pill-nav__burger-bar" />
+          </span>
+        </button>
       </header>
 
       {/* Sits outside <header> on purpose: .pill-nav__items scrolls
@@ -350,6 +373,83 @@ const PillNav = () => {
               Nine years of making software people actually use. Three that say
               the most.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile drawer. Outside <header> for the same reason as the mega panel:
+          the bar is a fixed, backdrop-filtered flex row and would both clip
+          this and trap its positioning. Kept mounted so it can transition, and
+          pulled out of hit-testing and the a11y tree while closed. */}
+      <div
+        className={`pill-nav__drawer${burgerOpen ? " is--open" : ""}`}
+        aria-hidden={!burgerOpen}
+        data-lenis-prevent
+      >
+        <nav className="pill-nav__drawer-nav" aria-label="Mobile">
+          {ITEMS.map((item) => {
+            const inner = (
+              <>
+                {item.status && <span className="pill-nav__status" />}
+                <span className="pill-nav__drawer-label">{item.label}</span>
+                <span className="pill-nav__drawer-mark" aria-hidden="true">
+                  {item.popup ? "+" : "\u2192"}
+                </span>
+              </>
+            );
+
+            // One slot, so opening the popup is itself what closes the drawer.
+            if (item.popup) {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  className="pill-nav__drawer-row"
+                  tabIndex={burgerOpen ? undefined : -1}
+                  onClick={() => openOverlay(item.popup)}
+                >
+                  {inner}
+                </button>
+              );
+            }
+
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={`pill-nav__drawer-row${
+                  location.pathname.startsWith(item.to) ? " is--current" : ""
+                }`}
+                tabIndex={burgerOpen ? undefined : -1}
+                // Tapping the route you are already on fires no navigation, so
+                // the route-change effect never runs and the drawer would be
+                // left sitting open over the page.
+                onClick={closeOverlay}
+              >
+                {inner}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* The mega menu's category columns don't fit here, but a filtered
+            listing is only reachable through them — so they get a compact row
+            of their own rather than being dropped. All four, including the SEO
+            one the desktop menu leaves to the listing page. */}
+        <div className="pill-nav__drawer-cats">
+          <span className="pill-nav__mega-eyebrow">Categories</span>
+          <div className="pill-nav__drawer-cat-list">
+            {FILTERS.map((f) => (
+              <Link
+                key={f.slug}
+                to={`/projects/${f.slug}`}
+                className="pill-nav__drawer-cat"
+                tabIndex={burgerOpen ? undefined : -1}
+                onClick={closeOverlay}
+              >
+                {f.short || f.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
